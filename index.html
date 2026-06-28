@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lugal — un livre dont vous êtes le roi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ece2c8;--paper-2:#e4d8b8;--paper-edge:#cbbd97;
+  --ink:#1f1a12;--ink-soft:#473d2c;--rubric:#9c3a2c;
+  --clay-1:#caa869;--clay-2:#b68d4c;--clay-edge:#8a6633;--clay-ink:#33240f;--ochre:#9c5a22;
+  --desk:#231e18;--rule:#b7a382;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden}
+body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
+  background:radial-gradient(120% 90% at 50% -10%,#352c22 0%,var(--desk) 70%,#181410 100%);
+  display:flex;flex-direction:column;padding:10px 14px 14px}
+.topbar{flex:0 0 auto;display:flex;align-items:baseline;justify-content:center;gap:14px;padding-bottom:6px;flex-wrap:wrap}
+.topbar b{font-family:"IM Fell English SC",serif;font-size:31px;letter-spacing:.12em;color:#eed9a8;font-weight:400}
+.topbar span{font-style:italic;font-size:13.5px;color:#c2ad8d}
+.progress{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.05em;color:#b39a72;white-space:nowrap;font-style:normal}
+.spread{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1.34fr .78fr;gap:14px;margin-top:6px}
+.book{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden;
+  background:linear-gradient(180deg,var(--paper),var(--paper-2));
+  border:1px solid var(--paper-edge);border-radius:3px;padding:15px 24px 13px;position:relative;
+  box-shadow:0 16px 44px rgba(0,0,0,.5),inset 0 0 50px rgba(120,96,52,.1)}
+.book::before{content:"";position:absolute;inset:8px;border:1px solid rgba(90,70,40,.22);pointer-events:none}
+.bk-head{flex:0 0 auto;display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:5px;margin-bottom:7px}
+.pno{font-family:"IM Fell English",serif;font-style:italic;font-size:29px;line-height:1;color:var(--rubric)}
+.folio{font-family:"IM Fell English SC",serif;font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.fin-title{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:25px;color:var(--rubric);margin:4px 0 9px}
+.headpiece{flex:0 0 auto;display:flex;justify-content:center;margin:4px 0 10px}
+.headpiece svg{width:min(360px,78%);height:auto}
+.prose{flex:0 1 auto;min-height:0;overflow:hidden;font-size:16px;line-height:1.55;text-align:justify;hyphens:auto}
+.prose p{margin:0 0 8px}
+.prose .dropcap::first-letter{font-family:"IM Fell English",serif;font-size:2.8em;line-height:.8;float:left;padding:5px 8px 0 0;color:var(--rubric)}
+.prose em{font-style:italic;color:#5a4a30}
+.plate{flex:0 0 auto;display:flex;gap:13px;background:linear-gradient(180deg,#f0e8d2,#e6dabb);
+  border:1px solid var(--paper-edge);border-radius:3px;padding:10px 12px;margin:8px 0 4px;
+  box-shadow:inset 0 0 0 1px rgba(255,250,238,.5),0 3px 10px rgba(70,50,20,.14)}
+.plate-text{display:block}
+.plate-fig{flex:0 0 33%;min-width:112px;max-width:160px;border:1px solid var(--clay-edge);border-radius:2px;overflow:hidden;background:#ded2b2;position:relative;min-height:104px;display:flex}
+.plate-fig .fig-img{width:100%;height:100%;object-fit:cover;display:block}
+.fig-ph{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:9px;background:repeating-linear-gradient(45deg,#e4d8b8 0 9px,#dccfac 9px 18px);color:#7a6440}
+.fig-ph .ph-frame{position:absolute;inset:6px;border:1px solid rgba(120,90,45,.3);pointer-events:none}
+.fig-ph .ph-icon{font-size:18px;color:#9a8155;opacity:.7}
+.fig-ph .ph-name{font-family:"IM Fell English",serif;font-style:italic;font-size:12.5px;color:#5e4a2a;line-height:1.2;max-width:92%}
+.fig-ph .ph-note{font-family:"IM Fell English SC",serif;font-size:8px;letter-spacing:.06em;color:#8a7350;text-transform:uppercase}
+.plate-info{flex:1;min-width:0;display:flex;flex-direction:column}
+.plate-h{font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px;margin-bottom:5px}
+.src-tag{font-family:"EB Garamond",serif;font-size:9.5px;letter-spacing:.03em;padding:2px 8px;border-radius:2px;text-transform:none;white-space:nowrap}
+.tag-hec{background:#3a4a3a;color:#e3eddb}
+.src-kind{font-family:"EB Garamond",serif;font-style:italic;font-size:10px;color:#7a6a4a;text-transform:none;letter-spacing:0}
+.plate .art{margin:0 0 3px;font-size:13.5px;line-height:1.4;padding:2px 6px;border-radius:2px;transition:background .15s,opacity .15s}
+.plate-text .art{font-size:14px}
+.plate .art b{color:var(--rubric);font-family:"IM Fell English",serif}
+.plate .art.hl{background:rgba(156,58,44,.16);box-shadow:inset 3px 0 0 var(--rubric)}
+.plate .art.dim{opacity:.34}
+.plate .cite{margin-top:auto;padding-top:5px;font-family:"IM Fell English",serif;font-style:italic;font-size:10px;color:var(--ink-soft);border-top:1px dotted var(--rule)}
+.readlock{flex:0 0 auto;display:none;align-items:center;gap:10px;margin:6px 0 0;padding:5px 10px;border-radius:3px;background:rgba(120,96,52,.1);border:1px dashed var(--rule)}
+.readlock .rl-txt{font-family:"IM Fell English",serif;font-style:italic;font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+.readlock .rl-num{font-family:"IM Fell English",serif;color:var(--rubric);font-style:normal}
+.readlock .rl-bar{flex:1;height:5px;background:rgba(120,96,52,.18);border-radius:3px;overflow:hidden}
+.readlock .rl-bar i{display:block;height:100%;width:0;background:var(--rubric);transition:width 1s linear}
+.renvois{flex:0 0 auto;border-top:1px solid var(--rule);padding-top:5px;margin-top:6px}
+.renvoi{display:flex;gap:10px;align-items:center;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:5px 6px;font-family:"EB Garamond",serif;font-size:15px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px}
+.renvoi:hover:not(:disabled){background:rgba(156,58,44,.08)}
+.renvoi:focus-visible{outline:2px solid var(--rubric);outline-offset:1px}
+.renvoi .lt{display:flex;flex-direction:column;gap:2px;align-items:flex-start}
+.renvoi .tags{display:flex;gap:6px;flex-wrap:wrap}
+.renvoi .go{font-family:"IM Fell English",serif;font-style:italic;color:var(--rubric);font-size:13.5px;white-space:nowrap}
+.pill{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.04em;padding:1px 7px;border-radius:2px}
+.pill-law{color:#2e4a2e;background:rgba(58,74,58,.14);border:1px solid rgba(58,74,58,.32)}
+.pill-law.none{color:#6a4a1e;background:rgba(156,90,34,.12);border-color:rgba(156,90,34,.3)}
+.pill-die{color:#7a4a1e;background:rgba(156,90,34,.14);border:1px solid rgba(156,90,34,.32)}
+.renvoi:disabled{cursor:not-allowed;color:#9b8d75}.renvoi:disabled .go{color:#9b8d75}
+.renvoi .lock{font-style:italic;font-size:11px;color:#8a6a44}
+.renvoi.burned{opacity:.55}.renvoi.burned .go{color:#b04a3a}
+.dice-zone{flex:0 0 auto;height:70px;margin-top:7px;border:1px solid var(--paper-edge);border-radius:3px;background:repeating-linear-gradient(135deg,rgba(120,96,52,.05) 0 6px,transparent 6px 12px),var(--paper-2);display:flex;align-items:center;padding:0 13px}
+.dz-idle{display:flex;align-items:center;gap:10px;color:#9b8c70;width:100%}
+.dz-idle .pip{width:26px;height:26px;border:1.4px dashed #b1a07f;border-radius:5px;display:grid;place-items:center;color:#b1a07f;font-size:14px}
+.dz-idle .lab{font-family:"IM Fell English",serif;font-style:italic;font-size:12.5px}
+.dz-live{display:flex;align-items:center;gap:11px;width:100%;flex-wrap:wrap}
+.dz-live .target{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.03em;color:var(--ink-soft);max-width:160px;line-height:1.3}
+.dz-live .target b{font-family:"IM Fell English",serif;font-style:italic;color:var(--rubric);font-size:13px}
+.die{width:29px;height:29px;border:1.6px solid var(--ink);border-radius:5px;background:var(--paper);display:grid;place-items:center;font-family:"IM Fell English",serif;font-size:17px;color:var(--ink)}
+.die.roll{animation:tumble .5s ease}
+@keyframes tumble{0%{transform:rotate(-14deg) scale(.8)}55%{transform:rotate(12deg) scale(1.1)}100%{transform:none}}
+.btn-ink{font-family:"IM Fell English SC",serif;letter-spacing:.07em;font-size:11.5px;background:var(--ink);color:var(--paper);border:none;padding:7px 13px;border-radius:3px;cursor:pointer;white-space:nowrap}
+.btn-ink:hover{background:#000}.btn-ink:disabled{opacity:.5}
+.verdict{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;line-height:1.22;flex:1 1 100%}
+.verdict.ok{color:#3c6b3a}.verdict.no{color:var(--rubric)}
+.tablet{height:100%;min-height:0;overflow:hidden;display:flex;flex-direction:column;
+  background:linear-gradient(165deg,var(--clay-1),var(--clay-2));
+  border:1px solid var(--clay-edge);border-radius:5px;padding:12px 15px;color:var(--clay-ink);
+  box-shadow:0 16px 44px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,245,220,.35),inset 0 0 40px rgba(80,50,15,.18);position:relative}
+.wedge{flex:0 0 auto;height:9px;display:flex;gap:5px;justify-content:center;opacity:.45;margin-bottom:5px}
+.wedge i{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:8px solid var(--clay-edge)}
+.t-head{flex:0 0 auto;display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.t-emblem{width:40px;height:40px;border-radius:50%;border:1.6px solid var(--clay-edge);background:rgba(255,245,220,.18);display:grid;place-items:center;flex:0 0 auto;box-shadow:inset 0 0 8px rgba(80,50,15,.3)}
+.t-emblem svg{width:28px;height:28px}
+.t-name{font-family:"IM Fell English",serif;font-size:19px;line-height:1.05;color:var(--clay-ink);text-shadow:0 1px 0 rgba(255,245,220,.4)}
+.t-name span{display:block;font-style:italic;font-size:11.5px;color:#5f421e}
+.t-sect{flex:0 0 auto;font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.12em;color:#5f421e;margin:8px 0 5px;display:flex;align-items:center;gap:8px}
+.t-sect::after{content:"";flex:1;height:1px;background:rgba(95,66,30,.45)}
+.roundels{flex:0 0 auto;display:flex;gap:8px}
+.roundel{flex:1;aspect-ratio:1/.9;border-radius:50%;border:2px solid var(--clay-edge);background:radial-gradient(circle at 38% 32%,rgba(255,245,220,.42),rgba(150,110,55,.16));display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 2px 6px rgba(80,50,15,.3);transition:box-shadow .3s,transform .3s}
+.roundel.lit{box-shadow:inset 0 2px 6px rgba(80,50,15,.3),0 0 0 3px rgba(156,90,34,.55);transform:scale(1.04)}
+.roundel .v{font-family:"IM Fell English",serif;font-size:26px;line-height:.9;color:#42300f;text-shadow:0 1px 0 rgba(255,245,220,.5)}
+.roundel .l{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.02em;color:#5f421e;margin-top:3px;text-align:center;line-height:1}
+.counters{flex:0 0 auto;display:flex;gap:9px;margin-top:8px}
+.counter{flex:1;display:flex;align-items:center;gap:7px;background:rgba(255,245,220,.16);border:1px solid var(--clay-edge);border-radius:3px;padding:5px 8px}
+.counter svg{width:17px;height:17px;flex:0 0 auto}
+.counter .cl{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.03em;color:#5f421e;display:block;line-height:1.1}
+.counter .cv{font-family:"IM Fell English",serif;font-size:18px;color:#42300f;line-height:1}
+.seals{flex:1 1 auto;min-height:0;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0 13px;align-content:start}
+.seal{display:flex;align-items:center;gap:6px;font-size:12px;color:#92763f;padding:1px 0}
+.seal .dot{width:12px;height:12px;border-radius:50%;border:1.4px solid #92763f;flex:0 0 auto;background:rgba(255,245,220,.1)}
+.seal.on{color:var(--clay-ink)}.seal.on .dot{background:var(--ochre);border-color:#6e3c12;box-shadow:0 0 0 2px rgba(156,90,34,.22)}
+.registre{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:#543d18;line-height:1.45;border-top:1px solid rgba(95,66,30,.45);padding-top:5px;margin-top:5px;min-height:44px}
+.registre .e{display:block}.registre .e.flash{animation:litreg 1.1s ease}
+@keyframes litreg{0%{color:var(--rubric)}100%{color:#543d18}}
+.frontis{position:fixed;inset:0;background:rgba(20,16,12,.93);display:flex;align-items:center;justify-content:center;padding:14px;z-index:30}
+.fcard{width:min(520px,100%);max-height:96vh;overflow:hidden;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:18px 26px 20px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.fcard .wm{font-family:"IM Fell English SC",serif;font-size:33px;letter-spacing:.1em;color:var(--rubric);text-align:center;margin:0;line-height:1}
+.fcard .k{font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;text-align:center;margin:1px 0 10px}
+.fcard h2{font-family:"IM Fell English",serif;font-style:italic;font-size:22px;margin:0 0 6px;color:var(--ink)}
+.fcard p{font-size:15px;line-height:1.5;margin:0 0 11px;color:#2b2316}
+.frow{margin:0 0 9px}
+.frow label,.flabel{font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.08em;color:#3a2f1f;display:block;margin-bottom:4px;text-transform:uppercase}
+.frow input{width:100%;padding:8px 11px;border:1px solid var(--paper-edge);background:rgba(255,252,242,.7);font-family:"IM Fell English",serif;font-size:17px;color:var(--ink);border-radius:3px}
+.fseg{display:flex;gap:8px}
+.fseg button{flex:1;padding:8px;border:1px solid var(--paper-edge);background:rgba(255,252,242,.6);font-family:"IM Fell English",serif;font-size:15px;color:var(--ink-soft);border-radius:3px;cursor:pointer}
+.fseg button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.roll-stats{display:flex;gap:9px;margin:6px 0 13px}
+.roll-stats .rs{flex:1;border:1.6px solid var(--clay-edge);border-radius:7px;padding:7px 4px;text-align:center;background:linear-gradient(165deg,#ecdcb8,#cdb079)}
+.roll-stats .rs .l{font-family:"IM Fell English SC",serif;font-size:10px;color:#5f421e;display:block;margin-bottom:1px}
+.roll-stats .rs .v{font-family:"IM Fell English",serif;font-size:26px;color:#42300f;line-height:1}
+.fcta{width:100%;padding:11px;border:none;border-radius:3px;background:var(--rubric);color:#f6e7d8;font-family:"IM Fell English SC",serif;font-size:13.5px;letter-spacing:.1em;cursor:pointer}
+.fcta:hover{filter:brightness(1.07)}
+@media(max-width:880px){
+  html,body{overflow:auto;height:auto}body{min-height:100%}
+  .spread{grid-template-columns:1fr}.book,.tablet{height:auto;min-height:0}.tablet{order:-1}
+  .prose,.seals{overflow:visible}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar"><b>Lugal</b><span>un livre dont vous êtes le roi — Mésopotamie</span><span class="progress" id="progress"></span></div>
+<div class="spread"><section class="book" id="book"></section><aside class="tablet" id="tablet"></aside></div>
+
+<div class="frontis" id="frontis">
+  <div class="fcard">
+    <p class="wm">Lugal</p>
+    <p class="k">L'émergence d'une civilisation</p>
+    <h2>Avant de régner, fais-toi connaître</h2>
+    <p>Sur les rives du fleuve, un village de roseaux attend un maître. Tire tes caractéristiques, prends un nom — et que les dieux jugent ton règne.</p>
+    <div class="frow"><label>Ton titre</label><div class="fseg" id="seg"><button data-g="roi" class="on">Roi</button><button data-g="reine">Reine</button></div></div>
+    <div class="frow"><label>Ton nom</label><input id="nom" maxlength="16" value="Ur-Nammu"></div>
+    <div class="frow"><label>Ta cité</label><input id="cite" maxlength="16" value="Eridu"></div>
+    <span class="flabel">Tes caractéristiques (tirées aux dés)</span>
+    <div class="roll-stats" id="rolls"></div>
+    <button class="fcta" id="begin">Monter sur le trône — §1</button>
+  </div>
+</div>
+
+<script>
+const READ_LOCK=6;
+const HEADPIECE=`<svg viewBox="0 0 360 30" fill="none" stroke="#9c3a2c" stroke-width="1.2" stroke-linecap="round"><line x1="14" y1="15" x2="150" y2="15"/><line x1="210" y1="15" x2="346" y2="15"/><path d="M150 15 q12 -8 22 0 q-12 8 -22 0z"/><path d="M210 15 q-12 -8 -22 0 q12 8 22 0z"/><circle cx="180" cy="15" r="5.5"/><path d="M180 6v-4M180 24v4M171 15h-4M189 15h4"/></svg>`;
+const EMBLEME=`<svg viewBox="0 0 40 40" fill="none" stroke="#5e451f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 34q-4-18 8-22"/><circle cx="22" cy="14" r="7"/><path d="M15 9l3-6 3 5 3-6 3 6 3-5 3 6"/><path d="M19 17q3 3 7 1"/></svg>`;
+const ICO_TRESOR=`<svg viewBox="0 0 20 20" fill="none" stroke="#5f421e" stroke-width="1.4"><rect x="3" y="7" width="14" height="9" rx="1.5"/><path d="M3 10h14M10 7V5"/></svg>`;
+const ICO_CIV=`<svg viewBox="0 0 20 20" fill="none" stroke="#5f421e" stroke-width="1.4"><path d="M3 16h14l-3-4H6zM6 12l2-3h4l2 3M9 9l1-2 1 2"/></svg>`;
+const SCEAUX_ORDRE=["Écriture adoptée","Temple puissant","Sans écriture","Code gravé","Loi de fer","Loi équitable","Prérogative royale","Ordalie","Alliés","Ennemis jurés","Murailles","Héritier désigné"];
+const STATLAB={autorite:"Autorité",legitimite:"Légitimité",faveur:"Faveur des dieux"};
+let F=null;
+const nouvelle=()=>({nom:"Ur-Nammu",genre:"roi",cite:"Eridu",autorite:0,legitimite:0,faveur:0,tresor:4,civilisation:1,sceaux:new Set(),registre:[],noeud:"n01"});
+const d6=()=>1+Math.floor(Math.random()*6);
+
+const IMG="assets/img/sources/";
+const SRC={
+  carte:{h:"Hydrographie du Croissant fertile",img:IMG+"carte-croissant.png",arts:["Entre le Tigre et l'Euphrate, une mince bande de terres irrigables — autour, le désert. L'eau décide de tout."],cite:"Banque HEC · carte d'après D-Maps."},
+  fleuves:{h:"Le bassin du Tigre et de l'Euphrate",img:IMG+"carte-fleuves.png",arts:["Deux fleuves capricieux : leur crue, imprévisible, fertilise ou ravage. Sans maîtrise de l'eau, pas de cité."],cite:"Banque HEC · K. Musser, Wikimedia Commons, CC BY-SA 2.5 · texte RÉCIT."},
+  dattes:{h:"L'agriculture du Croissant fertile",img:IMG+"dattes.png",arts:["Orge, blé, dattes : l'irrigation rend la terre « variée et abondante ». Le surplus agricole nourrit la cité."],cite:"Banque HEC · S. Shebs, Wikimedia Commons, domaine public · texte RÉCIT."},
+  neolithique:{h:"La révolution agricole",img:null,arts:["Avec le surplus, certains cessent de cultiver : ils deviennent artisans, prêtres, soldats. La cité naît du grenier plein."],cite:"Banque HEC · Service national du RÉCIT, univers social."},
+  calculi:{h:"Bulle-enveloppe et calculi",img:IMG+"calculi.png",arts:["Avant l'écriture, des jetons d'argile (calculi) scellés dans une bulle servent à compter les marchandises."],cite:"Banque HEC · musée du Louvre · photo F. Raux, CC BY-NC 3.0 · texte RÉCIT."},
+  pictogrammes:{h:"Des pictogrammes à l'écriture cunéiforme",img:IMG+"pictogrammes.png",arts:["Vers 3500 av. J.-C., les Sumériens tracent sur l'argile des signes pour les nombres et les choses : l'écriture naît du besoin de compter."],cite:"Banque HEC · Svdmolen, Wikimedia Commons, domaine public · texte RÉCIT."},
+  lagash:{h:"Tablette de comptabilité de Lagash",img:IMG+"tablette-lagash.png",arts:["Les archives du temple de Ba'u enregistrent grain, bétail et journées de travail : l'État se gouverne par l'écrit."],cite:"Banque HEC · temple de Ba'u, Lagash · musée du Louvre · photo M.-L. Nguyen 2011, Wikimedia Commons, domaine public."},
+  sceau:{h:"Sceau-cylindre de la période d'Uruk",img:IMG+"sceau.png",arts:["Roulé sur l'argile fraîche, le sceau-cylindre signe contrats et ordres officiels : la marque de l'autorité."],cite:"Banque HEC · photo M.-L. Nguyen, Wikimedia Commons, CC BY 3.0 · texte RÉCIT."},
+  animisme:{h:"Des croyances animistes",img:IMG+"animisme.png",arts:["Avant les grands dieux, les peuples prêtent une âme aux arbres, aux rivières, aux animaux."],cite:"Banque HEC · Musée des civilisations anatoliennes · N. Dilmen, Wikimedia Commons, CC BY-SA 3.0 · texte RÉCIT."},
+  pantheon:{h:"Une religion polythéiste",img:null,arts:["Anu, dieu du ciel, est le père des dieux ; son autorité domine le panthéon. Le temple devient le cœur de la cité."],cite:"Banque HEC · Service national du RÉCIT, univers social."},
+  ziggourat:{h:"La ziggourat d'Ur",img:IMG+"ziggourat.png",arts:["La haute terrasse à degrés élève le dieu vers le ciel : le temple domine la cité — et ses prêtres avec lui."],cite:"Banque HEC · reconstitution · wikiwikiyarou, Wikimedia Commons, domaine public."},
+  hierarchie:{h:"La hiérarchie sociale en Mésopotamie",img:null,arts:["Le roi au palais ; sous lui les scribes, puis artisans et paysans ; tout en bas, les esclaves. L'écriture fait la force des scribes."],cite:"Banque HEC · Service national du RÉCIT, univers social."},
+  cadastre:{h:"Texte de cadastre (v. 1800 av. J.-C.)",img:IMG+"cadastre.png",arts:["Un cadastre akkadien fixe par écrit les limites des champs : la propriété se prouve — donc se conteste devant le roi."],cite:"Banque HEC · O. S. M. Amin, Wikimedia Commons, CC BY-SA 4.0."},
+  hammurabi:{h:"Stèle du Code d'Hammourabi",img:IMG+"hammourabi.png",arts:[
+    {id:"a53",ref:"§53-55",txt:"qui néglige sa digue restitue le blé ; sinon, on vend sa personne."},
+    {id:"a229",ref:"§229-230",txt:"l'ouvrage qui s'écroule et <em>tue</em> appelle la mort de son auteur."},
+    {id:"a196",ref:"§196/200",txt:"œil pour œil — peine graduée selon le rang."},
+    {id:"a2",ref:"§2",txt:"à défaut de preuve, le dieu-fleuve juge."}],
+    cite:"Banque HEC · v. 1750 av. J.-C., musée du Louvre · Wikimedia Commons, domaine public · trad. Imbert, Sautel & Bordet-Sautet, 1963."},
+  codeTexte:{h:"Le Code d'Hammourabi — 282 articles",img:null,arts:["Une stèle de plus de deux mètres grave 282 lois : droit pénal, commerce, famille, salaires. Rendre la loi visible, c'est l'imposer à tous."],cite:"Banque HEC · trad. dans Imbert, Sautel & Bordet-Sautet, 1963."},
+  commerce:{h:"Le commerce international",img:null,arts:["« Le commerce est né dans les vallées du Nil, du Jourdain et de l'Euphrate. » Lapis, cèdre, cuivre voyagent sur des milliers de kilomètres."],cite:"Banque HEC · A. J. Barbosa Lima Sobrinho, Le Courrier de l'UNESCO, 1984."},
+  barque:{h:"Le déplacement fluvial",img:IMG+"barque.png",arts:["Sur le Tigre et l'Euphrate, la barque porte grain et marchandises : le fleuve est la grande route de la cité."],cite:"Banque HEC · modèle de barque, Jemdet Nasr (v. 3000 av. J.-C.) · Zunkir, Wikimedia Commons, CC BY-SA 4.0 · texte RÉCIT."},
+  etendard:{h:"L'Étendard d'Ur",img:IMG+"etendard.png",arts:["Deux faces, deux destins : sur l'une, le banquet de la paix ; sur l'autre, la guerre et les prisonniers. Le roi choisit son visage."],cite:"Banque HEC · « face de la paix », v. 2500 av. J.-C. · Wikimedia Commons, domaine public."},
+  ishtar:{h:"La porte d'Ishtar de Babylone",img:IMG+"porte-ishtar.png",arts:["Briques vernissées, dragons et taureaux : Babylone éblouit pour proclamer la puissance de son roi et de ses dieux."],cite:"Banque HEC · Pergamonmuseum · Wikimedia Commons, CC SA 1.0."},
+  gilgamesh:{h:"L'Épopée de Gilgamesh",img:null,arts:["« Je vais te révéler un mystère, le secret des dieux… » Le plus ancien grand récit du monde cherche déjà l'immortalité par la mémoire."],cite:"Banque HEC · trad. Bottéro & Kramer, 1989."},
+  deluge:{h:"La Tablette du Déluge",img:IMG+"deluge.png",arts:["Gravée en cunéiforme, l'histoire d'un déluge envoyé par les dieux — mille ans avant la Bible. L'écrit sauve le récit de l'oubli."],cite:"Banque HEC · VIIᵉ s. av. J.-C., British Museum · photo BabelStone 2010, Wikimedia Commons, domaine public."}
+};
+
+const STORY={
+  n01:{folio:"Acte I — Le limon",src:"carte",prose:["Tu mènes un clan de roseaux vers le Croissant fertile. Où fonder ta cité ? <em>Lis la carte : l'eau est rare.</em>"],
+    renvois:[
+      {t:"Sur la berge même du fleuve, au plus près de l'eau.",eff:{civilisation:1},reg:"Cité fondée sur la berge — fertile, mais exposée aux crues.",go:"§2",cible:"n02"},
+      {t:"En retrait, sur une terrasse à l'abri des crues.",eff:{legitimite:1},reg:"Cité en retrait — prudente.",go:"§2",cible:"n02"},
+      {t:"Au carrefour des routes, loin de l'eau.",eff:{civilisation:-1},reg:"Cité au carrefour — riche en passage, pauvre en eau.",go:"§2",cible:"n02"}
+    ]},
+  n02:{folio:"Acte I — Les eaux",src:"fleuves",prose:["La crue arrive. <em>La source le dit : le fleuve fertilise ou ravage.</em> Comment maîtrises-tu l'eau ?"],
+    renvois:[
+      {t:"Mobiliser tout le monde pour un grand réseau de canaux.",epreuve:{stat:"autorite",seuil:8,ok:{eff:{civilisation:2,tresor:1},reg:"Grand canal — des champs immenses verdissent.",txt:"On t'obéit ; la plaine entière reverdit."},penalite:{eff:{legitimite:-1},reg:"Corvée ratée — désordre aux digues.",txt:"Les travaux s'effondrent. Choisis une voie plus modeste."}},go:"§3",cible:"n03"},
+      {t:"Creuser de modestes canaux d'irrigation.",eff:{civilisation:1},reg:"Canaux modestes — récoltes prudentes.",go:"§3",cible:"n03"},
+      {t:"Laisser le fleuve faire, prier pour une bonne crue.",eff:{civilisation:-1},reg:"On s'en remet au hasard de la crue.",go:"§3",cible:"n03"}
+    ]},
+  n03:{folio:"Acte I — La terre",src:"dattes",prose:["Tes terres sont irriguées. <em>La source montre orge, blé et dattes.</em> Que fais-tu pousser ?"],
+    renvois:[
+      {t:"Orge et blé en grand, pour le surplus.",eff:{civilisation:1,tresor:1},reg:"Champs de céréales — les greniers se remplissent.",go:"§4",cible:"n04"},
+      {t:"Vergers de dattes et jardins, plus sûrs.",eff:{tresor:1},reg:"Vergers de dattes — abondance prudente.",go:"§4",cible:"n04"},
+      {t:"Surtout l'élevage de chèvres et de moutons.",reg:"Troupeaux — la cité reste à demi nomade.",go:"§4",cible:"n04"}
+    ]},
+  n04:{folio:"Acte I — Le surplus",src:"neolithique",prose:["Tes greniers débordent. <em>La source : le surplus libère des bras.</em> Qu'en fais-tu ?"],
+    renvois:[
+      {t:"Le stocker pour les années de disette.",eff:{tresor:1,legitimite:1},reg:"Réserves constituées — la cité dort tranquille.",go:"§5",cible:"n05"},
+      {t:"Nourrir artisans, prêtres et spécialistes.",eff:{civilisation:2},reg:"Spécialistes nourris — la cité s'élabore.",go:"§5",cible:"n05"},
+      {t:"Festoyer pour t'attacher le peuple.",eff:{legitimite:1,tresor:-1},reg:"Grand festin — on t'acclame, les coffres maigrissent.",go:"§5",cible:"n05"}
+    ]},
+  n05:{folio:"Acte II — Compter les biens",src:"calculi",prose:["Le commerce enfle ; impossible de tout retenir de mémoire. <em>La source : les calculi pour compter.</em>"],
+    renvois:[
+      {t:"Adopter les calculi et les bulles scellées.",eff:{civilisation:1},reg:"Calculi adoptés — chaque sac d'orge est compté.",go:"§6",cible:"n06"},
+      {t:"Te fier à la parole et à la mémoire.",eff:{civilisation:-1},reg:"On se fie à la mémoire — fraudes en germe.",go:"§6",cible:"n06"},
+      {t:"Confier les comptes aux anciens du village.",reg:"Les anciens tiennent les comptes — à leur façon.",go:"§6",cible:"n06"}
+    ]},
+  n06:{folio:"Acte II — L'écriture",src:"pictogrammes",prose:["Des calculi aux signes gravés, un pas immense. <em>La source : les pictogrammes deviennent cunéiformes.</em>"],
+    renvois:[
+      {t:"Adopter l'écriture, fonder une école de scribes.",cond:f=>f.tresor>=3,lock:"Trésor ≥ 3 pour entretenir des scribes.",eff:{civilisation:2,tresor:-1},sceau:"Écriture adoptée",reg:"Écriture adoptée — rien ne s'oubliera.",go:"§7",cible:"n07"},
+      {t:"Réserver l'écriture aux prêtres du temple.",eff:{civilisation:1},sceau:"Temple puissant",reg:"L'écriture aux prêtres — le temple sait, donc règne.",go:"§7",cible:"n07"},
+      {t:"Refuser : trop coûteux, trop nouveau.",eff:{civilisation:-1},sceau:"Sans écriture",reg:"Refus de l'écriture — la cité restera muette au temps.",go:"§7",cible:"n07"}
+    ]},
+  n07:{folio:"Acte II — Les comptes de l'État",src:"lagash",prose:["Tes scribes tiennent les comptes du royaume. <em>La source : la tablette de Lagash enregistre grain et bétail.</em>"],
+    renvois:[
+      {t:"Lever un impôt strict, scrupuleusement noté.",eff:{tresor:2,legitimite:-1},reg:"Impôt strict — les coffres pleins, le peuple grogne.",go:"§8",cible:"n08"},
+      {t:"Lever un impôt léger pour ménager les tiens.",eff:{tresor:1,legitimite:1},reg:"Impôt léger — on te bénit.",go:"§8",cible:"n08"},
+      {t:"Laisser le temple lever et garder l'impôt.",sceau:"Temple puissant",reg:"Le temple lève l'impôt — son pouvoir enfle.",go:"§8",cible:"n08"}
+    ]},
+  n08:{folio:"Acte II — Le sceau",src:"sceau",prose:["Comment authentifier contrats et ordres royaux ? <em>La source : le sceau-cylindre, signature de l'autorité.</em>"],
+    renvois:[
+      {t:"Imposer ton sceau royal sur tout acte officiel.",eff:{autorite:1},reg:"Sceau royal partout — ta marque fait loi.",go:"§9",cible:"n09"},
+      {t:"Laisser chaque temple et marchand sceller le sien.",eff:{civilisation:1},reg:"Sceaux multiples — le commerce respire.",go:"§9",cible:"n09"},
+      {t:"T'en remettre aux témoins, sans sceau.",eff:{legitimite:-1},reg:"Pas de sceau — la parole se conteste.",go:"§9",cible:"n09"}
+    ]},
+  n09:{folio:"Acte III — L'esprit des choses",src:"animisme",prose:["Tes sujets prêtent une âme aux fleuves et aux arbres. <em>La source : des croyances animistes.</em>"],
+    renvois:[
+      {t:"Respecter ces cultes locaux.",eff:{legitimite:1},reg:"Cultes locaux respectés — la cité reste plurielle.",go:"§10",cible:"n10"},
+      {t:"Les rassembler sous de grands dieux communs.",eff:{civilisation:1,faveur:1},reg:"Grands dieux communs — une religion d'État naît.",go:"§10",cible:"n10"},
+      {t:"Les combattre au nom d'un dieu unique.",eff:{faveur:-1,legitimite:-1},reg:"Cultes pourchassés — les dieux grondent.",go:"§10",cible:"n10"}
+    ]},
+  n10:{folio:"Acte III — Le panthéon",src:"pantheon",prose:["Quel pouvoir domine ta cité ? <em>La source : Anu, père des dieux.</em>"],
+    renvois:[
+      {t:"Faire du temple le cœur de la cité.",sceau:"Temple puissant",eff:{faveur:1},reg:"Le temple au cœur de la cité — les prêtres montent.",go:"§11",cible:"n11"},
+      {t:"Garder le palais au-dessus du temple.",eff:{autorite:1},reg:"Le palais domine le temple — le roi commande aux dieux.",go:"§11",cible:"n11"},
+      {t:"Te proclamer toi-même intermédiaire des dieux.",eff:{legitimite:1,faveur:1},reg:"Roi-prêtre — tu parles au nom des dieux.",go:"§11",cible:"n11"}
+    ]},
+  n11:{folio:"Acte III — La ziggourat",src:"ziggourat",prose:["Bâtiras-tu la grande ziggourat ? <em>La source : la terrasse à degrés qui élève le dieu.</em>"],
+    renvois:[
+      {t:"Élever la plus haute ziggourat de la région.",cond:f=>f.tresor>=2,lock:"Trésor ≥ 2 pour un tel chantier.",eff:{civilisation:2,tresor:-2,faveur:1},reg:"Ziggourat dressée — la cité touche au ciel.",go:"§12",cible:"n12"},
+      {t:"Un temple modeste, sans te ruiner.",eff:{civilisation:1},reg:"Temple modeste — l'essentiel est là.",go:"§12",cible:"n12"},
+      {t:"Rien : garde l'or pour l'État.",eff:{tresor:1,faveur:-1},reg:"Pas de temple neuf — les prêtres te boudent.",go:"§12",cible:"n12"}
+    ]},
+  n12:{folio:"Acte III — Le chef",src:"hierarchie",prose:["Qui es-tu, au sommet ? <em>La source : roi, scribes, artisans, esclaves.</em>"],
+    renvois:[
+      {t:"Roi-guerrier : la force fait le pouvoir.",eff:{autorite:1},reg:"Roi-guerrier — la lance avant le calame.",go:"§13",cible:"n13"},
+      {t:"Roi-administrateur : les scribes font le pouvoir.",eff:{civilisation:1},reg:"Roi-administrateur — l'argile avant la lance.",go:"§13",cible:"n13"},
+      {t:"Roi-prêtre : les dieux font le pouvoir.",eff:{faveur:1},sceau:"Temple puissant",reg:"Roi-prêtre — le ciel avant tout.",go:"§13",cible:"n13"}
+    ]},
+  n13:{folio:"Acte IV — Le cadastre",src:"cadastre",prose:["Les champs se disputent. <em>La source : un cadastre écrit fixe les limites — donc les querelles.</em>"],
+    renvois:[
+      {t:"Trancher chaque litige toi-même, au cas par cas.",eff:{autorite:1},reg:"Le roi tranche tout — sa parole est la loi.",go:"§14",cible:"n14"},
+      {t:"T'en remettre au cadastre écrit.",cond:f=>f.sceaux.has("Écriture adoptée"),lock:"Sans écriture, nul cadastre fiable.",eff:{civilisation:1},reg:"Le cadastre fait foi — l'écrit arbitre.",go:"§14",cible:"n14"},
+      {t:"Laisser les anciens arbitrer.",eff:{legitimite:1},reg:"Les anciens arbitrent — coutume avant loi.",go:"§14",cible:"n14"}
+    ]},
+  n14:{folio:"Acte IV — Le jugement",src:"hammurabi",prose:["Une digue a cédé : un homme est mort, les faits sont disputés, aucun témoin sûr. <em>Survole un verdict : le livre te montre l'article sur lequel tu t'appuies.</em>"],
+    renvois:[
+      {t:"Loi de fer — un homme est mort : que le coupable meure.",lawref:"§229-230",arts:["a229"],sceau:"Loi de fer",eff:{legitimite:-1},reg:"Jugement de fer — l'ordre par la crainte.",go:"§15",cible:"n15"},
+      {t:"Loi équitable — restitution, et je grave la sentence.",lawref:"§53-55",arts:["a53"],cond:f=>f.sceaux.has("Écriture adoptée"),lock:"Sans « Écriture adoptée », nul code ne peut être gravé.",sceau:"Loi équitable",sceau2:"Code gravé",eff:{civilisation:2},reg:"Loi équitable gravée — graduée, mais juste.",go:"§15",cible:"n15"},
+      {t:"Prérogative du roi — je tranche par ma seule autorité.",lawref:"hors du code",lawnone:true,arts:[],sceau:"Prérogative royale",eff:{autorite:1},reg:"Justice rendue par la seule main du roi.",go:"§15",cible:"n15"},
+      {t:"Jugement des dieux — au fleuve de juger.",lawref:"§2 · faute de preuve",arts:["a2"],epreuve:{stat:"faveur",seuil:8,ok:{sceau:"Ordalie",eff:{faveur:1},reg:"Le fleuve a rendu l'accusé — présage faste.",txt:"L'homme reparaît sur la rive : le fleuve l'innocente."},penalite:{sceau:"Ordalie",eff:{legitimite:-1},reg:"Le fleuve a gardé l'accusé — présage sombre.",txt:"Le fleuve se referme sur lui. Tranche autrement."}},go:"§15",cible:"n15"}
+    ]},
+  n15:{folio:"Acte IV — Graver la loi",src:"codeTexte",prose:["Que fais-tu de ton droit ? <em>La source : graver 282 lois, c'est les imposer à tous.</em>"],
+    renvois:[
+      {t:"Graver ton code sur une stèle publique.",cond:f=>f.sceaux.has("Écriture adoptée"),lock:"Sans écriture, nul code gravé.",eff:{civilisation:2},sceau:"Code gravé",reg:"Code gravé sur la pierre — nul ne plaidera l'ignorance.",go:"§16",cible:"n16"},
+      {t:"Garder un droit oral, tenu par le roi.",eff:{autorite:1},reg:"Droit oral — la loi reste dans ta bouche.",go:"§16",cible:"n16"},
+      {t:"Laisser chaque cité garder son droit.",reg:"Droits multiples — l'unité attendra.",go:"§16",cible:"n16"}
+    ]},
+  n16:{folio:"Acte V — Le commerce lointain",src:"commerce",prose:["Tes greniers pleins, tu peux commercer loin. <em>La source : lapis, cèdre et cuivre sur des milliers de km.</em>"],
+    renvois:[
+      {t:"Financer de grandes caravanes vers les montagnes.",cond:f=>f.tresor>=2,lock:"Trésor ≥ 2 pour équiper des caravanes.",eff:{civilisation:1,tresor:2},sceau:"Alliés",reg:"Grandes caravanes — lapis et cèdre affluent.",go:"§17",cible:"n17"},
+      {t:"Commercer prudemment, de proche en proche.",eff:{tresor:1},reg:"Commerce prudent — petits gains sûrs.",go:"§17",cible:"n17"},
+      {t:"Te refermer sur ta cité.",eff:{civilisation:-1},reg:"Cité refermée — le monde passe sans toi.",go:"§17",cible:"n17"}
+    ]},
+  n17:{folio:"Acte V — Par le fleuve",src:"barque",prose:["Le fleuve est ta route. <em>La source : la barque qui porte le grain.</em>"],
+    renvois:[
+      {t:"Lancer une grande flotte fluviale.",epreuve:{stat:"autorite",seuil:9,ok:{eff:{civilisation:1,tresor:2},reg:"Flotte fluviale — le grain descend jusqu'au golfe.",txt:"Tes barques sillonnent les deux fleuves."},penalite:{eff:{tresor:-1},reg:"Flotte perdue dans la crue.",txt:"La crue engloutit tes barques. Contente-toi de moins."}},go:"§18",cible:"n18"},
+      {t:"Quelques barques, sans ambition.",eff:{tresor:1},reg:"Quelques barques — l'essentiel circule.",go:"§18",cible:"n18"},
+      {t:"Le commerce terrestre seulement.",reg:"Tout par voie de terre — plus lent, plus sûr.",go:"§18",cible:"n18"}
+    ]},
+  n18:{folio:"Acte V — L'Étendard",src:"etendard",prose:["L'Étendard d'Ur montre deux visages du roi : la paix, ou la guerre. <em>Lequel choisis-tu ?</em>"],
+    renvois:[
+      {t:"La guerre : soumettre les cités voisines.",eff:{autorite:1,tresor:1,legitimite:-1},sceau:"Ennemis jurés",reg:"Conquêtes — du butin, et des rancunes tenaces.",go:"§19",cible:"n19"},
+      {t:"La paix : le banquet et l'alliance.",eff:{legitimite:1},sceau:"Alliés",reg:"Paix et banquets — des amis t'entourent.",go:"§19",cible:"n19"},
+      {t:"L'équilibre : armé, mais ouvert.",reg:"Ni colombe ni faucon — un roi prudent.",go:"§19",cible:"n19"}
+    ]},
+  n19:{folio:"Acte V — Babylone la grande",src:"ishtar",prose:["Édifieras-tu des monuments pour éblouir ? <em>La source : la porte d'Ishtar proclame la puissance.</em>"],
+    renvois:[
+      {t:"De somptueux monuments à ta gloire.",cond:f=>f.tresor>=2,lock:"Trésor ≥ 2 pour de tels chantiers.",eff:{civilisation:2,tresor:-2,legitimite:1},reg:"Monuments somptueux — la cité éblouit le monde.",go:"§20",cible:"n20"},
+      {t:"Des ouvrages utiles : murs, routes, canaux.",eff:{civilisation:1},sceau:"Murailles",reg:"Ouvrages utiles — la cité se fortifie.",go:"§20",cible:"n20"},
+      {t:"Rien de superflu : garde l'or.",eff:{tresor:1},reg:"Pas de faste — les coffres restent pleins.",go:"§20",cible:"n20"}
+    ]},
+  n20:{folio:"Acte VI — Gilgamesh",src:"gilgamesh",prose:["On chante déjà tes ancêtres. <em>La source : Gilgamesh cherche l'immortalité par la mémoire.</em>"],
+    renvois:[
+      {t:"Faire consigner tes hauts faits par écrit.",cond:f=>f.sceaux.has("Écriture adoptée"),lock:"Sans écriture, rien ne sera consigné.",eff:{civilisation:1},reg:"Tes exploits gravés — tu défies l'oubli.",go:"§21",cible:"n21"},
+      {t:"Te fier aux chants des aèdes.",reg:"Tes gloires vivront dans les chants — tant qu'on les chantera.",go:"§21",cible:"n21"},
+      {t:"Mépriser la gloire posthume.",eff:{faveur:-1},reg:"Mépris de la postérité — les dieux n'aiment pas l'orgueil.",go:"§21",cible:"n21"}
+    ]},
+  n21:{folio:"Acte VI — Le déluge",src:"deluge",prose:["Une crue monstrueuse menace, comme le déluge des récits. <em>La source : la Tablette du Déluge.</em>"],
+    renvois:[
+      {t:"Sacrifier aux dieux et t'en remettre à leur faveur.",epreuve:{stat:"faveur",seuil:8,ok:{eff:{legitimite:1,faveur:1},reg:"Les eaux ont reflué — on te dit béni des dieux.",txt:"Les eaux refluent ; ton peuple te croit béni."},penalite:{eff:{civilisation:-1,tresor:-1},reg:"Le déluge a tout emporté.",txt:"Les eaux ravagent la cité. Relève-la autrement."}},go:"§22",cible:"n22"},
+      {t:"Renforcer les digues à la hâte.",eff:{tresor:-1},reg:"Digues renforcées — la cité tient, de justesse.",go:"§22",cible:"n22"},
+      {t:"Fuir vers les hauteurs, sacrifier la basse ville.",eff:{civilisation:-1,legitimite:-1},reg:"Basse ville abandonnée — on te le reprochera.",go:"§22",cible:"n22"}
+    ]},
+  n22:{folio:"Acte VI — La hiérarchie",src:"hierarchie",prose:["Au bas de ta société : les pauvres et les esclaves. <em>La source : la pyramide sociale.</em>"],
+    renvois:[
+      {t:"Durcir l'ordre : corvées et dettes strictes.",eff:{tresor:1,legitimite:-2},reg:"Ordre durci — la richesse monte, la colère aussi.",go:"§23",cible:"n23"},
+      {t:"Alléger dettes et corvées.",eff:{legitimite:2,tresor:-1},reg:"Dettes allégées — le peuple respire et t'aime.",go:"§23",cible:"n23"},
+      {t:"Ne rien changer à l'ordre établi.",reg:"L'ordre demeure — ni mieux, ni pire.",go:"§23",cible:"n23"}
+    ]},
+  n23:{folio:"Acte VI — La menace",src:"etendard",prose:["Un empire rival lève ses étendards contre toi. <em>Comment défends-tu l'œuvre de ta vie ?</em>"],
+    renvois:[
+      {t:"Lever murailles et armée permanente.",cond:f=>f.tresor>=2,lock:"Trésor ≥ 2 pour murailles et soldats.",epreuve:{stat:"autorite",seuil:9,ok:{sceau:"Murailles",eff:{legitimite:1},reg:"Murailles tenues — l'ennemi se brise sur tes tours.",txt:"Le siège échoue sur tes remparts."},penalite:{eff:{legitimite:-2},reg:"Murailles trop tardives — un pan cède.",txt:"L'ennemi force tes faubourgs. Trouve un autre salut."}},go:"§24",cible:"n24"},
+      {t:"Acheter la paix avec ton or.",cond:f=>f.tresor>=2,lock:"Trésor ≥ 2 pour acheter la paix.",eff:{tresor:-2},sceau:"Alliés",reg:"Paix achetée — l'ennemi recule, ta bourse aussi.",go:"§24",cible:"n24"},
+      {t:"Rassembler le peuple en un dernier élan.",eff:{legitimite:-1},reg:"Levée en masse — un pari désespéré.",go:"§24",cible:"n24"}
+    ]},
+  n24:{folio:"Acte VI — La succession",src:"gilgamesh",prose:["Tu vieillis. À qui laisses-tu ton œuvre ? <em>C'est ta dernière décision de règne.</em>"],
+    renvois:[
+      {t:"Désigner clairement un héritier.",sceau:"Héritier désigné",eff:{legitimite:1},reg:"Héritier désigné — l'avenir paraît assuré.",go:"⚖",cibleFn:f=>evaluerFin(f)},
+      {t:"Laisser les dieux et la cour décider.",reg:"Succession ouverte — aux dieux de trancher.",go:"⚖",cibleFn:f=>evaluerFin(f)},
+      {t:"Te cramponner au trône jusqu'au bout.",eff:{legitimite:-1},reg:"Roi agrippé au trône — la cour s'impatiente.",go:"⚖",cibleFn:f=>evaluerFin(f)}
+    ]},
+
+  nF_legislateur:{fin:true,folio:"Apogée",titre:"Le Législateur éternel",prose:["À ta mort, les scribes recopient ton code pour des millénaires ; tes canaux nourrissent encore des cités lointaines. Quatre mille ans plus tard, on déchiffrera ton nom sur l'argile. Tu n'as pas seulement régné : tu as fondé une civilisation."]},
+  nF_orfevre:{fin:true,folio:"Prospérité",titre:"L'âge d'or de la cité",prose:["Commerce, alliances, transition paisible : ta cité s'épanouit et te survit une génération entière. On se souviendra d'un règne heureux — sinon éternel."]},
+  nF_empire:{fin:true,folio:"Empire éphémère",titre:"L'empire de la peur",prose:["Tu conquiers et tu éblouis. Mais bâti sur la terreur plus que sur le consentement, l'édifice se fissure dès ta disparition : tes successeurs se déchirent, et l'empire se défait en une génération."]},
+  nF_poignards:{fin:true,folio:"Chute",titre:"La nuit des poignards",prose:["Les nobles que tu écrasais n'ont pas oublié. Une nuit, les couteaux sortent dans le palais. Ton règne s'achève sous la main des tiens, non sous les lances de l'ennemi."]},
+  nF_revolte:{fin:true,folio:"Chute",titre:"La révolte des opprimés",prose:["À force de corvées, d'impôts et de dettes, tu as épuisé la patience des tiens. La foule force le palais. Ton règne s'éteint dans la colère de ton propre peuple."]},
+  nF_oubli:{fin:true,folio:"Oubli",titre:"La cité sans mémoire",prose:["Sans écriture pour fixer les comptes, les lois et ton nom, rien n'a survécu au temps. Le vent a recouvert tes murs de sable. Aucun archéologue ne saura jamais que tu as existé."]},
+  nF_dieu:{fin:true,folio:"Pérennité",titre:"Le trône du dieu",prose:["Roi-prêtre, tu as fait du temple le cœur de ta puissance. Ta théocratie est rigide, mais durable : pendant des siècles, ton nom se confondra avec celui du dieu de la cité."]},
+  nF_pretres:{fin:true,folio:"Chute",titre:"Le coup des prêtres",prose:["Tu t'es appuyé sur les dieux, mais la Faveur t'a fui. Au nom du ciel offensé, les prêtres soulèvent la cité et te déposent. La couronne passe au temple."]},
+  nF_maison:{fin:true,folio:"Ruine",titre:"La maison qui s'écroule",prose:["Tu as peu bâti de durable. Tes ouvrages négligés cèdent, tes greniers se vident, et la cité que tu laisses n'a ni murs solides ni mémoire assez forte pour te survivre longtemps."]},
+  nF_vengeance:{fin:true,folio:"Ruine",titre:"La vengeance des voisins",prose:["Les peuples que tu avais pillés reviennent en coalition. Sans murailles assez fortes, ta cité cède et n'est plus qu'un champ de ruines fumantes — le prix de ta voracité."]},
+  nF_deluge:{fin:true,folio:"Chute",titre:"Abandonné des dieux",prose:["Les présages se sont retournés contre toi. À l'heure du danger, la Faveur des dieux s'est retirée, et nul mur, nul or n'a suffi. Ta cité sombre, et toi avec elle."]},
+  nF_greniers:{fin:true,folio:"Effondrement",titre:"Les greniers vides",prose:["Le trésor s'est tari, les récoltes ont manqué, et la faim a fait le reste. Une civilisation ne tient pas sans son socle matériel : ton règne s'éteint dans la disette."]}
+};
+
+function evaluerFin(F){
+  const s=F.sceaux,civ=F.civilisation,leg=F.legitimite,tre=F.tresor,aut=F.autorite,fav=F.faveur;
+  if(tre<=0) return "nF_greniers";
+  if(s.has("Sans écriture")&&civ<3) return "nF_oubli";
+  if(leg<=8) return (s.has("Loi de fer")||s.has("Prérogative royale"))?"nF_poignards":"nF_revolte";
+  if(s.has("Ennemis jurés")&&!s.has("Murailles")) return "nF_vengeance";
+  if(s.has("Loi de fer")) return (aut>=11&&tre>=3)?"nF_empire":"nF_poignards";
+  if(s.has("Ordalie")||s.has("Temple puissant")){
+    if(fav>=10) return "nF_dieu";
+    if(fav<=7) return "nF_pretres";
+  }
+  if(fav<=6) return "nF_deluge";
+  if(s.has("Loi équitable")&&s.has("Code gravé")&&civ>=8) return "nF_legislateur";
+  if(civ<=3) return "nF_maison";
+  if(leg>=16&&s.has("Héritier désigné")) return "nF_orfevre";
+  if(civ>=6) return "nF_orfevre";
+  return "nF_maison";
+}
+
+const $=s=>document.querySelector(s);
+function appliquer(eff){if(!eff)return;for(const k in eff){F[k]=(F[k]||0)+eff[k];if(F[k]<0&&(k==="legitimite"||k==="tresor"||k==="autorite"||k==="faveur"||k==="civilisation"))F[k]=0;}}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function ordreNoeud(id){const m=id.match(/^n(\d+)$/);return m?parseInt(m[1],10):null;}
+
+function figPH(name){return `<div class="fig-ph" style="display:none"><div class="ph-frame"></div><span class="ph-icon">⌖</span><span class="ph-name">${esc(name)}</span><span class="ph-note">image · banque HEC</span></div>`;}
+function plate(s){
+  const body=s.arts.map(a=>typeof a==="string"?`<p class="art">${a}</p>`:`<p class="art" data-art="${a.id}"><b>${a.ref}</b> — ${a.txt}</p>`).join("");
+  const info=`<div class="plate-info"><div class="plate-h"><span>${s.h}</span><span class="src-tag tag-hec">Banque HEC</span>${s.img?'':'<span class="src-kind">source écrite</span>'}</div>${body}<div class="cite">${s.cite}</div></div>`;
+  if(!s.img) return `<div class="plate plate-text">${info}</div>`;
+  const fig=`<img class="fig-img" src="${s.img}" alt="${esc(s.h)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">${figPH(s.h)}`;
+  return `<div class="plate"><div class="plate-fig">${fig}</div>${info}</div>`;
+}
+function rendreTablette(flash){
+  const seals=SCEAUX_ORDRE.map(s=>`<div class="seal ${F.sceaux.has(s)?'on':''}"><span class="dot"></span><span>${s}</span></div>`).join("");
+  const reg=F.registre.slice(-3).map((e,i,a)=>`<span class="e ${flash&&i===a.length-1?'flash':''}">— ${e}</span>`).join("")||`<span class="e">—</span>`;
+  $("#tablet").innerHTML=`
+    <div class="wedge"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="t-head"><div class="t-emblem">${EMBLEME}</div><div class="t-name">${esc(F.nom)}<span>${F.genre==="roi"?"Lugal":"Reine"} de ${esc(F.cite)}</span></div></div>
+    <div class="t-sect">Caractéristiques</div>
+    <div class="roundels">
+      <div class="roundel" id="rnd-autorite"><span class="v">${F.autorite}</span><span class="l">Autorité</span></div>
+      <div class="roundel" id="rnd-legitimite"><span class="v">${F.legitimite}</span><span class="l">Légitimité</span></div>
+      <div class="roundel" id="rnd-faveur"><span class="v">${F.faveur}</span><span class="l">Faveur</span></div>
+    </div>
+    <div class="counters">
+      <div class="counter">${ICO_TRESOR}<div><span class="cl">Trésor</span><span class="cv">${F.tresor}</span></div></div>
+      <div class="counter">${ICO_CIV}<div><span class="cl">Civilisation</span><span class="cv">${F.civilisation}</span></div></div>
+    </div>
+    <div class="t-sect">Sceaux du règne</div>
+    <div class="seals">${seals}</div>
+    <div class="registre">${reg}</div>`;
+}
+function idleDice(){return `<div class="dz-idle"><span class="pip">⚀</span><span class="pip">⚀</span><span class="lab">Les dés reposent — un pari les réveillera.</span></div>`;}
+
+function rendre(flash){
+  const n=STORY[F.noeud];
+  const num=ordreNoeud(F.noeud);
+  $("#progress").textContent=n.fin?"Fin du règne":(num?`Décision ${num} / 24`:"");
+  if(n.fin){
+    $("#book").innerHTML=`
+      <div class="bk-head"><span class="pno">⚱</span><span class="folio">${n.folio}</span></div>
+      <div class="fin-title">${n.titre}</div>
+      <div class="prose"><p class="dropcap">${n.prose[0]}</p></div>
+      <div class="renvois"><button class="renvoi" id="restart"><span class="lt"><span>Régner à nouveau</span></span><span class="go">⟲</span></button></div>
+      <div class="dice-zone">${idleDice()}</div>`;
+    $("#restart").addEventListener("click",reset);
+    rendreTablette(flash);return;
+  }
+  const s=n.src?SRC[n.src]:null;
+  const head=s?'':`<div class="headpiece">${HEADPIECE}</div>`;
+  const renv=n.renvois.map((r,i)=>{
+    const ouvert=!r.cond||r.cond(F);
+    const tags=[];
+    if(r.lawref) tags.push(`<span class="pill pill-law ${r.lawnone?'none':''}">${r.lawnone?'⚖ ':'fondé sur '}${r.lawref}</span>`);
+    if(r.epreuve) tags.push(`<span class="pill pill-die">⚅ pari · épreuve d'${STATLAB[r.epreuve.stat]}</span>`);
+    const tagsHtml=tags.length?`<span class="tags">${tags.join("")}</span>`:"";
+    const dataArts=r.arts?` data-arts="${r.arts.join(',')}"`:"";
+    if(ouvert) return `<button class="renvoi open" data-i="${i}"${dataArts} disabled><span class="lt"><span>${r.t}</span>${tagsHtml}</span><span class="go">${r.go} »</span></button>`;
+    return `<button class="renvoi closed" data-i="${i}" disabled><span class="lt"><span>${r.t}</span><span class="lock">${r.lock}</span></span><span class="go">✕</span></button>`;
+  }).join("");
+  $("#book").innerHTML=`
+    <div class="bk-head"><span class="pno">§${num}</span><span class="folio">${n.folio}</span></div>
+    ${head}
+    <div class="prose"><p class="dropcap">${n.prose[0]}</p>${n.prose.slice(1).map(p=>`<p>${p}</p>`).join("")}</div>
+    ${s?plate(s):''}
+    <div class="readlock" id="readlock"><span class="rl-txt">Étudie la source — <span class="rl-num">${READ_LOCK}</span> s</span><div class="rl-bar"><i></i></div></div>
+    <div class="renvois" id="renvois">${renv}</div>
+    <div class="dice-zone" id="dicezone">${idleDice()}</div>`;
+  document.querySelectorAll("#renvois .renvoi.open").forEach(b=>{
+    b.addEventListener("click",()=>{ if(b.disabled)return; choisir(n.renvois[+b.dataset.i],b); });
+    if(b.dataset.arts!==undefined){
+      const ids=b.dataset.arts?b.dataset.arts.split(','):[];
+      const on=()=>{ if(b.disabled)return; document.querySelectorAll('.plate .art[data-art]').forEach(a=>a.classList.add(ids.includes(a.dataset.art)?'hl':'dim')); };
+      const off=()=>document.querySelectorAll('.plate .art').forEach(a=>a.classList.remove('hl','dim'));
+      b.addEventListener('mouseenter',on);b.addEventListener('focus',on);
+      b.addEventListener('mouseleave',off);b.addEventListener('blur',off);
+    }
+  });
+  rendreTablette(flash);
+  startReadLock(READ_LOCK);
+}
+function startReadLock(sec){
+  const banner=$("#readlock");if(!banner)return;
+  const open=[...document.querySelectorAll("#renvois .renvoi.open")];
+  let t=sec;banner.style.display="flex";
+  banner.querySelector(".rl-num").textContent=t;
+  banner.querySelector(".rl-bar i").style.width="0%";
+  const iv=setInterval(()=>{
+    t--;banner.querySelector(".rl-num").textContent=Math.max(t,0);
+    banner.querySelector(".rl-bar i").style.width=(100*(sec-t)/sec)+"%";
+    if(t<=0){clearInterval(iv);banner.style.display="none";open.forEach(b=>b.disabled=false);}
+  },1000);
+}
+function avancer(cible){F.noeud=cible;rendre(true);}
+function choisir(r,btn){
+  if(r.epreuve){tenterEpreuve(r,btn);return;}
+  if(r.sceau)F.sceaux.add(r.sceau);
+  if(r.sceau2)F.sceaux.add(r.sceau2);
+  appliquer(r.eff);
+  if(r.reg)F.registre.push(r.reg);
+  avancer(r.cibleFn?r.cibleFn(F):r.cible);
+}
+function tenterEpreuve(r,btn){
+  if(r.sceau)F.sceaux.add(r.sceau);
+  if(r.sceau2)F.sceaux.add(r.sceau2);
+  appliquer(r.eff);
+  const node=STORY[F.noeud],e=r.epreuve,mod=F[e.stat]-9,seuil=e.seuil||8;
+  const modTxt=mod>=0?`+ ${mod}`:`− ${-mod}`;
+  document.querySelectorAll("#renvois .renvoi").forEach(b=>b.disabled=true);
+  const rnd=$("#rnd-"+e.stat);if(rnd)rnd.classList.add("lit");
+  $("#dicezone").innerHTML=`<div class="dz-live"><span class="target">Réussite : 2 dés <b>${modTxt}</b> (${STATLAB[e.stat]}) ≥ <b>${seuil}</b></span><span class="die" id="d1">?</span><span class="die" id="d2">?</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div>`;
+  $("#rollbtn").addEventListener("click",()=>{
+    const a=d6(),b=d6(),tot=a+b,score=tot+mod,ok=score>=seuil;
+    const d1=$("#d1"),d2=$("#d2");d1.textContent=a;d2.textContent=b;d1.classList.add("roll");d2.classList.add("roll");
+    $("#rollbtn").disabled=true;
+    setTimeout(()=>{
+      if(ok){
+        const out=e.ok;
+        if(out.sceau)F.sceaux.add(out.sceau);appliquer(out.eff);if(out.reg)F.registre.push(out.reg);
+        $("#dicezone").querySelector(".dz-live").insertAdjacentHTML("beforeend",`<span class="verdict ok">${a}+${b} ${modTxt} = ${score} — réussite.<br>${out.txt}</span>`);
+        rendreTablette(true);if(rnd)rnd.classList.remove("lit");
+        setTimeout(()=>avancer(out.cible||(r.cibleFn?r.cibleFn(F):r.cible)),1600);
+      }else{
+        const out=e.penalite;
+        if(out.sceau)F.sceaux.add(out.sceau);appliquer(out.eff);if(out.reg)F.registre.push(out.reg);
+        $("#dicezone").querySelector(".dz-live").insertAdjacentHTML("beforeend",`<span class="verdict no">${a}+${b} ${modTxt} = ${score} — échec (pénalité).<br>${out.txt}</span>`);
+        btn.classList.add("burned");btn.disabled=true;
+        const go=btn.querySelector(".go");if(go)go.textContent="raté ✕";
+        document.querySelectorAll("#renvois .renvoi.open").forEach(b2=>{
+          if(b2===btn)return;
+          const rr=node.renvois[+b2.dataset.i];
+          if(!rr.cond||rr.cond(F)) b2.disabled=false;
+        });
+        rendreTablette(true);if(rnd)rnd.classList.remove("lit");
+      }
+    },520);
+  });
+}
+function reset(){F=null;$("#frontis").style.display="flex";rollPreview();}
+
+let genre="roi",tirage={};
+function rollPreview(){
+  tirage={autorite:d6()+6,legitimite:d6()+d6()+12,faveur:d6()+6};
+  $("#rolls").innerHTML=`
+    <div class="rs"><span class="l">Autorité</span><span class="v">${tirage.autorite}</span></div>
+    <div class="rs"><span class="l">Légitimité</span><span class="v">${tirage.legitimite}</span></div>
+    <div class="rs"><span class="l">Faveur</span><span class="v">${tirage.faveur}</span></div>`;
+}
+$("#seg").addEventListener("click",e=>{const b=e.target.closest("button[data-g]");if(!b)return;genre=b.dataset.g;document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x===b));});
+$("#begin").addEventListener("click",()=>{
+  F=nouvelle();F.nom=$("#nom").value.trim()||"Anonyme";F.cite=$("#cite").value.trim()||"la Cité";F.genre=genre;
+  F.autorite=tirage.autorite;F.legitimite=tirage.legitimite;F.faveur=tirage.faveur;
+  F.registre.push("Avènement sur le trône.");
+  $("#frontis").style.display="none";rendre(false);
+});
+rollPreview();
+
+if(typeof module!=="undefined"){module.exports={STORY,SRC,SCEAUX_ORDRE,evaluerFin};}
+</script>
+</body>
+</html>
