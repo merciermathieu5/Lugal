@@ -2,8 +2,11 @@
 
 Un *serious game* en français, type **livre dont vous êtes le héros**, pour la
 réalité sociale **« L'émergence d'une civilisation »** (Mésopotamie, cours HEC,
-sec. 1, PFEQ). L'élève règne sur une cité-État sur **24 décisions**, qui mènent
-à l'une de **12 fins** selon les qualités du roi et l'état de sa civilisation.
+sec. 1, PFEQ). L'élève règne sur une cité-État le long d'une **trame en arbre** :
+un **chemin optimal court** (≈ 10 décisions traversant les 6 actes) et, dès qu'on
+s'en écarte, des **problématiques** qui pénalisent et rallongent le parcours. La
+partie mène à l'une de **12 fins** selon les qualités du roi et l'état de sa
+civilisation.
 
 Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance, aucune image
 externe (tout est dessiné ou écrit dans le fichier).
@@ -16,19 +19,32 @@ que le roi pourra tenter, des voies qui s'ouvriront à lui et de la façon dont
 son règne se terminera. Ce choix de départ donne du sens à toute la partie.
 
 ## Le livre, en deux pages
-- **Page de gauche — le récit du règne.** Tous les paragraphes traversés s'y
-  accumulent comme dans un vrai livre-jeu : le paragraphe courant est **en
-  pleine encre**, les précédents **pâlissent**.
+- **Page de gauche — le récit du règne.** Une **page à la fois**, comme dans un
+  vrai livre : chaque nouvelle décision **remplace** la page précédente. Une barre
+  de **feuilletage** (‹ feuillet précédent · *à présent* · revenir au présent »)
+  permet à l'élève de **revenir lire** l'histoire de son règne sans rien perdre de
+  sa décision en cours.
 - **Page de droite — la décision.** Dans l'ordre : un bouton **Consulter la
   source** (qui révèle le document créé), la **question**, les **choix**, puis un
   bouton **« Poursuis au §X »** pour tourner la page.
 
 À chaque page : les choix restent **verrouillés tant que la source n'est pas
 consultée** ; la consultation lance un **chrono de 6 secondes** ; chaque choix
-montre son **effet sur les qualités** (et, pour les paris, le **% de réussite**
-aux dés) ; et un **pop-up** présente la conséquence — la leçon à retenir.
+montre son **effet sur les qualités** et, pour les paris, le badge **« Réussite :
+X % »** ; les choix à dés portent la mention **« (Jet de dés) »** ; et un
+**pop-up** présente la conséquence — la leçon à retenir.
 
-> 6 des 24 décisions se prennent **sans source**, par pur jugement politique.
+## La trame en arbre : le chemin optimal et ses écarts
+Le bon roi suit un **chemin optimal court** : à chaque acte, un choix sûr fait
+avancer proprement à l'acte suivant. **S'écarter coûte cher.** Un choix non
+optimal déclenche une **problématique** — sécheresse, crue, voleurs, crocodile,
+fraude, disette, mauvais présage, révolte, siège — qui **pénalise les jauges** et
+**ajoute des pages** au parcours (un règne plus long = de mauvais choix).
+Chaque problématique offre une **porte de sortie** pour **revenir sur le chemin
+optimal** (parfois au prix d'un jet de dés), mais **t'entêter peut faire perdre
+la partie** : dès l'acte III, une crise mal gérée peut mener droit à une fin
+funeste. Le **§** affiché suit donc le **parcours réel** de l'élève, qui varie
+d'une partie à l'autre.
 
 ## La feuille du roi
 Volontairement sobre et utile : les **quatre qualités** (qui montent et
