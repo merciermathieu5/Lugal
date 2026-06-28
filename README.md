@@ -2,60 +2,62 @@
 
 Un *serious game* en français, type **livre dont vous êtes le héros**, pour la
 réalité sociale **« L'émergence d'une civilisation »** (Mésopotamie, HEC sec. 1,
-PFEQ). L'élève règne sur une cité-État : à chaque page, il lit une **source
-authentique** (banque HEC) et prend une décision. **24 décisions par règne**,
-**12 fins** différentes selon les choix accumulés.
+PFEQ). L'élève règne sur une cité-État : il lit un texte, **consulte une source
+authentique** (banque HEC), réfléchit, décide — puis un **pop-up lui explique
+l'impact** de son choix. **24 décisions par règne**, **12 fins** selon l'état
+accumulé de ses qualités et de sa civilisation.
 
-Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance à installer.
+Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance.
 
-## Jouer
-Ouvre `index.html` dans un navigateur. Sur GitHub Pages, l'adresse publique
-suffit (voir ci-dessous).
+## Déroulé d'une page
+1. **Un texte** pose la situation (sans nommer le document).
+2. Bouton **« Consulter la source »** : l'élève l'ouvre pour décider en
+   connaissance de cause. Tant qu'il ne l'a pas consultée, **les réponses sont
+   verrouillées**.
+3. À la consultation, **un chrono de 6 secondes** invite à étudier la source ;
+   les choix se déverrouillent ensuite.
+4. Chaque réponse affiche **son impact sur les qualités du roi** et, pour les
+   paris, **le % de réussite aux dés**.
+5. Après la décision, **un pop-up présente la conséquence** — la leçon à retenir.
+
+> Les sources textuelles ou iconographiques ne sont pas toujours pertinentes :
+> 6 des 24 décisions se prennent **sans source**, par pur jugement politique.
+
+## La feuille du roi
+- **Qualités du roi** (montent et descendent selon les choix) : Autorité,
+  Sagesse, Piété, Légitimité.
+- **Sa civilisation** : Prospérité (l'économie) et Rayonnement (le développement
+  et l'héritage).
+- **Sceaux du règne** : 12 marques irréversibles des grands choix (écriture,
+  code gravé, doctrine de justice, alliances, murailles, héritier…).
+- **Paris (dés)** : `2 dés + (qualité − 9) ≥ seuil`. En cas d'échec, l'option est
+  perdue, une pénalité s'applique, et l'élève se rabat sur les choix restants.
 
 ## Héberger sur GitHub Pages
-1. Crée un dépôt (ex. `lugal`) et pousse-y **tout le contenu de ce dossier**
-   (en conservant `assets/`).
-2. Dépôt → **Settings → Pages**.
-3. *Source* : **Deploy from a branch**. *Branch* : `main`, dossier `/ (root)`.
-4. Enregistre. Après une minute, le jeu est en ligne à
-   `https://<ton-utilisateur>.github.io/lugal/`.
+1. Pousse **tout le contenu de ce dossier** (avec `assets/`) dans un dépôt.
+2. **Settings → Pages → Deploy from a branch**, branche `main`, dossier `/(root)`.
+3. Le jeu est en ligne à `https://<utilisateur>.github.io/<dépôt>/`.
 
-> Le fichier `.nojekyll` (déjà présent) empêche GitHub de filtrer le dossier
-> `assets/` : ne le supprime pas.
+> `.nojekyll` (présent) garantit que `assets/` est servi tel quel ; ne le supprime pas.
 
 ## Structure
 ```
-index.html                  le jeu (interface + moteur + trame)
+index.html                  jeu complet (interface + moteur + trame)
 .nojekyll                    sert assets/ tel quel sur Pages
 assets/img/sources/*.png     les 16 images-sources (banque HEC)
 SOURCES.md                   crédits et licences de chaque source
 LICENSE                      MIT (code) ; les images gardent leur licence
 ```
 
-## Mécaniques
-- **Caractéristiques** (tirées aux dés) : Autorité, Légitimité, Faveur des dieux,
-  plus Trésor et Civilisation. Douze **sceaux** marquent les grands choix
-  (écriture, code gravé, doctrine de justice, alliances, murailles, héritier…).
-- **Lecture imposée** : à chaque page, la source doit être étudiée **6 secondes**
-  avant que les choix s'activent.
-- **Paris (épreuves de dés)** : certaines options ambitieuses se jouent aux dés
-  (`2 dés + bonus de caractéristique ≥ seuil`). En cas d'**échec**, l'option est
-  perdue, une **pénalité** s'applique, et l'élève doit se rabattre sur les choix
-  restants — le risque a un coût réel.
-- **Le jugement (§14)** : pivot inspiré du Code d'Hammourabi. En survolant un
-  verdict, l'élève voit **l'article de loi** sur lequel il s'appuie (ou qu'il n'y
-  en a aucun, pour la prérogative royale).
-- **Les fins** sont déterminées par l'état accumulé du règne : un mauvais choix
-  nuit, et peut mener à une chute liée aux décisions passées.
-
-## Personnaliser
-- **Textes / choix / effets** : tout est dans l'objet `STORY` (dans `index.html`).
-- **Sources** : objet `SRC` — chaque entrée a un titre, une image (`img`), un
-  contenu (`arts`) et une citation (`cite`). Pour changer une image, dépose le
-  fichier dans `assets/img/sources/` et ajuste le chemin.
-- **Équilibrage des fins** : fonction `evaluerFin()` (seuils de Civilisation,
-  Légitimité, Trésor, Faveur et sceaux). Certaines fins sont actuellement rares —
-  à ajuster après quelques parties tests.
+## Personnaliser (dans `index.html`)
+- **Trame** : objet `STORY`. Chaque nœud a `texte` (long), `consigne`, un `src`
+  optionnel, et des `renvois`. Chaque renvoi porte `eff` (effets sur les qualités),
+  `impact` (texte du pop-up), parfois une `epreuve` (dés) et un `sceau`.
+- **Sources** : objet `SRC` (titre, image, contenu, citation). Pour changer une
+  image, dépose le fichier dans `assets/img/sources/` et ajuste le chemin.
+- **Fins** : fonction `evaluerFin()` — seuils de qualités, de Rayonnement, de
+  Légitimité et sceaux requis. Deux fins (« révolte », « abandonné des dieux »)
+  sont rares ; ajuste leurs seuils après quelques parties tests.
 
 ---
 Conçu par **Mathieu Mercier**. Sources : banque **HEC** (RÉCIT univers social,
