@@ -23,7 +23,11 @@ Chaque zone porte un **signet** qui l'identifie d'un coup d'œil : **Trame
 narrative** (le récit, à gauche), **Décision royale** (le choix, à droite) et
 **Capacités du personnage** (la tablette des qualités).
 
-- **Page de gauche — le récit du règne.** Le texte **remplit le feuillet**,
+- **Page de gauche — le récit du règne.** Chaque page **s'ouvre sur la
+  conséquence concrète de la décision qui vient d'être prise** (ce que ton choix
+  a fait à ta cité), avant de présenter la nouvelle situation : les décisions
+  **façonnent l'histoire**, au lieu de simples événements qui se suivent. Le texte
+  **remplit le feuillet**,
   puis **tourne** vers une nouvelle page une fois la page pleine, comme dans un
   vrai livre. Une barre
   de **feuilletage** (‹ feuillet précédent · *à présent* · revenir au présent »)
