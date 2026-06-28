@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lugal — un livre dont vous êtes le roi</title>
+<title>Lugal · un livre dont vous êtes le roi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -54,6 +54,10 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .para:last-child{margin-bottom:0}
 .para .pf{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--rubric);display:block;margin-bottom:8px;padding-bottom:5px;border-bottom:1px dotted var(--rule)}
 .para .pt{font-size:16.5px;line-height:1.66;text-align:justify;hyphens:auto;color:var(--ink)}
+.para.past .pt{color:#8a7c60}
+.para.past .pf{color:#b29a6a;border-bottom-color:rgba(120,90,45,.18)}
+.para.past .pt em{color:#8a7656}
+.para.cur .pt{color:var(--ink)}
 .para .pt p{margin:0 0 10px}
 .para .pt p:last-child{margin-bottom:0}
 .para.lead .pt p:first-child::first-letter{font-family:"IM Fell English",serif;font-size:3em;line-height:.76;float:left;padding:7px 10px 0 0;color:var(--rubric)}
@@ -75,11 +79,11 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .consult-hint{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:#8a7350}
 .consult-done{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.05em;color:#3c6b3a}
 .source-wrap{display:none;margin-bottom:5px}
-.plate{border:1px solid var(--clay-edge);border-radius:3px;background:linear-gradient(180deg,#f2ead4,#e7dbbb);padding:7px 10px;box-shadow:inset 0 0 0 1px rgba(255,250,238,.5),0 3px 9px rgba(70,50,20,.13)}
+.plate{border:1px solid var(--clay-edge);border-radius:3px;background:linear-gradient(180deg,#f2ead4,#e7dbbb);padding:7px 10px}
 .plate-h{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px}
 .plate-kind{font-family:"EB Garamond",serif;font-style:italic;font-size:9.5px;color:#7a6a4a;text-transform:none;letter-spacing:0;white-space:nowrap}
-.illus{border:1px solid var(--clay-edge);border-radius:2px;background:#efe5c8;padding:5px;display:flex;justify-content:center;box-shadow:inset 0 0 0 3px #efe5c8,inset 0 0 0 4px rgba(120,90,45,.35)}
-.illus svg{width:100%;height:auto;max-height:88px;display:block}
+.illus{border:1px solid var(--clay-edge);border-radius:2px;background:#efe5c8;padding:4px;display:flex;justify-content:center}
+.illus svg{width:100%;height:auto;max-height:64px;display:block}
 .scroll{font-family:"EB Garamond",serif;font-size:13.5px;line-height:1.5;color:#33271a;padding:1px 4px 1px 10px;border-left:2px solid rgba(120,90,45,.32)}
 .scroll p{margin:0 0 5px}
 .scroll p:last-child{margin-bottom:0}
@@ -119,11 +123,13 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .eb.law{color:#2e4a2e;background:rgba(58,74,58,.12);border:1px solid rgba(58,74,58,.3)}
 .eb.law.none{color:#6a4a1e;background:rgba(156,90,34,.1);border-color:rgba(156,90,34,.3)}
 .eb.dim{opacity:.55}
-.dice-zone{flex:0 0 auto;min-height:0;margin-top:6px;border:1px solid var(--paper-edge);border-radius:3px;background:repeating-linear-gradient(135deg,rgba(120,96,52,.05) 0 6px,transparent 6px 12px),var(--paper-2);display:none;align-items:center;padding:7px 12px}
+.dice-zone{flex:0 0 auto;min-height:0;margin-top:6px;border:1px solid var(--paper-edge);border-radius:3px;background:repeating-linear-gradient(135deg,rgba(120,96,52,.05) 0 6px,transparent 6px 12px),var(--paper-2);display:none;align-items:stretch;padding:8px 12px}
 .dice-zone.show{display:flex}
-.dz-live{display:flex;align-items:center;gap:10px;width:100%;flex-wrap:wrap}
-.dz-live .target{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.03em;color:var(--ink-soft);max-width:210px;line-height:1.3}
-.dz-live .target b{font-family:"IM Fell English",serif;font-style:italic;color:var(--rubric);font-size:12.5px}
+.dz-live{display:flex;flex-direction:column;gap:7px;width:100%}
+.dz-explain{font-family:"EB Garamond",serif;font-size:12px;line-height:1.42;color:var(--ink)}
+.dz-rule{margin-bottom:3px}
+.dz-calc b,.dz-rule b{color:var(--rubric);font-weight:600}
+.dz-roll{display:flex;align-items:center;gap:10px}
 .die{width:28px;height:28px;border:1.6px solid var(--ink);border-radius:5px;background:var(--paper);display:grid;place-items:center;font-family:"IM Fell English",serif;font-size:16px;color:var(--ink)}
 .die.roll{animation:tumble .5s ease}
 @keyframes tumble{0%{transform:rotate(-14deg) scale(.8)}55%{transform:rotate(12deg) scale(1.1)}100%{transform:none}}
@@ -133,7 +139,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .poursuite.show{display:inline-flex}
 .poursuite:hover{filter:brightness(1.08)}
 
-/* fin — épilogue */
+/* fin, épilogue */
 .fin-wrap{max-width:560px;width:100%;display:flex;flex-direction:column;align-items:center;color:var(--ink)}
 .fin-kicker{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#9a8050;margin-bottom:7px}
 .fin-title{font-family:"IM Fell English",serif;font-style:italic;font-size:30px;line-height:1.08;margin:0;color:var(--rubric)}
@@ -148,7 +154,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .bmarques{display:flex;flex-direction:column;align-items:center;gap:4px;margin:0 0 16px;max-width:460px}
 .bmarques .bm-h{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#9a8050;margin-bottom:3px}
 .bmarques .bm{font-family:"EB Garamond",serif;font-size:14px;color:var(--ink);font-style:italic}
-.bmarques .bm::before{content:"— "}
+.bmarques .bm::before{content:""}
 .restart{display:inline-flex;align-items:center;gap:10px;padding:11px 24px;border:none;border-radius:4px;background:var(--rubric);color:#f6e7d8;font-family:"IM Fell English SC",serif;font-size:12px;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 12px rgba(124,44,32,.28)}
 .restart:hover{filter:brightness(1.06)}
 .restart svg{width:17px;height:17px}
@@ -169,6 +175,13 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .modal-eff{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0 4px}
 .modal-btn{display:block;width:100%;margin-top:14px;padding:11px;border:none;border-radius:3px;background:var(--ink);color:#f6e7d8;font-family:"IM Fell English SC",serif;font-size:13px;letter-spacing:.08em;cursor:pointer}
 .modal-btn:hover{background:#000}
+.modal-card.wide{width:min(560px,100%);max-height:90vh;overflow:auto;padding:18px 22px}
+.srcmodal .modal-k{margin-bottom:10px}
+.srcmodal .illus svg{max-height:150px}
+.src-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:11px;border-top:1px solid rgba(90,70,40,.3)}
+.src-timer{font-family:"IM Fell English",serif;font-style:italic;font-size:12.5px;color:#8a6a44}
+.src-timer b{font-style:normal;color:var(--rubric)}
+.src-foot .modal-btn{width:auto;margin-top:0;padding:9px 18px;font-size:12px;white-space:nowrap}
 .modal-verdict{text-align:center;font-family:"IM Fell English",serif;font-style:italic;font-size:13px;margin-bottom:6px}
 .modal-verdict.ok{color:#3c6b3a}.modal-verdict.no{color:var(--rubric)}
 
@@ -240,7 +253,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 </style>
 </head>
 <body>
-<div class="topbar"><b>Lugal</b><span>un livre dont vous êtes le roi — Mésopotamie</span><span class="progress" id="progress"></span></div>
+<div class="topbar"><b>Lugal</b><span>un livre dont vous êtes le roi · Mésopotamie</span><span class="progress" id="progress"></span></div>
 <div class="stage">
   <section class="book"><div class="ribbon"></div><div class="pages" id="pages"></div></section>
   <aside class="tablet" id="tablet"></aside>
@@ -275,7 +288,7 @@ const QUALITES=["autorite","sagesse","piete","legitimite"];
 const METRES=["prosperite","rayonnement"];
 const LAB={autorite:"Autorité",sagesse:"Sagesse",piete:"Piété",legitimite:"Légitimité",prosperite:"Prospérité",rayonnement:"Rayonnement"};
 const QDESC={
-  autorite:"Ta poigne et ta force de commandement. Une haute Autorité fait réussir les grands chantiers — canaux, flotte, murailles — et t'aide à imposer l'ordre.",
+  autorite:"Ta poigne et ta force de commandement. Une haute Autorité fait réussir les grands chantiers, canaux, flotte, murailles, et t'aide à imposer l'ordre.",
   sagesse:"Ton jugement, ta maîtrise de l'écrit, de la loi et de l'administration. La Sagesse ouvre les voies du droit et fait grandir une civilisation durable.",
   piete:"Ta faveur auprès des dieux. Une forte Piété te protège des présages funestes et donne du poids à ta justice comme à tes temples.",
   legitimite:"L'amour et la loyauté de ton peuple. Si elle s'effondre, on te renverse ; si elle reste haute, ton règne se transmet en paix."
@@ -306,13 +319,13 @@ const SRC={
     arts:["Le Tigre et l'Euphrate nourrissent la plaine, mais leur crue est imprévisible : elle féconde les champs une année, les noie la suivante. Maîtriser l'eau, c'est maîtriser la vie."]},
   dattes:{h:"Le surplus des champs irrigués",kind:ILLUS,
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M110 122 C108 92,108 72,110 54" stroke-width="2.4"/><g stroke-width="1.7"><path d="M110 54 C92 44,78 46,62 38"/><path d="M110 54 C128 44,142 46,158 38"/><path d="M110 56 C96 52,84 56,68 56"/><path d="M110 56 C124 52,136 56,152 56"/><path d="M110 58 C100 62,92 68,80 72"/><path d="M110 58 C120 62,128 68,140 72"/></g><g stroke="#9c5a22" stroke-width="2"><path d="M104 60v3M116 60v3M110 64v3"/></g><g stroke="#8a7450" stroke-width="1"><path d="M18 110h184M18 118h184"/><path d="M44 104v22M86 104v22M134 104v22M176 104v22"/></g></svg>`,
-    arts:["Irriguée, la plaine donne l'orge, le blé et la datte. C'est le surplus de ces récoltes qui, pour la première fois, libère des bras pour d'autres métiers — artisans, prêtres, scribes."]},
+    arts:["Irriguée, la plaine donne l'orge, le blé et la datte. C'est le surplus de ces récoltes qui, pour la première fois, libère des bras pour d'autres métiers, artisans, prêtres, scribes."]},
   calculi:{h:"Compter avant d'écrire",kind:ILLUS,
     svg:`<svg viewBox="0 0 220 132" ${SS}><circle cx="80" cy="72" r="34"/><path d="M80 38 a34 34 0 0 1 0 68" stroke-dasharray="3 5"/><g stroke="#9c5a22"><circle cx="74" cy="66" r="3"/><circle cx="88" cy="74" r="3"/><path d="M72 84l6 -6 4 6z"/></g><g><circle cx="156" cy="48" r="7"/><path d="M150 84l16 -12 6 14z"/><rect x="150" y="92" width="18" height="11" rx="1"/></g></svg>`,
     arts:["Avant l'écriture, on compte avec de petits jetons d'argile scellés dans une boule creuse : un jeton pour une marchandise. La comptabilité précède la lettre."]},
   pictogrammes:{h:"La naissance de l'écriture",kind:ILLUS,
     svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="48" y="18" width="124" height="96" rx="9"/><g stroke-width="1.2"><path d="M66 40l7 4 -7 4M80 40l7 4 -7 4M94 38v10M108 40l-7 4 7 4M122 38v10"/><path d="M66 60l7 4 -7 4M80 58v10M94 60l7 4 -7 4M110 58l-7 4 7 4M124 60v8"/><path d="M66 80l7 4 -7 4M80 78v10M96 80l7 4 -7 4M110 80v8M124 78v10"/><path d="M66 98l7 4 -7 4M80 100l7 4 -7 4M96 96v10M110 100l-7 4 7 4"/></g></svg>`,
-    arts:["Du dessin au signe en forme de clou : l'écriture naît du besoin de noter des comptes, puis sert bientôt à fixer lois, récits et savoirs — et à transmettre un nom à travers les siècles."]},
+    arts:["Du dessin au signe en forme de clou : l'écriture naît du besoin de noter des comptes, puis sert bientôt à fixer lois, récits et savoirs, et à transmettre un nom à travers les siècles."]},
   sceau:{h:"Le sceau-cylindre, signature de l'autorité",kind:ILLUS,
     svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="42" y="44" width="26" height="56" rx="13"/><path d="M46 54h18M46 64h18M46 74h18M46 84h18M46 94h18" stroke-width="1"/><path d="M55 44v-8M55 100v8"/><rect x="92" y="50" width="102" height="46" rx="2" stroke-width="1.3"/><g stroke-width="1.2"><path d="M104 62a6 6 0 1 1 -0.1 0M122 86l6-16 6 16M142 62v22M142 62l10 6-10 6M168 60a8 8 0 0 1 0 16"/></g></svg>`,
     arts:["Roulé sur l'argile fraîche, le sceau-cylindre imprime une frise unique : il signe contrats et ordres officiels. Posséder un sceau, c'est détenir une part de l'autorité."]},
@@ -321,7 +334,7 @@ const SRC={
     arts:["Avant les grands dieux, les peuples prêtent une âme aux arbres, aux rivières, aux animaux. La religion accompagne l'humanité dès ses premiers villages."]},
   ziggourat:{h:"La ziggourat, montagne des dieux",kind:ILLUS,
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M36 120h148"/><path d="M56 120v-22h108v22M72 98v-20h76v20M86 78v-18h48v18M98 60v-14h24v14M104 46v-8h12v8M110 38v-6"/><path d="M110 120v-22" stroke-width="1" stroke-dasharray="3 3"/><path d="M94 120l8 -22M126 120l-8 -22" stroke-width="1"/></svg>`,
-    arts:["La haute terrasse à degrés élève le temple vers le ciel : elle proclame la puissance de la cité et de ses dieux — et celle des prêtres qui la desservent."]},
+    arts:["La haute terrasse à degrés élève le temple vers le ciel : elle proclame la puissance de la cité et de ses dieux, et celle des prêtres qui la desservent."]},
   cadastre:{h:"Borner les champs par l'écrit",kind:ILLUS,
     svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="34" y="22" width="152" height="88" rx="2"/><path d="M84 22v88M134 22v88M34 56h152M34 82h152" stroke-width="1.1"/><g stroke="#9c5a22" stroke-width="1.2"><path d="M44 34l30 12M150 36l28 -8M44 96l30 8"/></g><g stroke-width="1"><path d="M58 40v8M104 66v10M150 92v9"/></g></svg>`,
     arts:["Fixer par écrit les limites des champs fait du registre l'arbitre des querelles : la propriété se prouve, donc se conteste devant le roi. L'écrit remplace peu à peu l'arbitraire."]},
@@ -337,17 +350,17 @@ const SRC={
     arts:["Sur le Tigre et l'Euphrate, la barque porte le grain, le bois et la pierre. La cité qui maîtrise le transport fluvial commande la richesse de toute la région."]},
   etendard:{h:"Les deux visages du roi",kind:ILLUS,
     svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="38" y="26" width="144" height="80" rx="2"/><path d="M38 66h144" stroke-width="1.2"/><g stroke-width="1.2"><circle cx="68" cy="46" r="5"/><circle cx="94" cy="46" r="5"/><circle cx="120" cy="46" r="5"/><path d="M62 53h12M88 53h12M114 53h12M150 40v14M158 40v14M166 40v14"/></g><g stroke-width="1.2"><path d="M60 96v-10l8 6 8 -6v10M96 86v10M96 86l8 6M118 86v10l8 -8M150 84l9 7 9 -7v10"/></g></svg>`,
-    arts:["L'étendard montre deux faces : sur l'une, le banquet et l'alliance ; sur l'autre, la guerre et les prisonniers. Le roi choisit lequel sera le sien — et en paie le prix."]},
+    arts:["L'étendard montre deux faces : sur l'une, le banquet et l'alliance ; sur l'autre, la guerre et les prisonniers. Le roi choisit lequel sera le sien, et en paie le prix."]},
   ishtar:{h:"La porte qui éblouit",kind:ILLUS,
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M62 120V58 a48 48 0 0 1 96 0 V120"/><path d="M84 120V72 a26 26 0 0 1 52 0 V120"/><g stroke-width="1"><path d="M62 84h22M136 84h22M62 102h22M136 102h22M70 64l10 6M150 64l-10 6"/></g><g stroke-width="1.2"><path d="M98 98 q6 -8 15 -4 q9 4 13 -2M104 102l4 7M118 100l4 7"/></g></svg>`,
     arts:["Briques vernissées, dragons et taureaux : une grande cité éblouit pour proclamer la puissance de son roi et de ses dieux. La monumentalité est un langage politique."]},
 
   lagash:{h:"Un registre de grenier",kind:DOC,
     doc:["Mois des moissons, troisième année du règne.","Au grenier du palais : 240 mesures d'orge reçues ; 30 versées en rations aux ouvriers du canal ; 12 portées au temple.","Reste en réserve : 198 mesures. Scellé par la main du scribe."],
-    arts:["Reconstitution d'un registre de grenier : l'État se gouverne par l'écrit. Tout ce qui entre et sort est noté, pesé, scellé — l'écriture rend l'impôt et l'administration possibles."]},
+    arts:["Reconstitution d'un registre de grenier : l'État se gouverne par l'écrit. Tout ce qui entre et sort est noté, pesé, scellé, l'écriture rend l'impôt et l'administration possibles."]},
   codeTexte:{h:"Des lois gravées dans la pierre",kind:DOC,
     doc:["Si un homme rompt sa digue et inonde le champ d'autrui, il mesurera le grain perdu et le rendra.","Si un batelier perd par négligence la barque qu'on lui confie, il en paiera la valeur.","Que ces lois demeurent gravées, afin que le fort n'opprime pas le faible."],
-    arts:["Lois reconstituées dans l'esprit des grands codes mésopotamiens : rendre la règle visible de tous, c'est l'imposer même au puissant — et la faire survivre à son auteur."]},
+    arts:["Lois reconstituées dans l'esprit des grands codes mésopotamiens : rendre la règle visible de tous, c'est l'imposer même au puissant, et la faire survivre à son auteur."]},
   commerce:{h:"La lettre d'un marchand",kind:DOC,
     doc:["À mon frère, salut. La caravane est rentrée des montagnes.","J'ai troqué vingt ballots de laine contre du cuivre, du bois de cèdre et trois pierres bleues pour le temple.","Envoie de l'orge avant la crue, car les routes seront bientôt coupées."],
     arts:["Lettre de marchand reconstituée : c'est par ces échanges lointains que la cité obtient le bois, le métal et les pierres précieuses que sa plaine ne produit pas."]},
@@ -356,63 +369,63 @@ const SRC={
     arts:["Récit composé dans l'esprit des grandes épopées mésopotamiennes : très tôt, les hommes ont cherché l'immortalité non dans la chair, mais dans la mémoire écrite."]},
   deluge:{h:"La mémoire du déluge",kind:DOC,
     doc:["Les dieux, dit-on, envoyèrent jadis un déluge sur la plaine.","Les eaux montèrent sept jours et sept nuits et engloutirent les cités.","Un seul homme, averti à temps, bâtit une grande barque et sauva le vivant."],
-    arts:["Récit composé d'après les vieux mythes mésopotamiens du déluge : pour ces peuples, les grandes catastrophes étaient des messages des dieux — et l'écrit servait à en garder la trace."]}
+    arts:["Récit composé d'après les vieux mythes mésopotamiens du déluge : pour ces peuples, les grandes catastrophes étaient des messages des dieux, et l'écrit servait à en garder la trace."]}
 };
 
 const STORY={
-  eau:{folio:"Acte I — les eaux",src:"fleuves",
-    texte:["Le printemps gonfle les eaux. Chaque année, la crue peut féconder tes champs ou les noyer ; tes anciens se souviennent de récoltes perdues et de familles ruinées. Maîtriser l'eau, c'est maîtriser la vie même — mais cela exige des bras et de la méthode."],
+  eau:{folio:"Acte I · les eaux",src:"fleuves",
+    texte:["Le printemps gonfle les eaux. Chaque année, la crue peut féconder tes champs ou les noyer ; tes anciens se souviennent de récoltes perdues et de familles ruinées. Maîtriser l'eau, c'est maîtriser la vie même, mais cela exige des bras et de la méthode."],
     consigne:"Comment maîtrises-tu les eaux du fleuve ?",
     renvois:[
       {t:"Creuser un grand réseau de canaux par des corvées justes.",epreuve:{stats:["autorite","sagesse"],seuil:9,ok:{eff:{prosperite:2,rayonnement:1},reg:"Tes canaux verdissent la plaine.",txt:"Les chantiers réussissent : l'eau coule où tu veux.",impact:"Un grand réseau d'irrigation exige de l'autorité pour mobiliser les bras et de la sagesse pour le concevoir : réussi, il fonde la prospérité de la cité."},penalite:{eff:{prosperite:1,legitimite:-1},reg:"Les canaux mal tracés s'envasent.",txt:"Faute d'organisation, les chantiers s'enlisent.",impact:"Sans autorité ni savoir-faire suffisants, de grands travaux hydrauliques échouent et gaspillent les forces de la cité."}},cible:"terre"},
-      {t:"Forcer le peuple à un réseau démesuré, sans répit.",eff:{prosperite:3,legitimite:-2},reg:"Des canaux partout, et des dos brisés.",sceau:"Ordre durci",impact:"Un grand chantier enrichit la cité, mais des corvées écrasantes minent la légitimité du roi : la rancœur s'accumule.",cible:"terre"},
+      {t:"Forcer le peuple à un réseau démesuré, sans répit.",eff:{prosperite:3,legitimite:-2},reg:"De grands canaux, mais des corvées écrasantes.",sceau:"Ordre durci",impact:"Un grand chantier enrichit la cité, mais des corvées écrasantes minent la légitimité du roi : la rancœur s'accumule.",cible:"terre"},
       {t:"Laisser le fleuve faire et prier pour une bonne crue.",eff:{piete:1},reg:"Tu t'en remets au fleuve et aux dieux.",impact:"S'en remettre aux seuls dieux face à un fléau matériel, c'est laisser le hasard décider du sort de la cité.",cible:"eau_crue"}],
     },
-  eau_crue:{folio:"Épreuve — la crue",src:"deluge",
+  eau_crue:{folio:"Épreuve · la crue",src:"deluge",
     texte:["Le fleuve, laissé à lui-même, a rompu ses berges. Les eaux noient les champs, emportent les bêtes et menacent les greniers. Le peuple court vers le palais : le roi a-t-il un plan ?"],
     consigne:"Les eaux ravagent la plaine. Que fais-tu ?",
     renvois:[
       {t:"Mobiliser toute la cité pour relever les digues en hâte.",epreuve:{stats:["autorite"],seuil:8,ok:{eff:{prosperite:1,legitimite:1},reg:"Les digues tiennent à temps.",txt:"Les digues tiennent, la plaine est sauvée.",impact:"Réagir vite à une crise de l'eau sauve la récolte : la gestion hydraulique est le socle matériel de la civilisation."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"Les digues cèdent.",txt:"Trop tard : l'eau emporte tout.",impact:"Tarder face au fleuve coûte la récolte d'une année : sans maîtrise de l'eau, pas de surplus, pas de cité."}},cible:"terre"},
       {t:"Laisser les eaux se retirer seules et multiplier les prières.",eff:{piete:1,prosperite:-3,legitimite:-1},reg:"La plaine reste noyée longtemps.",impact:"S'en remettre aux prières devant un fléau matériel appauvrit durablement la cité : tu repars affaibli.",cible:"terre"}],
     },
-  terre:{folio:"Acte I — la terre",src:"dattes",
+  terre:{folio:"Acte I · la terre",src:"dattes",
     texte:["Tes canaux verdissent la plaine. Reste à choisir ce que cette terre nourrira : du grain pour le surplus, des vergers de prestige, ou de grands troupeaux. Ce choix décidera si ta cité reste un village ou devient le cœur d'un royaume."],
     consigne:"Que feras-tu pousser sur tes terres ?",
     renvois:[
       {t:"Du grain en abondance, pour un vrai surplus.",eff:{prosperite:2},reg:"Tes greniers se remplissent d'orge.",impact:"Le surplus agricole est la condition de tout le reste : il permet de nourrir des hommes qui ne cultivent pas.",cible:"surplus"},
-      {t:"Des vergers et des jardins de prestige.",eff:{rayonnement:2},reg:"Des jardins admirés, des greniers modestes.",impact:"Le prestige flatte le roi mais nourrit peu : sans surplus de grain, la cité reste fragile.",cible:"surplus"},
-      {t:"De grands troupeaux menés boire au fleuve, sans garde.",eff:{prosperite:1},reg:"Du bétail, et un fleuve dangereux.",impact:"Exploiter le fleuve sans en mesurer les dangers expose la cité à de mauvaises surprises.",cible:"crocodile"}],
+      {t:"Des vergers et des jardins de prestige.",eff:{rayonnement:2},reg:"De beaux jardins, mais peu de grain en réserve.",impact:"Le prestige flatte le roi mais nourrit peu : sans surplus de grain, la cité reste fragile.",cible:"surplus"},
+      {t:"De grands troupeaux menés boire au fleuve, sans garde.",eff:{prosperite:1},reg:"De grands troupeaux, et un fleuve menaçant.",impact:"Exploiter le fleuve sans en mesurer les dangers expose la cité à de mauvaises surprises.",cible:"crocodile"}],
     },
-  crocodile:{folio:"Épreuve — le fleuve",src:"barque",
+  crocodile:{folio:"Épreuve · le fleuve",src:"barque",
     texte:["Au matin, des bergers manquent à l'appel et des bêtes ont disparu. On dit qu'un grand reptile du fleuve, que certains nomment un dieu, a saisi hommes et troupeaux à l'abreuvoir. La peur gagne les rives."],
     consigne:"Le fleuve a pris des tiens. Que fais-tu ?",
     renvois:[
       {t:"Poster des gardes et creuser des abreuvoirs sûrs, à l'écart.",epreuve:{stats:["autorite"],seuil:8,ok:{eff:{prosperite:1},reg:"Les bêtes boivent en sûreté.",txt:"Le fleuve ne prend plus rien.",impact:"Aménager l'accès à l'eau et se protéger des dangers du fleuve, c'est aussi cela, civiliser un territoire."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"Le fleuve prend encore.",txt:"D'autres bêtes et des hommes disparaissent.",impact:"Négliger un péril connu du fleuve coûte des ressources et la confiance des bergers."}},cible:"surplus"},
       {t:"Tenir le fleuve pour sacré et ne rien changer.",eff:{piete:1,prosperite:-2,legitimite:-1},reg:"On abandonne les berges au fleuve.",impact:"Sacraliser un danger sans s'en protéger sacrifie hommes et bêtes : la piété ne dispense pas de prudence.",cible:"surplus"}],
     },
-  surplus:{folio:"Acte II — le surplus",src:"lagash",
+  surplus:{folio:"Acte II · le surplus",src:"lagash",
     texte:["Pour la première fois, tes greniers débordent après la récolte. Un tel surplus n'avait jamais existé : il peut dormir en réserve, nourrir des hommes qui ne cultivent pas, ou se dépenser en fêtes. Ce que tu en feras dira quel roi tu veux être."],
     consigne:"Que fais-tu de ce surplus ?",
     renvois:[
       {t:"Le mettre en réserve scellée et nourrir scribes et artisans.",eff:{prosperite:1,rayonnement:1},reg:"Le surplus fait vivre des mains nouvelles.",impact:"Un surplus géré libère des hommes du travail des champs : naissent scribes, artisans et prêtres. C'est l'origine de la division du travail.",cible:"ecriture"},
-      {t:"Tout dépenser en fêtes pour t'attacher le peuple.",eff:{legitimite:2,prosperite:-2},reg:"Des fêtes magnifiques, des greniers vidés.",impact:"Dilapider le surplus séduit le peuple mais laisse la cité sans réserve au premier mauvais jour.",cible:"recolte"},
-      {t:"L'entasser sans le compter ni le garder.",eff:{prosperite:1},reg:"Un tas d'orge, sans registre ni garde.",impact:"Posséder sans compter ni protéger, c'est inviter le désordre et le vol.",cible:"voleurs"}],
+      {t:"Tout dépenser en fêtes pour t'attacher le peuple.",eff:{legitimite:2,prosperite:-2},reg:"De grandes fêtes, et des greniers qui se vident.",impact:"Dilapider le surplus séduit le peuple mais laisse la cité sans réserve au premier mauvais jour.",cible:"recolte"},
+      {t:"L'entasser sans le compter ni le garder.",eff:{prosperite:1},reg:"Un grenier plein, mais sans registre ni garde.",impact:"Posséder sans compter ni protéger, c'est inviter le désordre et le vol.",cible:"voleurs"}],
     },
-  recolte:{folio:"Épreuve — la disette",
+  recolte:{folio:"Épreuve · la disette",
     texte:["Les fêtes ont vidé les greniers, et voici qu'une mauvaise récolte succède à l'abondance. La réserve est presque nulle, l'hiver approche, et le peuple qui t'acclamait hier commence à avoir faim."],
     consigne:"La disette menace. Que fais-tu ?",
     renvois:[
       {t:"Rationner avec rigueur et acheter du grain au-dehors.",epreuve:{stats:["sagesse"],mod:"prosperite",seuil:9,ok:{eff:{prosperite:2},reg:"Le rationnement sauve l'hiver.",txt:"La cité passe l'hiver de justesse.",impact:"Anticiper la disette par la réserve et le commerce protège des famines : c'est tout l'enjeu de la gestion du surplus."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"La faim s'installe.",txt:"Le grain manque, le peuple murmure.",impact:"Sans réserve gérée, une seule mauvaise récolte affame une cité entière."}},cible:"ecriture"},
       {t:"Distribuer le peu qui reste en festins, et espérer demain.",eff:{legitimite:1,prosperite:-2},reg:"On mange tout, on prie pour demain.",impact:"Repousser le problème par de nouvelles largesses précipite la famine au lieu de l'éviter.",cible:"ecriture"}],
     },
-  voleurs:{folio:"Épreuve — les voleurs",
+  voleurs:{folio:"Épreuve · les voleurs",
     texte:["Une nuit, des voleurs ont forcé ton grenier mal gardé. Au matin, nul ne sait combien d'orge a disparu : aucun compte n'avait été tenu. Marchands et intendants se rejettent la faute, et ta parole seule ne suffit plus."],
     consigne:"On a pillé ton grenier. Que fais-tu ?",
     renvois:[
       {t:"Tenir désormais un registre écrit et poster une garde.",eff:{sagesse:1,prosperite:1},sceau:"Écriture adoptée",reg:"Chaque mesure est inscrite et gardée.",impact:"L'écriture comptable naît d'un besoin concret : savoir ce qu'on possède et le protéger. C'est l'une des origines de l'écriture en Mésopotamie.",cible:"ecriture"},
-      {t:"Accuser au hasard et châtier pour l'exemple.",eff:{legitimite:-2,autorite:1},sceau:"Sans écriture",reg:"Un innocent puni, le vrai voleur libre.",impact:"Juger sans preuve écrite punit au hasard et ruine la confiance : sans trace, pas de justice fiable.",cible:"ecriture"}],
+      {t:"Accuser au hasard et châtier pour l'exemple.",eff:{legitimite:-2,autorite:1},sceau:"Sans écriture",reg:"Un innocent est puni, le vrai voleur court toujours.",impact:"Juger sans preuve écrite punit au hasard et ruine la confiance : sans trace, pas de justice fiable.",cible:"ecriture"}],
     },
-  ecriture:{folio:"Acte II — l'écriture",src:"pictogrammes",
+  ecriture:{folio:"Acte II · l'écriture",src:"pictogrammes",
     texte:["Le commerce enfle et les comptes s'embrouillent : qui a livré, qui a payé, combien reste-t-il dans les greniers ? La mémoire des hommes ne suffit plus, et chaque litige menace la confiance. Il te faut un moyen sûr de garder trace des choses."],
     consigne:"Comment garderas-tu trace des biens et des dettes ?",
     renvois:[
@@ -420,22 +433,22 @@ const STORY={
       {t:"Se fier à des jetons d'argile et à la mémoire des anciens.",eff:{rayonnement:1},sceau:"Sans écriture",reg:"On compte avec des cailloux et de la mémoire.",impact:"Les jetons (calculi) ont précédé l'écriture, mais ils atteignent vite leur limite : sans signes, rien ne se transmet fidèlement.",cible:"fraude"},
       {t:"Confier tous les comptes à un seul intendant de confiance.",eff:{prosperite:1},reg:"Un seul homme tient tout dans sa tête.",impact:"Tout confier à un seul homme, sans contrôle écrit, c'est s'exposer à l'erreur et à la fraude.",cible:"fraude"}],
     },
-  fraude:{folio:"Épreuve — la fraude",src:"calculi",
+  fraude:{folio:"Épreuve · la fraude",src:"calculi",
     texte:["Faute d'écriture pour tout vérifier, ton intendant a détourné l'orge des greniers, et les marchands se disputent des dettes que nul ne peut prouver. Le soupçon empoisonne la cité, et l'on murmure que le roi ne sait plus ce qu'il possède."],
     consigne:"On te vole sans que rien ne le prouve. Que fais-tu ?",
     renvois:[
       {t:"Instituer l'écriture et vérifier chaque compte.",epreuve:{stats:["sagesse"],seuil:8,ok:{eff:{sagesse:1},sceau:"Écriture adoptée",reg:"Tout est désormais consigné et vérifiable.",txt:"Les comptes écrits confondent le voleur.",impact:"L'écrit permet le contrôle et la preuve : il fonde l'administration et prépare le droit écrit."},penalite:{eff:{legitimite:-2},reg:"Le doute s'installe partout.",txt:"Sans preuve, le soupçon empoisonne tout.",impact:"Sans trace écrite, impossible de prouver une fraude : la confiance, ciment de la cité, se défait."}},cible:"societe"},
       {t:"Trancher à l'oreille et fermer les yeux sur le reste.",eff:{legitimite:-2},sceau:"Sans écriture",reg:"On gouverne à l'aveugle.",impact:"Gouverner sans écrit, c'est gouverner à l'aveugle : la cité risque d'oublier jusqu'à ses propres affaires.",cible:"societe"}],
     },
-  societe:{folio:"Acte III — la société",src:"sceau",
+  societe:{folio:"Acte III · la société",src:"sceau",
     texte:["Nourris par le surplus, des hommes ne cultivent plus : prêtres, scribes, artisans, soldats. Une société à plusieurs étages se forme, et avec elle la question de l'ordre : qui commande, qui obéit, qui protège le faible ?"],
     consigne:"Comment ordonnes-tu cette société nouvelle ?",
     renvois:[
-      {t:"Donner à chacun sa place sous une règle commune et connue.",eff:{rayonnement:1,legitimite:1,sagesse:1},reg:"Chacun sa tâche, tous une cité.",impact:"La division du travail et une hiérarchie reconnue, encadrée par une règle, permettent à une cité de grandir sans se déchirer.",cible:"temple"},
+      {t:"Donner à chacun sa place sous une règle commune et connue.",eff:{rayonnement:1,legitimite:1,sagesse:1},reg:"Chacun trouve sa place, et la cité s'unit.",impact:"La division du travail et une hiérarchie reconnue, encadrée par une règle, permettent à une cité de grandir sans se déchirer.",cible:"temple"},
       {t:"Placer les prêtres au sommet et tout soumettre au temple.",eff:{piete:1,legitimite:1},sceau:"Temple puissant",reg:"Les prêtres dominent la cité.",impact:"Une hiérarchie sacerdotale donne de la stabilité, mais concentre un pouvoir qui peut un jour rivaliser avec le roi.",cible:"temple"},
-      {t:"Laisser le plus fort prendre le pas sur le faible.",eff:{legitimite:-2,autorite:1},sceau:"Ordre durci",reg:"La loi du plus fort règne dans la cité.",impact:"Sans règle protégeant le faible, une société se déchire — c'est précisément ce que les premiers codes chercheront à corriger.",cible:"temple"}],
+      {t:"Laisser le plus fort prendre le pas sur le faible.",eff:{legitimite:-2,autorite:1},sceau:"Ordre durci",reg:"La loi du plus fort règne dans la cité.",impact:"Sans règle protégeant le faible, une société se déchire, c'est précisément ce que les premiers codes chercheront à corriger.",cible:"temple"}],
     },
-  temple:{folio:"Acte III — les dieux",src:"ziggourat",
+  temple:{folio:"Acte III · les dieux",src:"ziggourat",
     texte:["Une cité sans dieux n'est qu'un campement. Tes prêtres réclament une grande demeure pour le dieu protecteur ; le peuple attend des fêtes et des présages favorables. La place que tu donnes au sacré façonnera ton pouvoir."],
     consigne:"Quelle place donnes-tu aux dieux ?",
     renvois:[
@@ -443,54 +456,54 @@ const STORY={
       {t:"Te proclamer toi-même fils des dieux, au-dessus des prêtres.",eff:{piete:1,autorite:1,legitimite:1},sceau:"Prérogative royale",reg:"Le roi se fait l'égal des dieux.",impact:"Se diviniser renforce l'autorité du roi, mais défie les prêtres : un pouvoir religieux offensé est dangereux.",cible:"loi"},
       {t:"Négliger les temples : les dieux attendront.",eff:{piete:-2},reg:"Les autels se couvrent de poussière.",impact:"Négliger le sacré, dans une société où la religion explique tout, c'est s'exposer à la colère des dieux et des prêtres.",cible:"presage"}],
     },
-  presage:{folio:"Épreuve — le présage",src:"animisme",
+  presage:{folio:"Épreuve · le présage",src:"animisme",
     texte:["Une éclipse a noirci le soleil, des agneaux sont nés morts, et les prêtres lisent dans le ciel la colère des dieux délaissés. La cité tremble, et l'on murmure que le malheur vient de l'impiété du roi."],
     consigne:"Un présage funeste affole la cité. Que fais-tu ?",
     renvois:[
       {t:"Honorer les dieux par de grands sacrifices pour apaiser leur colère.",epreuve:{stats:["piete"],seuil:9,ok:{eff:{piete:2,legitimite:1},sceau:"Temple puissant",reg:"Les autels refument, la peur reflue.",txt:"Les dieux semblent apaisés : la cité respire.",impact:"Apaiser les dieux apaise le peuple ; encore faut-il une piété assez forte pour être crédible. Le roi doit composer avec le pouvoir religieux."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Les sacrifices n'apaisent rien.",txt:"Rien n'y fait : on dit les dieux sourds à un roi impie.",impact:"Un roi qui a négligé les dieux peine à s'en faire entendre dans la crise : la piété se cultive avant l'orage."}},cible:"loi"},
       {t:"Défier les prêtres et te moquer du présage.",eff:{piete:-2,legitimite:-2},reg:"Tu braves les dieux et leurs prêtres.",impact:"Mépriser à la fois les dieux et leurs prêtres, dans une cité croyante, peut coûter le trône : leur pouvoir est bien réel.",cibleFn:function(F){return F.piete<=7?"nF_pretres":"loi";}}],
     },
-  loi:{folio:"Acte IV — le jugement",src:"hammurabi",
-    texte:["Une affaire grave vient devant toi : un mur mal bâti s'est effondré et a tué, un débiteur a vendu son enfant, un homme est accusé sans preuve. La cité entière regarde comment son roi rend la justice. Ta décision deviendra un principe."],
+  loi:{folio:"Acte IV · le jugement",src:"hammurabi",
+    texte:["Les affaires difficiles s'accumulent devant ton trône : un mur mal bâti s'est écroulé et a tué un homme ; un débiteur ruiné a vendu son enfant pour payer sa dette ; un accusé clame son innocence, mais nul témoin ne peut le confondre. La cité entière attend de voir sur quel principe son roi rendra la justice, car ta décision fera loi."],
     consigne:"Sur quel principe rends-tu la justice ?",
     renvois:[
       {t:"Œil pour œil : le talion, dur mais clair.",lawref:"loi du talion",arts:["a229"],eff:{autorite:1,legitimite:1},reg:"Œil pour œil : la peine égale le tort.",impact:"Le talion limite la vengeance en la mesurant : c'est un progrès sur la vengeance libre, mais une justice rude et inégale selon le rang.",cible:"code"},
       {t:"Réparation : que le coupable rende et indemnise.",lawref:"loi de restitution",arts:["a53"],eff:{sagesse:1,legitimite:1,prosperite:1},reg:"Le tort se répare en grain et en argent.",impact:"Réparer plutôt que mutiler protège la paix sociale et l'économie : beaucoup de lois mésopotamiennes prévoient des compensations.",cible:"code"},
       {t:"Au fleuve de juger : l'ordalie décidera.",lawref:"jugement par le fleuve",arts:["a2"],eff:{piete:2,legitimite:1},sceau:"Ordalie",reg:"Le fleuve dira qui ment.",impact:"L'ordalie remet le verdict aux dieux : puissante aux yeux des croyants, mais aveugle aux faits réels.",cible:"code"},
-      {t:"Le roi est la loi : ma seule parole tranche, sans règle.",lawref:"hors de la stèle",lawnone:true,eff:{autorite:2,legitimite:-2},sceau:"Prérogative royale",reg:"Nulle loi au-dessus du roi.",impact:"Une justice arbitraire, sans loi écrite qui lie même le roi, ouvre la voie à la tyrannie — l'inverse de ce que cherchent les codes.",cible:"revolte"}],
+      {t:"Le roi est la loi : ma seule parole tranche, sans règle.",lawref:"hors de la stèle",lawnone:true,eff:{autorite:2,legitimite:-2},sceau:"Prérogative royale",reg:"Nulle loi au-dessus du roi.",impact:"Une justice arbitraire, sans loi écrite qui lie même le roi, ouvre la voie à la tyrannie, l'inverse de ce que cherchent les codes.",cible:"revolte"}],
     },
-  code:{folio:"Acte IV — la loi gravée",src:"codeTexte",
-    texte:["Ton jugement a fait jurisprudence. Reste à décider s'il restera une parole en l'air ou s'il deviendra une loi gravée dans la pierre, dressée sur la place — une loi qui lie le faible comme le fort, et le roi lui-même."],
+  code:{folio:"Acte IV · la loi gravée",src:"codeTexte",
+    texte:["Ton jugement a fait jurisprudence. Reste à décider s'il restera une parole en l'air ou s'il deviendra une loi gravée dans la pierre, dressée sur la place, une loi qui lie le faible comme le fort, et le roi lui-même."],
     consigne:"Que fais-tu de ta justice ?",
     renvois:[
       {t:"La graver dans la pierre et la faire respecter de tous.",epreuve:{stats:["autorite","sagesse"],seuil:10,ok:{eff:{sagesse:1,rayonnement:2,legitimite:1},sceau:"Code gravé",sceau2:"Loi équitable",reg:"Tes lois, gravées, défendent le faible.",txt:"Ta loi écrite s'impose à tous, du faible au puissant.",impact:"Faire respecter une loi écrite et égale demande de l'autorité pour l'imposer et de la sagesse pour la rendre juste : c'est un jalon majeur de l'histoire du droit."},penalite:{eff:{legitimite:-1},reg:"La loi gravée, mais bafouée.",txt:"Les puissants ignorent ta loi, et nul ne l'applique.",impact:"Une loi qu'on n'a ni l'autorité d'imposer ni la sagesse de rendre acceptable reste lettre morte, même gravée dans la pierre."}},cible:"defense"},
-      {t:"La graver, mais dure et sans pitié, pour faire trembler.",eff:{autorite:2,legitimite:-1},sceau:"Code gravé",sceau2:"Loi de fer",reg:"Des lois gravées, et terribles.",impact:"Une loi écrite mais brutale impose l'ordre par la peur : durable en apparence, elle nourrit la rancœur.",cible:"defense"},
+      {t:"La graver, mais dure et sans pitié, pour faire trembler.",eff:{autorite:2,legitimite:-1},sceau:"Code gravé",sceau2:"Loi de fer",reg:"Des lois gravées, mais impitoyables.",impact:"Une loi écrite mais brutale impose l'ordre par la peur : durable en apparence, elle nourrit la rancœur.",cible:"defense"},
       {t:"Ne rien graver : ta seule parole suffit.",eff:{legitimite:-2},sceau:"Prérogative royale",reg:"Aucune loi écrite ne te lie.",impact:"Refuser d'écrire la loi laisse le pouvoir sans limite et la cité sans repère : la mémoire du droit s'efface avec toi.",cible:"defense"}],
     },
-  revolte:{folio:"Épreuve — la révolte",
+  revolte:{folio:"Épreuve · la révolte",
     texte:["Le bruit court que le roi juge selon son humeur, frappant l'un et graciant l'autre sans règle. Les débiteurs ruinés, les familles lésées et les marchands floués se rassemblent en grondant. La rue s'échauffe, et le palais n'est plus si sûr."],
     consigne:"Ton arbitraire soulève le peuple. Que fais-tu ?",
     renvois:[
       {t:"Reculer : promettre une loi écrite, juste et publique.",eff:{legitimite:2},sceau:"Code gravé",sceau2:"Loi équitable",reg:"Le roi cède et promet la loi.",impact:"Céder à temps et instaurer une loi écrite désamorce la révolte : c'est souvent dans ces crises que naissent les codes.",cible:"defense"},
       {t:"Écraser la révolte dans le sang.",eff:{legitimite:-2,autorite:1},sceau:"Ordre durci",reg:"La révolte matée, la haine semée.",impact:"Réprimer une révolte sans corriger l'injustice qui l'a causée peut, si la légitimité est déjà basse, emporter le trône.",cibleFn:function(F){return F.legitimite<=7?"nF_revolte":"defense";}}],
     },
-  defense:{folio:"Acte V — la menace",src:"etendard",
+  defense:{folio:"Acte V · la menace",src:"etendard",
     texte:["Ta cité riche attire les convoitises. Une cité rivale masse ses troupes, des pillards harcèlent tes routes. Le roi a deux visages, dit-on : celui qui bâtit et celui qui combat. Lequel montreras-tu ?"],
     consigne:"Une cité rivale menace. Comment réponds-tu ?",
     renvois:[
-      {t:"Dresser de hautes murailles et négocier la paix.",epreuve:{stats:["autorite"],mod:"prosperite",seuil:9,ok:{eff:{autorite:1,rayonnement:1},sceau:"Murailles",reg:"Des murailles montent, la paix se traite.",txt:"De solides remparts s'élèvent : la cité respire en sûreté.",impact:"Bâtir de vraies fortifications demande de l'autorité et un trésor garni : bien défendue, la cité-État survit aux convoitises."},penalite:{eff:{prosperite:-1},reg:"Des murs trop bas, déjà lézardés.",txt:"Faute de moyens, tes murs ne valent rien.",impact:"Des murailles exigent des ressources et du commandement : une cité trop pauvre ou mal tenue reste exposée."}},cible:"heritage"},
-      {t:"Nouer une grande alliance par le commerce.",cond:function(F){return F.sagesse>=11;},lock:"exige une grande Sagesse",eff:{rayonnement:2,legitimite:1},sceau:"Alliés",reg:"Des alliés, des routes ouvertes.",impact:"La diplomatie et le commerce au loin enrichissent et protègent : Sumer vivait d'échanges de cuivre, de bois et de pierres.",cible:"heritage"},
-      {t:"Lancer la guerre et soumettre la rivale.",epreuve:{stats:["autorite"],seuil:9,ok:{eff:{autorite:2,rayonnement:1,prosperite:1},sceau:"Ennemis jurés",reg:"La rivale tombe, mais te voue une haine durable.",txt:"Tu l'emportes — mais tu t'es fait un ennemi mortel.",impact:"La conquête agrandit le pouvoir et crée des ennemis jurés : la guerre est un pari coûteux qui se paie plus tard."},penalite:{eff:{prosperite:2,legitimite:1},sceau:"Ennemis jurés",reg:"La campagne s'enlise et t'épuise.",txt:"La guerre tourne mal et te coûte cher.",impact:"Une guerre mal engagée ruine et expose la cité : le pari militaire peut tout faire perdre."}},cible:"bataille"}],
+      {t:"Dresser de hautes murailles et négocier la paix.",epreuve:{stats:["autorite"],mod:"prosperite",seuil:9,ok:{eff:{autorite:1,rayonnement:1},sceau:"Murailles",reg:"Des murailles montent, la paix se traite.",txt:"De solides remparts s'élèvent : la cité respire en sûreté.",impact:"Bâtir de vraies fortifications demande de l'autorité et un trésor garni : bien défendue, la cité-État survit aux convoitises."},penalite:{eff:{prosperite:-1},reg:"Des murs trop bas, déjà fissurés.",txt:"Faute de moyens, tes murs ne valent rien.",impact:"Des murailles exigent des ressources et du commandement : une cité trop pauvre ou mal tenue reste exposée."}},cible:"heritage"},
+      {t:"Nouer une grande alliance par le commerce.",cond:function(F){return F.sagesse>=11;},lock:"exige une grande Sagesse",eff:{rayonnement:2,legitimite:1},sceau:"Alliés",reg:"Des alliés sûrs et des routes ouvertes.",impact:"La diplomatie et le commerce au loin enrichissent et protègent : Sumer vivait d'échanges de cuivre, de bois et de pierres.",cible:"heritage"},
+      {t:"Lancer la guerre et soumettre la rivale.",epreuve:{stats:["autorite"],seuil:9,ok:{eff:{autorite:2,rayonnement:1,prosperite:1},sceau:"Ennemis jurés",reg:"La rivale tombe, mais te voue une haine durable.",txt:"Tu l'emportes, mais tu t'es fait un ennemi mortel.",impact:"La conquête agrandit le pouvoir et crée des ennemis jurés : la guerre est un pari coûteux qui se paie plus tard."},penalite:{eff:{prosperite:2,legitimite:1},sceau:"Ennemis jurés",reg:"La campagne s'enlise et t'épuise.",txt:"La guerre tourne mal et te coûte cher.",impact:"Une guerre mal engagée ruine et expose la cité : le pari militaire peut tout faire perdre."}},cible:"bataille"}],
     },
-  bataille:{folio:"Épreuve — le siège",
-    texte:["Les peuples que tu as provoqués reviennent, alliés contre toi, et dressent leur camp devant ta cité. Les tambours de guerre roulent. Ce que tu as bâti — ou négligé — pour ta défense va décider de tout."],
+  bataille:{folio:"Épreuve · le siège",
+    texte:["Les peuples que tu as provoqués reviennent, alliés contre toi, et dressent leur camp devant ta cité. Les tambours de guerre roulent. Ce que tu as bâti, ou négligé, pour ta défense va décider de tout."],
     consigne:"L'ennemi assiège la cité. Que fais-tu ?",
     renvois:[
       {t:"Tenir derrière tes murailles et endurer le siège.",cond:function(F){return F.sceaux.has("Murailles")||F.sceaux.has("Alliés");},lock:"exige murs ou alliés",eff:{autorite:1,prosperite:1},reg:"Les murs tiennent, l'ennemi renonce.",impact:"Des murailles ou des alliés transforment un siège mortel en simple épreuve : la défense préparée sauve la cité.",cible:"heritage"},
       {t:"Sortir livrer bataille en rase campagne.",epreuve:{stats:["autorite"],seuil:9,ok:{eff:{autorite:1,rayonnement:1},reg:"Tu repousses l'ennemi de justesse.",txt:"La bataille est gagnée, à grand prix.",impact:"Sans murs, il faut vaincre au champ : un pari risqué qu'une bonne défense aurait évité."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Ton armée plie sous le nombre.",txt:"Tes lignes cèdent dans la plaine.",impact:"Une cité sans défense préparée qui perd au champ est à la merci de l'ennemi."}},cible:"heritage"},
       {t:"Demander grâce et payer un lourd tribut.",eff:{prosperite:-3,legitimite:-2,rayonnement:-1},reg:"La cité ploie sous le tribut.",impact:"Acheter la paix après une guerre mal engagée épuise la cité ; trop affaiblie, elle peut sombrer.",cibleFn:function(F){return (F.prosperite<=0||F.legitimite<=4)?"nF_vengeance":"heritage";}}],
     },
-  heritage:{folio:"Acte VI — l'héritage",src:"gilgamesh",
+  heritage:{folio:"Acte VI · l'héritage",src:"gilgamesh",
     texte:["Tu es vieux à présent, et tout roi est mortel. Reste une dernière question, la plus lourde : qu'est-ce qui, de ton règne, traversera les siècles quand toi-même ne seras plus que poussière ?"],
     consigne:"Que laisseras-tu derrière toi ?",
     renvois:[
@@ -499,7 +512,7 @@ const STORY={
       {t:"Tout garder pour toi jusqu'au dernier souffle.",eff:{legitimite:-2},reg:"Le roi ne prépare rien après lui.",impact:"Ne rien transmettre livre la cité à la discorde : un règne sans suite s'efface vite.",cibleFn:function(F){return evaluerFin(F);}}],
     },
   nF_legislateur:{fin:true,folio:"Apogée",titre:"Le Législateur éternel",prose:["À ta mort, les scribes recopient ton code pour des millénaires ; tes canaux nourrissent encore des cités lointaines. Quatre mille ans plus tard, on déchiffrera ton nom sur l'argile. Tu n'as pas seulement régné : tu as fondé une civilisation."]},
-  nF_orfevre:{fin:true,folio:"Prospérité",titre:"L'âge d'or de la cité",prose:["Commerce, alliances, transition paisible : ta cité s'épanouit et te survit une génération entière. On se souviendra d'un règne heureux — sinon éternel."]},
+  nF_orfevre:{fin:true,folio:"Prospérité",titre:"L'âge d'or de la cité",prose:["Commerce, alliances, transition paisible : ta cité s'épanouit et te survit une génération entière. On se souviendra d'un règne heureux, sinon éternel."]},
   nF_empire:{fin:true,folio:"Empire éphémère",titre:"L'empire de la peur",prose:["Tu conquiers et tu éblouis. Mais bâti sur la terreur plus que sur le consentement, l'édifice se fissure dès ta disparition : tes successeurs se déchirent, et l'empire se défait en une génération."]},
   nF_poignards:{fin:true,folio:"Chute",titre:"La nuit des poignards",prose:["Les nobles que tu écrasais n'ont pas oublié. Une nuit, les couteaux sortent dans le palais. Ton règne s'achève sous la main des tiens, non sous les lances de l'ennemi."]},
   nF_revolte:{fin:true,folio:"Chute",titre:"La révolte des opprimés",prose:["À force de corvées, d'impôts et de dettes, tu as épuisé la patience des tiens. La foule force le palais. Ton règne s'éteint dans la colère de ton propre peuple."]},
@@ -507,7 +520,7 @@ const STORY={
   nF_dieu:{fin:true,folio:"Pérennité",titre:"Le trône du dieu",prose:["Roi-prêtre, tu as fait du temple le cœur de ta puissance. Ta théocratie est rigide, mais durable : pendant des siècles, ton nom se confondra avec celui du dieu de la cité."]},
   nF_pretres:{fin:true,folio:"Chute",titre:"Le coup des prêtres",prose:["Tu t'es appuyé sur les dieux, mais la faveur du ciel t'a fui. Au nom des dieux offensés, les prêtres soulèvent la cité et te déposent. La couronne passe au temple."]},
   nF_maison:{fin:true,folio:"Ruine",titre:"La maison qui s'écroule",prose:["Tu as peu bâti de durable. Tes ouvrages négligés cèdent, tes greniers se vident, et la cité que tu laisses n'a ni murs solides ni mémoire assez forte pour te survivre longtemps."]},
-  nF_vengeance:{fin:true,folio:"Ruine",titre:"La vengeance des voisins",prose:["Les peuples que tu avais pillés reviennent en coalition. Sans murailles assez fortes, ta cité cède et n'est plus qu'un champ de ruines fumantes — le prix de ta voracité."]},
+  nF_vengeance:{fin:true,folio:"Ruine",titre:"La vengeance des voisins",prose:["Les peuples que tu avais pillés reviennent en coalition. Sans murailles assez fortes, ta cité cède et n'est plus qu'un champ de ruines fumantes, le prix de ta voracité."]},
   nF_deluge:{fin:true,folio:"Chute",titre:"Abandonné des dieux",prose:["Les présages se sont retournés contre toi. À l'heure du danger, la faveur des dieux s'est retirée, et nul mur, nul or n'a suffi. Ta cité sombre, et toi avec elle."]},
   nF_greniers:{fin:true,folio:"Effondrement",titre:"Les greniers vides",prose:["Le trésor s'est tari, les récoltes ont manqué, et la faim a fait le reste. Une civilisation ne tient pas sans son socle matériel : ton règne s'éteint dans la disette."]}
 };
@@ -541,9 +554,9 @@ function plate(s){
   let visual="";
   if(s.svg)visual=`<div class="illus">${s.svg}</div>`;
   else if(s.doc)visual=`<div class="scroll">${s.doc.map(p=>`<p>${p}</p>`).join("")}</div>`;
-  const items=(s.arts||[]).map(a=>typeof a==="string"?`<p class="art">${a}</p>`:`<p class="art"${a.id?` data-art="${a.id}"`:''}><b>${a.ref}</b> — ${a.txt}</p>`).join("");
+  const items=(s.arts||[]).map(a=>typeof a==="string"?`<p class="art">${a}</p>`:`<p class="art"${a.id?` data-art="${a.id}"`:''}><b>${a.ref}</b> : ${a.txt}</p>`).join("");
   const lecture=items?`<div class="plate-read"><div class="plate-read-h">${s.doc?"Lecture de la source":"Ce que montre l'image"}</div>${items}</div>`:"";
-  const note=s.svg?"Illustration originale créée pour Lugal.":(s.doc?"Texte composé pour Lugal — reconstitution, non un document d'archive.":"");
+  const note=s.svg?"Illustration originale créée pour Lugal.":(s.doc?"Texte composé pour Lugal, reconstitution, non un document d'archive.":"");
   return `<div class="plate">${head}${visual}${lecture}<div class="cite">${note}</div></div>`;
 }
 
@@ -567,7 +580,7 @@ function rendreTablette(flash){
   flash=(flash&&flash.has)?flash:new Set();
   const quals=QUALITES.map(k=>`<div class="qual ${flash.has(k)?'flash':''}" id="qual-${k}"><span class="l">${LAB[k]}</span><span class="v">${F[k]}</span></div>`).join("");
   const meters=`<div class="meter ${flash.has('prosperite')?'flash':''}">${ICO_PROSP}<div><span class="cl">Prospérité</span><span class="cv">${F.prosperite}</span></div></div><div class="meter ${flash.has('rayonnement')?'flash':''}">${ICO_RAYON}<div><span class="cl">Rayonnement</span><span class="cv">${F.rayonnement}</span></div></div>`;
-  const reg=F.registre.slice(-5).map((e,i,a)=>`<span class="e ${i===a.length-1?'flash':''}">— ${e}</span>`).join("")||`<span class="e">—</span>`;
+  const reg=F.registre.slice(-5).map((e,i,a)=>`<span class="e ${i===a.length-1?'flash':''}">${e}</span>`).join("")||`<span class="e">…</span>`;
   $("#tablet").innerHTML=`<div class="wedge"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="t-head"><div class="t-emblem">${EMBLEME}</div><div class="t-name">${esc(F.nom)}<span>${F.genre==="roi"?"Lugal":"Reine"} de ${esc(F.cite)}</span></div></div>
     <div class="t-sect">Qualités du roi</div><div class="qualites">${quals}</div>
@@ -592,6 +605,11 @@ function choisir(r,btn){
   rendreTablette(diff.changed);
   impactModal({title:r.t,body:r.impact,deltas:diff.deltas,onContinue:()=>finaliser(btn,r.cibleFn?r.cibleFn(F):r.cible)});
 }
+function epreuveDetail(e){
+  const parts=statsOf(e).map(k=>{const c=F[k]-9;return `${LAB[k]} ${F[k]} (${c>=0?'+':'−'}${Math.abs(c)})`;});
+  if(e.mod){const c=Math.round(((F[e.mod]||0)-4)/2);parts.push(`${LAB[e.mod]} ${F[e.mod]} (${c>=0?'+':'−'}${Math.abs(c)})`);}
+  return parts.join(", ");
+}
 function tenterEpreuve(r,btn){
   if(r.sceau)F.sceaux.add(r.sceau);if(r.sceau2)F.sceaux.add(r.sceau2);appliquer(r.eff);
   const e=r.epreuve,mod=epreuveMod(e),seuil=e.seuil||8,pct=pReussite(mod,seuil);
@@ -599,7 +617,7 @@ function tenterEpreuve(r,btn){
   document.querySelectorAll("#renvois .renvoi").forEach(x=>x.disabled=true);
   const flashes=statsOf(e).map(k=>$("#qual-"+k)).filter(Boolean);flashes.forEach(el=>el.classList.add("flash"));
   const dz=$("#dicezone");dz.classList.add("show");
-  dz.innerHTML=`<div class="dz-live"><span class="target">Épreuve de <b>${epreuveLabel(e)}</b> · bonus <b>${modTxt}</b> · 2 dés ≥ <b>${seuil}</b> — <b>${pct} %</b></span><span class="die" id="d1">?</span><span class="die" id="d2">?</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div>`;
+  dz.innerHTML=`<div class="dz-live"><div class="dz-explain"><div class="dz-rule">Lance 2 dés (de 2 à 12) et ajoute le bonus de tes qualités. Il faut atteindre <b>${seuil}</b> pour réussir. Une qualité à 9 est neutre : chaque point au-dessus ajoute +1, chaque point en dessous retranche 1.</div><div class="dz-calc">Tes qualités donnent : ${epreuveDetail(e)}. Bonus total : <b>${modTxt}</b>. Chances de réussite : <b>${pct} %</b>.</div></div><div class="dz-roll"><span class="die" id="d1">?</span><span class="die" id="d2">?</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div></div>`;
   $("#rollbtn").onclick=()=>{
     const a=d6(),bb=d6(),score=a+bb+mod,ok=score>=seuil;
     const d1=$("#d1"),d2=$("#d2");d1.textContent=a;d2.textContent=bb;d1.classList.add("roll");d2.classList.add("roll");
@@ -608,8 +626,8 @@ function tenterEpreuve(r,btn){
       const out=ok?e.ok:e.penalite,b=snap();
       if(out.sceau)F.sceaux.add(out.sceau);appliquer(out.eff);if(out.reg)F.registre.push(out.reg);
       const diff=diffFrom(b);rendreTablette(diff.changed);flashes.forEach(el=>el.classList.remove("flash"));
-      impactModal({kicker:ok?"Réussite — pari gagné":"Échec — pari perdu",title:r.t,
-        verdict:{cls:ok?"ok":"no",txt:`${a} + ${bb} ${modTxt} = ${score} — ${ok?"réussite.":"échec."} ${out.txt}`},
+      impactModal({kicker:ok?"Réussite":"Échec",title:r.t,
+        verdict:{cls:ok?"ok":"no",txt:`Tu obtiens ${a} et ${bb} (total ${a+bb}). Avec ton bonus de ${modTxt}, ton résultat est ${score}. Il fallait ${seuil} : ${ok?"réussite !":"échec."} ${out.txt}`},
         body:out.impact,deltas:diff.deltas,
         onContinue:()=>{
           if(ok){finaliser(btn,r.cibleFn?r.cibleFn(F):r.cible);}
@@ -638,8 +656,8 @@ function entrer(cible){
   rendre(true);
 }
 function beatHTML(i,lead){
-  const h=F.histoire[i];
-  return `<div class="para${lead?' lead':''}"><span class="pf">§${h.num} · ${h.folio}</span><div class="pt">${h.paras.map(p=>`<p>${p}</p>`).join("")}</div></div>`;
+  const h=F.histoire[i],cur=i===F.histoire.length-1;
+  return `<div class="para${lead?' lead':''} ${cur?'cur':'past'}"><span class="pf">§${h.num} · ${h.folio}</span><div class="pt">${h.paras.map(p=>`<p>${p}</p>`).join("")}</div></div>`;
 }
 function leftInner(){
   return `<div class="rhead"><span>Le livre du règne</span><span class="rno" id="leafno"></span></div>`
@@ -705,7 +723,7 @@ function bindRenvois(n){
 
 function rendre(flash){
   const n=STORY[F.noeud],num=ordreNoeud(F.noeud),pages=$("#pages");
-  $("#progress").textContent=n.fin?"Fin du règne":("Décision "+F.histoire.length+" — "+n.folio.replace(/ —.*/,""));
+  $("#progress").textContent=n.fin?"Fin du règne":("Décision "+F.histoire.length+" · "+n.folio.replace(/ · .*/,""));
   if(n.fin){
     const niveau=v=>v<=6?"chancelante":v<=9?"modeste":v<=12?"solide":v<=15?"remarquable":"éclatante";
     const niveauM=v=>v<=2?"faible":v<=6?"moyen":v<=12?"fort":"rayonnant";
@@ -734,16 +752,35 @@ function rendre(flash){
   const renv=ordre.map(i=>{
     const r=n.renvois[i],ouvert=!r.cond||r.cond(F);
     const titre=r.t+(r.epreuve?' <span class="jdd">(Jet de dés)</span>':'');
-    if(!ouvert)return `<button class="renvoi closed" disabled><span class="lt"><span>${r.t}</span><span class="ebs"><span class="eb dim">${r.lock}</span></span></span><span class="go">—</span></button>`;
+    if(!ouvert)return `<button class="renvoi closed" disabled><span class="lt"><span>${r.t}</span><span class="ebs"><span class="eb dim">${r.lock}</span></span></span><span class="go">…</span></button>`;
     return `<button class="renvoi open" data-i="${i}"${r.arts?` data-arts="${r.arts.join(',')}"`:''} disabled><span class="lt"><span>${titre}</span><span class="ebs">${ebsFor(r)}</span></span><span class="go">${r.go||'»'}</span></button>`;
   }).join("");
-  const srcBlock=s?`<div class="srczone"><div class="consult-row" id="consultrow"><button class="consult-btn" id="consultbtn">${SCROLL} Consulter la source</button><span class="consult-hint">pour décider en connaissance de cause</span></div><div class="source-wrap" id="sourcewrap">${plate(s)}</div><div class="readlock" id="readlock"><span class="rl-txt">Étudie la source — <span class="rl-num">${READ_LOCK}</span> s</span><div class="rl-bar"><i></i></div></div></div>`:'';
+  const srcBlock=s?`<div class="consult-row" id="consultrow"><button class="consult-btn" id="consultbtn">${SCROLL} Consulter la source</button><span class="consult-hint">elle s'ouvre en fenêtre ; tu pourras la rouvrir</span></div>`:'';
   const left=`<div class="leaf leaf-l" id="leftleaf">${leftInner()}</div>`;
   const right=`<div class="leaf leaf-r"><div class="rhead"><span>La décision</span><span>${esc(F.cite)}</span></div><div class="dec"><div class="consigne">${n.consigne}</div>${srcBlock}${s?'<div class="locknote" id="locknote">Consulte la source pour pouvoir choisir.</div>':''}<div class="renvois" id="renvois">${renv}</div><div class="dice-zone" id="dicezone"></div><button class="poursuite" id="poursuite">Poursuis »</button></div><div class="folio-no"></div></div>`;
   pages.innerHTML=`<div class="spine"></div>${left}${right}`;
   bindRenvois(n);rendreTablette(flash);
   renderLeft();
-  if(s){$("#consultbtn").onclick=()=>{$("#sourcewrap").style.display="block";$("#consultrow").innerHTML='<span class="consult-done">Source consultée — étudie-la, puis décide.</span>';startReadLock(READ_LOCK);};}
+  if(s){
+    let studied=false;
+    $("#consultbtn").onclick=()=>{
+      const m=$("#modal");
+      const foot=studied
+        ?`<button class="modal-btn" id="srcclose">Fermer la source</button>`
+        :`<span class="src-timer" id="srctimer">Prends le temps de l'étudier… <b id="srcnum">${READ_LOCK}</b> s</span><button class="modal-btn" id="srcclose" disabled>Patiente…</button>`;
+      m.innerHTML=`<div class="modal-card wide srcmodal"><div class="modal-k">Source à consulter</div>${plate(s)}<div class="src-foot">${foot}</div></div>`;
+      m.classList.add("show");
+      const close=()=>{m.classList.remove("show");m.innerHTML="";};
+      if(studied){$("#srcclose").onclick=close;return;}
+      let t=READ_LOCK;
+      const iv=setInterval(()=>{t--;const num=$("#srcnum");if(num)num.textContent=Math.max(t,0);
+        if(t<=0){clearInterval(iv);const b=$("#srcclose");if(b){b.disabled=false;b.textContent="J'ai étudié la source »";}const tm=$("#srctimer");if(tm)tm.textContent="Tu peux maintenant décider.";}},1000);
+      $("#srcclose").onclick=()=>{const b=$("#srcclose");if(b&&b.disabled)return;studied=true;enableOpen();
+        const cb=$("#consultbtn");if(cb)cb.innerHTML=`${SCROLL} Revoir la source`;
+        const hint=$("#consultrow")&&$("#consultrow").querySelector(".consult-hint");if(hint)hint.textContent="déjà étudiée ; tu peux la rouvrir à tout moment";
+        close();};
+    };
+  }
   else{enableOpen();}
 }
 
@@ -758,7 +795,7 @@ function renderAlloc(){
     return `<div class="arow"><div class="ah"><span class="an">${LAB[k]}</span><div class="stepper"><button data-k="${k}" data-d="-1"${moins?" disabled":""}>−</button><span class="av">${v}</span><button data-k="${k}" data-d="1"${plus?" disabled":""}>+</button></div></div><div class="ad">${QDESC[k]}</div></div>`;
   }).join("");
   const b=$("#begin");b.disabled=left!==0;
-  b.textContent=left!==0?`Place tous tes points (${left} restants)`:"Ouvre le livre — §1";
+  b.textContent=left!==0?`Place tous tes points (${left} restants)`:"Ouvre le livre · §1";
 }
 $("#alloc").addEventListener("click",e=>{
   const b=e.target.closest("button[data-k]");if(!b)return;

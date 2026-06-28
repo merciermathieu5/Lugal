@@ -25,15 +25,18 @@ son règne se terminera. Ce choix de départ donne du sens à toute la partie.
   de **feuilletage** (‹ feuillet précédent · *à présent* · revenir au présent »)
   permet à l'élève de **revenir lire** l'histoire de son règne sans rien perdre de
   sa décision en cours.
-- **Page de droite — la décision.** Dans l'ordre : un bouton **Consulter la
-  source** (qui révèle le document créé), la **question**, les **choix**, puis un
-  bouton **« Poursuis au §X »** pour tourner la page.
+- **Page de droite — la décision.** Dans l'ordre : la **question**, un bouton
+  **Consulter la source** (qui ouvre le document créé dans une **fenêtre**), les
+  **choix**, puis un bouton **« Poursuis »** pour tourner la page.
 
-À chaque page : les choix restent **verrouillés tant que la source n'est pas
-consultée** ; la consultation lance un **chrono de 4 secondes** ; chaque choix
+À chaque page : les choix restent **verrouillés tant que la source n'a pas été
+étudiée**. Cliquer **Consulter la source** l'ouvre en **pop-up** avec un **chrono
+de 4 secondes** ; une fois étudiée, les choix se déverrouillent et l'élève peut la
+**rouvrir à volonté** (« Revoir la source »), sans encombrer la page. Chaque choix
 montre son **effet sur les qualités** et, pour les paris, le badge **« Réussite :
-X % »** ; les choix à dés portent la mention **« (Jet de dés) »** ; et un
-**pop-up** présente la conséquence — la leçon à retenir.
+X % »** ; les choix à dés portent **« (Jet de dés) »**. La zone de dés **explique
+tout le calcul** (règle, bonus détaillé par qualité, seuil, % de réussite, puis
+verdict chiffré). Un **pop-up** présente enfin la conséquence — la leçon à retenir.
 
 ## La trame en arbre : le chemin optimal et ses écarts
 Le bon roi suit un **chemin optimal court** : à chaque acte, un choix sûr fait
