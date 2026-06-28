@@ -18,9 +18,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;overflow:hidden}
 body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
-  background:
-    radial-gradient(140% 100% at 50% -20%,#33291f 0%,var(--desk) 70%,#150f0a 100%),
-    repeating-linear-gradient(90deg,rgba(0,0,0,.06) 0 2px,transparent 2px 26px);
+  background:radial-gradient(140% 100% at 50% -20%,#33291f 0%,var(--desk) 70%,#150f0a 100%);
   display:flex;flex-direction:column;padding:9px 14px 13px}
 .topbar{flex:0 0 auto;display:flex;align-items:baseline;justify-content:center;gap:13px;padding-bottom:5px;flex-wrap:wrap}
 .topbar b{font-family:"IM Fell English SC",serif;font-size:29px;letter-spacing:.13em;color:#eed9a8;font-weight:400}
@@ -28,50 +26,53 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .progress{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.05em;color:#b39a72;white-space:nowrap;font-style:normal}
 .stage{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1.62fr .72fr;gap:14px;margin-top:5px}
 
-/* ---------- LE LIVRE (page unique reliée) ---------- */
-.book{height:100%;min-height:0;display:flex;padding:10px 10px 10px 8px;border-radius:7px;position:relative;
+/* ---------- LE LIVRE OUVERT (deux pages) ---------- */
+.book{height:100%;min-height:0;display:flex;padding:10px;border-radius:7px;position:relative;
   background:linear-gradient(135deg,var(--cover-1),var(--cover-2) 58%,var(--cover-3));
   box-shadow:0 20px 54px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,220,170,.09),inset 0 0 0 7px rgba(0,0,0,.28),inset 0 0 24px rgba(0,0,0,.4)}
-.pages{flex:1;min-height:0;position:relative;border-radius:3px 5px 5px 3px;overflow:hidden;
-  background:linear-gradient(180deg,var(--paper),var(--paper-2));
-  box-shadow:inset 0 0 44px rgba(120,90,50,.2)}
-/* la tranche : un mince sliver de la page précédente + l'ombre de la reliure */
-.pages::before{content:"";position:absolute;top:0;bottom:0;left:0;width:17px;z-index:3;pointer-events:none;
-  background:linear-gradient(90deg,#d8c9a3,#cdbd95 52%,rgba(80,55,25,.30) 90%,rgba(55,36,16,.45));
-  box-shadow:inset -2px 0 5px rgba(60,40,18,.35)}
+.pages{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;position:relative;border-radius:3px;overflow:hidden;
+  background:linear-gradient(180deg,var(--paper),var(--paper-2));box-shadow:inset 0 0 44px rgba(120,90,50,.2)}
 .pages::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:4;
-  background:radial-gradient(130% 90% at 60% 50%,transparent 62%,rgba(80,55,25,.13) 100%)}
-.ribbon{position:absolute;top:-5px;right:40px;width:15px;height:62px;z-index:6;background:linear-gradient(180deg,#a83e2e,#7d2c20);box-shadow:0 4px 7px rgba(0,0,0,.35)}
+  background:radial-gradient(120% 80% at 50% 50%,transparent 60%,rgba(80,55,25,.14) 100%)}
+.spine{position:absolute;top:0;bottom:0;left:50%;width:40px;transform:translateX(-50%);z-index:3;pointer-events:none;
+  background:linear-gradient(90deg,rgba(90,62,30,0),rgba(90,62,30,.16) 38%,rgba(55,36,16,.42) 50%,rgba(90,62,30,.16) 62%,rgba(90,62,30,0))}
+.ribbon{position:absolute;top:-5px;right:46px;width:15px;height:58px;z-index:6;background:linear-gradient(180deg,#a83e2e,#7d2c20);box-shadow:0 4px 7px rgba(0,0,0,.35)}
 .ribbon::after{content:"";position:absolute;bottom:-8px;left:0;border-left:7.5px solid transparent;border-right:7.5px solid transparent;border-top:8px solid #7d2c20}
-.leaf{height:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;padding:13px 30px 10px 34px;position:relative;z-index:2}
-.leaf-full{align-items:center;text-align:center;padding:22px 12% 18px}
+.leaf{min-height:0;overflow:hidden;display:flex;flex-direction:column;padding:12px 22px 8px;position:relative;z-index:2}
+.leaf-l{box-shadow:inset -22px 0 28px -22px rgba(70,46,18,.5)}
+.leaf-r{box-shadow:inset 22px 0 28px -22px rgba(70,46,18,.5)}
+.leaf-full{grid-column:1/-1;align-items:center;text-align:center;padding:22px 13%;overflow:auto}
 .rhead{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:8px;
-  font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+  font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);
   padding-bottom:5px;border-bottom:1px solid var(--rule);margin-bottom:9px}
 .rhead .rno{font-family:"IM Fell English",serif;font-style:italic;font-size:17px;color:var(--rubric);letter-spacing:0;text-transform:none}
-.dropcap-wrap{flex:0 0 auto}
-.prose{font-size:15.5px;line-height:1.62;text-align:justify;hyphens:auto}
-.prose p{margin:0 0 9px}
-.prose .dropcap::first-letter{font-family:"IM Fell English",serif;font-size:3em;line-height:.78;float:left;padding:6px 9px 0 0;color:var(--rubric)}
-.prose em{font-style:italic;color:#5a4a30}
-.folio-no{flex:0 0 auto;margin-top:auto;padding-top:9px;font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:var(--ink-soft);text-align:center;opacity:.8}
+.folio-no{flex:0 0 auto;margin-top:auto;padding-top:8px;font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:var(--ink-soft);text-align:center;opacity:.8}
 
-/* consulter la source */
-.consult-row{flex:0 0 auto;display:flex;align-items:center;gap:9px;margin:9px 0 2px;flex-wrap:wrap}
+/* page de gauche : tout le récit du règne */
+.story{flex:1 1 auto;min-height:0;overflow:auto;padding-right:6px}
+.para{margin:0 0 13px;padding-left:11px;border-left:2px solid transparent;transition:opacity .45s,color .45s}
+.para .pf{font-family:"IM Fell English SC",serif;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:2px}
+.para .pt{font-size:14.5px;line-height:1.58;text-align:justify;hyphens:auto;color:#6f6149}
+.para.cur{border-left-color:var(--rubric)}
+.para.cur .pt{color:var(--ink)}
+.para.past{opacity:.5}
+.para:first-child.cur .pt::first-letter{font-family:"IM Fell English",serif;font-size:2.7em;line-height:.78;float:left;padding:5px 8px 0 0;color:var(--rubric)}
+.para .pt em{font-style:italic;color:#5a4a30}
+
+/* page de droite : document, question, choix, poursuite */
+.dec{flex:1 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;padding-right:4px}
+.consult-row{flex:0 0 auto;display:flex;align-items:center;gap:9px;margin-bottom:6px;flex-wrap:wrap}
 .consult-btn{font-family:"IM Fell English SC",serif;letter-spacing:.06em;font-size:11px;background:#3f3120;color:#efe2c8;border:1px solid #5a4427;padding:7px 14px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
 .consult-btn:hover{background:#33271a}
 .consult-btn svg{width:13px;height:13px}
 .consult-hint{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:#8a7350}
 .consult-done{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.05em;color:#3c6b3a}
-.source-wrap{flex:0 0 auto;display:none;margin-top:7px}
-
-/* planche-illustration / document créé */
-.plate{border:1px solid var(--clay-edge);border-radius:3px;background:linear-gradient(180deg,#f2ead4,#e7dbbb);
-  padding:9px 11px;box-shadow:inset 0 0 0 1px rgba(255,250,238,.5),0 3px 9px rgba(70,50,20,.13)}
+.source-wrap{flex:0 0 auto;display:none;margin-bottom:7px}
+.plate{border:1px solid var(--clay-edge);border-radius:3px;background:linear-gradient(180deg,#f2ead4,#e7dbbb);padding:9px 11px;box-shadow:inset 0 0 0 1px rgba(255,250,238,.5),0 3px 9px rgba(70,50,20,.13)}
 .plate-h{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:7px}
 .plate-kind{font-family:"EB Garamond",serif;font-style:italic;font-size:9.5px;color:#7a6a4a;text-transform:none;letter-spacing:0;white-space:nowrap}
-.illus{border:1px solid var(--clay-edge);border-radius:2px;background:#efe5c8;padding:6px;display:flex;justify-content:center;align-items:center;position:relative;box-shadow:inset 0 0 0 3px #efe5c8,inset 0 0 0 4px rgba(120,90,45,.35)}
-.illus svg{width:100%;height:auto;max-height:138px;display:block}
+.illus{border:1px solid var(--clay-edge);border-radius:2px;background:#efe5c8;padding:6px;display:flex;justify-content:center;box-shadow:inset 0 0 0 3px #efe5c8,inset 0 0 0 4px rgba(120,90,45,.35)}
+.illus svg{width:100%;height:auto;max-height:130px;display:block}
 .scroll{font-family:"IM Fell English",serif;font-style:italic;font-size:13px;line-height:1.5;color:#3f3320;background:repeating-linear-gradient(transparent 0 22px,rgba(120,90,45,.14) 22px 23px);padding:2px 4px}
 .scroll p{margin:0 0 4px}
 .plate .art{font-size:13px;line-height:1.42;margin:6px 0 0;padding:2px 6px;border-radius:2px;transition:background .15s,opacity .15s}
@@ -79,36 +80,32 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .plate .art.hl{background:rgba(156,58,44,.16);box-shadow:inset 3px 0 0 var(--rubric)}
 .plate .art.dim{opacity:.32}
 .plate .cite{margin-top:7px;padding-top:5px;font-family:"IM Fell English",serif;font-style:italic;font-size:9.5px;color:var(--ink-soft);border-top:1px dotted var(--rule)}
-
-.readlock{flex:0 0 auto;display:none;align-items:center;gap:9px;margin-top:7px;padding:5px 10px;border-radius:3px;background:rgba(120,96,52,.1);border:1px dashed var(--rule)}
+.readlock{flex:0 0 auto;display:none;align-items:center;gap:9px;margin-bottom:7px;padding:5px 10px;border-radius:3px;background:rgba(120,96,52,.1);border:1px dashed var(--rule)}
 .readlock .rl-txt{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:var(--ink-soft);white-space:nowrap}
 .readlock .rl-num{font-family:"IM Fell English",serif;color:var(--rubric);font-style:normal}
 .readlock .rl-bar{flex:1;height:5px;background:rgba(120,96,52,.18);border-radius:3px;overflow:hidden}
 .readlock .rl-bar i{display:block;height:100%;width:0;background:var(--rubric);transition:width 1s linear}
-
-/* page de droite : décision */
 .consigne{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:16px;color:var(--rubric);margin-bottom:3px}
 .locknote{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11.5px;color:#8a6a44;margin:2px 0 4px}
-.renvois{flex:0 0 auto;border-top:1px solid var(--rule);padding-top:4px;margin-top:6px}
-.renvoi{display:flex;gap:9px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:7px 4px;font-family:"EB Garamond",serif;font-size:15px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px;border-bottom:1px dotted rgba(120,90,45,.3)}
+.renvois{flex:0 0 auto;border-top:1px solid var(--rule);padding-top:4px;margin-top:5px}
+.renvoi{display:flex;gap:9px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:7px 4px;font-family:"EB Garamond",serif;font-size:14.5px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px;border-bottom:1px dotted rgba(120,90,45,.3)}
 .renvoi:last-child{border-bottom:none}
 .renvoi:hover:not(:disabled){background:rgba(156,58,44,.07)}
 .renvoi:focus-visible{outline:2px solid var(--rubric);outline-offset:1px}
 .renvoi .lt{display:flex;flex-direction:column;gap:4px;align-items:flex-start;flex:1;min-width:0}
 .renvoi .go{font-family:"IM Fell English",serif;font-style:italic;color:var(--rubric);font-size:13px;white-space:nowrap;padding-top:2px}
 .renvoi:disabled{cursor:not-allowed;opacity:.6}
-.renvoi.burned{opacity:.5}.renvoi.burned .go{color:#b04a3a}
+.renvoi.burned{opacity:.45}.renvoi.burned .go{color:#b04a3a}
+.renvoi.chosen{background:rgba(58,90,40,.1);opacity:1}
+.renvoi.faded{opacity:.35}
 .ebs{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
-.eb{display:inline-flex;align-items:center;gap:4px;font-family:"IM Fell English SC",serif;font-size:9px;line-height:1.25;letter-spacing:.02em;padding:2px 7px;border-radius:2px;white-space:nowrap}
-.eb .dico{width:11px;height:11px;flex:0 0 auto}
+.eb{display:inline-flex;align-items:center;font-family:"IM Fell English SC",serif;font-size:9px;line-height:1.25;letter-spacing:.02em;padding:2px 7px;border-radius:2px;white-space:nowrap}
 .eb.pos{color:#2e4a2e;background:rgba(58,90,40,.14);border:1px solid rgba(58,90,40,.32)}
 .eb.neg{color:#8a2e22;background:rgba(156,58,44,.12);border:1px solid rgba(156,58,44,.3)}
-.eb.seal{color:#6a4a1e;background:rgba(156,120,40,.13);border:1px solid rgba(120,90,40,.32)}
-.eb.die{color:#7a4a1e;background:rgba(156,90,34,.15);border:1px solid rgba(156,90,34,.4)}
+.eb.pari{color:#7a4a1e;background:rgba(156,90,34,.15);border:1px solid rgba(156,90,34,.4)}
 .eb.law{color:#2e4a2e;background:rgba(58,74,58,.12);border:1px solid rgba(58,74,58,.3)}
 .eb.law.none{color:#6a4a1e;background:rgba(156,90,34,.1);border-color:rgba(156,90,34,.3)}
 .eb.dim{opacity:.55}
-
 .dice-zone{flex:0 0 auto;min-height:0;margin-top:6px;border:1px solid var(--paper-edge);border-radius:3px;background:repeating-linear-gradient(135deg,rgba(120,96,52,.05) 0 6px,transparent 6px 12px),var(--paper-2);display:none;align-items:center;padding:7px 12px}
 .dice-zone.show{display:flex}
 .dz-live{display:flex;align-items:center;gap:10px;width:100%;flex-wrap:wrap}
@@ -119,14 +116,15 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 @keyframes tumble{0%{transform:rotate(-14deg) scale(.8)}55%{transform:rotate(12deg) scale(1.1)}100%{transform:none}}
 .btn-ink{font-family:"IM Fell English SC",serif;letter-spacing:.07em;font-size:11px;background:var(--ink);color:var(--paper);border:none;padding:7px 13px;border-radius:3px;cursor:pointer;white-space:nowrap}
 .btn-ink:hover{background:#000}.btn-ink:disabled{opacity:.5}
-.verdict{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;line-height:1.25;flex:1 1 100%}
-.verdict.ok{color:#3c6b3a}.verdict.no{color:var(--rubric)}
+.poursuite{flex:0 0 auto;align-self:flex-start;margin-top:11px;font-family:"IM Fell English SC",serif;letter-spacing:.06em;font-size:12.5px;background:var(--rubric);color:#f6e7d8;border:none;padding:10px 22px;border-radius:3px;cursor:pointer;display:none;align-items:center;gap:8px}
+.poursuite.show{display:inline-flex}
+.poursuite:hover{filter:brightness(1.08)}
 
 /* fin */
 .fin-title{font-family:"IM Fell English",serif;font-style:italic;font-size:26px;color:var(--rubric);margin:6px 0 10px}
 .fin-prose{font-size:15.5px;line-height:1.6;text-align:justify;max-width:46ch}
 .fin-bilan{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin:14px 0 4px}
-.restart{margin-top:14px;font-family:"IM Fell English SC",serif;letter-spacing:.08em;font-size:12px;background:var(--rubric);color:#f6e7d8;border:none;padding:10px 22px;border-radius:3px;cursor:pointer}
+.restart{margin-top:14px;font-family:"IM Fell English SC",serif;letter-spacing:.08em;font-size:12px;background:var(--rubric);color:#f6e7d8;border:none;padding:10px 22px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 
 /* pop-up impact */
 .modal{position:fixed;inset:0;background:rgba(20,16,12,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:40}
@@ -137,67 +135,72 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .modal-title{font-family:"IM Fell English",serif;font-style:italic;font-size:20px;color:var(--rubric);text-align:center;margin:2px 0 10px;line-height:1.15}
 .modal-body{font-size:14.5px;line-height:1.55;color:var(--ink);text-align:justify}
 .modal-eff{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0 4px}
-.modal-btn{display:block;width:100%;margin-top:14px;padding:11px;border:none;border-radius:3px;background:var(--rubric);color:#f6e7d8;font-family:"IM Fell English SC",serif;font-size:13px;letter-spacing:.1em;cursor:pointer}
-.modal-btn:hover{filter:brightness(1.07)}
+.modal-btn{display:block;width:100%;margin-top:14px;padding:11px;border:none;border-radius:3px;background:var(--ink);color:#f6e7d8;font-family:"IM Fell English SC",serif;font-size:13px;letter-spacing:.08em;cursor:pointer}
+.modal-btn:hover{background:#000}
 .modal-verdict{text-align:center;font-family:"IM Fell English",serif;font-style:italic;font-size:13px;margin-bottom:6px}
 .modal-verdict.ok{color:#3c6b3a}.modal-verdict.no{color:var(--rubric)}
 
-/* ---------- TABLETTE ---------- */
-.tablet{height:100%;min-height:0;overflow:hidden;display:flex;flex-direction:column;
+/* ---------- TABLETTE (qualités utiles) ---------- */
+.tablet{height:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;
   background:linear-gradient(165deg,var(--clay-1),var(--clay-2));border:1px solid var(--clay-edge);border-radius:5px;padding:11px 14px;color:var(--clay-ink);
   box-shadow:0 18px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,245,220,.35),inset 0 0 40px rgba(80,50,15,.18);position:relative}
 .wedge{flex:0 0 auto;height:8px;display:flex;gap:5px;justify-content:center;opacity:.45;margin-bottom:4px}
 .wedge i{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:7px solid var(--clay-edge)}
-.t-head{flex:0 0 auto;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.t-head{flex:0 0 auto;display:flex;align-items:center;gap:10px;margin-bottom:4px}
 .t-emblem{width:38px;height:38px;border-radius:50%;border:1.6px solid var(--clay-edge);background:rgba(255,245,220,.18);display:grid;place-items:center;flex:0 0 auto;box-shadow:inset 0 0 8px rgba(80,50,15,.3)}
 .t-emblem svg{width:26px;height:26px}
 .t-name{font-family:"IM Fell English",serif;font-size:18px;line-height:1.05;color:var(--clay-ink)}
 .t-name span{display:block;font-style:italic;font-size:11px;color:#5f421e}
-.t-sect{flex:0 0 auto;font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.11em;color:#5f421e;margin:7px 0 4px;display:flex;align-items:center;gap:8px}
+.t-sect{flex:0 0 auto;font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.11em;color:#5f421e;margin:8px 0 4px;display:flex;align-items:center;gap:8px}
 .t-sect::after{content:"";flex:1;height:1px;background:rgba(95,66,30,.45)}
-.qualites{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.qual{border:1.6px solid var(--clay-edge);border-radius:8px;padding:5px 7px;background:radial-gradient(circle at 30% 25%,rgba(255,245,220,.4),rgba(150,110,55,.14));display:flex;align-items:center;justify-content:space-between;transition:box-shadow .35s,transform .35s}
+.qualites{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.qual{border:1.6px solid var(--clay-edge);border-radius:8px;padding:6px 8px;background:radial-gradient(circle at 30% 25%,rgba(255,245,220,.4),rgba(150,110,55,.14));display:flex;align-items:center;justify-content:space-between;transition:box-shadow .35s,transform .35s}
 .qual.flash{box-shadow:0 0 0 3px rgba(156,90,34,.55);transform:scale(1.03)}
 .qual .l{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.02em;color:#5f421e;line-height:1.05}
-.qual .v{font-family:"IM Fell English",serif;font-size:22px;color:#42300f;line-height:.9}
-.meters{flex:0 0 auto;display:flex;gap:8px;margin-top:6px}
-.meter{flex:1;display:flex;align-items:center;gap:7px;background:rgba(255,245,220,.16);border:1px solid var(--clay-edge);border-radius:3px;padding:5px 8px;transition:box-shadow .35s}
+.qual .v{font-family:"IM Fell English",serif;font-size:23px;color:#42300f;line-height:.9}
+.meters{flex:0 0 auto;display:flex;gap:8px;margin-top:7px}
+.meter{flex:1;display:flex;align-items:center;gap:7px;background:rgba(255,245,220,.16);border:1px solid var(--clay-edge);border-radius:3px;padding:6px 8px;transition:box-shadow .35s}
 .meter.flash{box-shadow:0 0 0 3px rgba(156,90,34,.5)}
 .meter svg{width:17px;height:17px;flex:0 0 auto}
 .meter .cl{font-family:"IM Fell English SC",serif;font-size:8.5px;letter-spacing:.03em;color:#5f421e;display:block;line-height:1.1}
 .meter .cv{font-family:"IM Fell English",serif;font-size:18px;color:#42300f;line-height:1}
-.seals{flex:1 1 auto;min-height:0;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0 12px;align-content:start}
-.seal{display:flex;align-items:center;gap:6px;font-size:11px;color:#92763f;padding:0}
-.seal .dot{width:10px;height:10px;border-radius:50%;border:1.4px solid #92763f;flex:0 0 auto;background:rgba(255,245,220,.1)}
-.seal.on{color:var(--clay-ink)}.seal.on .dot{background:var(--ochre);border-color:#6e3c12;box-shadow:0 0 0 2px rgba(156,90,34,.22)}
-.registre{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11px;color:#543d18;line-height:1.4;border-top:1px solid rgba(95,66,30,.45);padding-top:5px;margin-top:5px;min-height:38px}
-.registre .e{display:block}.registre .e.flash{animation:litreg 1.1s ease}
+.registre{flex:1 1 auto;min-height:0;overflow:auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11.5px;color:#543d18;line-height:1.45;border-top:1px solid rgba(95,66,30,.45);padding-top:5px;margin-top:8px}
+.registre .e{display:block;margin-bottom:2px}.registre .e.flash{animation:litreg 1.1s ease}
 @keyframes litreg{0%{color:var(--rubric)}100%{color:#543d18}}
 
-/* frontispice */
+/* frontispice + répartition des points */
 .frontis{position:fixed;inset:0;background:rgba(18,13,9,.94);display:flex;align-items:center;justify-content:center;padding:14px;z-index:30}
-.fcard{width:min(520px,100%);max-height:96vh;overflow:auto;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:18px 26px 20px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.fcard{width:min(560px,100%);max-height:96vh;overflow:auto;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:18px 26px 20px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .fcard .wm{font-family:"IM Fell English SC",serif;font-size:32px;letter-spacing:.1em;color:var(--rubric);text-align:center;margin:0;line-height:1}
 .fcard .k{font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;text-align:center;margin:1px 0 9px}
 .fcard h2{font-family:"IM Fell English",serif;font-style:italic;font-size:21px;margin:0 0 6px;color:var(--ink)}
-.fcard p{font-size:14.5px;line-height:1.5;margin:0 0 10px;color:#2b2316}
+.fcard p{font-size:14px;line-height:1.5;margin:0 0 10px;color:#2b2316}
 .frow{margin:0 0 8px}
 .frow label,.flabel{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.08em;color:#3a2f1f;display:block;margin-bottom:4px;text-transform:uppercase}
 .frow input{width:100%;padding:8px 11px;border:1px solid var(--paper-edge);background:rgba(255,252,242,.7);font-family:"IM Fell English",serif;font-size:16px;color:var(--ink);border-radius:3px}
 .fseg{display:flex;gap:8px}
 .fseg button{flex:1;padding:8px;border:1px solid var(--paper-edge);background:rgba(255,252,242,.6);font-family:"IM Fell English",serif;font-size:15px;color:var(--ink-soft);border-radius:3px;cursor:pointer}
 .fseg button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.roll-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0 12px}
-.roll-stats .rs{border:1.6px solid var(--clay-edge);border-radius:7px;padding:6px 8px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(165deg,#ecdcb8,#cdb079)}
-.roll-stats .rs .l{font-family:"IM Fell English SC",serif;font-size:9.5px;color:#5f421e}
-.roll-stats .rs .v{font-family:"IM Fell English",serif;font-size:24px;color:#42300f;line-height:1}
+.pool{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.05em;text-align:center;color:var(--ink-soft);margin:2px 0 8px;text-transform:uppercase}
+.pool b{font-family:"IM Fell English",serif;font-style:italic;font-size:19px;color:var(--rubric);text-transform:none}
+.alloc{display:flex;flex-direction:column;gap:7px;margin:0 0 12px}
+.arow{border:1px solid var(--paper-edge);border-radius:5px;padding:7px 10px;background:rgba(255,252,242,.5)}
+.arow .ah{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.arow .an{font-family:"IM Fell English",serif;font-style:italic;font-size:16px;color:var(--ink)}
+.arow .ad{font-size:11.5px;color:#5a4a30;line-height:1.34;margin-top:3px}
+.stepper{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.stepper button{width:25px;height:25px;border:1px solid var(--paper-edge);background:#efe6cf;border-radius:5px;font-size:16px;line-height:1;cursor:pointer;color:var(--ink);display:grid;place-items:center}
+.stepper button:disabled{opacity:.3;cursor:not-allowed}
+.stepper .av{font-family:"IM Fell English",serif;font-size:21px;min-width:24px;text-align:center;color:#42300f}
 .fcta{width:100%;padding:11px;border:none;border-radius:3px;background:var(--rubric);color:#f6e7d8;font-family:"IM Fell English SC",serif;font-size:13px;letter-spacing:.1em;cursor:pointer}
-.fcta:hover{filter:brightness(1.07)}
+.fcta:disabled{opacity:.5;cursor:not-allowed}
+.fcta:not(:disabled):hover{filter:brightness(1.07)}
 @media(max-width:900px){
   html,body{overflow:auto;height:auto}body{min-height:100%}
   .stage{grid-template-columns:1fr}.book,.tablet{height:auto;min-height:0}.tablet{order:-1}
-  .ribbon{display:none}.leaf{height:auto;overflow:visible}
-  .seals{overflow:visible}
+  .pages{grid-template-columns:1fr}.spine,.ribbon{display:none}
+  .leaf{overflow:visible}.leaf-r{border-top:1px solid var(--rule)}
+  .story,.dec,.registre{overflow:visible}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
@@ -213,14 +216,15 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
   <div class="fcard">
     <p class="wm">Lugal</p>
     <p class="k">L'émergence d'une civilisation</p>
-    <h2>Avant de régner, fais-toi connaître</h2>
-    <p>Un village de roseaux attend un maître. Tes qualités de roi décideront du sort de ta cité : tire-les aux dés, prends un nom — et que les dieux jugent ton règne.</p>
+    <h2>Façonne le roi que tu seras</h2>
+    <p>Un village de roseaux attend un maître. Avant de régner, répartis tes points entre les quatre qualités du roi : elles décideront des paris que tu pourras tenter, des voies qui s'ouvriront à toi, et de la façon dont ton règne finira.</p>
     <div class="frow"><label>Ton titre</label><div class="fseg" id="seg"><button data-g="roi" class="on">Roi</button><button data-g="reine">Reine</button></div></div>
     <div class="frow"><label>Ton nom</label><input id="nom" maxlength="16" value="Ur-Nammu"></div>
     <div class="frow"><label>Ta cité</label><input id="cite" maxlength="16" value="Eridu"></div>
-    <span class="flabel">Tes qualités de roi (tirées aux dés)</span>
-    <div class="roll-stats" id="rolls"></div>
-    <button class="fcta" id="begin">Ouvrir le livre — §1</button>
+    <span class="flabel">Répartis tes points entre tes qualités</span>
+    <div class="pool" id="pool"></div>
+    <div class="alloc" id="alloc"></div>
+    <button class="fcta" id="begin" disabled>Place tous tes points pour commencer</button>
   </div>
 </div>
 
@@ -232,19 +236,24 @@ const EMBLEME=`<svg viewBox="0 0 40 40" fill="none" stroke="#5e451f" stroke-widt
 const ICO_PROSP=`<svg viewBox="0 0 20 20" fill="none" stroke="#5f421e" stroke-width="1.4"><rect x="3" y="7" width="14" height="9" rx="1.5"/><path d="M3 10h14M10 7V5"/></svg>`;
 const ICO_RAYON=`<svg viewBox="0 0 20 20" fill="none" stroke="#5f421e" stroke-width="1.4"><path d="M3 16h14l-3-4H6zM6 12l2-3h4l2 3M9 9l1-2 1 2"/></svg>`;
 const SCROLL=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="2.5" width="10" height="11" rx="1.5"/><path d="M5.5 6h5M5.5 9h5M5.5 12h3"/></svg>`;
-const DICO=`<svg class="dico" viewBox="0 0 16 16" fill="none" stroke="#7a4a1e" stroke-width="1.3"><rect x="2.5" y="2.5" width="11" height="11" rx="2.2"/><circle cx="6" cy="6" r="1" fill="#7a4a1e"/><circle cx="10" cy="10" r="1" fill="#7a4a1e"/><circle cx="10" cy="6" r="1" fill="#7a4a1e"/><circle cx="6" cy="10" r="1" fill="#7a4a1e"/></svg>`;
 const RESTART_IC=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8a5 5 0 1 1 1.6 3.7"/><path d="M3 5v3h3"/></svg>`;
 
 const QUALITES=["autorite","sagesse","piete","legitimite"];
 const METRES=["prosperite","rayonnement"];
 const LAB={autorite:"Autorité",sagesse:"Sagesse",piete:"Piété",legitimite:"Légitimité",prosperite:"Prospérité",rayonnement:"Rayonnement"};
-const SCEAUX_ORDRE=["Écriture adoptée","Temple puissant","Sans écriture","Code gravé","Loi de fer","Loi équitable","Prérogative royale","Ordalie","Alliés","Ennemis jurés","Murailles","Héritier désigné"];
+const QDESC={
+  autorite:"Ta poigne et ta force de commandement. Une haute Autorité fait réussir les grands chantiers — canaux, flotte, murailles — et t'aide à imposer l'ordre.",
+  sagesse:"Ton jugement, ta maîtrise de l'écrit, de la loi et de l'administration. La Sagesse ouvre les voies du droit et fait grandir une civilisation durable.",
+  piete:"Ta faveur auprès des dieux. Une forte Piété te protège des présages funestes et donne du poids à ta justice comme à tes temples.",
+  legitimite:"L'amour et la loyauté de ton peuple. Si elle s'effondre, on te renverse ; si elle reste haute, ton règne se transmet en paix."
+};
+const SCEAUX_ORDRE=["Écriture adoptée","Temple puissant","Sans écriture","Code gravé","Loi de fer","Loi équitable","Prérogative royale","Ordalie","Alliés","Ennemis jurés","Murailles","Héritier désigné","Ordre durci"];
+const BASE=6, POOL=16, MAXADD=10;   // chaque qualité : 6 à 16
 let F=null;
-const nouvelle=()=>({nom:"Ur-Nammu",genre:"roi",cite:"Eridu",autorite:0,sagesse:0,piete:0,legitimite:0,prosperite:4,rayonnement:1,sceaux:new Set(),registre:[],noeud:"n01"});
+const nouvelle=()=>({nom:"Ur-Nammu",genre:"roi",cite:"Eridu",autorite:0,sagesse:0,piete:0,legitimite:0,prosperite:4,rayonnement:1,sceaux:new Set(),registre:[],histoire:[],noeud:"n01"});
 const d6=()=>1+Math.floor(Math.random()*6);
 function pReussite(stat,seuil){const besoin=seuil-(stat-9);let f=0;for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if(a+b>=besoin)f++;return Math.round(100*f/36);}
 
-/* ===== SOURCES — toutes créées pour Lugal (illustrations originales et documents composés) ===== */
 const ILLUS="Illustration originale";const DOC="Document composé pour Lugal";
 const SS='fill="none" stroke="#3a2c18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
 const SRC={
@@ -537,17 +546,17 @@ function evaluerFin(F){
   const s=F.sceaux,ray=F.rayonnement,leg=F.legitimite,pro=F.prosperite,aut=F.autorite,pie=F.piete,sag=F.sagesse;
   if(pro<=0) return "nF_greniers";
   if(s.has("Sans écriture")&&ray<3) return "nF_oubli";
-  if(leg<=8) return s.has("Ordre durci")?"nF_revolte":"nF_poignards";
+  if(leg<=7) return s.has("Ordre durci")?"nF_revolte":"nF_poignards";
   if(s.has("Ennemis jurés")&&!s.has("Murailles")) return "nF_vengeance";
-  if(s.has("Loi de fer")) return (aut>=11&&pro>=3)?"nF_empire":"nF_poignards";
+  if(s.has("Loi de fer")) return (aut>=12&&pro>=3)?"nF_empire":"nF_poignards";
   if(s.has("Ordalie")||s.has("Temple puissant")){
-    if(pie>=11) return "nF_dieu";
+    if(pie>=12) return "nF_dieu";
     if(pie<=7) return "nF_pretres";
   }
   if(pie<=6) return "nF_deluge";
-  if(s.has("Loi équitable")&&s.has("Code gravé")&&sag>=10&&ray>=8) return "nF_legislateur";
+  if(s.has("Loi équitable")&&s.has("Code gravé")&&sag>=12&&ray>=8) return "nF_legislateur";
   if(ray<=3) return "nF_maison";
-  if(leg>=16&&s.has("Héritier désigné")) return "nF_orfevre";
+  if(leg>=14&&s.has("Héritier désigné")) return "nF_orfevre";
   if(ray>=6) return "nF_orfevre";
   return "nF_maison";
 }
@@ -556,7 +565,7 @@ const $=s=>document.querySelector(s);
 const KEYS=["autorite","sagesse","piete","legitimite","prosperite","rayonnement"];
 function appliquer(eff){if(!eff)return;for(const k in eff){F[k]=(F[k]||0)+eff[k];if(F[k]<0)F[k]=0;}}
 function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
-function ordreNoeud(id){const m=id.match(/^n(\d+)$/);return m?parseInt(m[1],10):null;}
+function ordreNoeud(id){const m=String(id).match(/^n(\d+)$/);return m?parseInt(m[1],10):null;}
 function snap(){const o={};KEYS.forEach(k=>o[k]=F[k]);return o;}
 function diffFrom(b){const deltas=[],changed=new Set();KEYS.forEach(k=>{const d=F[k]-b[k];if(d!==0){deltas.push({k,d});changed.add(k);}});return {deltas,changed};}
 
@@ -577,53 +586,46 @@ function ebsFor(r){
   if(r.lawref)out.push(`<span class="eb law ${r.lawnone?'none':''}">${r.lawref}</span>`);
   if(r.epreuve){
     const e=r.epreuve,pct=pReussite(F[e.stat],e.seuil||8);
-    out.push(`<span class="eb die">pari · ${pct} % · ${LAB[e.stat]}</span>`);
+    out.push(`<span class="eb pari">pari · ${pct} % · ${LAB[e.stat]}</span>`);
     deltaBadges(e.ok.eff).forEach(x=>out.push(x));
-    if(e.ok.sceau)out.push(`<span class="eb seal">sceau : ${e.ok.sceau}</span>`);
     out.push(`<span class="eb neg dim">si échec : ${penInline(e.penalite)}</span>`);
   }else{
     deltaBadges(r.eff).forEach(x=>out.push(x));
-    if(r.sceau)out.push(`<span class="eb seal">sceau : ${r.sceau}</span>`);
-    if(r.sceau2)out.push(`<span class="eb seal">sceau : ${r.sceau2}</span>`);
   }
   return out.join("")||'<span class="eb dim">aucun effet direct</span>';
 }
 
 function rendreTablette(flash){
-  flash=flash||new Set();
+  flash=(flash&&flash.has)?flash:new Set();
   const quals=QUALITES.map(k=>`<div class="qual ${flash.has(k)?'flash':''}" id="qual-${k}"><span class="l">${LAB[k]}</span><span class="v">${F[k]}</span></div>`).join("");
   const meters=`<div class="meter ${flash.has('prosperite')?'flash':''}">${ICO_PROSP}<div><span class="cl">Prospérité</span><span class="cv">${F.prosperite}</span></div></div><div class="meter ${flash.has('rayonnement')?'flash':''}">${ICO_RAYON}<div><span class="cl">Rayonnement</span><span class="cv">${F.rayonnement}</span></div></div>`;
-  const seals=SCEAUX_ORDRE.map(s=>`<div class="seal ${F.sceaux.has(s)?'on':''}"><span class="dot"></span><span>${s}</span></div>`).join("");
-  const reg=F.registre.slice(-3).map((e,i,a)=>`<span class="e ${i===a.length-1?'flash':''}">— ${e}</span>`).join("")||`<span class="e">—</span>`;
+  const reg=F.registre.slice(-5).map((e,i,a)=>`<span class="e ${i===a.length-1?'flash':''}">— ${e}</span>`).join("")||`<span class="e">—</span>`;
   $("#tablet").innerHTML=`<div class="wedge"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="t-head"><div class="t-emblem">${EMBLEME}</div><div class="t-name">${esc(F.nom)}<span>${F.genre==="roi"?"Lugal":"Reine"} de ${esc(F.cite)}</span></div></div>
     <div class="t-sect">Qualités du roi</div><div class="qualites">${quals}</div>
     <div class="t-sect">Sa civilisation</div><div class="meters">${meters}</div>
-    <div class="t-sect">Sceaux du règne</div><div class="seals">${seals}</div>
-    <div class="registre">${reg}</div>`;
+    <div class="t-sect">Chronique du règne</div><div class="registre">${reg}</div>`;
 }
 
 function impactModal(o){
   const m=$("#modal");
   const eff=o.deltas&&o.deltas.length?`<div class="modal-eff">${o.deltas.map(d=>`<span class="eb ${d.d>0?'pos':'neg'}">${LAB[d.k]} ${d.d>0?'+':'−'}${Math.abs(d.d)}</span>`).join("")}</div>`:`<div class="modal-eff"><span class="eb dim">aucun changement de qualité</span></div>`;
   const v=o.verdict?`<div class="modal-verdict ${o.verdict.cls}">${o.verdict.txt}</div>`:"";
-  m.innerHTML=`<div class="modal-card"><div class="modal-k">${o.kicker||"Conséquence de ta décision"}</div><div class="modal-title">${o.title}</div>${v}<div class="modal-body">${o.body}</div>${eff}<button class="modal-btn" id="modalbtn">Continuer »</button></div>`;
+  m.innerHTML=`<div class="modal-card"><div class="modal-k">${o.kicker||"Conséquence de ta décision"}</div><div class="modal-title">${o.title}</div>${v}<div class="modal-body">${o.body}</div>${eff}<button class="modal-btn" id="modalbtn">Bien »</button></div>`;
   m.classList.add("show");
   $("#modalbtn").onclick=()=>{m.classList.remove("show");m.innerHTML="";o.onContinue&&o.onContinue();};
 }
 
-function avancer(cible){F.noeud=cible;rendre(true);}
 function choisir(r,btn){
   if(r.epreuve){tenterEpreuve(r,btn);return;}
   if(r.sceau)F.sceaux.add(r.sceau);if(r.sceau2)F.sceaux.add(r.sceau2);
   const b=snap();appliquer(r.eff);const diff=diffFrom(b);
   if(r.reg)F.registre.push(r.reg);
   rendreTablette(diff.changed);
-  impactModal({title:r.t,body:r.impact,deltas:diff.deltas,onContinue:()=>avancer(r.cibleFn?r.cibleFn(F):r.cible)});
+  impactModal({title:r.t,body:r.impact,deltas:diff.deltas,onContinue:()=>finaliser(btn,r.cibleFn?r.cibleFn(F):r.cible)});
 }
 function tenterEpreuve(r,btn){
-  if(r.sceau)F.sceaux.add(r.sceau);if(r.sceau2)F.sceaux.add(r.sceau2);
-  appliquer(r.eff);
+  if(r.sceau)F.sceaux.add(r.sceau);if(r.sceau2)F.sceaux.add(r.sceau2);appliquer(r.eff);
   const e=r.epreuve,mod=F[e.stat]-9,seuil=e.seuil||8,pct=pReussite(F[e.stat],seuil);
   const modTxt=mod>=0?`+ ${mod}`:`− ${-mod}`;
   document.querySelectorAll("#renvois .renvoi").forEach(x=>x.disabled=true);
@@ -631,7 +633,7 @@ function tenterEpreuve(r,btn){
   const dz=$("#dicezone");dz.classList.add("show");
   dz.innerHTML=`<div class="dz-live"><span class="target">Épreuve d'<b>${LAB[e.stat]}</b> · 2 dés ${modTxt} ≥ <b>${seuil}</b> — <b>${pct} %</b></span><span class="die" id="d1">?</span><span class="die" id="d2">?</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div>`;
   $("#rollbtn").onclick=()=>{
-    const a=d6(),bb=d6(),tot=a+bb,score=tot+mod,ok=score>=seuil;
+    const a=d6(),bb=d6(),score=a+bb+mod,ok=score>=seuil;
     const d1=$("#d1"),d2=$("#d2");d1.textContent=a;d2.textContent=bb;d1.classList.add("roll");d2.classList.add("roll");
     $("#rollbtn").disabled=true;
     setTimeout(()=>{
@@ -642,7 +644,7 @@ function tenterEpreuve(r,btn){
         verdict:{cls:ok?"ok":"no",txt:`${a} + ${bb} ${modTxt} = ${score} — ${ok?"réussite.":"échec."} ${out.txt}`},
         body:out.impact,deltas:diff.deltas,
         onContinue:()=>{
-          if(ok){avancer(r.cibleFn?r.cibleFn(F):r.cible);}
+          if(ok){finaliser(btn,r.cibleFn?r.cibleFn(F):r.cible);}
           else{
             dz.classList.remove("show");dz.innerHTML="";
             btn.classList.add("burned");btn.disabled=true;const go=btn.querySelector(".go");if(go)go.textContent="raté";
@@ -653,7 +655,20 @@ function tenterEpreuve(r,btn){
     },520);
   };
 }
+function finaliser(btn,cible){
+  document.querySelectorAll("#renvois .renvoi").forEach(x=>{x.disabled=true;if(x!==btn)x.classList.add("faded");});
+  if(btn)btn.classList.add("chosen");
+  const dz=$("#dicezone");if(dz){dz.classList.remove("show");dz.innerHTML="";}
+  const n=STORY[cible],p=$("#poursuite");
+  p.innerHTML=(n&&n.fin?"Découvre le sort de ton règne ":("Poursuis au §"+ordreNoeud(cible)+" "))+"»";
+  p.classList.add("show");p.onclick=()=>entrer(cible);
+}
 
+function entrer(cible){
+  F.noeud=cible;const n=STORY[cible];
+  if(!n.fin)F.histoire.push({num:ordreNoeud(cible),folio:n.folio,paras:n.texte});
+  rendre(true);
+}
 function enableOpen(){document.querySelectorAll("#renvois .renvoi.open").forEach(b=>b.disabled=false);const ln=$("#locknote");if(ln)ln.remove();}
 function startReadLock(sec){
   const banner=$("#readlock");if(!banner){enableOpen();return;}
@@ -677,8 +692,8 @@ function rendre(flash){
   const n=STORY[F.noeud],num=ordreNoeud(F.noeud),pages=$("#pages");
   $("#progress").textContent=n.fin?"Fin du règne":(num?`Décision ${num} / 24`:"");
   if(n.fin){
-    const bilan=QUALITES.map(k=>`<span class="eb pos">${LAB[k]} ${F[k]}</span>`).join("")+METRES.map(k=>`<span class="eb seal">${LAB[k]} ${F[k]}</span>`).join("");
-    pages.innerHTML=`<div class="leaf leaf-full">
+    const bilan=QUALITES.map(k=>`<span class="eb pos">${LAB[k]} ${F[k]}</span>`).join("")+METRES.map(k=>`<span class="eb pari">${LAB[k]} ${F[k]}</span>`).join("");
+    pages.innerHTML=`<div class="spine"></div><div class="leaf leaf-full">
       <div class="rhead" style="width:100%"><span>${n.folio}</span><span class="rno">fin du règne</span></div>
       <div class="fin-title">${n.titre}</div>
       <div class="fin-prose">${n.prose[0]}</div>
@@ -688,41 +703,55 @@ function rendre(flash){
     $("#restart").onclick=reset;rendreTablette(flash);return;
   }
   const s=n.src?SRC[n.src]:null;
+  const story=F.histoire.map((h,i)=>{const cur=i===F.histoire.length-1;return `<div class="para ${cur?'cur':'past'}"><span class="pf">§${h.num} · ${h.folio}</span><div class="pt">${h.paras.map(p=>`<p>${p}</p>`).join("")}</div></div>`;}).join("");
   const renv=n.renvois.map((r,i)=>{
     const ouvert=!r.cond||r.cond(F);
     if(!ouvert)return `<button class="renvoi closed" disabled><span class="lt"><span>${r.t}</span><span class="ebs"><span class="eb dim">${r.lock}</span></span></span><span class="go">—</span></button>`;
     return `<button class="renvoi open" data-i="${i}"${r.arts?` data-arts="${r.arts.join(',')}"`:''} disabled><span class="lt"><span>${r.t}</span><span class="ebs">${ebsFor(r)}</span></span><span class="go">${r.go||'»'}</span></button>`;
   }).join("");
   const srcBlock=s?`<div class="consult-row" id="consultrow"><button class="consult-btn" id="consultbtn">${SCROLL} Consulter la source</button><span class="consult-hint">pour décider en connaissance de cause</span></div><div class="source-wrap" id="sourcewrap">${plate(s)}</div><div class="readlock" id="readlock"><span class="rl-txt">Étudie la source — <span class="rl-num">${READ_LOCK}</span> s</span><div class="rl-bar"><i></i></div></div>`:'';
-  pages.innerHTML=`<div class="leaf"><div class="rhead"><span>${n.folio}</span><span class="rno">§${num}</span></div>`
-    +`<div class="dropcap-wrap"><div class="prose"><p class="dropcap">${n.texte[0]}</p>${n.texte.slice(1).map(p=>`<p>${p}</p>`).join("")}</div></div>`
-    +`<div class="consigne">${n.consigne}</div>`
-    +srcBlock
-    +`${s?'<div class="locknote" id="locknote">Consulte la source pour pouvoir choisir.</div>':''}`
-    +`<div class="renvois" id="renvois">${renv}</div>`
-    +`<div class="dice-zone" id="dicezone"></div>`
-    +`<div class="folio-no">~ ${num} ~</div></div>`;
+  const left=`<div class="leaf leaf-l"><div class="rhead"><span>Le livre du règne</span><span class="rno">§${num}</span></div><div class="story" id="story">${story}</div><div class="folio-no">~ ${num} ~</div></div>`;
+  const right=`<div class="leaf leaf-r"><div class="rhead"><span>La décision</span><span>${esc(F.cite)}</span></div><div class="dec">${srcBlock}<div class="consigne">${n.consigne}</div>${s?'<div class="locknote" id="locknote">Consulte la source pour pouvoir choisir.</div>':''}<div class="renvois" id="renvois">${renv}</div><div class="dice-zone" id="dicezone"></div><button class="poursuite" id="poursuite">Poursuis »</button></div><div class="folio-no"></div></div>`;
+  pages.innerHTML=`<div class="spine"></div>${left}${right}`;
   bindRenvois(n);rendreTablette(flash);
+  const st=$("#story");if(st)st.scrollTop=st.scrollHeight;
   if(s){$("#consultbtn").onclick=()=>{$("#sourcewrap").style.display="block";$("#consultrow").innerHTML='<span class="consult-done">Source consultée — étudie-la, puis décide.</span>';startReadLock(READ_LOCK);};}
   else{enableOpen();}
 }
 
-let genre="roi",tirage={};
-function rollPreview(){
-  tirage={autorite:d6()+6,sagesse:d6()+6,piete:d6()+6,legitimite:d6()+d6()+12};
-  $("#rolls").innerHTML=QUALITES.map(k=>`<div class="rs"><span class="l">${LAB[k]}</span><span class="v">${tirage[k]}</span></div>`).join("");
+/* ----- frontispice : répartition des points ----- */
+let genre="roi",alloc={autorite:0,sagesse:0,piete:0,legitimite:0};
+function pointsLeft(){return POOL-QUALITES.reduce((s,k)=>s+alloc[k],0);}
+function renderAlloc(){
+  const left=pointsLeft();
+  $("#pool").innerHTML=`Points à placer : <b>${left}</b>`;
+  $("#alloc").innerHTML=QUALITES.map(k=>{
+    const v=BASE+alloc[k],moins=alloc[k]<=0,plus=alloc[k]>=MAXADD||left<=0;
+    return `<div class="arow"><div class="ah"><span class="an">${LAB[k]}</span><div class="stepper"><button data-k="${k}" data-d="-1"${moins?" disabled":""}>−</button><span class="av">${v}</span><button data-k="${k}" data-d="1"${plus?" disabled":""}>+</button></div></div><div class="ad">${QDESC[k]}</div></div>`;
+  }).join("");
+  const b=$("#begin");b.disabled=left!==0;
+  b.textContent=left!==0?`Place tous tes points (${left} restants)`:"Ouvre le livre — §1";
 }
-function reset(){F=null;const m=$("#modal");m.classList.remove("show");m.innerHTML="";$("#frontis").style.display="flex";rollPreview();}
+$("#alloc").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-k]");if(!b)return;
+  const k=b.dataset.k,d=+b.dataset.d;
+  if(d>0&&(pointsLeft()<=0||alloc[k]>=MAXADD))return;
+  if(d<0&&alloc[k]<=0)return;
+  alloc[k]+=d;renderAlloc();
+});
 $("#seg").addEventListener("click",e=>{const b=e.target.closest("button[data-g]");if(!b)return;genre=b.dataset.g;document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x===b));});
 $("#begin").addEventListener("click",()=>{
+  if(pointsLeft()!==0)return;
   F=nouvelle();F.nom=$("#nom").value.trim()||"Anonyme";F.cite=$("#cite").value.trim()||"la Cité";F.genre=genre;
-  QUALITES.forEach(k=>F[k]=tirage[k]);
+  QUALITES.forEach(k=>F[k]=BASE+alloc[k]);
   F.registre.push("Avènement sur le trône.");
+  F.noeud="n01";const n=STORY.n01;F.histoire.push({num:1,folio:n.folio,paras:n.texte});
   $("#frontis").style.display="none";rendre(false);
 });
-rollPreview();
+function reset(){F=null;alloc={autorite:0,sagesse:0,piete:0,legitimite:0};const m=$("#modal");m.classList.remove("show");m.innerHTML="";$("#frontis").style.display="flex";renderAlloc();}
+renderAlloc();
 
-if(typeof module!=="undefined"){module.exports={STORY,SRC,SCEAUX_ORDRE,QUALITES,METRES,evaluerFin,pReussite};}
+if(typeof module!=="undefined"){module.exports={STORY,SRC,SCEAUX_ORDRE,QUALITES,METRES,evaluerFin,pReussite,BASE,POOL,MAXADD};}
 </script>
 </body>
 </html>

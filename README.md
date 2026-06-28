@@ -1,68 +1,67 @@
 # Lugal — un livre dont vous êtes le roi
 
 Un *serious game* en français, type **livre dont vous êtes le héros**, pour la
-réalité sociale **« L'émergence d'une civilisation »** (Mésopotamie, HEC sec. 1,
-PFEQ). L'élève règne sur une cité-État : il lit un texte, **consulte une source créée
-pour le jeu** (illustration au trait ou document composé), réfléchit, décide — puis un **pop-up lui explique
-l'impact** de son choix. **24 décisions par règne**, **12 fins** selon l'état
-accumulé de ses qualités et de sa civilisation.
+réalité sociale **« L'émergence d'une civilisation »** (Mésopotamie, cours HEC,
+sec. 1, PFEQ). L'élève règne sur une cité-État sur **24 décisions**, qui mènent
+à l'une de **12 fins** selon les qualités du roi et l'état de sa civilisation.
 
-Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance.
+Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance, aucune image
+externe (tout est dessiné ou écrit dans le fichier).
 
-## Déroulé d'une page
-1. **Un texte** pose la situation (sans nommer le document).
-2. Bouton **« Consulter la source »** : l'élève l'ouvre pour décider en
-   connaissance de cause. Tant qu'il ne l'a pas consultée, **les réponses sont
-   verrouillées**.
-3. À la consultation, **un chrono de 6 secondes** invite à étudier la source ;
-   les choix se déverrouillent ensuite.
-4. Chaque réponse affiche **son impact sur les qualités du roi** et, pour les
-   paris, **le % de réussite aux dés**.
-5. Après la décision, **un pop-up présente la conséquence** — la leçon à retenir.
+## L'accueil : l'élève façonne son roi
+Avant de jouer, l'élève **répartit lui-même ses points** entre les quatre
+qualités du roi (Autorité, Sagesse, Piété, Légitimité). Chaque qualité est
+accompagnée d'une **explication de son importance** : elles décident des paris
+que le roi pourra tenter, des voies qui s'ouvriront à lui et de la façon dont
+son règne se terminera. Ce choix de départ donne du sens à toute la partie.
 
-> Toutes les sources sont **des créations originales** (illustrations au trait
-> et documents composés) — aucune image d'archive. Et elles ne sont pas toujours
-> pertinentes : 6 des 24 décisions se prennent **sans source**, par pur jugement
-> politique.
+## Le livre, en deux pages
+- **Page de gauche — le récit du règne.** Tous les paragraphes traversés s'y
+  accumulent comme dans un vrai livre-jeu : le paragraphe courant est **en
+  pleine encre**, les précédents **pâlissent**.
+- **Page de droite — la décision.** Dans l'ordre : un bouton **Consulter la
+  source** (qui révèle le document créé), la **question**, les **choix**, puis un
+  bouton **« Poursuis au §X »** pour tourner la page.
+
+À chaque page : les choix restent **verrouillés tant que la source n'est pas
+consultée** ; la consultation lance un **chrono de 6 secondes** ; chaque choix
+montre son **effet sur les qualités** (et, pour les paris, le **% de réussite**
+aux dés) ; et un **pop-up** présente la conséquence — la leçon à retenir.
+
+> 6 des 24 décisions se prennent **sans source**, par pur jugement politique.
 
 ## La feuille du roi
-- **Qualités du roi** (montent et descendent selon les choix) : Autorité,
-  Sagesse, Piété, Légitimité.
-- **Sa civilisation** : Prospérité (l'économie) et Rayonnement (le développement
-  et l'héritage).
-- **Sceaux du règne** : 12 marques irréversibles des grands choix (écriture,
-  code gravé, doctrine de justice, alliances, murailles, héritier…).
-- **Paris (dés)** : `2 dés + (qualité − 9) ≥ seuil`. En cas d'échec, l'option est
-  perdue, une pénalité s'applique, et l'élève se rabat sur les choix restants.
+Volontairement sobre et utile : les **quatre qualités** (qui montent et
+descendent selon les choix, et qu'on a soi-même réparties), les **deux jauges de
+civilisation** (Prospérité, Rayonnement), et la **chronique du règne**. Les
+qualités servent vraiment : elles fixent les probabilités des paris et
+déterminent la fin.
+
+## Sources — toutes créées
+Aucune image d'archive. **13 illustrations originales** au trait (style gravure,
+dessinées en SVG) et **5 documents composés** pour le jeu, honnêtement étiquetés
+comme reconstitutions. Voir `SOURCES.md`.
 
 ## Héberger sur GitHub Pages
-1. Pousse **tout le contenu de ce dossier** (avec `assets/`) dans un dépôt.
+1. Pousse le contenu de ce dossier dans un dépôt.
 2. **Settings → Pages → Deploy from a branch**, branche `main`, dossier `/(root)`.
-3. Le jeu est en ligne à `https://<utilisateur>.github.io/<dépôt>/`.
-
-> `.nojekyll` (présent) garantit que `assets/` est servi tel quel ; ne le supprime pas.
+3. En ligne à `https://<utilisateur>.github.io/<dépôt>/`.
 
 ## Structure
 ```
-index.html     jeu complet : interface (livre à double page), moteur, trame et sources
-.nojekyll      pour GitHub Pages
-SOURCES.md     note sur les sources (toutes créées pour le jeu)
-LICENSE        MIT — couvre le code, les illustrations et les textes
+index.html   jeu complet : livre deux pages, moteur, trame et sources
+.nojekyll    pour GitHub Pages
+SOURCES.md   note sur les sources (toutes créées pour le jeu)
+LICENSE      MIT — couvre le code, les illustrations et les textes
 ```
-Aucun dossier d'images : les illustrations sont des **SVG dessinés dans le
-fichier** et les documents, des **textes composés**. Le jeu s'affiche donc
-partout, sans dépendance.
 
 ## Personnaliser (dans `index.html`)
-- **Trame** : objet `STORY`. Chaque nœud a `texte` (long), `consigne`, un `src`
-  optionnel, et des `renvois`. Chaque renvoi porte `eff` (effets sur les qualités),
-  `impact` (texte du pop-up), parfois une `epreuve` (dés) et un `sceau`.
-- **Sources** : objet `SRC` (titre, image, contenu, citation). Pour changer une
-  image, dépose le fichier dans `assets/img/sources/` et ajuste le chemin.
-- **Fins** : fonction `evaluerFin()` — seuils de qualités, de Rayonnement, de
-  Légitimité et sceaux requis. Deux fins (« révolte », « abandonné des dieux »)
-  sont rares ; ajuste leurs seuils après quelques parties tests.
+- **Points de départ** : `BASE` (par qualité), `POOL` (à répartir), `MAXADD`.
+- **Trame** : objet `STORY` (chaque nœud : `texte`, `consigne`, `src` optionnel,
+  `renvois` avec `eff`, `impact`, parfois `epreuve`).
+- **Sources** : objet `SRC` (illustration `svg` ou document `doc`).
+- **Fins** : fonction `evaluerFin()` (seuils de qualités, de Rayonnement, de
+  Légitimité, et sceaux requis).
 
 ---
-Conçu par **Mathieu Mercier**. Toutes les sources (illustrations et documents)
-sont **créées pour le jeu** — voir `SOURCES.md`.
+Conçu par **Mathieu Mercier**. Toutes les sources sont créées pour le jeu.
