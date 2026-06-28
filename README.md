@@ -90,11 +90,19 @@ choix sont en outre **présentés dans un ordre aléatoire** — le bon n'est ja
 la même place.
 
 ## La feuille du roi
-Volontairement sobre et utile : les **quatre qualités** (qui montent et
-descendent selon les choix, et qu'on a soi-même réparties), les **deux jauges de
-civilisation** (Prospérité, Rayonnement), et la **chronique du règne**. Les
-qualités servent vraiment : elles fixent les probabilités des paris et
-déterminent la fin.
+Volontairement sobre et utile : les **quatre qualités** du roi (qui montent et
+descendent selon les choix, et qu'on a soi-même réparties) et le bloc **« Sa
+civilisation »**, qui dit ce que la cité devient. Ce bloc compte **quatre
+dimensions** : Prospérité et Rayonnement, toujours visibles, plus **Savoir**
+(écriture, mathématiques en base 60, astronomie, école) et **Technique**
+(irrigation, bronze, roue, grands ouvrages) qui restent **cachées tant qu'elles
+ne sont pas débloquées**. La première décision qui en donne un point fait
+**apparaître la dimension** avec une mention (« Ta cité entre dans l'âge du
+savoir », « ...maîtrise une technique nouvelle ») : l'élève voit sa civilisation
+**émerger axe par axe**. La Technique nourrit ensuite les jets de dés des grands
+ouvrages (la cité planifiée, les jardins en terrasses), et un très haut Savoir
+ouvre une fin dédiée, **« Le berceau du savoir »**. Les qualités, elles, fixent
+les probabilités des paris et déterminent la fin.
 
 ## Sources — toutes créées
 Chaque source distingue clairement le **document/illustration** lui-même de sa
