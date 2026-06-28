@@ -3,10 +3,14 @@
 Un *serious game* en français, type **livre dont vous êtes le héros**, pour la
 réalité sociale **« L'émergence d'une civilisation »** (Mésopotamie, cours HEC,
 sec. 1, PFEQ). L'élève règne sur une cité-État le long d'une **trame en arbre** :
-un **chemin optimal court** (≈ 10 décisions traversant les 6 actes) et, dès qu'on
-s'en écarte, des **problématiques** qui pénalisent et rallongent le parcours. La
-partie mène à l'une de **12 fins** selon les qualités du roi et l'état de sa
-civilisation.
+un **chemin optimal** (≈ 18 décisions sur 8 actes) couvrant les grands piliers de
+la Mésopotamie, l'irrigation, le surplus, le **commerce**, le **bronze**,
+l'écriture, le **savoir** (maths en base 60, calendrier, astronomie), l'**école
+des scribes**, la société, la **cité** et son urbanisme, la **roue**, les **grands
+jardins**, les dieux, la justice et l'**amargi** (remise des dettes), la défense et
+l'héritage ; dès qu'on s'écarte de ce chemin, des **problématiques** pénalisent et
+rallongent le parcours. La partie mène à l'une de **12 fins** selon les qualités
+du roi et l'état de sa civilisation.
 
 Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance, aucune image
 externe (tout est dessiné ou écrit dans le fichier).
@@ -57,6 +61,15 @@ optimal** (parfois au prix d'un jet de dés), mais **t'entêter peut faire perdr
 la partie** : dès l'acte III, une crise mal gérée peut mener droit à une fin
 funeste. Le **§** affiché suit donc le **parcours réel** de l'élève, qui varie
 d'une partie à l'autre.
+
+## Le bilan, sur deux pages
+À la mort du roi, le livre s'ouvre sur un **bilan en double page**. À **gauche, le
+verdict** : le titre de la fin, le récit de l'épilogue, la durée du règne et la
+**grille des six qualités** qualifiées. À **droite, le jugement de l'histoire** :
+la liste des **décisions avisées** prises pendant la partie et celle des
+**décisions périlleuses pour la cité**, suivies de ce qui aura marqué le règne.
+L'élève voit ainsi, noir sur blanc, **ce qui a fait grandir sa civilisation et ce
+qui l'a mise en danger**.
 
 ## Les dés conjugués aux points du roi
 Les jets de dés sont nombreux, mais **jamais gratuits** : chacun met en jeu les
