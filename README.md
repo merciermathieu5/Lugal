@@ -49,8 +49,11 @@ d'une partie à l'autre.
 
 ## Les dés conjugués aux points du roi
 Les jets de dés sont nombreux, mais **jamais gratuits** : chacun met en jeu les
-**qualités pertinentes au domaine**, de sorte que la répartition de départ décide
-de ce que le roi réussit.
+**qualités pertinentes au domaine**. Le bonus au jet est la **somme de
+l'investissement** du roi dans ces qualités (chaque qualité au-dessus de 9
+ajoute, en dessous retranche), affichée en clair — p. ex. *« Autorité 14 +
+Sagesse 12 · bonus + 8 »*. La répartition de départ décide donc vraiment de ce que
+le roi réussit : un roi qui a négligé une qualité **échoue** dans son domaine.
 - **Décisions religieuses** (temple, présage) → **Piété**.
 - **Décisions de justice** (faire respecter la loi gravée) → **Autorité + Sagesse**.
 - **Grands travaux et défense** (canaux, murailles) → **Autorité (+ Prospérité)**.

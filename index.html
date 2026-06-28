@@ -66,40 +66,41 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .leafnav .pos{font-family:"IM Fell English",serif;font-style:italic;font-size:11px;color:var(--ink-soft);white-space:nowrap}
 
 /* page de droite : document, question, choix, poursuite */
-.dec{flex:1 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;padding-right:4px}
+.dec{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;padding-right:4px}
+.srczone{flex:0 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;margin-bottom:2px}
 .consult-row{flex:0 0 auto;display:flex;align-items:center;gap:9px;margin-bottom:6px;flex-wrap:wrap}
 .consult-btn{font-family:"IM Fell English SC",serif;letter-spacing:.06em;font-size:11px;background:#3f3120;color:#efe2c8;border:1px solid #5a4427;padding:7px 14px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
 .consult-btn:hover{background:#33271a}
 .consult-btn svg{width:13px;height:13px}
 .consult-hint{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:#8a7350}
 .consult-done{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.05em;color:#3c6b3a}
-.source-wrap{flex:0 0 auto;display:none;margin-bottom:7px}
-.plate{border:1px solid var(--clay-edge);border-radius:3px;background:linear-gradient(180deg,#f2ead4,#e7dbbb);padding:9px 11px;box-shadow:inset 0 0 0 1px rgba(255,250,238,.5),0 3px 9px rgba(70,50,20,.13)}
-.plate-h{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:7px}
+.source-wrap{display:none;margin-bottom:5px}
+.plate{border:1px solid var(--clay-edge);border-radius:3px;background:linear-gradient(180deg,#f2ead4,#e7dbbb);padding:7px 10px;box-shadow:inset 0 0 0 1px rgba(255,250,238,.5),0 3px 9px rgba(70,50,20,.13)}
+.plate-h{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px}
 .plate-kind{font-family:"EB Garamond",serif;font-style:italic;font-size:9.5px;color:#7a6a4a;text-transform:none;letter-spacing:0;white-space:nowrap}
-.illus{border:1px solid var(--clay-edge);border-radius:2px;background:#efe5c8;padding:6px;display:flex;justify-content:center;box-shadow:inset 0 0 0 3px #efe5c8,inset 0 0 0 4px rgba(120,90,45,.35)}
-.illus svg{width:100%;height:auto;max-height:130px;display:block}
-.scroll{font-family:"EB Garamond",serif;font-size:15px;line-height:1.62;color:#33271a;padding:2px 4px 2px 11px;border-left:2px solid rgba(120,90,45,.32)}
-.scroll p{margin:0 0 8px}
+.illus{border:1px solid var(--clay-edge);border-radius:2px;background:#efe5c8;padding:5px;display:flex;justify-content:center;box-shadow:inset 0 0 0 3px #efe5c8,inset 0 0 0 4px rgba(120,90,45,.35)}
+.illus svg{width:100%;height:auto;max-height:88px;display:block}
+.scroll{font-family:"EB Garamond",serif;font-size:13.5px;line-height:1.5;color:#33271a;padding:1px 4px 1px 10px;border-left:2px solid rgba(120,90,45,.32)}
+.scroll p{margin:0 0 5px}
 .scroll p:last-child{margin-bottom:0}
 .scroll p:first-child{font-style:italic;color:#5a4a30}
-.plate-read{margin-top:10px;padding:8px 11px 5px;border-top:1px solid var(--rule);background:rgba(120,96,52,.07);border-radius:0 0 3px 3px}
+.plate-read{margin-top:7px;padding:6px 10px 4px;border-top:1px solid var(--rule);background:rgba(120,96,52,.07);border-radius:0 0 3px 3px}
 .plate-read-h{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#9a6a3a;margin-bottom:5px}
-.plate .art{font-size:13px;line-height:1.46;margin:0 0 6px;padding:2px 4px;border-radius:2px;color:#3a2f1f;transition:background .15s,opacity .15s}
+.plate .art{font-size:12px;line-height:1.4;margin:0 0 4px;padding:1px 4px;border-radius:2px;color:#3a2f1f;transition:background .15s,opacity .15s}
 .plate .art:last-child{margin-bottom:0}
 .plate .art b{color:var(--rubric);font-family:"IM Fell English",serif}
 .plate .art.hl{background:rgba(156,58,44,.16);box-shadow:inset 3px 0 0 var(--rubric)}
 .plate .art.dim{opacity:.32}
-.plate .cite{margin-top:7px;padding-top:5px;font-family:"IM Fell English",serif;font-style:italic;font-size:9.5px;color:var(--ink-soft);border-top:1px dotted var(--rule)}
-.readlock{flex:0 0 auto;display:none;align-items:center;gap:9px;margin-bottom:7px;padding:5px 10px;border-radius:3px;background:rgba(120,96,52,.1);border:1px dashed var(--rule)}
+.plate .cite{margin-top:5px;padding-top:4px;font-family:"IM Fell English",serif;font-style:italic;font-size:9px;color:var(--ink-soft);border-top:1px dotted var(--rule)}
+.readlock{flex:0 0 auto;display:none;align-items:center;gap:9px;margin-bottom:5px;padding:4px 10px;border-radius:3px;background:rgba(120,96,52,.1);border:1px dashed var(--rule)}
 .readlock .rl-txt{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:var(--ink-soft);white-space:nowrap}
 .readlock .rl-num{font-family:"IM Fell English",serif;color:var(--rubric);font-style:normal}
 .readlock .rl-bar{flex:1;height:5px;background:rgba(120,96,52,.18);border-radius:3px;overflow:hidden}
 .readlock .rl-bar i{display:block;height:100%;width:0;background:var(--rubric);transition:width 1s linear}
-.consigne{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:17px;line-height:1.34;color:var(--rubric);margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.consigne{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:15.5px;line-height:1.3;color:var(--rubric);margin:0 0 7px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
 .locknote{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11.5px;color:#8a6a44;margin:2px 0 4px}
 .renvois{flex:0 0 auto;border-top:1px solid var(--rule);padding-top:4px;margin-top:5px}
-.renvoi{display:flex;gap:9px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:7px 4px;font-family:"EB Garamond",serif;font-size:14.5px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px;border-bottom:1px dotted rgba(120,90,45,.3)}
+.renvoi{display:flex;gap:9px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:5px 4px;font-family:"EB Garamond",serif;font-size:13.5px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px;border-bottom:1px dotted rgba(120,90,45,.3)}
 .renvoi:last-child{border-bottom:none}
 .renvoi:hover:not(:disabled){background:rgba(156,58,44,.07)}
 .renvoi:focus-visible{outline:2px solid var(--rubric);outline-offset:1px}
@@ -128,7 +129,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 @keyframes tumble{0%{transform:rotate(-14deg) scale(.8)}55%{transform:rotate(12deg) scale(1.1)}100%{transform:none}}
 .btn-ink{font-family:"IM Fell English SC",serif;letter-spacing:.07em;font-size:11px;background:var(--ink);color:var(--paper);border:none;padding:7px 13px;border-radius:3px;cursor:pointer;white-space:nowrap}
 .btn-ink:hover{background:#000}.btn-ink:disabled{opacity:.5}
-.poursuite{flex:0 0 auto;align-self:flex-start;margin-top:11px;font-family:"IM Fell English SC",serif;letter-spacing:.06em;font-size:12.5px;background:var(--rubric);color:#f6e7d8;border:none;padding:10px 22px;border-radius:3px;cursor:pointer;display:none;align-items:center;gap:8px}
+.poursuite{flex:0 0 auto;align-self:flex-start;margin-top:8px;font-family:"IM Fell English SC",serif;letter-spacing:.06em;font-size:12px;background:var(--rubric);color:#f6e7d8;border:none;padding:8px 20px;border-radius:3px;cursor:pointer;display:none;align-items:center;gap:8px}
 .poursuite.show{display:inline-flex}
 .poursuite:hover{filter:brightness(1.08)}
 
@@ -287,12 +288,11 @@ const d6=()=>1+Math.floor(Math.random()*6);
 function statsOf(e){return e.stats?e.stats:(e.stat?[e.stat]:[]);}
 function epreuveMod(e){
   const ks=statsOf(e);
-  const base=ks.length?Math.round(ks.reduce((s,k)=>s+(F[k]||0),0)/ks.length):9;
-  let m=base-9;
+  let m=ks.reduce((s,k)=>s+((F[k]||0)-9),0);
   if(e.mod)m+=Math.round(((F[e.mod]||0)-4)/2);
   return m;
 }
-function epreuveLabel(e){return statsOf(e).map(k=>LAB[k]).join(" + ")+(e.mod?` (+ ${LAB[e.mod]})`:"");}
+function epreuveLabel(e){return statsOf(e).map(k=>`${LAB[k]} ${F[k]}`).join(" + ")+(e.mod?` + ${LAB[e.mod]} ${F[e.mod]}`:"");}
 function pReussite(mod,seuil){let f=0;for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if(a+b+mod>=(seuil||8))f++;return Math.round(100*f/36);}
 
 const ILLUS="Illustration originale";const DOC="Document composé pour Lugal";
@@ -364,7 +364,7 @@ const STORY={
     texte:["Le printemps gonfle les eaux. Chaque année, la crue peut féconder tes champs ou les noyer ; tes anciens se souviennent de récoltes perdues et de familles ruinées. Maîtriser l'eau, c'est maîtriser la vie même — mais cela exige des bras et de la méthode."],
     consigne:"Comment maîtrises-tu les eaux du fleuve ?",
     renvois:[
-      {t:"Creuser un grand réseau de canaux par des corvées justes.",epreuve:{stats:["autorite","sagesse"],seuil:8,ok:{eff:{prosperite:2,rayonnement:1},reg:"Tes canaux verdissent la plaine.",txt:"Les chantiers réussissent : l'eau coule où tu veux.",impact:"Un grand réseau d'irrigation exige de l'autorité pour mobiliser les bras et de la sagesse pour le concevoir : réussi, il fonde la prospérité de la cité."},penalite:{eff:{prosperite:1,legitimite:-1},reg:"Les canaux mal tracés s'envasent.",txt:"Faute d'organisation, les chantiers s'enlisent.",impact:"Sans autorité ni savoir-faire suffisants, de grands travaux hydrauliques échouent et gaspillent les forces de la cité."}},cible:"terre"},
+      {t:"Creuser un grand réseau de canaux par des corvées justes.",epreuve:{stats:["autorite","sagesse"],seuil:9,ok:{eff:{prosperite:2,rayonnement:1},reg:"Tes canaux verdissent la plaine.",txt:"Les chantiers réussissent : l'eau coule où tu veux.",impact:"Un grand réseau d'irrigation exige de l'autorité pour mobiliser les bras et de la sagesse pour le concevoir : réussi, il fonde la prospérité de la cité."},penalite:{eff:{prosperite:1,legitimite:-1},reg:"Les canaux mal tracés s'envasent.",txt:"Faute d'organisation, les chantiers s'enlisent.",impact:"Sans autorité ni savoir-faire suffisants, de grands travaux hydrauliques échouent et gaspillent les forces de la cité."}},cible:"terre"},
       {t:"Forcer le peuple à un réseau démesuré, sans répit.",eff:{prosperite:3,legitimite:-2},reg:"Des canaux partout, et des dos brisés.",sceau:"Ordre durci",impact:"Un grand chantier enrichit la cité, mais des corvées écrasantes minent la légitimité du roi : la rancœur s'accumule.",cible:"terre"},
       {t:"Laisser le fleuve faire et prier pour une bonne crue.",eff:{piete:1},reg:"Tu t'en remets au fleuve et aux dieux.",impact:"S'en remettre aux seuls dieux face à un fléau matériel, c'est laisser le hasard décider du sort de la cité.",cible:"eau_crue"}],
     },
@@ -402,7 +402,7 @@ const STORY={
     texte:["Les fêtes ont vidé les greniers, et voici qu'une mauvaise récolte succède à l'abondance. La réserve est presque nulle, l'hiver approche, et le peuple qui t'acclamait hier commence à avoir faim."],
     consigne:"La disette menace. Que fais-tu ?",
     renvois:[
-      {t:"Rationner avec rigueur et acheter du grain au-dehors.",epreuve:{stats:["sagesse"],mod:"prosperite",seuil:8,ok:{eff:{prosperite:2},reg:"Le rationnement sauve l'hiver.",txt:"La cité passe l'hiver de justesse.",impact:"Anticiper la disette par la réserve et le commerce protège des famines : c'est tout l'enjeu de la gestion du surplus."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"La faim s'installe.",txt:"Le grain manque, le peuple murmure.",impact:"Sans réserve gérée, une seule mauvaise récolte affame une cité entière."}},cible:"ecriture"},
+      {t:"Rationner avec rigueur et acheter du grain au-dehors.",epreuve:{stats:["sagesse"],mod:"prosperite",seuil:9,ok:{eff:{prosperite:2},reg:"Le rationnement sauve l'hiver.",txt:"La cité passe l'hiver de justesse.",impact:"Anticiper la disette par la réserve et le commerce protège des famines : c'est tout l'enjeu de la gestion du surplus."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"La faim s'installe.",txt:"Le grain manque, le peuple murmure.",impact:"Sans réserve gérée, une seule mauvaise récolte affame une cité entière."}},cible:"ecriture"},
       {t:"Distribuer le peu qui reste en festins, et espérer demain.",eff:{legitimite:1,prosperite:-2},reg:"On mange tout, on prie pour demain.",impact:"Repousser le problème par de nouvelles largesses précipite la famine au lieu de l'éviter.",cible:"ecriture"}],
     },
   voleurs:{folio:"Épreuve — les voleurs",
@@ -439,7 +439,7 @@ const STORY={
     texte:["Une cité sans dieux n'est qu'un campement. Tes prêtres réclament une grande demeure pour le dieu protecteur ; le peuple attend des fêtes et des présages favorables. La place que tu donnes au sacré façonnera ton pouvoir."],
     consigne:"Quelle place donnes-tu aux dieux ?",
     renvois:[
-      {t:"Élever une ziggourat digne et implorer la faveur du dieu.",epreuve:{stats:["piete"],seuil:8,ok:{eff:{piete:2,rayonnement:2},sceau:"Temple puissant",reg:"La montagne des dieux s'élève sur la cité.",txt:"Le dieu agrée ton temple : sa faveur rayonne sur la cité.",impact:"La ziggourat est le cœur religieux, économique et politique de la cité ; obtenir la faveur du dieu exige une piété sincère et reconnue."},penalite:{eff:{piete:1,prosperite:-1},reg:"Le temple s'élève, mais les présages restent sombres.",txt:"Le dieu reste froid : on murmure que ta piété sonne faux.",impact:"Un temple sans ferveur vraie ne suffit pas : dans une cité croyante, la faveur des dieux ne se décrète pas."}},cible:"loi"},
+      {t:"Élever une ziggourat digne et implorer la faveur du dieu.",epreuve:{stats:["piete"],seuil:9,ok:{eff:{piete:2,rayonnement:2},sceau:"Temple puissant",reg:"La montagne des dieux s'élève sur la cité.",txt:"Le dieu agrée ton temple : sa faveur rayonne sur la cité.",impact:"La ziggourat est le cœur religieux, économique et politique de la cité ; obtenir la faveur du dieu exige une piété sincère et reconnue."},penalite:{eff:{piete:1,prosperite:-1},reg:"Le temple s'élève, mais les présages restent sombres.",txt:"Le dieu reste froid : on murmure que ta piété sonne faux.",impact:"Un temple sans ferveur vraie ne suffit pas : dans une cité croyante, la faveur des dieux ne se décrète pas."}},cible:"loi"},
       {t:"Te proclamer toi-même fils des dieux, au-dessus des prêtres.",eff:{piete:1,autorite:1,legitimite:1},sceau:"Prérogative royale",reg:"Le roi se fait l'égal des dieux.",impact:"Se diviniser renforce l'autorité du roi, mais défie les prêtres : un pouvoir religieux offensé est dangereux.",cible:"loi"},
       {t:"Négliger les temples : les dieux attendront.",eff:{piete:-2},reg:"Les autels se couvrent de poussière.",impact:"Négliger le sacré, dans une société où la religion explique tout, c'est s'exposer à la colère des dieux et des prêtres.",cible:"presage"}],
     },
@@ -447,7 +447,7 @@ const STORY={
     texte:["Une éclipse a noirci le soleil, des agneaux sont nés morts, et les prêtres lisent dans le ciel la colère des dieux délaissés. La cité tremble, et l'on murmure que le malheur vient de l'impiété du roi."],
     consigne:"Un présage funeste affole la cité. Que fais-tu ?",
     renvois:[
-      {t:"Honorer les dieux par de grands sacrifices pour apaiser leur colère.",epreuve:{stats:["piete"],seuil:8,ok:{eff:{piete:2,legitimite:1},sceau:"Temple puissant",reg:"Les autels refument, la peur reflue.",txt:"Les dieux semblent apaisés : la cité respire.",impact:"Apaiser les dieux apaise le peuple ; encore faut-il une piété assez forte pour être crédible. Le roi doit composer avec le pouvoir religieux."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Les sacrifices n'apaisent rien.",txt:"Rien n'y fait : on dit les dieux sourds à un roi impie.",impact:"Un roi qui a négligé les dieux peine à s'en faire entendre dans la crise : la piété se cultive avant l'orage."}},cible:"loi"},
+      {t:"Honorer les dieux par de grands sacrifices pour apaiser leur colère.",epreuve:{stats:["piete"],seuil:9,ok:{eff:{piete:2,legitimite:1},sceau:"Temple puissant",reg:"Les autels refument, la peur reflue.",txt:"Les dieux semblent apaisés : la cité respire.",impact:"Apaiser les dieux apaise le peuple ; encore faut-il une piété assez forte pour être crédible. Le roi doit composer avec le pouvoir religieux."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Les sacrifices n'apaisent rien.",txt:"Rien n'y fait : on dit les dieux sourds à un roi impie.",impact:"Un roi qui a négligé les dieux peine à s'en faire entendre dans la crise : la piété se cultive avant l'orage."}},cible:"loi"},
       {t:"Défier les prêtres et te moquer du présage.",eff:{piete:-2,legitimite:-2},reg:"Tu braves les dieux et leurs prêtres.",impact:"Mépriser à la fois les dieux et leurs prêtres, dans une cité croyante, peut coûter le trône : leur pouvoir est bien réel.",cibleFn:function(F){return F.piete<=7?"nF_pretres":"loi";}}],
     },
   loi:{folio:"Acte IV — le jugement",src:"hammurabi",
@@ -463,7 +463,7 @@ const STORY={
     texte:["Ton jugement a fait jurisprudence. Reste à décider s'il restera une parole en l'air ou s'il deviendra une loi gravée dans la pierre, dressée sur la place — une loi qui lie le faible comme le fort, et le roi lui-même."],
     consigne:"Que fais-tu de ta justice ?",
     renvois:[
-      {t:"La graver dans la pierre et la faire respecter de tous.",epreuve:{stats:["autorite","sagesse"],seuil:9,ok:{eff:{sagesse:1,rayonnement:2,legitimite:1},sceau:"Code gravé",sceau2:"Loi équitable",reg:"Tes lois, gravées, défendent le faible.",txt:"Ta loi écrite s'impose à tous, du faible au puissant.",impact:"Faire respecter une loi écrite et égale demande de l'autorité pour l'imposer et de la sagesse pour la rendre juste : c'est un jalon majeur de l'histoire du droit."},penalite:{eff:{legitimite:-1},reg:"La loi gravée, mais bafouée.",txt:"Les puissants ignorent ta loi, et nul ne l'applique.",impact:"Une loi qu'on n'a ni l'autorité d'imposer ni la sagesse de rendre acceptable reste lettre morte, même gravée dans la pierre."}},cible:"defense"},
+      {t:"La graver dans la pierre et la faire respecter de tous.",epreuve:{stats:["autorite","sagesse"],seuil:10,ok:{eff:{sagesse:1,rayonnement:2,legitimite:1},sceau:"Code gravé",sceau2:"Loi équitable",reg:"Tes lois, gravées, défendent le faible.",txt:"Ta loi écrite s'impose à tous, du faible au puissant.",impact:"Faire respecter une loi écrite et égale demande de l'autorité pour l'imposer et de la sagesse pour la rendre juste : c'est un jalon majeur de l'histoire du droit."},penalite:{eff:{legitimite:-1},reg:"La loi gravée, mais bafouée.",txt:"Les puissants ignorent ta loi, et nul ne l'applique.",impact:"Une loi qu'on n'a ni l'autorité d'imposer ni la sagesse de rendre acceptable reste lettre morte, même gravée dans la pierre."}},cible:"defense"},
       {t:"La graver, mais dure et sans pitié, pour faire trembler.",eff:{autorite:2,legitimite:-1},sceau:"Code gravé",sceau2:"Loi de fer",reg:"Des lois gravées, et terribles.",impact:"Une loi écrite mais brutale impose l'ordre par la peur : durable en apparence, elle nourrit la rancœur.",cible:"defense"},
       {t:"Ne rien graver : ta seule parole suffit.",eff:{legitimite:-2},sceau:"Prérogative royale",reg:"Aucune loi écrite ne te lie.",impact:"Refuser d'écrire la loi laisse le pouvoir sans limite et la cité sans repère : la mémoire du droit s'efface avec toi.",cible:"defense"}],
     },
@@ -478,7 +478,7 @@ const STORY={
     texte:["Ta cité riche attire les convoitises. Une cité rivale masse ses troupes, des pillards harcèlent tes routes. Le roi a deux visages, dit-on : celui qui bâtit et celui qui combat. Lequel montreras-tu ?"],
     consigne:"Une cité rivale menace. Comment réponds-tu ?",
     renvois:[
-      {t:"Dresser de hautes murailles et négocier la paix.",epreuve:{stats:["autorite"],mod:"prosperite",seuil:8,ok:{eff:{autorite:1,rayonnement:1},sceau:"Murailles",reg:"Des murailles montent, la paix se traite.",txt:"De solides remparts s'élèvent : la cité respire en sûreté.",impact:"Bâtir de vraies fortifications demande de l'autorité et un trésor garni : bien défendue, la cité-État survit aux convoitises."},penalite:{eff:{prosperite:-1},reg:"Des murs trop bas, déjà lézardés.",txt:"Faute de moyens, tes murs ne valent rien.",impact:"Des murailles exigent des ressources et du commandement : une cité trop pauvre ou mal tenue reste exposée."}},cible:"heritage"},
+      {t:"Dresser de hautes murailles et négocier la paix.",epreuve:{stats:["autorite"],mod:"prosperite",seuil:9,ok:{eff:{autorite:1,rayonnement:1},sceau:"Murailles",reg:"Des murailles montent, la paix se traite.",txt:"De solides remparts s'élèvent : la cité respire en sûreté.",impact:"Bâtir de vraies fortifications demande de l'autorité et un trésor garni : bien défendue, la cité-État survit aux convoitises."},penalite:{eff:{prosperite:-1},reg:"Des murs trop bas, déjà lézardés.",txt:"Faute de moyens, tes murs ne valent rien.",impact:"Des murailles exigent des ressources et du commandement : une cité trop pauvre ou mal tenue reste exposée."}},cible:"heritage"},
       {t:"Nouer une grande alliance par le commerce.",cond:function(F){return F.sagesse>=11;},lock:"exige une grande Sagesse",eff:{rayonnement:2,legitimite:1},sceau:"Alliés",reg:"Des alliés, des routes ouvertes.",impact:"La diplomatie et le commerce au loin enrichissent et protègent : Sumer vivait d'échanges de cuivre, de bois et de pierres.",cible:"heritage"},
       {t:"Lancer la guerre et soumettre la rivale.",epreuve:{stats:["autorite"],seuil:9,ok:{eff:{autorite:2,rayonnement:1,prosperite:1},sceau:"Ennemis jurés",reg:"La rivale tombe, mais te voue une haine durable.",txt:"Tu l'emportes — mais tu t'es fait un ennemi mortel.",impact:"La conquête agrandit le pouvoir et crée des ennemis jurés : la guerre est un pari coûteux qui se paie plus tard."},penalite:{eff:{prosperite:2,legitimite:1},sceau:"Ennemis jurés",reg:"La campagne s'enlise et t'épuise.",txt:"La guerre tourne mal et te coûte cher.",impact:"Une guerre mal engagée ruine et expose la cité : le pari militaire peut tout faire perdre."}},cible:"bataille"}],
     },
@@ -599,7 +599,7 @@ function tenterEpreuve(r,btn){
   document.querySelectorAll("#renvois .renvoi").forEach(x=>x.disabled=true);
   const flashes=statsOf(e).map(k=>$("#qual-"+k)).filter(Boolean);flashes.forEach(el=>el.classList.add("flash"));
   const dz=$("#dicezone");dz.classList.add("show");
-  dz.innerHTML=`<div class="dz-live"><span class="target">Épreuve de <b>${epreuveLabel(e)}</b> · 2 dés ${modTxt} ≥ <b>${seuil}</b> — <b>${pct} %</b></span><span class="die" id="d1">?</span><span class="die" id="d2">?</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div>`;
+  dz.innerHTML=`<div class="dz-live"><span class="target">Épreuve de <b>${epreuveLabel(e)}</b> · bonus <b>${modTxt}</b> · 2 dés ≥ <b>${seuil}</b> — <b>${pct} %</b></span><span class="die" id="d1">?</span><span class="die" id="d2">?</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div>`;
   $("#rollbtn").onclick=()=>{
     const a=d6(),bb=d6(),score=a+bb+mod,ok=score>=seuil;
     const d1=$("#d1"),d2=$("#d2");d1.textContent=a;d2.textContent=bb;d1.classList.add("roll");d2.classList.add("roll");
@@ -737,7 +737,7 @@ function rendre(flash){
     if(!ouvert)return `<button class="renvoi closed" disabled><span class="lt"><span>${r.t}</span><span class="ebs"><span class="eb dim">${r.lock}</span></span></span><span class="go">—</span></button>`;
     return `<button class="renvoi open" data-i="${i}"${r.arts?` data-arts="${r.arts.join(',')}"`:''} disabled><span class="lt"><span>${titre}</span><span class="ebs">${ebsFor(r)}</span></span><span class="go">${r.go||'»'}</span></button>`;
   }).join("");
-  const srcBlock=s?`<div class="consult-row" id="consultrow"><button class="consult-btn" id="consultbtn">${SCROLL} Consulter la source</button><span class="consult-hint">pour décider en connaissance de cause</span></div><div class="source-wrap" id="sourcewrap">${plate(s)}</div><div class="readlock" id="readlock"><span class="rl-txt">Étudie la source — <span class="rl-num">${READ_LOCK}</span> s</span><div class="rl-bar"><i></i></div></div>`:'';
+  const srcBlock=s?`<div class="srczone"><div class="consult-row" id="consultrow"><button class="consult-btn" id="consultbtn">${SCROLL} Consulter la source</button><span class="consult-hint">pour décider en connaissance de cause</span></div><div class="source-wrap" id="sourcewrap">${plate(s)}</div><div class="readlock" id="readlock"><span class="rl-txt">Étudie la source — <span class="rl-num">${READ_LOCK}</span> s</span><div class="rl-bar"><i></i></div></div></div>`:'';
   const left=`<div class="leaf leaf-l" id="leftleaf">${leftInner()}</div>`;
   const right=`<div class="leaf leaf-r"><div class="rhead"><span>La décision</span><span>${esc(F.cite)}</span></div><div class="dec"><div class="consigne">${n.consigne}</div>${srcBlock}${s?'<div class="locknote" id="locknote">Consulte la source pour pouvoir choisir.</div>':''}<div class="renvois" id="renvois">${renv}</div><div class="dice-zone" id="dicezone"></div><button class="poursuite" id="poursuite">Poursuis »</button></div><div class="folio-no"></div></div>`;
   pages.innerHTML=`<div class="spine"></div>${left}${right}`;
