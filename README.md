@@ -19,6 +19,10 @@ que le roi pourra tenter, des voies qui s'ouvriront à lui et de la façon dont
 son règne se terminera. Ce choix de départ donne du sens à toute la partie.
 
 ## Le livre, en deux pages
+Chaque zone porte un **signet** qui l'identifie d'un coup d'œil : **Trame
+narrative** (le récit, à gauche), **Décision royale** (le choix, à droite) et
+**Capacités du personnage** (la tablette des qualités).
+
 - **Page de gauche — le récit du règne.** Le texte **remplit le feuillet**,
   puis **tourne** vers une nouvelle page une fois la page pleine, comme dans un
   vrai livre. Une barre

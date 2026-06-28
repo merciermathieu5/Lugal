@@ -84,13 +84,13 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .plate-kind{font-family:"EB Garamond",serif;font-style:italic;font-size:9.5px;color:#7a6a4a;text-transform:none;letter-spacing:0;white-space:nowrap}
 .illus{border:1px solid var(--clay-edge);border-radius:2px;background:#efe5c8;padding:4px;display:flex;justify-content:center}
 .illus svg{width:100%;height:auto;max-height:64px;display:block}
-.scroll{font-family:"EB Garamond",serif;font-size:13.5px;line-height:1.5;color:#33271a;padding:1px 4px 1px 10px;border-left:2px solid rgba(120,90,45,.32)}
+.scroll{font-family:"EB Garamond",serif;font-size:16px;line-height:1.55;color:#33271a;padding:1px 4px 1px 11px;border-left:2px solid rgba(120,90,45,.32)}
 .scroll p{margin:0 0 5px}
 .scroll p:last-child{margin-bottom:0}
 .scroll p:first-child{font-style:italic;color:#5a4a30}
 .plate-read{margin-top:7px;padding:6px 10px 4px;border-top:1px solid var(--rule);background:rgba(120,96,52,.07);border-radius:0 0 3px 3px}
 .plate-read-h{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#9a6a3a;margin-bottom:5px}
-.plate .art{font-size:12px;line-height:1.4;margin:0 0 4px;padding:1px 4px;border-radius:2px;color:#3a2f1f;transition:background .15s,opacity .15s}
+.plate .art{font-size:15px;line-height:1.5;margin:0 0 5px;padding:1px 4px;border-radius:2px;color:#3a2f1f;transition:background .15s,opacity .15s}
 .plate .art:last-child{margin-bottom:0}
 .plate .art b{color:var(--rubric);font-family:"IM Fell English",serif}
 .plate .art.hl{background:rgba(156,58,44,.16);box-shadow:inset 3px 0 0 var(--rubric)}
@@ -196,6 +196,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .t-emblem svg{width:26px;height:26px}
 .t-name{font-family:"IM Fell English",serif;font-size:18px;line-height:1.05;color:var(--clay-ink)}
 .t-name span{display:block;font-style:italic;font-size:11px;color:#5f421e}
+.signet{flex:0 0 auto;align-self:flex-start;display:inline-block;font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#f3e7cd;background:linear-gradient(180deg,#5c4628,#43311c);padding:5px 14px 6px;border-radius:0 0 5px 5px;border:1px solid #5c4628;border-top:none;box-shadow:0 2px 4px rgba(40,26,10,.26),inset 0 1px 0 rgba(255,240,210,.16);margin:-10px 0 10px 14px;position:relative}.signet::after{content:"";position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #43311c}.signet.sg-decision{background:linear-gradient(180deg,#a3402d,#7c2e21);border-color:#a3402d}.signet.sg-decision::after{border-top-color:#7c2e21}.signet.sg-stats{background:linear-gradient(180deg,#5b6638,#414c27);border-color:#5b6638;margin:2px 0 10px 14px}.signet.sg-stats::after{border-top-color:#414c27}
 .t-sect{flex:0 0 auto;font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.11em;color:#5f421e;margin:8px 0 4px;display:flex;align-items:center;gap:8px}
 .t-sect::after{content:"";flex:1;height:1px;background:rgba(95,66,30,.45)}
 .qualites{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7px}
@@ -582,6 +583,7 @@ function rendreTablette(flash){
   const meters=`<div class="meter ${flash.has('prosperite')?'flash':''}">${ICO_PROSP}<div><span class="cl">Prospérité</span><span class="cv">${F.prosperite}</span></div></div><div class="meter ${flash.has('rayonnement')?'flash':''}">${ICO_RAYON}<div><span class="cl">Rayonnement</span><span class="cv">${F.rayonnement}</span></div></div>`;
   const reg=F.registre.slice(-5).map((e,i,a)=>`<span class="e ${i===a.length-1?'flash':''}">${e}</span>`).join("")||`<span class="e">…</span>`;
   $("#tablet").innerHTML=`<div class="wedge"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="signet sg-stats">Capacités du personnage</div>
     <div class="t-head"><div class="t-emblem">${EMBLEME}</div><div class="t-name">${esc(F.nom)}<span>${F.genre==="roi"?"Lugal":"Reine"} de ${esc(F.cite)}</span></div></div>
     <div class="t-sect">Qualités du roi</div><div class="qualites">${quals}</div>
     <div class="t-sect">Sa civilisation</div><div class="meters">${meters}</div>
@@ -660,7 +662,7 @@ function beatHTML(i,lead){
   return `<div class="para${lead?' lead':''} ${cur?'cur':'past'}"><span class="pf">§${h.num} · ${h.folio}</span><div class="pt">${h.paras.map(p=>`<p>${p}</p>`).join("")}</div></div>`;
 }
 function leftInner(){
-  return `<div class="rhead"><span>Le livre du règne</span><span class="rno" id="leafno"></span></div>`
+  return `<div class="signet sg-recit">Trame narrative</div><div class="rhead"><span>Le livre du règne</span><span class="rno" id="leafno"></span></div>`
     +`<div class="story" id="story"></div>`
     +`<div class="leafnav" id="leafnav"></div>`;
 }
@@ -757,7 +759,7 @@ function rendre(flash){
   }).join("");
   const srcBlock=s?`<div class="consult-row" id="consultrow"><button class="consult-btn" id="consultbtn">${SCROLL} Consulter la source</button><span class="consult-hint">elle s'ouvre en fenêtre ; tu pourras la rouvrir</span></div>`:'';
   const left=`<div class="leaf leaf-l" id="leftleaf">${leftInner()}</div>`;
-  const right=`<div class="leaf leaf-r"><div class="rhead"><span>La décision</span><span>${esc(F.cite)}</span></div><div class="dec"><div class="consigne">${n.consigne}</div>${srcBlock}${s?'<div class="locknote" id="locknote">Consulte la source pour pouvoir choisir.</div>':''}<div class="renvois" id="renvois">${renv}</div><div class="dice-zone" id="dicezone"></div><button class="poursuite" id="poursuite">Poursuis »</button></div><div class="folio-no"></div></div>`;
+  const right=`<div class="leaf leaf-r"><div class="signet sg-decision">Décision royale</div><div class="rhead"><span></span><span>${esc(F.cite)}</span></div><div class="dec"><div class="consigne">${n.consigne}</div>${srcBlock}${s?'<div class="locknote" id="locknote">Consulte la source pour pouvoir choisir.</div>':''}<div class="renvois" id="renvois">${renv}</div><div class="dice-zone" id="dicezone"></div><button class="poursuite" id="poursuite">Poursuis »</button></div><div class="folio-no"></div></div>`;
   pages.innerHTML=`<div class="spine"></div>${left}${right}`;
   bindRenvois(n);rendreTablette(flash);
   renderLeft();
