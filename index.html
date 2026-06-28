@@ -9,106 +9,126 @@
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#ece2c8;--paper-2:#e4d8b8;--paper-edge:#cbbd97;
-  --ink:#1f1a12;--ink-soft:#473d2c;--rubric:#9c3a2c;
+  --paper:#ece2c8;--paper-2:#e4d6b6;--paper-edge:#cbbd97;
+  --ink:#241d12;--ink-soft:#4a3f2c;--rubric:#9c3a2c;
+  --cover-1:#5a3a22;--cover-2:#3a2413;--cover-3:#241608;
   --clay-1:#caa869;--clay-2:#b68d4c;--clay-edge:#8a6633;--clay-ink:#33240f;--ochre:#9c5a22;
-  --desk:#231e18;--rule:#b7a382;--pos:#3c6b3a;--neg:#9c3a2c;
+  --desk:#1f1813;--rule:#bca884;--pos:#3c6b3a;--neg:#9c3a2c;
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;overflow:hidden}
 body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
-  background:radial-gradient(120% 90% at 50% -10%,#352c22 0%,var(--desk) 70%,#181410 100%);
-  display:flex;flex-direction:column;padding:10px 14px 14px}
-.topbar{flex:0 0 auto;display:flex;align-items:baseline;justify-content:center;gap:14px;padding-bottom:6px;flex-wrap:wrap}
-.topbar b{font-family:"IM Fell English SC",serif;font-size:30px;letter-spacing:.12em;color:#eed9a8;font-weight:400}
+  background:
+    radial-gradient(140% 100% at 50% -20%,#33291f 0%,var(--desk) 70%,#150f0a 100%),
+    repeating-linear-gradient(90deg,rgba(0,0,0,.06) 0 2px,transparent 2px 26px);
+  display:flex;flex-direction:column;padding:9px 14px 13px}
+.topbar{flex:0 0 auto;display:flex;align-items:baseline;justify-content:center;gap:13px;padding-bottom:5px;flex-wrap:wrap}
+.topbar b{font-family:"IM Fell English SC",serif;font-size:29px;letter-spacing:.13em;color:#eed9a8;font-weight:400}
 .topbar span{font-style:italic;font-size:13px;color:#c2ad8d}
 .progress{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.05em;color:#b39a72;white-space:nowrap;font-style:normal}
-.spread{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1.34fr .8fr;gap:14px;margin-top:6px}
-.book{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden;
+.stage{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1.62fr .72fr;gap:14px;margin-top:5px}
+
+/* ---------- LE LIVRE OUVERT ---------- */
+.book{height:100%;min-height:0;display:flex;padding:10px;border-radius:7px;position:relative;
+  background:linear-gradient(135deg,var(--cover-1),var(--cover-2) 58%,var(--cover-3));
+  box-shadow:0 20px 54px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,220,170,.09),inset 0 0 0 7px rgba(0,0,0,.28),inset 0 0 24px rgba(0,0,0,.4)}
+.pages{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;position:relative;border-radius:3px;overflow:hidden;
   background:linear-gradient(180deg,var(--paper),var(--paper-2));
-  border:1px solid var(--paper-edge);border-radius:3px;padding:14px 24px 12px;position:relative;
-  box-shadow:0 16px 44px rgba(0,0,0,.5),inset 0 0 50px rgba(120,96,52,.1)}
-.book::before{content:"";position:absolute;inset:8px;border:1px solid rgba(90,70,40,.22);pointer-events:none}
-.bk-head{flex:0 0 auto;display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:5px;margin-bottom:7px}
-.pno{font-family:"IM Fell English",serif;font-style:italic;font-size:28px;line-height:1;color:var(--rubric)}
-.folio{font-family:"IM Fell English SC",serif;font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
-.fin-title{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:24px;color:var(--rubric);margin:3px 0 8px}
-.prose{flex:0 1 auto;min-height:0;overflow:auto;font-size:15.5px;line-height:1.58;text-align:justify;hyphens:auto;padding-right:4px}
+  box-shadow:inset 0 0 44px rgba(120,90,50,.2)}
+.pages::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:4;
+  background:radial-gradient(120% 80% at 50% 50%,transparent 60%,rgba(80,55,25,.14) 100%)}
+.spine{position:absolute;top:0;bottom:0;left:50%;width:40px;transform:translateX(-50%);z-index:3;pointer-events:none;
+  background:linear-gradient(90deg,rgba(90,62,30,0),rgba(90,62,30,.16) 38%,rgba(55,36,16,.42) 50%,rgba(90,62,30,.16) 62%,rgba(90,62,30,0))}
+.ribbon{position:absolute;top:-5px;right:48px;width:15px;height:58px;z-index:6;background:linear-gradient(180deg,#a83e2e,#7d2c20);box-shadow:0 4px 7px rgba(0,0,0,.35)}
+.ribbon::after{content:"";position:absolute;bottom:-8px;left:0;border-left:7.5px solid transparent;border-right:7.5px solid transparent;border-top:8px solid #7d2c20}
+.leaf{min-height:0;overflow:auto;display:flex;flex-direction:column;padding:12px 20px 8px;position:relative;z-index:2}
+.leaf-l{box-shadow:inset -22px 0 28px -22px rgba(70,46,18,.5)}
+.leaf-r{box-shadow:inset 22px 0 28px -22px rgba(70,46,18,.5)}
+.leaf-full{grid-column:1/-1;align-items:center;text-align:center;padding:20px 14%}
+.rhead{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);
+  padding-bottom:5px;border-bottom:1px solid var(--rule);margin-bottom:9px}
+.rhead .rno{font-family:"IM Fell English",serif;font-style:italic;font-size:17px;color:var(--rubric);letter-spacing:0;text-transform:none}
+.dropcap-wrap{flex:0 1 auto;min-height:0;overflow:auto}
+.prose{font-size:15.5px;line-height:1.62;text-align:justify;hyphens:auto}
 .prose p{margin:0 0 9px}
-.prose .dropcap::first-letter{font-family:"IM Fell English",serif;font-size:2.7em;line-height:.8;float:left;padding:5px 8px 0 0;color:var(--rubric)}
+.prose .dropcap::first-letter{font-family:"IM Fell English",serif;font-size:3em;line-height:.78;float:left;padding:6px 9px 0 0;color:var(--rubric)}
 .prose em{font-style:italic;color:#5a4a30}
+.folio-no{flex:0 0 auto;margin-top:auto;padding-top:8px;font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:var(--ink-soft);text-align:center;opacity:.8}
 
-/* bouton consulter la source + panneau */
-.consult-row{flex:0 0 auto;display:flex;align-items:center;gap:10px;margin:6px 0 2px}
-.consult-btn{font-family:"IM Fell English SC",serif;letter-spacing:.06em;font-size:12px;background:#3a4a3a;color:#e7efdf;border:none;padding:8px 16px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-.consult-btn:hover{background:#2f3d2f}
-.consult-btn .ic{font-size:14px}
-.consult-hint{font-family:"IM Fell English",serif;font-style:italic;font-size:12.5px;color:#8a7350}
-.consult-done{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.05em;color:#3c6b3a}
-.source-wrap{flex:0 0 auto;display:none}
+/* consulter la source */
+.consult-row{flex:0 0 auto;display:flex;align-items:center;gap:9px;margin:9px 0 2px;flex-wrap:wrap}
+.consult-btn{font-family:"IM Fell English SC",serif;letter-spacing:.06em;font-size:11px;background:#3f3120;color:#efe2c8;border:1px solid #5a4427;padding:7px 14px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.consult-btn:hover{background:#33271a}
+.consult-btn svg{width:13px;height:13px}
+.consult-hint{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:#8a7350}
+.consult-done{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.05em;color:#3c6b3a}
+.source-wrap{flex:0 0 auto;display:none;margin-top:7px}
 
-/* la planche-source */
-.plate{display:flex;gap:13px;background:linear-gradient(180deg,#f0e8d2,#e6dabb);
-  border:1px solid var(--paper-edge);border-radius:3px;padding:10px 12px;margin:6px 0 2px;
-  box-shadow:inset 0 0 0 1px rgba(255,250,238,.5),0 3px 10px rgba(70,50,20,.14)}
-.plate-text{display:block}
-.plate-fig{flex:0 0 33%;min-width:108px;max-width:158px;border:1px solid var(--clay-edge);border-radius:2px;overflow:hidden;background:#ded2b2;position:relative;min-height:100px;display:flex}
-.plate-fig .fig-img{width:100%;height:100%;object-fit:cover;display:block}
-.fig-ph{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:9px;background:repeating-linear-gradient(45deg,#e4d8b8 0 9px,#dccfac 9px 18px);color:#7a6440}
-.fig-ph .ph-frame{position:absolute;inset:6px;border:1px solid rgba(120,90,45,.3);pointer-events:none}
-.fig-ph .ph-icon{font-size:18px;color:#9a8155;opacity:.7}
-.fig-ph .ph-name{font-family:"IM Fell English",serif;font-style:italic;font-size:12.5px;color:#5e4a2a;line-height:1.2;max-width:92%}
-.fig-ph .ph-note{font-family:"IM Fell English SC",serif;font-size:8px;letter-spacing:.06em;color:#8a7350;text-transform:uppercase}
-.plate-info{flex:1;min-width:0;display:flex;flex-direction:column}
-.plate-h{font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px;margin-bottom:5px}
-.src-tag{font-family:"EB Garamond",serif;font-size:9.5px;letter-spacing:.03em;padding:2px 8px;border-radius:2px;text-transform:none;white-space:nowrap;background:#3a4a3a;color:#e3eddb}
-.src-kind{font-family:"EB Garamond",serif;font-style:italic;font-size:10px;color:#7a6a4a;text-transform:none;letter-spacing:0}
-.plate .art{margin:0 0 3px;font-size:13px;line-height:1.4;padding:2px 6px;border-radius:2px;transition:background .15s,opacity .15s}
-.plate-text .art{font-size:13.5px}
+/* planche-illustration / document créé */
+.plate{border:1px solid var(--clay-edge);border-radius:3px;background:linear-gradient(180deg,#f2ead4,#e7dbbb);
+  padding:9px 11px;box-shadow:inset 0 0 0 1px rgba(255,250,238,.5),0 3px 9px rgba(70,50,20,.13)}
+.plate-h{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:7px}
+.plate-kind{font-family:"EB Garamond",serif;font-style:italic;font-size:9.5px;color:#7a6a4a;text-transform:none;letter-spacing:0;white-space:nowrap}
+.illus{border:1px solid var(--clay-edge);border-radius:2px;background:#efe5c8;padding:6px;display:flex;justify-content:center;align-items:center;position:relative;box-shadow:inset 0 0 0 3px #efe5c8,inset 0 0 0 4px rgba(120,90,45,.35)}
+.illus svg{width:100%;height:auto;max-height:138px;display:block}
+.scroll{font-family:"IM Fell English",serif;font-style:italic;font-size:13px;line-height:1.5;color:#3f3320;background:repeating-linear-gradient(transparent 0 22px,rgba(120,90,45,.14) 22px 23px);padding:2px 4px}
+.scroll p{margin:0 0 4px}
+.plate .art{font-size:13px;line-height:1.42;margin:6px 0 0;padding:2px 6px;border-radius:2px;transition:background .15s,opacity .15s}
 .plate .art b{color:var(--rubric);font-family:"IM Fell English",serif}
 .plate .art.hl{background:rgba(156,58,44,.16);box-shadow:inset 3px 0 0 var(--rubric)}
-.plate .art.dim{opacity:.34}
-.plate .cite{margin-top:auto;padding-top:5px;font-family:"IM Fell English",serif;font-style:italic;font-size:9.5px;color:var(--ink-soft);border-top:1px dotted var(--rule)}
+.plate .art.dim{opacity:.32}
+.plate .cite{margin-top:7px;padding-top:5px;font-family:"IM Fell English",serif;font-style:italic;font-size:9.5px;color:var(--ink-soft);border-top:1px dotted var(--rule)}
 
-/* chrono de lecture */
-.readlock{flex:0 0 auto;display:none;align-items:center;gap:10px;margin:6px 0 0;padding:5px 10px;border-radius:3px;background:rgba(120,96,52,.1);border:1px dashed var(--rule)}
-.readlock .rl-txt{font-family:"IM Fell English",serif;font-style:italic;font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+.readlock{flex:0 0 auto;display:none;align-items:center;gap:9px;margin-top:7px;padding:5px 10px;border-radius:3px;background:rgba(120,96,52,.1);border:1px dashed var(--rule)}
+.readlock .rl-txt{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:var(--ink-soft);white-space:nowrap}
 .readlock .rl-num{font-family:"IM Fell English",serif;color:var(--rubric);font-style:normal}
 .readlock .rl-bar{flex:1;height:5px;background:rgba(120,96,52,.18);border-radius:3px;overflow:hidden}
 .readlock .rl-bar i{display:block;height:100%;width:0;background:var(--rubric);transition:width 1s linear}
 
-.consigne{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:14px;color:var(--ink-soft);margin:8px 0 2px}
-.renvois{flex:0 0 auto;border-top:1px solid var(--rule);padding-top:5px;margin-top:5px;overflow:auto}
-.renvoi{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:6px 6px;font-family:"EB Garamond",serif;font-size:14.5px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px}
-.renvoi:hover:not(:disabled){background:rgba(156,58,44,.08)}
+/* page de droite : décision */
+.consigne{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:16px;color:var(--rubric);margin-bottom:3px}
+.locknote{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11.5px;color:#8a6a44;margin:2px 0 4px}
+.renvois{flex:0 1 auto;min-height:0;overflow:auto;border-top:1px solid var(--rule);padding-top:4px;margin-top:4px}
+.renvoi{display:flex;gap:9px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:7px 4px;font-family:"EB Garamond",serif;font-size:15px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px;border-bottom:1px dotted rgba(120,90,45,.3)}
+.renvoi:last-child{border-bottom:none}
+.renvoi:hover:not(:disabled){background:rgba(156,58,44,.07)}
 .renvoi:focus-visible{outline:2px solid var(--rubric);outline-offset:1px}
-.renvoi .lt{display:flex;flex-direction:column;gap:3px;align-items:flex-start;flex:1}
-.renvoi .ebs{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.renvoi .lt{display:flex;flex-direction:column;gap:4px;align-items:flex-start;flex:1;min-width:0}
 .renvoi .go{font-family:"IM Fell English",serif;font-style:italic;color:var(--rubric);font-size:13px;white-space:nowrap;padding-top:2px}
-.eb{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.02em;padding:1px 6px;border-radius:2px;white-space:nowrap}
+.renvoi:disabled{cursor:not-allowed;opacity:.6}
+.renvoi.burned{opacity:.5}.renvoi.burned .go{color:#b04a3a}
+.ebs{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.eb{display:inline-flex;align-items:center;gap:4px;font-family:"IM Fell English SC",serif;font-size:9px;line-height:1.25;letter-spacing:.02em;padding:2px 7px;border-radius:2px;white-space:nowrap}
+.eb .dico{width:11px;height:11px;flex:0 0 auto}
 .eb.pos{color:#2e4a2e;background:rgba(58,90,40,.14);border:1px solid rgba(58,90,40,.32)}
 .eb.neg{color:#8a2e22;background:rgba(156,58,44,.12);border:1px solid rgba(156,58,44,.3)}
-.eb.seal{color:#6a4a1e;background:rgba(156,120,40,.14);border:1px solid rgba(120,90,40,.32)}
-.eb.die{color:#7a4a1e;background:rgba(156,90,34,.16);border:1px solid rgba(156,90,34,.4);font-style:normal}
+.eb.seal{color:#6a4a1e;background:rgba(156,120,40,.13);border:1px solid rgba(120,90,40,.32)}
+.eb.die{color:#7a4a1e;background:rgba(156,90,34,.15);border:1px solid rgba(156,90,34,.4)}
 .eb.law{color:#2e4a2e;background:rgba(58,74,58,.12);border:1px solid rgba(58,74,58,.3)}
-.eb.law.none{color:#6a4a1e;background:rgba(156,90,34,.1)}
-.eb.dim{opacity:.5}
-.renvoi:disabled{cursor:not-allowed;opacity:.62}
-.renvoi.burned{opacity:.5}.renvoi.burned .go{color:#b04a3a}
-.locknote{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11.5px;color:#8a6a44;margin-top:3px}
+.eb.law.none{color:#6a4a1e;background:rgba(156,90,34,.1);border-color:rgba(156,90,34,.3)}
+.eb.dim{opacity:.55}
 
-.dice-zone{flex:0 0 auto;min-height:46px;margin-top:6px;border:1px solid var(--paper-edge);border-radius:3px;background:repeating-linear-gradient(135deg,rgba(120,96,52,.05) 0 6px,transparent 6px 12px),var(--paper-2);display:none;align-items:center;padding:7px 13px}
+.dice-zone{flex:0 0 auto;min-height:0;margin-top:6px;border:1px solid var(--paper-edge);border-radius:3px;background:repeating-linear-gradient(135deg,rgba(120,96,52,.05) 0 6px,transparent 6px 12px),var(--paper-2);display:none;align-items:center;padding:7px 12px}
 .dice-zone.show{display:flex}
-.dz-live{display:flex;align-items:center;gap:11px;width:100%;flex-wrap:wrap}
-.dz-live .target{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.03em;color:var(--ink-soft);max-width:200px;line-height:1.3}
-.dz-live .target b{font-family:"IM Fell English",serif;font-style:italic;color:var(--rubric);font-size:13px}
-.die{width:29px;height:29px;border:1.6px solid var(--ink);border-radius:5px;background:var(--paper);display:grid;place-items:center;font-family:"IM Fell English",serif;font-size:17px;color:var(--ink)}
+.dz-live{display:flex;align-items:center;gap:10px;width:100%;flex-wrap:wrap}
+.dz-live .target{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.03em;color:var(--ink-soft);max-width:210px;line-height:1.3}
+.dz-live .target b{font-family:"IM Fell English",serif;font-style:italic;color:var(--rubric);font-size:12.5px}
+.die{width:28px;height:28px;border:1.6px solid var(--ink);border-radius:5px;background:var(--paper);display:grid;place-items:center;font-family:"IM Fell English",serif;font-size:16px;color:var(--ink)}
 .die.roll{animation:tumble .5s ease}
 @keyframes tumble{0%{transform:rotate(-14deg) scale(.8)}55%{transform:rotate(12deg) scale(1.1)}100%{transform:none}}
-.btn-ink{font-family:"IM Fell English SC",serif;letter-spacing:.07em;font-size:11.5px;background:var(--ink);color:var(--paper);border:none;padding:7px 13px;border-radius:3px;cursor:pointer;white-space:nowrap}
+.btn-ink{font-family:"IM Fell English SC",serif;letter-spacing:.07em;font-size:11px;background:var(--ink);color:var(--paper);border:none;padding:7px 13px;border-radius:3px;cursor:pointer;white-space:nowrap}
 .btn-ink:hover{background:#000}.btn-ink:disabled{opacity:.5}
+.verdict{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;line-height:1.25;flex:1 1 100%}
+.verdict.ok{color:#3c6b3a}.verdict.no{color:var(--rubric)}
 
-/* pop-up d'impact */
+/* fin */
+.fin-title{font-family:"IM Fell English",serif;font-style:italic;font-size:26px;color:var(--rubric);margin:6px 0 10px}
+.fin-prose{font-size:15.5px;line-height:1.6;text-align:justify;max-width:46ch}
+.fin-bilan{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin:14px 0 4px}
+.restart{margin-top:14px;font-family:"IM Fell English SC",serif;letter-spacing:.08em;font-size:12px;background:var(--rubric);color:#f6e7d8;border:none;padding:10px 22px;border-radius:3px;cursor:pointer}
+
+/* pop-up impact */
 .modal{position:fixed;inset:0;background:rgba(20,16,12,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:40}
 .modal.show{display:flex}
 .modal-card{width:min(440px,100%);background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:20px 24px;box-shadow:0 30px 80px rgba(0,0,0,.6);position:relative}
@@ -122,11 +142,10 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .modal-verdict{text-align:center;font-family:"IM Fell English",serif;font-style:italic;font-size:13px;margin-bottom:6px}
 .modal-verdict.ok{color:#3c6b3a}.modal-verdict.no{color:var(--rubric)}
 
-/* tablette — feuille du roi repensée */
+/* ---------- TABLETTE ---------- */
 .tablet{height:100%;min-height:0;overflow:hidden;display:flex;flex-direction:column;
-  background:linear-gradient(165deg,var(--clay-1),var(--clay-2));
-  border:1px solid var(--clay-edge);border-radius:5px;padding:11px 14px;color:var(--clay-ink);
-  box-shadow:0 16px 44px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,245,220,.35),inset 0 0 40px rgba(80,50,15,.18);position:relative}
+  background:linear-gradient(165deg,var(--clay-1),var(--clay-2));border:1px solid var(--clay-edge);border-radius:5px;padding:11px 14px;color:var(--clay-ink);
+  box-shadow:0 18px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,245,220,.35),inset 0 0 40px rgba(80,50,15,.18);position:relative}
 .wedge{flex:0 0 auto;height:8px;display:flex;gap:5px;justify-content:center;opacity:.45;margin-bottom:4px}
 .wedge i{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:7px solid var(--clay-edge)}
 .t-head{flex:0 0 auto;display:flex;align-items:center;gap:10px;margin-bottom:6px}
@@ -137,26 +156,27 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .t-sect{flex:0 0 auto;font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.11em;color:#5f421e;margin:7px 0 4px;display:flex;align-items:center;gap:8px}
 .t-sect::after{content:"";flex:1;height:1px;background:rgba(95,66,30,.45)}
 .qualites{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.qual{border:1.6px solid var(--clay-edge);border-radius:8px;padding:5px 6px;background:radial-gradient(circle at 30% 25%,rgba(255,245,220,.4),rgba(150,110,55,.14));display:flex;align-items:center;justify-content:space-between;transition:box-shadow .35s,transform .35s}
+.qual{border:1.6px solid var(--clay-edge);border-radius:8px;padding:5px 7px;background:radial-gradient(circle at 30% 25%,rgba(255,245,220,.4),rgba(150,110,55,.14));display:flex;align-items:center;justify-content:space-between;transition:box-shadow .35s,transform .35s}
 .qual.flash{box-shadow:0 0 0 3px rgba(156,90,34,.55);transform:scale(1.03)}
-.qual .l{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.02em;color:#5f421e;line-height:1.05}
-.qual .v{font-family:"IM Fell English",serif;font-size:23px;color:#42300f;line-height:.9}
+.qual .l{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.02em;color:#5f421e;line-height:1.05}
+.qual .v{font-family:"IM Fell English",serif;font-size:22px;color:#42300f;line-height:.9}
 .meters{flex:0 0 auto;display:flex;gap:8px;margin-top:6px}
 .meter{flex:1;display:flex;align-items:center;gap:7px;background:rgba(255,245,220,.16);border:1px solid var(--clay-edge);border-radius:3px;padding:5px 8px;transition:box-shadow .35s}
 .meter.flash{box-shadow:0 0 0 3px rgba(156,90,34,.5)}
 .meter svg{width:17px;height:17px;flex:0 0 auto}
-.meter .cl{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.03em;color:#5f421e;display:block;line-height:1.1}
+.meter .cl{font-family:"IM Fell English SC",serif;font-size:8.5px;letter-spacing:.03em;color:#5f421e;display:block;line-height:1.1}
 .meter .cv{font-family:"IM Fell English",serif;font-size:18px;color:#42300f;line-height:1}
 .seals{flex:1 1 auto;min-height:0;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0 12px;align-content:start}
-.seal{display:flex;align-items:center;gap:6px;font-size:11.5px;color:#92763f;padding:0}
-.seal .dot{width:11px;height:11px;border-radius:50%;border:1.4px solid #92763f;flex:0 0 auto;background:rgba(255,245,220,.1)}
+.seal{display:flex;align-items:center;gap:6px;font-size:11px;color:#92763f;padding:0}
+.seal .dot{width:10px;height:10px;border-radius:50%;border:1.4px solid #92763f;flex:0 0 auto;background:rgba(255,245,220,.1)}
 .seal.on{color:var(--clay-ink)}.seal.on .dot{background:var(--ochre);border-color:#6e3c12;box-shadow:0 0 0 2px rgba(156,90,34,.22)}
-.registre{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11.5px;color:#543d18;line-height:1.4;border-top:1px solid rgba(95,66,30,.45);padding-top:5px;margin-top:5px;min-height:40px}
+.registre{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11px;color:#543d18;line-height:1.4;border-top:1px solid rgba(95,66,30,.45);padding-top:5px;margin-top:5px;min-height:38px}
 .registre .e{display:block}.registre .e.flash{animation:litreg 1.1s ease}
 @keyframes litreg{0%{color:var(--rubric)}100%{color:#543d18}}
 
-.frontis{position:fixed;inset:0;background:rgba(20,16,12,.93);display:flex;align-items:center;justify-content:center;padding:14px;z-index:30}
-.fcard{width:min(520px,100%);max-height:96vh;overflow:hidden;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:18px 26px 20px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+/* frontispice */
+.frontis{position:fixed;inset:0;background:rgba(18,13,9,.94);display:flex;align-items:center;justify-content:center;padding:14px;z-index:30}
+.fcard{width:min(520px,100%);max-height:96vh;overflow:auto;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:18px 26px 20px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .fcard .wm{font-family:"IM Fell English SC",serif;font-size:32px;letter-spacing:.1em;color:var(--rubric);text-align:center;margin:0;line-height:1}
 .fcard .k{font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;text-align:center;margin:1px 0 9px}
 .fcard h2{font-family:"IM Fell English",serif;font-style:italic;font-size:21px;margin:0 0 6px;color:var(--ink)}
@@ -173,17 +193,22 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .roll-stats .rs .v{font-family:"IM Fell English",serif;font-size:24px;color:#42300f;line-height:1}
 .fcta{width:100%;padding:11px;border:none;border-radius:3px;background:var(--rubric);color:#f6e7d8;font-family:"IM Fell English SC",serif;font-size:13px;letter-spacing:.1em;cursor:pointer}
 .fcta:hover{filter:brightness(1.07)}
-@media(max-width:880px){
+@media(max-width:900px){
   html,body{overflow:auto;height:auto}body{min-height:100%}
-  .spread{grid-template-columns:1fr}.book,.tablet{height:auto;min-height:0}.tablet{order:-1}
-  .prose,.seals,.renvois{overflow:visible}
+  .stage{grid-template-columns:1fr}.book,.tablet{height:auto;min-height:0}.tablet{order:-1}
+  .pages{grid-template-columns:1fr}.spine,.ribbon{display:none}
+  .leaf-r{box-shadow:none;border-top:1px solid var(--rule)}
+  .dropcap-wrap,.renvois,.seals{overflow:visible}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
 <body>
 <div class="topbar"><b>Lugal</b><span>un livre dont vous êtes le roi — Mésopotamie</span><span class="progress" id="progress"></span></div>
-<div class="spread"><section class="book" id="book"></section><aside class="tablet" id="tablet"></aside></div>
+<div class="stage">
+  <section class="book"><div class="ribbon"></div><div class="pages" id="pages"></div></section>
+  <aside class="tablet" id="tablet"></aside>
+</div>
 
 <div class="frontis" id="frontis">
   <div class="fcard">
@@ -196,7 +221,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
     <div class="frow"><label>Ta cité</label><input id="cite" maxlength="16" value="Eridu"></div>
     <span class="flabel">Tes qualités de roi (tirées aux dés)</span>
     <div class="roll-stats" id="rolls"></div>
-    <button class="fcta" id="begin">Monter sur le trône — §1</button>
+    <button class="fcta" id="begin">Ouvrir le livre — §1</button>
   </div>
 </div>
 
@@ -207,8 +232,10 @@ const READ_LOCK=6;
 const EMBLEME=`<svg viewBox="0 0 40 40" fill="none" stroke="#5e451f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 34q-4-18 8-22"/><circle cx="22" cy="14" r="7"/><path d="M15 9l3-6 3 5 3-6 3 6 3-5 3 6"/><path d="M19 17q3 3 7 1"/></svg>`;
 const ICO_PROSP=`<svg viewBox="0 0 20 20" fill="none" stroke="#5f421e" stroke-width="1.4"><rect x="3" y="7" width="14" height="9" rx="1.5"/><path d="M3 10h14M10 7V5"/></svg>`;
 const ICO_RAYON=`<svg viewBox="0 0 20 20" fill="none" stroke="#5f421e" stroke-width="1.4"><path d="M3 16h14l-3-4H6zM6 12l2-3h4l2 3M9 9l1-2 1 2"/></svg>`;
+const SCROLL=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="2.5" width="10" height="11" rx="1.5"/><path d="M5.5 6h5M5.5 9h5M5.5 12h3"/></svg>`;
+const DICO=`<svg class="dico" viewBox="0 0 16 16" fill="none" stroke="#7a4a1e" stroke-width="1.3"><rect x="2.5" y="2.5" width="11" height="11" rx="2.2"/><circle cx="6" cy="6" r="1" fill="#7a4a1e"/><circle cx="10" cy="10" r="1" fill="#7a4a1e"/><circle cx="10" cy="6" r="1" fill="#7a4a1e"/><circle cx="6" cy="10" r="1" fill="#7a4a1e"/></svg>`;
+const RESTART_IC=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8a5 5 0 1 1 1.6 3.7"/><path d="M3 5v3h3"/></svg>`;
 
-/* qualités du roi (haut) + état de la civilisation (bas) */
 const QUALITES=["autorite","sagesse","piete","legitimite"];
 const METRES=["prosperite","rayonnement"];
 const LAB={autorite:"Autorité",sagesse:"Sagesse",piete:"Piété",legitimite:"Légitimité",prosperite:"Prospérité",rayonnement:"Rayonnement"};
@@ -216,39 +243,71 @@ const SCEAUX_ORDRE=["Écriture adoptée","Temple puissant","Sans écriture","Cod
 let F=null;
 const nouvelle=()=>({nom:"Ur-Nammu",genre:"roi",cite:"Eridu",autorite:0,sagesse:0,piete:0,legitimite:0,prosperite:4,rayonnement:1,sceaux:new Set(),registre:[],noeud:"n01"});
 const d6=()=>1+Math.floor(Math.random()*6);
+function pReussite(stat,seuil){const besoin=seuil-(stat-9);let f=0;for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if(a+b>=besoin)f++;return Math.round(100*f/36);}
 
-/* probabilité de réussite d'une épreuve : 2 dés + (stat-9) >= seuil */
-function pReussite(stat,seuil){
-  const mod=stat-9,besoin=seuil-mod; // 2d6 >= besoin
-  let f=0;for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)if(a+b>=besoin)f++;
-  return Math.round(100*f/36);
-}
-
-const IMG="assets/img/sources/";
+/* ===== SOURCES — toutes créées pour Lugal (illustrations originales et documents composés) ===== */
+const ILLUS="Illustration originale";const DOC="Document composé pour Lugal";
+const SS='fill="none" stroke="#3a2c18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
 const SRC={
-  carte:{h:"Hydrographie du Croissant fertile",img:IMG+"carte-croissant.png",arts:["Entre le Tigre et l'Euphrate, une mince bande de terres irrigables — autour, le désert. L'eau décide de tout."],cite:"Banque HEC · carte d'après D-Maps."},
-  fleuves:{h:"Le bassin du Tigre et de l'Euphrate",img:IMG+"carte-fleuves.png",arts:["Deux fleuves capricieux : leur crue, imprévisible, fertilise ou ravage. Sans maîtrise de l'eau, pas de cité."],cite:"Banque HEC · K. Musser, Wikimedia Commons, CC BY-SA 2.5 · texte RÉCIT."},
-  dattes:{h:"L'agriculture du Croissant fertile",img:IMG+"dattes.png",arts:["Orge, blé, dattes : l'irrigation rend la terre « variée et abondante ». Le surplus agricole nourrit la cité."],cite:"Banque HEC · S. Shebs, Wikimedia Commons, domaine public · texte RÉCIT."},
-  calculi:{h:"Bulle-enveloppe et calculi",img:IMG+"calculi.png",arts:["Avant l'écriture, des jetons d'argile (calculi) scellés dans une bulle servent à compter les marchandises."],cite:"Banque HEC · musée du Louvre · photo F. Raux, CC BY-NC 3.0 · texte RÉCIT."},
-  pictogrammes:{h:"Des pictogrammes à l'écriture cunéiforme",img:IMG+"pictogrammes.png",arts:["Vers 3500 av. J.-C., les Sumériens tracent sur l'argile des signes pour les nombres et les choses : l'écriture naît du besoin de compter."],cite:"Banque HEC · Svdmolen, Wikimedia Commons, domaine public · texte RÉCIT."},
-  lagash:{h:"Tablette de comptabilité de Lagash",img:IMG+"tablette-lagash.png",arts:["Les archives du temple de Ba'u enregistrent grain, bétail et journées de travail : l'État se gouverne par l'écrit."],cite:"Banque HEC · temple de Ba'u, Lagash · musée du Louvre · photo M.-L. Nguyen 2011, Wikimedia Commons, domaine public."},
-  sceau:{h:"Sceau-cylindre de la période d'Uruk",img:IMG+"sceau.png",arts:["Roulé sur l'argile fraîche, le sceau-cylindre signe contrats et ordres officiels : la marque de l'autorité."],cite:"Banque HEC · photo M.-L. Nguyen, Wikimedia Commons, CC BY 3.0 · texte RÉCIT."},
-  animisme:{h:"Des croyances animistes",img:IMG+"animisme.png",arts:["Avant les grands dieux, les peuples prêtent une âme aux arbres, aux rivières, aux animaux."],cite:"Banque HEC · Musée des civilisations anatoliennes · N. Dilmen, Wikimedia Commons, CC BY-SA 3.0 · texte RÉCIT."},
-  ziggourat:{h:"La ziggourat d'Ur",img:IMG+"ziggourat.png",arts:["La haute terrasse à degrés élève le dieu vers le ciel : le temple domine la cité — et ses prêtres avec lui."],cite:"Banque HEC · reconstitution · wikiwikiyarou, Wikimedia Commons, domaine public."},
-  cadastre:{h:"Texte de cadastre (v. 1800 av. J.-C.)",img:IMG+"cadastre.png",arts:["Un cadastre akkadien fixe par écrit les limites des champs : la propriété se prouve — donc se conteste devant le roi."],cite:"Banque HEC · O. S. M. Amin, Wikimedia Commons, CC BY-SA 4.0."},
-  hammurabi:{h:"Stèle du Code d'Hammourabi",img:IMG+"hammourabi.png",arts:[
-    {id:"a53",ref:"§53-55",txt:"qui néglige sa digue restitue le blé ; sinon, on vend sa personne."},
-    {id:"a229",ref:"§229-230",txt:"l'ouvrage qui s'écroule et <em>tue</em> appelle la mort de son auteur."},
-    {id:"a196",ref:"§196/200",txt:"œil pour œil — peine graduée selon le rang."},
-    {id:"a2",ref:"§2",txt:"à défaut de preuve, le dieu-fleuve juge."}],
-    cite:"Banque HEC · v. 1750 av. J.-C., musée du Louvre · Wikimedia Commons, domaine public · trad. Imbert, Sautel & Bordet-Sautet, 1963."},
-  codeTexte:{h:"Le Code d'Hammourabi — 282 articles",img:null,arts:["Une stèle de plus de deux mètres grave 282 lois : droit pénal, commerce, famille, salaires. Rendre la loi visible, c'est l'imposer à tous."],cite:"Banque HEC · trad. dans Imbert, Sautel & Bordet-Sautet, 1963."},
-  commerce:{h:"Le commerce international",img:null,arts:["« Le commerce est né dans les vallées du Nil, du Jourdain et de l'Euphrate. » Lapis, cèdre, cuivre voyagent sur des milliers de kilomètres."],cite:"Banque HEC · A. J. Barbosa Lima Sobrinho, Le Courrier de l'UNESCO, 1984."},
-  barque:{h:"Le déplacement fluvial",img:IMG+"barque.png",arts:["Sur le Tigre et l'Euphrate, la barque porte grain et marchandises : le fleuve est la grande route de la cité."],cite:"Banque HEC · modèle de barque, Jemdet Nasr (v. 3000 av. J.-C.) · Zunkir, Wikimedia Commons, CC BY-SA 4.0 · texte RÉCIT."},
-  etendard:{h:"L'Étendard d'Ur",img:IMG+"etendard.png",arts:["Deux faces, deux destins : sur l'une, le banquet de la paix ; sur l'autre, la guerre et les prisonniers. Le roi choisit son visage."],cite:"Banque HEC · « face de la paix », v. 2500 av. J.-C. · Wikimedia Commons, domaine public."},
-  ishtar:{h:"La porte d'Ishtar de Babylone",img:IMG+"porte-ishtar.png",arts:["Briques vernissées, dragons et taureaux : Babylone éblouit pour proclamer la puissance de son roi et de ses dieux."],cite:"Banque HEC · Pergamonmuseum · Wikimedia Commons, CC SA 1.0."},
-  gilgamesh:{h:"L'Épopée de Gilgamesh",img:null,arts:["« Je vais te révéler un mystère, le secret des dieux… » Le plus ancien grand récit du monde cherche déjà l'immortalité par la mémoire."],cite:"Banque HEC · trad. Bottéro & Kramer, 1989."},
-  deluge:{h:"La Tablette du Déluge",img:IMG+"deluge.png",arts:["Gravée en cunéiforme, l'histoire d'un déluge envoyé par les dieux — mille ans avant la Bible. L'écrit sauve le récit de l'oubli."],cite:"Banque HEC · VIIᵉ s. av. J.-C., British Museum · photo BabelStone 2010, Wikimedia Commons, domaine public."}
+  carte:{h:"Une cité entre deux fleuves",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><g stroke="#b29a64" stroke-width="1"><path d="M10 12l12 12M26 12l12 12M178 14l10 10M194 16l10 10M10 106l12 12M188 102l10 10"/></g><path d="M40 18 C72 44,80 62,116 76 C150 88,172 104,196 120" stroke="#2f6f86" stroke-width="3"/><path d="M86 14 C100 42,104 60,118 74" stroke="#2f6f86" stroke-width="3"/><path d="M54 32 C86 54,94 72,128 86 C154 96,170 108,188 120" stroke="#5a8a5a" stroke-width="2" stroke-dasharray="2 5"/><circle cx="117" cy="76" r="5.5" fill="#9c3a2c" stroke="none"/><path d="M117 70v-9M114 64h7v5h-7" stroke="#9c3a2c"/></svg>`,
+    arts:["Entre deux fleuves court une mince bande de terres fertiles ; tout autour, le désert. En Mésopotamie, l'eau décide où une cité peut naître."]},
+  fleuves:{h:"La crue, qui féconde ou qui noie",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M72 8 C86 40,86 72,98 124" stroke="#2f6f86" stroke-width="3"/><path d="M150 8 C142 40,152 72,140 124" stroke="#2f6f86" stroke-width="3"/><g stroke="#2f6f86" stroke-width="1.4"><path d="M36 52 q8 -6 16 0 q8 6 16 0"/><path d="M36 66 q8 -6 16 0 q8 6 16 0"/><path d="M154 56 q8 -6 16 0 q8 6 16 0"/><path d="M160 72 q8 -6 16 0 q8 6 16 0"/></g><path d="M98 124 q12 -9 26 0 q12 9 20 0" stroke="#2f6f86" stroke-width="2"/></svg>`,
+    arts:["Le Tigre et l'Euphrate nourrissent la plaine, mais leur crue est imprévisible : elle féconde les champs une année, les noie la suivante. Maîtriser l'eau, c'est maîtriser la vie."]},
+  dattes:{h:"Le surplus des champs irrigués",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M110 122 C108 92,108 72,110 54" stroke-width="2.4"/><g stroke-width="1.7"><path d="M110 54 C92 44,78 46,62 38"/><path d="M110 54 C128 44,142 46,158 38"/><path d="M110 56 C96 52,84 56,68 56"/><path d="M110 56 C124 52,136 56,152 56"/><path d="M110 58 C100 62,92 68,80 72"/><path d="M110 58 C120 62,128 68,140 72"/></g><g stroke="#9c5a22" stroke-width="2"><path d="M104 60v3M116 60v3M110 64v3"/></g><g stroke="#8a7450" stroke-width="1"><path d="M18 110h184M18 118h184"/><path d="M44 104v22M86 104v22M134 104v22M176 104v22"/></g></svg>`,
+    arts:["Irriguée, la plaine donne l'orge, le blé et la datte. C'est le surplus de ces récoltes qui, pour la première fois, libère des bras pour d'autres métiers — artisans, prêtres, scribes."]},
+  calculi:{h:"Compter avant d'écrire",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><circle cx="80" cy="72" r="34"/><path d="M80 38 a34 34 0 0 1 0 68" stroke-dasharray="3 5"/><g stroke="#9c5a22"><circle cx="74" cy="66" r="3"/><circle cx="88" cy="74" r="3"/><path d="M72 84l6 -6 4 6z"/></g><g><circle cx="156" cy="48" r="7"/><path d="M150 84l16 -12 6 14z"/><rect x="150" y="92" width="18" height="11" rx="1"/></g></svg>`,
+    arts:["Avant l'écriture, on compte avec de petits jetons d'argile scellés dans une boule creuse : un jeton pour une marchandise. La comptabilité précède la lettre."]},
+  pictogrammes:{h:"La naissance de l'écriture",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="48" y="18" width="124" height="96" rx="9"/><g stroke-width="1.2"><path d="M66 40l7 4 -7 4M80 40l7 4 -7 4M94 38v10M108 40l-7 4 7 4M122 38v10"/><path d="M66 60l7 4 -7 4M80 58v10M94 60l7 4 -7 4M110 58l-7 4 7 4M124 60v8"/><path d="M66 80l7 4 -7 4M80 78v10M96 80l7 4 -7 4M110 80v8M124 78v10"/><path d="M66 98l7 4 -7 4M80 100l7 4 -7 4M96 96v10M110 100l-7 4 7 4"/></g></svg>`,
+    arts:["Du dessin au signe en forme de clou : l'écriture naît du besoin de noter des comptes, puis sert bientôt à fixer lois, récits et savoirs — et à transmettre un nom à travers les siècles."]},
+  sceau:{h:"Le sceau-cylindre, signature de l'autorité",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="42" y="44" width="26" height="56" rx="13"/><path d="M46 54h18M46 64h18M46 74h18M46 84h18M46 94h18" stroke-width="1"/><path d="M55 44v-8M55 100v8"/><rect x="92" y="50" width="102" height="46" rx="2" stroke-width="1.3"/><g stroke-width="1.2"><path d="M104 62a6 6 0 1 1 -0.1 0M122 86l6-16 6 16M142 62v22M142 62l10 6-10 6M168 60a8 8 0 0 1 0 16"/></g></svg>`,
+    arts:["Roulé sur l'argile fraîche, le sceau-cylindre imprime une frise unique : il signe contrats et ordres officiels. Posséder un sceau, c'est détenir une part de l'autorité."]},
+  animisme:{h:"L'âme des choses",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M84 122 C82 98,82 80,86 60" stroke-width="2.4"/><path d="M86 60 C70 50,60 56,48 46M86 60 C104 50,116 54,130 44M86 66 C76 72,64 72,56 68M86 66 C100 72,114 70,126 66"/><circle cx="83" cy="54" r="2.4" fill="#3a2c18" stroke="none"/><circle cx="92" cy="56" r="2.4" fill="#3a2c18" stroke="none"/><path d="M84 62 q4 4 9 0"/><path d="M156 40 q10 8 0 16 q-10 8 0 16 q10 8 0 16" stroke="#2f6f86" stroke-width="2"/></svg>`,
+    arts:["Avant les grands dieux, les peuples prêtent une âme aux arbres, aux rivières, aux animaux. La religion accompagne l'humanité dès ses premiers villages."]},
+  ziggourat:{h:"La ziggourat, montagne des dieux",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M36 120h148"/><path d="M56 120v-22h108v22M72 98v-20h76v20M86 78v-18h48v18M98 60v-14h24v14M104 46v-8h12v8M110 38v-6"/><path d="M110 120v-22" stroke-width="1" stroke-dasharray="3 3"/><path d="M94 120l8 -22M126 120l-8 -22" stroke-width="1"/></svg>`,
+    arts:["La haute terrasse à degrés élève le temple vers le ciel : elle proclame la puissance de la cité et de ses dieux — et celle des prêtres qui la desservent."]},
+  cadastre:{h:"Borner les champs par l'écrit",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="34" y="22" width="152" height="88" rx="2"/><path d="M84 22v88M134 22v88M34 56h152M34 82h152" stroke-width="1.1"/><g stroke="#9c5a22" stroke-width="1.2"><path d="M44 34l30 12M150 36l28 -8M44 96l30 8"/></g><g stroke-width="1"><path d="M58 40v8M104 66v10M150 92v9"/></g></svg>`,
+    arts:["Fixer par écrit les limites des champs fait du registre l'arbitre des querelles : la propriété se prouve, donc se conteste devant le roi. L'écrit remplace peu à peu l'arbitraire."]},
+  hammurabi:{h:"La stèle des lois",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M84 124 V46 a26 26 0 0 1 52 0 V124 Z"/><path d="M84 62h52M84 76h52M84 90h52M84 104h52" stroke-width="1"/><g stroke="#9c3a2c" stroke-width="1"><path d="M97 36a6 6 0 0 1 26 0"/><path d="M105 32v8M115 32v8"/></g><g stroke-width="1"><path d="M90 68h12M108 68h22M90 82h22M118 82h12M90 96h10M104 96h26M90 110h26M122 110h8"/></g></svg>`,
+    arts:[
+      {id:"a229",ref:"loi du talion",txt:"qui cause une mort répond de sa propre vie : « œil pour œil »."},
+      {id:"a53",ref:"loi de restitution",txt:"qui néglige son ouvrage répare le dommage et indemnise la victime."},
+      {id:"a2",ref:"jugement par le fleuve",txt:"faute de preuve et de témoin, on s'en remet à l'épreuve du fleuve."},
+      {ref:"peine graduée",txt:"la sanction varie selon le rang de l'offenseur et de la victime."}]},
+  barque:{h:"Le fleuve, grande route de la cité",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M52 80 C70 98,150 98,168 80 C150 88,70 88,52 80 Z"/><path d="M60 82 C66 72,154 72,160 82" stroke-width="1"/><path d="M110 80 V50"/><path d="M110 50 l26 9 -26 7 Z"/><g stroke="#2f6f86" stroke-width="1.4"><path d="M28 104 q10 -6 20 0 q10 6 20 0 q10 -6 20 0 q10 6 20 0 q10 -6 20 0 q10 6 20 0 q10 -6 20 0"/></g></svg>`,
+    arts:["Sur le Tigre et l'Euphrate, la barque porte le grain, le bois et la pierre. La cité qui maîtrise le transport fluvial commande la richesse de toute la région."]},
+  etendard:{h:"Les deux visages du roi",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="38" y="26" width="144" height="80" rx="2"/><path d="M38 66h144" stroke-width="1.2"/><g stroke-width="1.2"><circle cx="68" cy="46" r="5"/><circle cx="94" cy="46" r="5"/><circle cx="120" cy="46" r="5"/><path d="M62 53h12M88 53h12M114 53h12M150 40v14M158 40v14M166 40v14"/></g><g stroke-width="1.2"><path d="M60 96v-10l8 6 8 -6v10M96 86v10M96 86l8 6M118 86v10l8 -8M150 84l9 7 9 -7v10"/></g></svg>`,
+    arts:["L'étendard montre deux faces : sur l'une, le banquet et l'alliance ; sur l'autre, la guerre et les prisonniers. Le roi choisit lequel sera le sien — et en paie le prix."]},
+  ishtar:{h:"La porte qui éblouit",kind:ILLUS,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M62 120V58 a48 48 0 0 1 96 0 V120"/><path d="M84 120V72 a26 26 0 0 1 52 0 V120"/><g stroke-width="1"><path d="M62 84h22M136 84h22M62 102h22M136 102h22M70 64l10 6M150 64l-10 6"/></g><g stroke-width="1.2"><path d="M98 98 q6 -8 15 -4 q9 4 13 -2M104 102l4 7M118 100l4 7"/></g></svg>`,
+    arts:["Briques vernissées, dragons et taureaux : une grande cité éblouit pour proclamer la puissance de son roi et de ses dieux. La monumentalité est un langage politique."]},
+
+  lagash:{h:"Un registre de grenier",kind:DOC,
+    doc:["Mois des moissons, troisième année du règne.","Au grenier du palais : 240 mesures d'orge reçues ; 30 versées en rations aux ouvriers du canal ; 12 portées au temple.","Reste en réserve : 198 mesures. Scellé par la main du scribe."],
+    arts:["Reconstitution d'un registre de grenier : l'État se gouverne par l'écrit. Tout ce qui entre et sort est noté, pesé, scellé — l'écriture rend l'impôt et l'administration possibles."]},
+  codeTexte:{h:"Des lois gravées dans la pierre",kind:DOC,
+    doc:["Si un homme rompt sa digue et inonde le champ d'autrui, il mesurera le grain perdu et le rendra.","Si un batelier perd par négligence la barque qu'on lui confie, il en paiera la valeur.","Que ces lois demeurent gravées, afin que le fort n'opprime pas le faible."],
+    arts:["Lois reconstituées dans l'esprit des grands codes mésopotamiens : rendre la règle visible de tous, c'est l'imposer même au puissant — et la faire survivre à son auteur."]},
+  commerce:{h:"La lettre d'un marchand",kind:DOC,
+    doc:["À mon frère, salut. La caravane est rentrée des montagnes.","J'ai troqué vingt ballots de laine contre du cuivre, du bois de cèdre et trois pierres bleues pour le temple.","Envoie de l'orge avant la crue, car les routes seront bientôt coupées."],
+    arts:["Lettre de marchand reconstituée : c'est par ces échanges lointains que la cité obtient le bois, le métal et les pierres précieuses que sa plaine ne produit pas."]},
+  gilgamesh:{h:"Le roi et l'immortalité",kind:DOC,
+    doc:["Le roi voulait ne jamais mourir.","Un vieux sage lui dit : « Tes murs tomberont, ton corps deviendra poussière.","Mais ton nom, gravé dans l'argile, lui, traversera les siècles. »"],
+    arts:["Récit composé dans l'esprit des grandes épopées mésopotamiennes : très tôt, les hommes ont cherché l'immortalité non dans la chair, mais dans la mémoire écrite."]},
+  deluge:{h:"La mémoire du déluge",kind:DOC,
+    doc:["Les dieux, dit-on, envoyèrent jadis un déluge sur la plaine.","Les eaux montèrent sept jours et sept nuits et engloutirent les cités.","Un seul homme, averti à temps, bâtit une grande barque et sauva le vivant."],
+    arts:["Récit composé d'après les vieux mythes mésopotamiens du déluge : pour ces peuples, les grandes catastrophes étaient des messages des dieux — et l'écrit servait à en garder la trace."]}
 };
 
 const STORY={
@@ -361,12 +420,12 @@ const STORY={
     ]},
   n14:{folio:"Acte IV — Le jugement",src:"hammurabi",
     texte:["Une digue a cédé : la crue a noyé des champs et emporté un journalier. Le propriétaire jure qu'on a saboté son ouvrage ; nul témoin ne peut le confirmer. Toute la cité attend ton verdict — car la façon dont un roi rend la justice définit l'âme de son royaume."],
-    consigne:"Quel principe de justice fais-tu tien ? (survole un verdict pour voir l'article)",
+    consigne:"Quel principe de justice fais-tu tien ? (survole un verdict pour voir le principe sur la stèle)",
     renvois:[
-      {t:"Loi de fer — un homme est mort : que le coupable meure.",lawref:"§229-230",arts:["a229"],sceau:"Loi de fer",eff:{autorite:1,legitimite:-1},reg:"Jugement de fer — l'ordre par la crainte.",impact:"La loi du talion grave la peur dans les cœurs : « œil pour œil ». Elle impose l'ordre par la terreur, mais un règne fondé sur la seule crainte se retourne souvent contre son maître.",cible:"n15"},
-      {t:"Loi équitable — restitution, et je grave la sentence.",lawref:"§53-55",arts:["a53"],cond:f=>f.sceaux.has("Écriture adoptée"),lock:"Sans « Écriture adoptée », nul code ne peut être gravé.",sceau:"Loi équitable",sceau2:"Code gravé",eff:{sagesse:2,rayonnement:1},reg:"Loi équitable gravée — graduée, mais juste.",impact:"Restituer et graver la sentence, c'est l'idée la plus moderne du Code d'Hammourabi : une loi écrite, connue de tous, graduée selon les cas. Ainsi un roi devient législateur.",cible:"n15"},
-      {t:"Prérogative du roi — je tranche par ma seule autorité.",lawref:"hors du code",lawnone:true,arts:[],sceau:"Prérogative royale",eff:{autorite:1},reg:"Justice rendue par la seule main du roi.",impact:"Trancher hors de tout code, par ta seule volonté, te place au-dessus de la loi. Pouvoir total — et danger total : sans règle, ta justice n'est plus que ton humeur.",cible:"n15"},
-      {t:"Jugement des dieux — au fleuve de juger.",lawref:"§2 · faute de preuve",arts:["a2"],epreuve:{stat:"piete",seuil:8,
+      {t:"Loi de fer — un homme est mort : que le coupable meure.",lawref:"loi du talion",arts:["a229"],sceau:"Loi de fer",eff:{autorite:1,legitimite:-1},reg:"Jugement de fer — l'ordre par la crainte.",impact:"La loi du talion grave la peur dans les cœurs : « œil pour œil ». Elle impose l'ordre par la terreur, mais un règne fondé sur la seule crainte se retourne souvent contre son maître.",cible:"n15"},
+      {t:"Loi équitable — restitution, et je grave la sentence.",lawref:"loi de restitution",arts:["a53"],cond:f=>f.sceaux.has("Écriture adoptée"),lock:"Sans « Écriture adoptée », nul code ne peut être gravé.",sceau:"Loi équitable",sceau2:"Code gravé",eff:{sagesse:2,rayonnement:1},reg:"Loi équitable gravée — graduée, mais juste.",impact:"Restituer et graver la sentence, c'est l'idée la plus moderne des grands codes mésopotamiens : une loi écrite, connue de tous, graduée selon les cas. Ainsi un roi devient législateur.",cible:"n15"},
+      {t:"Prérogative du roi — je tranche par ma seule autorité.",lawref:"hors de la stèle",lawnone:true,arts:[],sceau:"Prérogative royale",eff:{autorite:1},reg:"Justice rendue par la seule main du roi.",impact:"Trancher hors de tout code, par ta seule volonté, te place au-dessus de la loi. Pouvoir total — et danger total : sans règle, ta justice n'est plus que ton humeur.",cible:"n15"},
+      {t:"Jugement des dieux — au fleuve de juger.",lawref:"jugement par le fleuve",arts:["a2"],epreuve:{stat:"piete",seuil:8,
         ok:{sceau:"Ordalie",eff:{piete:1},reg:"Le fleuve a rendu l'accusé — présage faste.",txt:"L'homme reparaît sur la rive : le fleuve l'innocente.",impact:"L'ordalie remet le verdict au fleuve : pratique réelle, réservée aux cas sans preuve. Réussie, elle pare ta justice de l'autorité des dieux."},
         penalite:{sceau:"Ordalie",eff:{legitimite:-1},reg:"Le fleuve a gardé l'accusé — présage sombre.",txt:"Le fleuve se referme sur lui ; le doute grandit.",impact:"T'en remettre au hasard divin peut se retourner contre toi quand le présage paraît sombre. Mieux vaut parfois trancher toi-même."}},
         reg:"",impact:"",cible:"n15"}
@@ -502,23 +561,24 @@ function ordreNoeud(id){const m=id.match(/^n(\d+)$/);return m?parseInt(m[1],10):
 function snap(){const o={};KEYS.forEach(k=>o[k]=F[k]);return o;}
 function diffFrom(b){const deltas=[],changed=new Set();KEYS.forEach(k=>{const d=F[k]-b[k];if(d!==0){deltas.push({k,d});changed.add(k);}});return {deltas,changed};}
 
-function figPH(name){return `<div class="fig-ph" style="display:none"><div class="ph-frame"></div><span class="ph-icon">⌖</span><span class="ph-name">${esc(name)}</span><span class="ph-note">image · banque HEC</span></div>`;}
 function plate(s){
-  const body=s.arts.map(a=>typeof a==="string"?`<p class="art">${a}</p>`:`<p class="art" data-art="${a.id}"><b>${a.ref}</b> — ${a.txt}</p>`).join("");
-  const info=`<div class="plate-info"><div class="plate-h"><span>${s.h}</span><span class="src-tag">Banque HEC</span>${s.img?'':'<span class="src-kind">source écrite</span>'}</div>${body}<div class="cite">${s.cite}</div></div>`;
-  if(!s.img) return `<div class="plate plate-text">${info}</div>`;
-  const fig=`<img class="fig-img" src="${s.img}" alt="${esc(s.h)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">${figPH(s.h)}`;
-  return `<div class="plate"><div class="plate-fig">${fig}</div>${info}</div>`;
+  const head=`<div class="plate-h"><span>${s.h}</span><span class="plate-kind">${s.kind}</span></div>`;
+  let visual="";
+  if(s.svg)visual=`<div class="illus">${s.svg}</div>`;
+  else if(s.doc)visual=`<div class="scroll">${s.doc.map(p=>`<p>${p}</p>`).join("")}</div>`;
+  const arts=(s.arts||[]).map(a=>typeof a==="string"?`<p class="art">${a}</p>`:`<p class="art"${a.id?` data-art="${a.id}"`:''}><b>${a.ref}</b> — ${a.txt}</p>`).join("");
+  const note=s.svg?"Illustration originale créée pour Lugal.":(s.doc?"Texte original composé pour Lugal — reconstitution, non un document d'archive.":"");
+  return `<div class="plate">${head}${visual}${arts}<div class="cite">${note}</div></div>`;
 }
 
 function deltaBadges(eff){if(!eff)return [];return Object.keys(eff).filter(k=>eff[k]).map(k=>`<span class="eb ${eff[k]>0?'pos':'neg'}">${LAB[k]} ${eff[k]>0?'+':'−'}${Math.abs(eff[k])}</span>`);}
 function penInline(pen){const p=Object.keys(pen.eff||{}).filter(k=>pen.eff[k]).map(k=>`${LAB[k]} ${pen.eff[k]>0?'+':'−'}${Math.abs(pen.eff[k])}`);return p.length?p.join(", "):"un revers";}
 function ebsFor(r){
   const out=[];
-  if(r.lawref)out.push(`<span class="eb law ${r.lawnone?'none':''}">${r.lawnone?'⚖ ':'§ '}${r.lawref}</span>`);
+  if(r.lawref)out.push(`<span class="eb law ${r.lawnone?'none':''}">${r.lawref}</span>`);
   if(r.epreuve){
     const e=r.epreuve,pct=pReussite(F[e.stat],e.seuil||8);
-    out.push(`<span class="eb die">🎲 ${pct} % de réussite · ${LAB[e.stat]}</span>`);
+    out.push(`<span class="eb die">${DICO}${pct} % · ${LAB[e.stat]}</span>`);
     deltaBadges(e.ok.eff).forEach(x=>out.push(x));
     if(e.ok.sceau)out.push(`<span class="eb seal">sceau : ${e.ok.sceau}</span>`);
     out.push(`<span class="eb neg dim">si échec : ${penInline(e.penalite)}</span>`);
@@ -553,6 +613,7 @@ function impactModal(o){
   $("#modalbtn").onclick=()=>{m.classList.remove("show");m.innerHTML="";o.onContinue&&o.onContinue();};
 }
 
+function avancer(cible){F.noeud=cible;rendre(true);}
 function choisir(r,btn){
   if(r.epreuve){tenterEpreuve(r,btn);return;}
   if(r.sceau)F.sceaux.add(r.sceau);if(r.sceau2)F.sceaux.add(r.sceau2);
@@ -561,7 +622,6 @@ function choisir(r,btn){
   rendreTablette(diff.changed);
   impactModal({title:r.t,body:r.impact,deltas:diff.deltas,onContinue:()=>avancer(r.cibleFn?r.cibleFn(F):r.cible)});
 }
-
 function tenterEpreuve(r,btn){
   if(r.sceau)F.sceaux.add(r.sceau);if(r.sceau2)F.sceaux.add(r.sceau2);
   appliquer(r.eff);
@@ -586,7 +646,7 @@ function tenterEpreuve(r,btn){
           if(ok){avancer(r.cibleFn?r.cibleFn(F):r.cible);}
           else{
             dz.classList.remove("show");dz.innerHTML="";
-            btn.classList.add("burned");btn.disabled=true;const go=btn.querySelector(".go");if(go)go.textContent="raté ✕";
+            btn.classList.add("burned");btn.disabled=true;const go=btn.querySelector(".go");if(go)go.textContent="raté";
             const node=STORY[F.noeud];
             document.querySelectorAll("#renvois .renvoi.open").forEach(b2=>{if(b2===btn)return;const rr=node.renvois[+b2.dataset.i];if(!rr.cond||rr.cond(F))b2.disabled=false;});
           }
@@ -595,7 +655,6 @@ function tenterEpreuve(r,btn){
   };
 }
 
-function avancer(cible){F.noeud=cible;rendre(true);}
 function enableOpen(){document.querySelectorAll("#renvois .renvoi.open").forEach(b=>b.disabled=false);const ln=$("#locknote");if(ln)ln.remove();}
 function startReadLock(sec){
   const banner=$("#readlock");if(!banner){enableOpen();return;}
@@ -616,40 +675,32 @@ function bindRenvois(n){
 }
 
 function rendre(flash){
-  const n=STORY[F.noeud],num=ordreNoeud(F.noeud),book=$("#book");
+  const n=STORY[F.noeud],num=ordreNoeud(F.noeud),pages=$("#pages");
   $("#progress").textContent=n.fin?"Fin du règne":(num?`Décision ${num} / 24`:"");
   if(n.fin){
     const bilan=QUALITES.map(k=>`<span class="eb pos">${LAB[k]} ${F[k]}</span>`).join("")+METRES.map(k=>`<span class="eb seal">${LAB[k]} ${F[k]}</span>`).join("");
-    book.innerHTML=`<div class="bk-head"><span class="pno">⚱</span><span class="folio">${n.folio}</span></div>
+    pages.innerHTML=`<div class="spine"></div><div class="leaf leaf-full">
+      <div class="rhead" style="width:100%"><span>${n.folio}</span><span class="rno">fin du règne</span></div>
       <div class="fin-title">${n.titre}</div>
-      <div class="prose"><p class="dropcap">${n.prose[0]}</p></div>
-      <div class="consigne">Bilan du règne</div>
-      <div class="ebs" style="display:flex;gap:5px;flex-wrap:wrap;margin:2px 0 8px">${bilan}</div>
-      <div class="renvois"><button class="renvoi" id="restart"><span class="lt"><span>Régner à nouveau</span></span><span class="go">⟲</span></button></div>`;
+      <div class="fin-prose">${n.prose[0]}</div>
+      <div class="t-sect" style="color:#7a6a4a">Bilan du règne</div>
+      <div class="fin-bilan">${bilan}</div>
+      <button class="restart" id="restart">${RESTART_IC} Régner à nouveau</button></div>`;
     $("#restart").onclick=reset;rendreTablette(flash);return;
   }
   const s=n.src?SRC[n.src]:null;
   const renv=n.renvois.map((r,i)=>{
     const ouvert=!r.cond||r.cond(F);
-    if(!ouvert)return `<button class="renvoi closed" disabled><span class="lt"><span>${r.t}</span><span class="ebs"><span class="eb dim">${r.lock}</span></span></span><span class="go">✕</span></button>`;
+    if(!ouvert)return `<button class="renvoi closed" disabled><span class="lt"><span>${r.t}</span><span class="ebs"><span class="eb dim">${r.lock}</span></span></span><span class="go">—</span></button>`;
     return `<button class="renvoi open" data-i="${i}"${r.arts?` data-arts="${r.arts.join(',')}"`:''} disabled><span class="lt"><span>${r.t}</span><span class="ebs">${ebsFor(r)}</span></span><span class="go">${r.go||'»'}</span></button>`;
   }).join("");
-  const srcBlock=s?`<div class="consult-row" id="consultrow"><button class="consult-btn" id="consultbtn"><span class="ic">▤</span> Consulter la source</button><span class="consult-hint">pour décider en connaissance de cause</span></div><div class="source-wrap" id="sourcewrap">${plate(s)}</div><div class="readlock" id="readlock"><span class="rl-txt">Étudie la source — <span class="rl-num">${READ_LOCK}</span> s</span><div class="rl-bar"><i></i></div></div>`:'';
-  book.innerHTML=`<div class="bk-head"><span class="pno">§${num}</span><span class="folio">${n.folio}</span></div>
-    <div class="prose"><p class="dropcap">${n.texte[0]}</p>${n.texte.slice(1).map(p=>`<p>${p}</p>`).join("")}</div>
-    ${srcBlock}
-    <div class="consigne">${n.consigne}</div>
-    ${s?'<div class="locknote" id="locknote">Consulte d\'abord la source pour pouvoir choisir.</div>':''}
-    <div class="renvois" id="renvois">${renv}</div>
-    <div class="dice-zone" id="dicezone"></div>`;
+  const srcBlock=s?`<div class="consult-row" id="consultrow"><button class="consult-btn" id="consultbtn">${SCROLL} Consulter la source</button><span class="consult-hint">pour décider en connaissance de cause</span></div><div class="source-wrap" id="sourcewrap">${plate(s)}</div><div class="readlock" id="readlock"><span class="rl-txt">Étudie la source — <span class="rl-num">${READ_LOCK}</span> s</span><div class="rl-bar"><i></i></div></div>`:'';
+  const left=`<div class="leaf leaf-l"><div class="rhead"><span>${n.folio}</span><span class="rno">§${num}</span></div><div class="dropcap-wrap"><div class="prose"><p class="dropcap">${n.texte[0]}</p>${n.texte.slice(1).map(p=>`<p>${p}</p>`).join("")}</div>${srcBlock}</div><div class="folio-no">~ ${num} ~</div></div>`;
+  const right=`<div class="leaf leaf-r"><div class="rhead"><span>Le choix du roi</span><span>${esc(F.cite)}</span></div><div class="consigne">${n.consigne}</div>${s?'<div class="locknote" id="locknote">Consulte d\'abord la source pour pouvoir choisir.</div>':''}<div class="renvois" id="renvois">${renv}</div><div class="dice-zone" id="dicezone"></div><div class="folio-no"></div></div>`;
+  pages.innerHTML=`<div class="spine"></div>${left}${right}`;
   bindRenvois(n);rendreTablette(flash);
-  if(s){
-    $("#consultbtn").onclick=()=>{
-      $("#sourcewrap").style.display="block";
-      $("#consultrow").innerHTML='<span class="consult-done">✓ Source consultée — étudie-la, puis décide.</span>';
-      startReadLock(READ_LOCK);
-    };
-  }else{enableOpen();}
+  if(s){$("#consultbtn").onclick=()=>{$("#sourcewrap").style.display="block";$("#consultrow").innerHTML='<span class="consult-done">Source consultée — étudie-la, puis décide.</span>';startReadLock(READ_LOCK);};}
+  else{enableOpen();}
 }
 
 let genre="roi",tirage={};

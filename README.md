@@ -2,8 +2,8 @@
 
 Un *serious game* en français, type **livre dont vous êtes le héros**, pour la
 réalité sociale **« L'émergence d'une civilisation »** (Mésopotamie, HEC sec. 1,
-PFEQ). L'élève règne sur une cité-État : il lit un texte, **consulte une source
-authentique** (banque HEC), réfléchit, décide — puis un **pop-up lui explique
+PFEQ). L'élève règne sur une cité-État : il lit un texte, **consulte une source créée
+pour le jeu** (illustration au trait ou document composé), réfléchit, décide — puis un **pop-up lui explique
 l'impact** de son choix. **24 décisions par règne**, **12 fins** selon l'état
 accumulé de ses qualités et de sa civilisation.
 
@@ -20,8 +20,10 @@ Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance.
    paris, **le % de réussite aux dés**.
 5. Après la décision, **un pop-up présente la conséquence** — la leçon à retenir.
 
-> Les sources textuelles ou iconographiques ne sont pas toujours pertinentes :
-> 6 des 24 décisions se prennent **sans source**, par pur jugement politique.
+> Toutes les sources sont **des créations originales** (illustrations au trait
+> et documents composés) — aucune image d'archive. Et elles ne sont pas toujours
+> pertinentes : 6 des 24 décisions se prennent **sans source**, par pur jugement
+> politique.
 
 ## La feuille du roi
 - **Qualités du roi** (montent et descendent selon les choix) : Autorité,
@@ -42,12 +44,14 @@ Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance.
 
 ## Structure
 ```
-index.html                  jeu complet (interface + moteur + trame)
-.nojekyll                    sert assets/ tel quel sur Pages
-assets/img/sources/*.png     les 16 images-sources (banque HEC)
-SOURCES.md                   crédits et licences de chaque source
-LICENSE                      MIT (code) ; les images gardent leur licence
+index.html     jeu complet : interface (livre à double page), moteur, trame et sources
+.nojekyll      pour GitHub Pages
+SOURCES.md     note sur les sources (toutes créées pour le jeu)
+LICENSE        MIT — couvre le code, les illustrations et les textes
 ```
+Aucun dossier d'images : les illustrations sont des **SVG dessinés dans le
+fichier** et les documents, des **textes composés**. Le jeu s'affiche donc
+partout, sans dépendance.
 
 ## Personnaliser (dans `index.html`)
 - **Trame** : objet `STORY`. Chaque nœud a `texte` (long), `consigne`, un `src`
@@ -60,5 +64,5 @@ LICENSE                      MIT (code) ; les images gardent leur licence
   sont rares ; ajuste leurs seuils après quelques parties tests.
 
 ---
-Conçu par **Mathieu Mercier**. Sources : banque **HEC** (RÉCIT univers social,
-Wikimedia Commons, musée du Louvre, British Museum…). Voir `SOURCES.md`.
+Conçu par **Mathieu Mercier**. Toutes les sources (illustrations et documents)
+sont **créées pour le jeu** — voir `SOURCES.md`.
