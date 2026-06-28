@@ -162,7 +162,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .fin-wrap.chute .fin-kicker{color:#9a6a58}
 .fin-wrap.chute .bcell{border-top-color:#b98a78}
 .fin-wrap.chute .restart{background:#6f4438;box-shadow:0 4px 12px rgba(60,30,22,.3)}
-.leaf.bilan{overflow:auto}.fin-wrap.bl{max-width:none;margin-top:2px}.fin-wrap.bl .fin-title{font-size:23px}.fin-wrap.bl .fin-prose{font-size:13.5px;line-height:1.52;margin-bottom:11px}.fin-wrap.bl .fin-duree{margin-bottom:13px}.fin-wrap.bl .bgrid{grid-template-columns:repeat(2,1fr);max-width:none;gap:8px;margin-bottom:0}.fin-wrap.bl .bcell{padding:7px 5px 6px}.fin-wrap.bl .bcell .bv{font-size:22px}.bilan-juge{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:13px;padding-top:4px}.bj-h{display:block;font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5f7a3a;margin-bottom:5px;padding-bottom:3px;border-bottom:1px solid rgba(95,122,58,.3)}.bj-risque .bj-h{color:#9c4a36;border-bottom-color:rgba(156,74,54,.3)}.bj-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}.bj-list li{font-family:"EB Garamond",serif;font-size:12.5px;line-height:1.32;color:var(--ink);padding-left:16px;position:relative}.bj-list li::before{content:"";position:absolute;left:2px;top:6px;width:6px;height:6px;border-radius:50%;background:#6a8a3e}.bj-risque .bj-list li::before{background:#b1503a;border-radius:0;transform:rotate(45deg)}.bj-list li.vide{font-style:italic;color:#9a8a6a;padding-left:0}.bj-list li.vide::before{display:none}.bilan-juge .bmarques{align-items:flex-start;max-width:none;margin:2px 0 14px}.bilan-juge .bmarques .bm-h{align-self:flex-start}.bilan-juge .restart{align-self:center;margin-top:auto}
+.leaf.bilan{overflow:hidden}body.finstate .stage{grid-template-columns:1fr}body.finstate .tablet{display:none}.bj-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;flex:0 1 auto;min-height:0}.fin-wrap.bl{max-width:none;margin-top:2px}.fin-wrap.bl .fin-title{font-size:23px}.fin-wrap.bl .fin-prose{font-size:13.5px;line-height:1.52;margin-bottom:11px}.fin-wrap.bl .fin-duree{margin-bottom:13px}.fin-wrap.bl .bgrid{grid-template-columns:repeat(2,1fr);max-width:none;gap:8px;margin-bottom:0}.fin-wrap.bl .bcell{padding:7px 5px 6px}.fin-wrap.bl .bcell .bv{font-size:22px}.bilan-juge{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:13px;padding-top:4px}.bj-h{display:block;font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5f7a3a;margin-bottom:5px;padding-bottom:3px;border-bottom:1px solid rgba(95,122,58,.3)}.bj-risque .bj-h{color:#9c4a36;border-bottom-color:rgba(156,74,54,.3)}.bj-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}.bj-list li{font-family:"EB Garamond",serif;font-size:12.5px;line-height:1.32;color:var(--ink);padding-left:16px;position:relative}.bj-list li::before{content:"";position:absolute;left:2px;top:6px;width:6px;height:6px;border-radius:50%;background:#6a8a3e}.bj-risque .bj-list li::before{background:#b1503a;border-radius:0;transform:rotate(45deg)}.bj-list li.vide{font-style:italic;color:#9a8a6a;padding-left:0}.bj-list li.vide::before{display:none}.bilan-juge .bmarques{align-items:flex-start;max-width:none;margin:2px 0 14px}.bilan-juge .bmarques .bm-h{align-self:flex-start}.bilan-juge .restart{align-self:center;margin-top:auto}
 
 /* pop-up impact */
 .modal{position:fixed;inset:0;background:rgba(20,16,12,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:40}
@@ -245,7 +245,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .fcta:not(:disabled):hover{filter:brightness(1.07)}
 @media(max-width:900px){
   html,body{overflow:auto;height:auto}body{min-height:100%}
-  .stage{grid-template-columns:1fr}.book,.tablet{height:auto;min-height:0}.tablet{order:-1}
+  .stage{grid-template-columns:1fr}.book,.tablet{height:auto;min-height:0}.tablet{order:-1}.bj-cols{grid-template-columns:1fr;gap:13px}
   .pages{grid-template-columns:1fr}.spine,.ribbon{display:none}
   .leaf{overflow:visible}.leaf-r{border-top:1px solid var(--rule)}
   .story,.dec,.registre{overflow:visible}
@@ -305,10 +305,17 @@ let F=null;
 const nouvelle=()=>({nom:"Ur-Nammu",genre:"roi",cite:"Eridu",autorite:0,sagesse:0,piete:0,legitimite:0,prosperite:4,rayonnement:1,savoir:0,technique:0,sceaux:new Set(),registre:[],histoire:[],journal:[],feuillet:0,noeud:"eau"});
 const d6=()=>1+Math.floor(Math.random()*6);
 function statsOf(e){return e.stats?e.stats:(e.stat?[e.stat]:[]);}
-function epreuveMod(e){
+function epreuveRaw(e){
   const ks=statsOf(e);
   let m=ks.reduce((s,k)=>s+((F[k]||0)-9),0);
   if(e.mod)m+=Math.round(((F[e.mod]||0)-4)/2);
+  return m;
+}
+function epreuveMod(e){
+  const seuil=e.seuil||8,cap=seuil-4;
+  let m=epreuveRaw(e);
+  if(m>cap)m=cap;
+  if(m<-4)m=-4;
   return m;
 }
 function epreuveLabel(e){return statsOf(e).map(k=>`${LAB[k]} ${F[k]}`).join(" + ")+(e.mod?` + ${LAB[e.mod]} ${F[e.mod]}`:"");}
@@ -393,7 +400,7 @@ const SRC={
     svg:`<svg viewBox="0 0 220 132" ${SS}><circle cx="72" cy="74" r="34"/><circle cx="72" cy="74" r="7"/><g stroke-width="1.4"><path d="M72 40v68M38 74h68M48 50l48 48M96 50l-48 48"/></g><path d="M118 86h66l-6 -22h-54z"/><circle cx="134" cy="98" r="10"/><circle cx="170" cy="98" r="10"/><path d="M118 70l-12 -7" stroke-width="1.4"/></svg>`,
     arts:["Gravure originale. Née en Mésopotamie pour le tour du potier puis le chariot, la roue démultiplie la production et le transport. C'est l'une des inventions les plus fécondes de l'humanité."]},
   jardins:{h:"Des jardins en terrasses",kind:ILLUS,
-    svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M40 118h140v-18h-26v-18h-26v-18h-26v-18h-26z"/><path d="M40 100h114M66 82h88M92 64h62M118 46h36" stroke-width="1"/><g stroke-width="1.3"><path d="M52 100v-8M62 100v-9M78 82v-9M90 82v-8M104 64v-9M130 46v-9M148 46v-8"/><path d="M52 93q-5 -3 -7 -7M78 75q5 -3 7 -7M104 57q-5 -3 -7 -6M130 39q5 -3 7 -6"/></g><g stroke="#2f6f86" stroke-width="1.2"><path d="M168 46q4 18 -2 36q-4 18 2 36"/></g></svg>`,
+    svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M12 122h196"/><path d="M44 122V44H68V62H96V80H124V98H152V122"/><g stroke-width="1.2"><path d="M54 122V108a12 12 0 0 1 24 0v14"/><path d="M86 122V108a12 12 0 0 1 24 0v14"/><path d="M118 122V108a12 12 0 0 1 24 0v14"/></g><g stroke-width="1.2"><path d="M56 44v-7"/><ellipse cx="56" cy="28" rx="5" ry="11"/><path d="M80 62v-7"/><circle cx="76" cy="52" r="5"/><circle cx="84" cy="52" r="5"/><circle cx="80" cy="47" r="5"/><path d="M108 80v-7"/><ellipse cx="108" cy="66" rx="5" ry="11"/><path d="M140 98v-7"/><circle cx="136" cy="88" r="5"/><circle cx="144" cy="88" r="5"/><circle cx="140" cy="83" r="5"/></g><g stroke-width="1"><path d="M68 46q10 8 6 22M64 46q-2 9 2 16M72 47q4 8 1 14"/><path d="M96 64q10 8 6 22M92 64q-2 9 2 16M100 65q4 8 1 14"/><path d="M124 82q10 8 6 22M120 82q-2 9 2 16M128 83q4 8 1 14"/><path d="M152 100q9 8 6 20M148 100q-2 8 2 15"/></g><g stroke-width="1"><path d="M50 62q2 -5 4 0M88 80q2 -5 4 0M116 98q2 -5 4 0"/></g><g stroke="#2f6f86" stroke-width="1.2"><path d="M150 122q26 -3 54 0"/><path d="M160 119h30M168 116h16"/><path d="M44 98q-5 11 0 22"/></g></svg>`,
     arts:["Gravure originale. Elle évoque la maîtrise mésopotamienne de l'irrigation poussée jusqu'au prestige. La célèbre légende des jardins suspendus est tardive et débattue : aucun texte babylonien ne les mentionne, et certains les situent à Ninive."]},
   amargiTexte:{h:"L'édit de liberté",kind:DOC,
     doc:["En cette année, le roi a rétabli la liberté dans le pays.",
@@ -709,18 +716,19 @@ function choisir(r,btn){
   impactModal({title:r.t,body:r.impact,unlock:unlockNotice(b),deltas:diff.deltas,onContinue:()=>finaliser(btn,r.cibleFn?r.cibleFn(F):r.cible,r.suite)});
 }
 function epreuveDetail(e){
-  const parts=statsOf(e).map(k=>{const c=F[k]-9;return `${LAB[k]} ${F[k]} (${c>=0?'+':'−'}${Math.abs(c)})`;});
-  if(e.mod){const c=Math.round(((F[e.mod]||0)-4)/2);parts.push(`${LAB[e.mod]} ${F[e.mod]} (${c>=0?'+':'−'}${Math.abs(c)})`);}
+  const parts=statsOf(e).map(k=>`${LAB[k]} ${F[k]}`);
+  if(e.mod)parts.push(`${LAB[e.mod]} ${F[e.mod]}`);
   return parts.join(", ");
 }
 function tenterEpreuve(r,btn){
   if(r.sceau)F.sceaux.add(r.sceau);if(r.sceau2)F.sceaux.add(r.sceau2);appliquer(r.eff);
   const e=r.epreuve,mod=epreuveMod(e),seuil=e.seuil||8,pct=pReussite(mod,seuil);
-  const modTxt=mod>=0?`+ ${mod}`:`− ${-mod}`;
+  const raw=epreuveRaw(e),plafonne=raw>mod;
+  const modTxt=(mod>=0?`+ ${mod}`:`− ${-mod}`)+(plafonne?" (plafonné)":"");
   document.querySelectorAll("#renvois .renvoi").forEach(x=>x.disabled=true);
   const flashes=statsOf(e).map(k=>$("#qual-"+k)).filter(Boolean);flashes.forEach(el=>el.classList.add("flash"));
   const dz=$("#dicezone");dz.classList.add("show");
-  dz.innerHTML=`<div class="dz-live"><div class="dz-explain"><div class="dz-rule">Lance 2 dés (de 2 à 12) et ajoute le bonus de tes qualités. Il faut atteindre <b>${seuil}</b> pour réussir. Une qualité à 9 est neutre : chaque point au-dessus ajoute +1, chaque point en dessous retranche 1.</div><div class="dz-calc">Tes qualités donnent : ${epreuveDetail(e)}. Bonus total : <b>${modTxt}</b>. Chances de réussite : <b>${pct} %</b>.</div></div><div class="dz-roll"><span class="die" id="d1">?</span><span class="die" id="d2">?</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div></div>`;
+  dz.innerHTML=`<div class="dz-live"><div class="dz-explain"><div class="dz-rule">Lance 2 dés (de 2 à 12) et ajoute le bonus que te donnent tes qualités. Il faut atteindre <b>${seuil}</b> pour réussir. Plus une qualité dépasse 9, meilleur est le bonus, mais celui-ci est <b>plafonné</b> : même le plus grand roi peut être trahi par le sort, et un double-un échoue toujours.</div><div class="dz-calc">Qualités en jeu : ${epreuveDetail(e)}. Bonus appliqué : <b>${modTxt}</b>. Chances de réussite : <b>${pct} %</b>.</div></div><div class="dz-roll"><span class="die" id="d1">?</span><span class="die" id="d2">?</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div></div>`;
   $("#rollbtn").onclick=()=>{
     const a=d6(),bb=d6(),score=a+bb+mod,ok=score>=seuil;
     const d1=$("#d1"),d2=$("#d2");d1.textContent=a;d2.textContent=bb;d1.classList.add("roll");d2.classList.add("roll");
@@ -756,7 +764,7 @@ function finaliser(btn,cible,suite){
 
 function entrer(cible){
   F.noeud=cible;const n=STORY[cible];
-  if(!n.fin){const lead=F._suite||[];F._suite=null;F.histoire.push({num:F.histoire.length+1,folio:n.folio,paras:lead.concat(n.texte)});F._snap=true;}
+  if(!n.fin){const lead=F._suite||[];F._suite=null;F.histoire.push({num:F.histoire.length+1,folio:n.folio,paras:lead.concat(n.texte)});F._atPresent=true;}
   rendre(true);
 }
 function beatHTML(i,lead){
@@ -788,9 +796,10 @@ function computePages(){
 }
 function renderLeft(){
   const host=$("#story");if(!host||!F)return;
-  const laid=host.clientHeight>0;
+  if(F._atPresent===undefined)F._atPresent=true;
   const pages=computePages();
-  if(F._snap){F.feuillet=pages.length-1;if(laid)F._snap=false;}
+  F._pagesLen=pages.length;
+  if(F._atPresent)F.feuillet=pages.length-1;
   F.feuillet=Math.max(0,Math.min(pages.length-1,F.feuillet||0));
   const page=pages[F.feuillet]||[];
   host.innerHTML=page.map((j,k)=>beatHTML(j,k===0)).join("");
@@ -805,8 +814,8 @@ function renderLeft(){
       +`<button onclick="feuilleter(1)" ${present?'disabled':''}>lire la suite ›</button>`;
   }
 }
-function feuilleter(d){if(!F)return;F.feuillet=(F.feuillet||0)+d;renderLeft();}
-function auPresent(){if(!F)return;F._snap=true;renderLeft();}
+function feuilleter(d){if(!F)return;F._atPresent=false;F.feuillet=(F.feuillet||0)+d;renderLeft();if(F.feuillet>=F._pagesLen-1)F._atPresent=true;}
+function auPresent(){if(!F)return;F._atPresent=true;renderLeft();}
 function enableOpen(){document.querySelectorAll("#renvois .renvoi.open").forEach(b=>b.disabled=false);const ln=$("#locknote");if(ln)ln.remove();}
 function startReadLock(sec){
   const banner=$("#readlock");if(!banner){enableOpen();return;}
@@ -828,6 +837,7 @@ function bindRenvois(n){
 
 function rendre(flash){
   const n=STORY[F.noeud],num=ordreNoeud(F.noeud),pages=$("#pages");
+  document.body.classList.toggle("finstate",!!n.fin);
   $("#progress").textContent=n.fin?"Fin du règne":("Décision "+F.histoire.length+" · "+n.folio.replace(/ · .*/,""));
   if(n.fin){
     const niveau=v=>v<=6?"chancelante":v<=9?"modeste":v<=12?"solide":v<=15?"remarquable":"éclatante";
@@ -857,13 +867,15 @@ function rendre(flash){
       <div class="leaf leaf-r bilan">
         <div class="signet sg-stats">Le jugement de l'histoire</div>
         <div class="bilan-juge ${triomphe?'triomphe':'chute'}">
-          <div class="bj-sect bj-bon"><span class="bj-h">Décisions avisées</span><ul class="bj-list">${liste(bons,"aucune, cette fois")}</ul></div>
-          <div class="bj-sect bj-risque"><span class="bj-h">Décisions périlleuses pour ta cité</span><ul class="bj-list">${liste(risques,"aucune, ton règne fut prudent")}</ul></div>
+          <div class="bj-cols">
+            <div class="bj-sect bj-bon"><span class="bj-h">Décisions avisées</span><ul class="bj-list">${liste(bons,"aucune, cette fois")}</ul></div>
+            <div class="bj-sect bj-risque"><span class="bj-h">Décisions périlleuses pour ta cité</span><ul class="bj-list">${liste(risques,"aucune, ton règne fut prudent")}</ul></div>
+          </div>
           ${marquesHtml}
           <button class="restart" id="restart">${RESTART_IC} Régner à nouveau</button>
         </div>
       </div>`;
-    $("#restart").onclick=reset;rendreTablette(flash);return;
+    $("#restart").onclick=reset;return;
   }
   const s=n.src?SRC[n.src]:null;
   const ordre=n.renvois.map((_,i)=>i);
@@ -933,7 +945,7 @@ $("#begin").addEventListener("click",()=>{
   F.noeud="eau";const n=STORY.eau;F.histoire.push({num:1,folio:n.folio,paras:n.texte});
   $("#frontis").style.display="none";rendre(false);
 });
-function reset(){F=null;alloc={autorite:0,sagesse:0,piete:0,legitimite:0};const m=$("#modal");m.classList.remove("show");m.innerHTML="";$("#frontis").style.display="flex";renderAlloc();}
+function reset(){F=null;alloc={autorite:0,sagesse:0,piete:0,legitimite:0};document.body.classList.remove("finstate");const m=$("#modal");m.classList.remove("show");m.innerHTML="";$("#frontis").style.display="flex";renderAlloc();}
 renderAlloc();
 
 if(document.fonts&&document.fonts.ready){document.fonts.ready.then(()=>{if(F&&$("#story"))renderLeft();});}
