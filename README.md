@@ -19,8 +19,9 @@ que le roi pourra tenter, des voies qui s'ouvriront à lui et de la façon dont
 son règne se terminera. Ce choix de départ donne du sens à toute la partie.
 
 ## Le livre, en deux pages
-- **Page de gauche — le récit du règne.** Une **page à la fois**, comme dans un
-  vrai livre : chaque nouvelle décision **remplace** la page précédente. Une barre
+- **Page de gauche — le récit du règne.** Le texte **remplit le feuillet**,
+  puis **tourne** vers une nouvelle page une fois la page pleine, comme dans un
+  vrai livre. Une barre
   de **feuilletage** (‹ feuillet précédent · *à présent* · revenir au présent »)
   permet à l'élève de **revenir lire** l'histoire de son règne sans rien perdre de
   sa décision en cours.
@@ -29,7 +30,7 @@ son règne se terminera. Ce choix de départ donne du sens à toute la partie.
   bouton **« Poursuis au §X »** pour tourner la page.
 
 À chaque page : les choix restent **verrouillés tant que la source n'est pas
-consultée** ; la consultation lance un **chrono de 6 secondes** ; chaque choix
+consultée** ; la consultation lance un **chrono de 4 secondes** ; chaque choix
 montre son **effet sur les qualités** et, pour les paris, le badge **« Réussite :
 X % »** ; les choix à dés portent la mention **« (Jet de dés) »** ; et un
 **pop-up** présente la conséquence — la leçon à retenir.
@@ -46,6 +47,21 @@ la partie** : dès l'acte III, une crise mal gérée peut mener droit à une fin
 funeste. Le **§** affiché suit donc le **parcours réel** de l'élève, qui varie
 d'une partie à l'autre.
 
+## Les dés conjugués aux points du roi
+Les jets de dés sont nombreux, mais **jamais gratuits** : chacun met en jeu les
+**qualités pertinentes au domaine**, de sorte que la répartition de départ décide
+de ce que le roi réussit.
+- **Décisions religieuses** (temple, présage) → **Piété**.
+- **Décisions de justice** (faire respecter la loi gravée) → **Autorité + Sagesse**.
+- **Grands travaux et défense** (canaux, murailles) → **Autorité (+ Prospérité)**.
+- **Commerce et disette** (acheter du grain) → **Sagesse + Prospérité**.
+
+Un roi bâtisseur réussit ses chantiers et sa loi ; un roi pieux obtient la faveur
+des dieux mais risque le coup d'État s'il néglige sa légitimité. **Échouer un jet
+fait basculer dans une problématique** : c'est là que les écarts se paient. Les
+choix sont en outre **présentés dans un ordre aléatoire** — le bon n'est jamais à
+la même place.
+
 ## La feuille du roi
 Volontairement sobre et utile : les **quatre qualités** (qui montent et
 descendent selon les choix, et qu'on a soi-même réparties), les **deux jauges de
@@ -54,6 +70,8 @@ qualités servent vraiment : elles fixent les probabilités des paris et
 déterminent la fin.
 
 ## Sources — toutes créées
+Chaque source distingue clairement le **document/illustration** lui-même de sa
+**« Lecture de la source »** (le commentaire pédagogique), et de son attribution.
 Aucune image d'archive. **13 illustrations originales** au trait (style gravure,
 dessinées en SVG) et **5 documents composés** pour le jeu, honnêtement étiquetés
 comme reconstitutions. Voir `SOURCES.md`.
