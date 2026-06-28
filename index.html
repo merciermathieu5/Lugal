@@ -21,6 +21,10 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
   background:radial-gradient(140% 100% at 50% -20%,#33291f 0%,var(--desk) 70%,#150f0a 100%);
   display:flex;flex-direction:column;padding:9px 14px 13px}
 .topbar{flex:0 0 auto;display:flex;align-items:baseline;justify-content:center;gap:13px;padding-bottom:5px;flex-wrap:wrap}
+.soundtgl{align-self:center;width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(210,180,120,.4);border-radius:50%;background:rgba(40,28,14,.3);color:#9a8252;cursor:pointer;padding:0;transition:color .25s,border-color .25s,background .25s}
+.soundtgl:hover{color:#c2ad8d;border-color:rgba(210,180,120,.7)}
+.soundtgl.on{color:#e7c66a;border-color:rgba(231,198,106,.65);background:rgba(231,198,106,.12)}
+.soundtgl svg{width:18px;height:18px}
 .topbar b{font-family:"IM Fell English SC",serif;font-size:29px;letter-spacing:.13em;color:#eed9a8;font-weight:400}
 .topbar span{font-style:italic;font-size:13px;color:#c2ad8d}
 .progress{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.05em;color:#b39a72;white-space:nowrap;font-style:normal}
@@ -129,9 +133,13 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .dz-rule{margin-bottom:3px}
 .dz-calc b,.dz-rule b{color:var(--rubric);font-weight:600}
 .dz-roll{display:flex;align-items:center;gap:10px}
-.die{width:28px;height:28px;border:1.6px solid var(--ink);border-radius:5px;background:var(--paper);display:grid;place-items:center;font-family:"IM Fell English",serif;font-size:16px;color:var(--ink)}
-.die.roll{animation:tumble .5s ease}
-@keyframes tumble{0%{transform:rotate(-14deg) scale(.8)}55%{transform:rotate(12deg) scale(1.1)}100%{transform:none}}
+.die{width:34px;height:34px;border:1.7px solid var(--ink);border-radius:6px;background:var(--paper);display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:4px;gap:1px;place-items:center;box-shadow:0 1px 2px rgba(60,40,15,.25)}
+.die .pip{width:5px;height:5px;border-radius:50%;background:transparent}
+.die .pip.on{background:var(--ink)}
+.die.tumbling{animation:tumble .16s linear infinite}
+.die.settle{animation:settle .34s ease}
+@keyframes tumble{0%{transform:rotate(-13deg) scale(.9)}50%{transform:rotate(11deg) scale(1.09)}100%{transform:rotate(-13deg) scale(.9)}}
+@keyframes settle{0%{transform:scale(1.2)}55%{transform:scale(.93)}100%{transform:scale(1)}}
 .btn-ink{font-family:"IM Fell English SC",serif;letter-spacing:.07em;font-size:11px;background:var(--ink);color:var(--paper);border:none;padding:7px 13px;border-radius:3px;cursor:pointer;white-space:nowrap}
 .btn-ink:hover{background:#000}.btn-ink:disabled{opacity:.5}
 .poursuite{flex:0 0 auto;align-self:flex-start;margin-top:8px;font-family:"IM Fell English SC",serif;letter-spacing:.06em;font-size:12px;background:var(--rubric);color:#f6e7d8;border:none;padding:8px 20px;border-radius:3px;cursor:pointer;display:none;align-items:center;gap:8px}
@@ -200,13 +208,18 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .t-sect{flex:0 0 auto;font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.11em;color:#5f421e;margin:8px 0 4px;display:flex;align-items:center;gap:8px}
 .t-sect::after{content:"";flex:1;height:1px;background:rgba(95,66,30,.45)}
 .qualites{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.qual{border:1.6px solid var(--clay-edge);border-radius:8px;padding:6px 8px;background:radial-gradient(circle at 30% 25%,rgba(255,245,220,.4),rgba(150,110,55,.14));display:flex;align-items:center;justify-content:space-between;transition:box-shadow .35s,transform .35s}
-.qual.flash{box-shadow:0 0 0 3px rgba(156,90,34,.55);transform:scale(1.03)}
+.qual{border:1.6px solid var(--clay-edge);border-radius:8px;padding:6px 8px;background:radial-gradient(circle at 30% 25%,rgba(255,245,220,.4),rgba(150,110,55,.14));display:flex;align-items:center;justify-content:space-between;transition:box-shadow .35s,transform .35s;position:relative}
+.qual.flash{box-shadow:0 0 0 3px rgba(156,90,34,.55);transform:scale(1.04);animation:qpulse .5s ease}
+.qual.flash.up{box-shadow:0 0 0 3px rgba(74,128,58,.6)}.qual.flash.down{box-shadow:0 0 0 3px rgba(156,74,54,.62)}
+@keyframes qpulse{0%{transform:scale(1)}45%{transform:scale(1.08)}100%{transform:scale(1.04)}}
+.fly{position:absolute;right:7px;top:2px;font-family:"IM Fell English",serif;font-weight:600;font-size:15px;pointer-events:none;text-shadow:0 1px 1px rgba(255,250,235,.7);animation:fly 1.15s ease-out forwards;z-index:3}
+.fly.up{color:#3f7a36}.fly.down{color:#9c4a36}
+@keyframes fly{0%{opacity:0;transform:translateY(5px) scale(.7)}18%{opacity:1}100%{opacity:0;transform:translateY(-18px) scale(1.1)}}
 .qual .l{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.02em;color:#5f421e;line-height:1.05}
 .qual .v{font-family:"IM Fell English",serif;font-size:23px;color:#42300f;line-height:.9}
 .meters{flex:0 0 auto;display:flex;flex-wrap:wrap;gap:8px;margin-top:7px}
-.meter{flex:1 1 44%;min-width:calc(50% - 4px);display:flex;align-items:center;gap:7px;background:rgba(255,245,220,.16);border:1px solid var(--clay-edge);border-radius:3px;padding:6px 8px;transition:box-shadow .35s}.modal-unlock{display:flex;flex-direction:column;gap:6px;margin:2px 0 11px}.modal-unlock span{display:flex;align-items:center;gap:8px;font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.04em;color:#6a5320;background:rgba(184,150,70,.14);border:1px solid rgba(150,120,50,.32);border-radius:3px;padding:7px 11px}.modal-unlock svg{width:15px;height:15px;flex:0 0 auto}
-.meter.flash{box-shadow:0 0 0 3px rgba(156,90,34,.5)}
+.meter{flex:1 1 44%;min-width:calc(50% - 4px);display:flex;align-items:center;gap:7px;background:rgba(255,245,220,.16);border:1px solid var(--clay-edge);border-radius:3px;padding:6px 8px;transition:box-shadow .35s,transform .35s;position:relative}.modal-unlock{display:flex;flex-direction:column;gap:6px;margin:2px 0 11px}.modal-unlock span{display:flex;align-items:center;gap:8px;font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.04em;color:#6a5320;background:rgba(184,150,70,.14);border:1px solid rgba(150,120,50,.32);border-radius:3px;padding:7px 11px}.modal-unlock svg{width:15px;height:15px;flex:0 0 auto}
+.meter.flash{box-shadow:0 0 0 3px rgba(156,90,34,.5)}.meter.flash.up{box-shadow:0 0 0 3px rgba(74,128,58,.55)}.meter.flash.down{box-shadow:0 0 0 3px rgba(156,74,54,.58)}
 .meter svg{width:17px;height:17px;flex:0 0 auto}
 .meter .cl{font-family:"IM Fell English SC",serif;font-size:8.5px;letter-spacing:.03em;color:#5f421e;display:block;line-height:1.1}
 .meter .cv{font-family:"IM Fell English",serif;font-size:18px;color:#42300f;line-height:1}
@@ -251,29 +264,105 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
   .story,.dec,.registre{overflow:visible}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+.citechips{display:flex;flex-wrap:wrap;gap:5px}
+.citechips button{flex:1 1 auto;min-width:30%;padding:6px 4px;border:1px solid var(--paper-edge);background:rgba(255,252,242,.6);font-family:"IM Fell English",serif;font-size:13px;color:var(--ink-soft);border-radius:3px;cursor:pointer}
+.citechips button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.citenote{font-size:11.5px;color:#5a4a30;line-height:1.32;margin:0 0 8px;min-height:30px}
+.citenote .cn-note{font-style:italic}
+.citenote .cn-atout{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.05em;color:var(--rubric);white-space:nowrap}
+.fmeta{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:9px}
+.fmeta button{background:none;border:none;font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.06em;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:2px}
+.fmeta button:hover{color:var(--rubric)}.fmeta span{color:#9a8a6a}
+.overlay{position:fixed;inset:0;background:rgba(18,13,9,.93);display:none;align-items:center;justify-content:center;padding:18px;z-index:40}
+.overlay.show{display:flex}
+.ov-card{width:min(820px,100%);max-height:92vh;overflow:auto;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:5px;padding:20px 24px 22px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.ov-h{font-family:"IM Fell English SC",serif;font-size:20px;letter-spacing:.08em;color:var(--rubric);text-align:center}
+.ov-sub{text-align:center;font-style:italic;font-size:12.5px;color:var(--ink-soft);margin:2px 0 14px}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.gcard{border:1px solid var(--paper-edge);border-radius:5px;padding:10px 11px;min-height:78px;display:flex;flex-direction:column;gap:5px;background:rgba(255,252,242,.5)}
+.gcard.locked{background:rgba(60,46,24,.07);border-style:dashed}
+.gcard.found{background:linear-gradient(160deg,rgba(255,250,235,.7),rgba(210,180,120,.18))}
+.gcard.trio{border-color:#b89150;box-shadow:inset 0 0 0 1px rgba(184,145,80,.5)}
+.gc-tt{font-family:"IM Fell English",serif;font-size:15px;color:var(--ink);line-height:1.1}
+.gcard.trio .gc-tt{color:#7a5a1e}
+.gc-seal{font-family:"IM Fell English SC",serif;font-size:22px;color:#b6a684}
+.gc-hint{font-style:italic;font-size:11.5px;color:#6a5a3a;line-height:1.32}
+.gcard.locked .gc-hint{color:#8a7c5e}
+.dlist{display:flex;flex-direction:column;gap:8px}
+.dcard{border:1px solid var(--paper-edge);border-radius:5px;padding:9px 12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;background:rgba(255,252,242,.5)}
+.dcard.locked{background:rgba(60,46,24,.07);border-style:dashed}
+.dcard.found{background:linear-gradient(160deg,rgba(255,250,235,.7),rgba(210,180,120,.16))}
+.dc-n{font-family:"IM Fell English",serif;font-size:15.5px;color:var(--ink)}
+.dcard.locked .dc-n{color:#8a7c5e;font-style:italic}
+.dc-c{font-size:12px;color:#5a4a30;flex:1 1 200px}
+.dc-mark{font-family:"IM Fell English SC",serif;font-size:9px;letter-spacing:.08em;color:#5f7a3a;border:1px solid rgba(95,122,58,.4);border-radius:3px;padding:2px 6px}
+.ov-close{display:block;margin:16px auto 0;padding:8px 22px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.08em;border-radius:3px;cursor:pointer}
+.decouvertes{margin-top:11px;padding:9px 12px;border:1px solid rgba(184,145,80,.45);border-radius:4px;background:rgba(184,150,70,.1);font-size:12.5px;color:#5a4a2a;line-height:1.4}
+.decouvertes .dec-h{display:block;font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.1em;color:#8a6a20;text-transform:uppercase;margin-bottom:3px}
+.bilan-actions{margin-top:auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.bilan-actions .restart{margin:0}
+.bilan-link{background:none;border:none;font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.06em;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.bilan-link:hover{color:var(--rubric)}
+.intro{position:fixed;inset:0;background:rgba(18,13,9,.95);display:flex;align-items:center;justify-content:center;padding:14px;z-index:35}
+.icard{width:min(640px,100%);max-height:96vh;overflow:auto;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:10px 30px 22px;box-shadow:0 30px 80px rgba(0,0,0,.6);text-align:center}
+.ibanner{margin:2px auto 0;max-width:430px}
+.ibanner svg{width:100%;height:auto;display:block}
+.iwm{font-family:"IM Fell English SC",serif;font-size:40px;letter-spacing:.14em;color:var(--rubric);margin:0}
+.isub{font-style:italic;font-size:13px;color:var(--ink-soft);margin:0 0 13px}
+.ireal{display:inline-flex;flex-direction:column;gap:2px;border:1px solid var(--paper-edge);border-radius:4px;padding:8px 20px;margin:0 0 16px;background:rgba(255,250,235,.5)}
+.ireal-k{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase}
+.ireal-t{font-family:"IM Fell English",serif;font-style:italic;font-size:20px;color:#7a5a1e}
+.isection{text-align:left;margin:0 0 13px}
+.isection h3{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.09em;color:var(--rubric);text-transform:uppercase;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+.isection h3::after{content:"";flex:1;height:1px;background:rgba(150,110,55,.4)}
+.isection p{font-size:14px;line-height:1.5;color:var(--ink);margin:0}
+.isteps{text-align:left;margin:0 0 18px;border-top:1px solid rgba(150,110,55,.3);padding-top:12px}
+.ist-h{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.09em;color:var(--rubric);text-transform:uppercase}
+.isteps ol{margin:7px 0 0;padding-left:20px}
+.isteps li{font-size:13px;line-height:1.45;color:#4a3a22;margin-bottom:4px}
+.icta{width:100%;padding:12px;border:none;border-radius:3px;background:var(--rubric);color:#f6e7d8;font-family:"IM Fell English SC",serif;font-size:14px;letter-spacing:.1em;cursor:pointer}
+.icta:hover{filter:brightness(1.07)}
 </style>
 </head>
 <body>
-<div class="topbar"><b>Lugal</b><span>un livre dont vous êtes le roi · Mésopotamie</span><span class="progress" id="progress"></span></div>
+<div class="topbar"><b>Lugal</b><span>un livre dont vous êtes le roi · Mésopotamie</span><span class="progress" id="progress"></span><button class="soundtgl" id="soundtgl" onclick="toggleSound()" title="Activer le son" aria-label="Son"></button></div>
 <div class="stage">
   <section class="book"><div class="ribbon"></div><div class="pages" id="pages"></div></section>
   <aside class="tablet" id="tablet"></aside>
 </div>
 
-<div class="frontis" id="frontis">
+<div class="intro" id="intro">
+  <div class="icard">
+    <div class="ibanner"><svg viewBox="0 0 520 134" fill="none" stroke="#6b4f24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="260" cy="34" r="14"/><g stroke-width="1.1"><path d="M260 15v-7M278 34h7M242 34h-7M272 22l5-5M248 22l-5-5M273 46l4 4M247 46l-4 4"/></g><path d="M232 110h56l-5-13h-46zM239 97h42l-5-13h-32zM246 84h28l-4-12h-20z"/><path d="M260 72v-6M255 72h10"/><path d="M14 110h492" stroke-width="1.3"/><path d="M64 16q18 36 66 56q34 14 56 38" stroke="#2f6f86" stroke-width="1.3"/><path d="M456 16q-18 36 -66 56q-34 14 -56 38" stroke="#2f6f86" stroke-width="1.3"/><g stroke="#2f6f86" stroke-width="1"><path d="M150 78l9 4M362 78l-9 4"/></g><g stroke-width="1.2"><path d="M40 110q-3-22 4-31M49 110q2-19-3-26M44 82l6-4M44 89l-6-3"/></g><g stroke-width="1.2"><path d="M480 110q3-22-4-31M471 110q-2-19 3-26M476 82l-6-4M476 89l6-3"/></g><g stroke-width="1.1"><path d="M110 110q-1-13 3-18M323 110q1-10 4-13"/></g></svg></div>
+    <p class="iwm">Lugal</p>
+    <p class="isub">un livre dont vous êtes le roi · un jeu sérieux d'histoire</p>
+    <div class="ireal"><span class="ireal-k">Réalité sociale · Histoire et éducation à la citoyenneté</span><span class="ireal-t">L'émergence d'une civilisation</span></div>
+    <div class="isection"><h3>Le monde où tu entres</h3><p>Il y a plus de cinq mille ans, en Mésopotamie, entre le Tigre et l'Euphrate, des villages de paysans sont devenus les premières grandes cités de l'histoire. C'est là, au pays de Sumer, qu'apparaissent pour la première fois l'écriture, l'État, les lois et une société divisée en groupes. Cette grande transformation, c'est l'émergence d'une civilisation.</p></div>
+    <div class="isection"><h3>Ton rôle</h3><p>Tu es le lugal, le roi d'une jeune cité de roseaux posée au bord du fleuve. De décision en décision, tu vas tenter de la conduire du village à la véritable civilisation : maîtriser l'eau, nourrir ton peuple, ouvrir le commerce, adopter l'écriture, fonder des écoles, bâtir des temples et graver des lois.</p></div>
+    <div class="isection"><h3>Ton objectif</h3><p>Chaque choix a un prix et des conséquences. Tu dois garder l'équilibre entre tes quatre qualités de roi et la prospérité de ta cité, tout en affrontant les crises d'un monde qui s'invente : crues, disettes, voleurs, révoltes, guerres. À la fin, l'histoire jugera ton règne. Il existe treize destins possibles, du plus glorieux au plus sombre.</p></div>
+    <div class="isteps"><span class="ist-h">Comment jouer</span><ol><li>Façonne ton roi et choisis ta cité sumérienne.</li><li>À chaque page, lis la situation et consulte la source avant de décider.</li><li>Certaines décisions sont des paris : deux dés et tes qualités décident du sort.</li><li>Ton règne se referme sur un bilan et une place dans l'histoire. Rejoue pour découvrir les treize fins.</li></ol></div>
+    <button class="icta" id="introgo">Façonner mon roi »</button>
+  </div>
+</div>
+
+<div class="frontis" id="frontis" style="display:none">
   <div class="fcard">
     <p class="wm">Lugal</p>
     <p class="k">L'émergence d'une civilisation</p>
     <h2>Façonne le roi que tu seras</h2>
     <p>Un village de roseaux attend un maître. Répartis tes points entre les quatre qualités du roi : elles décideront des paris possibles, des voies qui s'ouvriront, et de la fin de ton règne.</p>
     <div class="frow"><label>Ton titre</label><div class="fseg" id="seg"><button data-g="roi" class="on">Roi</button><button data-g="reine">Reine</button></div></div>
-    <div class="frow2"><div class="frow"><label>Ton nom</label><input id="nom" maxlength="16" value="Ur-Nammu"></div><div class="frow"><label>Ta cité</label><input id="cite" maxlength="16" value="Eridu"></div></div>
+    <div class="frow2"><div class="frow"><label>Ton nom</label><input id="nom" maxlength="16" value="Ur-Nammu"></div><div class="frow"><label>Ta cité</label><div class="citechips" id="citechips"></div></div></div>
+    <div class="citenote" id="citenote"></div>
     <span class="flabel">Répartis tes points entre tes qualités</span>
     <div class="pool" id="pool"></div>
     <div class="alloc" id="alloc"></div>
     <button class="fcta" id="begin" disabled>Place tous tes points pour commencer</button>
+    <div class="fmeta"><button type="button" onclick="openGalerie()">La galerie des règnes</button><span>·</span><button type="button" onclick="openDistinctions()">Les distinctions</button></div>
   </div>
 </div>
+
+<div class="overlay" id="overlay"></div>
 
 <div class="modal" id="modal"></div>
 
@@ -302,7 +391,7 @@ const QDESC={
 const SCEAUX_ORDRE=["Écriture adoptée","Temple puissant","Sans écriture","Code gravé","Loi de fer","Loi équitable","Prérogative royale","Ordalie","Alliés","Ennemis jurés","Murailles","Héritier désigné","Ordre durci"];
 const BASE=6, POOL=16, MAXADD=10;   // chaque qualité : 6 à 16
 let F=null;
-const nouvelle=()=>({nom:"Ur-Nammu",genre:"roi",cite:"Eridu",autorite:0,sagesse:0,piete:0,legitimite:0,prosperite:4,rayonnement:1,savoir:0,technique:0,sceaux:new Set(),registre:[],histoire:[],journal:[],feuillet:0,noeud:"eau"});
+const nouvelle=()=>({nom:"Ur-Nammu",genre:"roi",cite:"Eridu",autorite:0,sagesse:0,piete:0,legitimite:0,prosperite:4,rayonnement:1,savoir:0,technique:0,sceaux:new Set(),registre:[],histoire:[],journal:[],feuillet:0,noeud:"eau",_srcTotal:0,_srcSeen:0});
 const d6=()=>1+Math.floor(Math.random()*6);
 function statsOf(e){return e.stats?e.stats:(e.stat?[e.stat]:[]);}
 function epreuveRaw(e){
@@ -679,11 +768,33 @@ function ebsFor(r){
   return out.join("")||'<span class="eb dim">aucun effet direct</span>';
 }
 
-function rendreTablette(flash){
-  flash=(flash&&flash.has)?flash:new Set();
-  const quals=QUALITES.map(k=>`<div class="qual ${flash.has(k)?'flash':''}" id="qual-${k}"><span class="l">${LAB[k]}</span><span class="v">${F[k]}</span></div>`).join("");
+const ICO_SND_ON=`<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8v6h3l5 4V4L7 8z"/><path d="M15 8q2 3 0 6M17.5 6q3.5 5 0 10"/></svg>`;
+const ICO_SND_OFF=`<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8v6h3l5 4V4L7 8z"/><path d="M16 8l5 6M21 8l-5 6"/></svg>`;
+let AC=null,SOUND=false;
+function audioInit(){if(AC)return;try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){AC=null;}}
+function audioResume(){try{if(AC&&AC.state==="suspended")AC.resume();}catch(e){}}
+function envTone(freq,t0,dur,type,vol,glide){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.type=type||"sine";o.frequency.setValueAtTime(freq,t0);if(glide)o.frequency.exponentialRampToValueAtTime(glide,t0+dur);g.gain.setValueAtTime(0.0001,t0);g.gain.linearRampToValueAtTime(vol,t0+0.012);g.gain.exponentialRampToValueAtTime(0.0006,t0+dur);o.connect(g);g.connect(AC.destination);o.start(t0);o.stop(t0+dur+0.03);}
+function envNoise(t0,dur,vol,f1,f2){if(!AC)return;const n=Math.max(1,Math.floor(AC.sampleRate*dur)),buf=AC.createBuffer(1,n,AC.sampleRate),d=buf.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);const s=AC.createBufferSource();s.buffer=buf;const bp=AC.createBiquadFilter();bp.type="bandpass";bp.frequency.setValueAtTime(f1||1200,t0);if(f2)bp.frequency.exponentialRampToValueAtTime(f2,t0+dur);const g=AC.createGain();g.gain.setValueAtTime(vol,t0);g.gain.exponentialRampToValueAtTime(0.0006,t0+dur);s.connect(bp);bp.connect(g);g.connect(AC.destination);s.start(t0);s.stop(t0+dur+0.03);}
+function sfxClack(){if(!SOUND||!AC)return;envNoise(AC.currentTime,0.05,0.13,950,520);}
+function sfxSuccess(){if(!SOUND||!AC)return;const t=AC.currentTime;[523.25,659.25,783.99,1046.5].forEach((f,i)=>envTone(f,t+i*0.082,0.32,"triangle",0.15));}
+function sfxFail(){if(!SOUND||!AC)return;const t=AC.currentTime;envTone(196,t,0.5,"sine",0.17,110);envTone(146.83,t+0.05,0.5,"sine",0.11,98);}
+function sfxUnlock(){if(!SOUND||!AC)return;const t=AC.currentTime;[1046.5,1396.9,1760].forEach((f,i)=>envTone(f,t+i*0.06,0.38,"sine",0.11));}
+function sfxPage(){if(!SOUND||!AC)return;envNoise(AC.currentTime,0.2,0.05,2800,650);}
+function sfxFin(triomphe){if(!SOUND||!AC)return;const t=AC.currentTime;if(triomphe){[392,523.25,659.25,783.99,1046.5].forEach((f,i)=>envTone(f,t+i*0.12,0.7,"triangle",0.15));}else{[294,247,196,147].forEach((f,i)=>envTone(f,t+i*0.16,0.8,"sine",0.15));}}
+function updateSoundBtn(){const b=$("#soundtgl");if(!b)return;b.classList.toggle("on",SOUND);b.innerHTML=SOUND?ICO_SND_ON:ICO_SND_OFF;b.title=SOUND?"Couper le son":"Activer le son";}
+function setSound(on){SOUND=on;try{localStorage.setItem("lugal.sound",on?"1":"0");}catch(e){}if(on){audioInit();audioResume();}updateSoundBtn();}
+function toggleSound(){setSound(!SOUND);if(SOUND)sfxUnlock();}
+function loadSound(){let v=null;try{v=localStorage.getItem("lugal.sound");}catch(e){}SOUND=(v==="1");if(SOUND)audioInit();updateSoundBtn();}
+const PIPS={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
+function dieFace(n){let s="";for(let i=0;i<9;i++)s+=`<i class="pip${n&&PIPS[n]&&PIPS[n].includes(i)?' on':''}"></i>`;return s;}
+
+function rendreTablette(changed,deltas){
+  changed=(changed&&changed.has)?changed:new Set();
+  const sign={};(deltas||[]).forEach(d=>sign[d.k]=d.d>0?'up':'down');
+  const cls=k=>changed.has(k)?('flash '+(sign[k]||'')):'';
+  const quals=QUALITES.map(k=>`<div class="qual ${cls(k)}" id="qual-${k}"><span class="l">${LAB[k]}</span><span class="v">${F[k]}</span></div>`).join("");
   const metKeys=[...METRES,...METRES_X.filter(k=>F[k]>0)];
-  const meters=metKeys.map(k=>`<div class="meter ${flash.has(k)?'flash':''}">${ICO_MET[k]}<div><span class="cl">${LAB[k]}</span><span class="cv">${F[k]}</span></div></div>`).join("");
+  const meters=metKeys.map(k=>`<div class="meter ${cls(k)}" id="met-${k}">${ICO_MET[k]}<div><span class="cl">${LAB[k]}</span><span class="cv">${F[k]}</span></div></div>`).join("");
   const reg=F.registre.slice(-5).map((e,i,a)=>`<span class="e ${i===a.length-1?'flash':''}">${e}</span>`).join("")||`<span class="e">…</span>`;
   $("#tablet").innerHTML=`<div class="wedge"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="signet sg-stats">Capacités du personnage</div>
@@ -691,6 +802,7 @@ function rendreTablette(flash){
     <div class="t-sect">Qualités du roi</div><div class="qualites">${quals}</div>
     <div class="t-sect">Sa civilisation</div><div class="meters">${meters}</div>
     <div class="t-sect">Chronique du règne</div><div class="registre">${reg}</div>`;
+  if(deltas&&deltas.length){deltas.forEach(d=>{const cell=$("#qual-"+d.k)||$("#met-"+d.k);if(cell){const s=document.createElement("span");s.className="fly "+(d.d>0?'up':'down');s.textContent=(d.d>0?'+':'−')+Math.abs(d.d);cell.appendChild(s);setTimeout(()=>{if(s.parentNode)s.parentNode.removeChild(s);},1200);}});}
 }
 
 function impactModal(o){
@@ -710,9 +822,10 @@ function choisir(r,btn){
   if(r.epreuve){tenterEpreuve(r,btn);return;}
   if(r.sceau)F.sceaux.add(r.sceau);if(r.sceau2)F.sceaux.add(r.sceau2);
   const b=snap();appliquer(r.eff);const diff=diffFrom(b);
+  if(METRES_X.some(k=>(!b[k]||b[k]<=0)&&F[k]>0))setTimeout(sfxUnlock,200);
   if(r.reg)F.registre.push(r.reg);
   F.journal.push({t:r.t,juge:r.juge||"neutre"});
-  rendreTablette(diff.changed);
+  rendreTablette(diff.changed,diff.deltas);
   impactModal({title:r.t,body:r.impact,unlock:unlockNotice(b),deltas:diff.deltas,onContinue:()=>finaliser(btn,r.cibleFn?r.cibleFn(F):r.cible,r.suite)});
 }
 function epreuveDetail(e){
@@ -728,28 +841,39 @@ function tenterEpreuve(r,btn){
   document.querySelectorAll("#renvois .renvoi").forEach(x=>x.disabled=true);
   const flashes=statsOf(e).map(k=>$("#qual-"+k)).filter(Boolean);flashes.forEach(el=>el.classList.add("flash"));
   const dz=$("#dicezone");dz.classList.add("show");
-  dz.innerHTML=`<div class="dz-live"><div class="dz-explain"><div class="dz-rule">Lance 2 dés (de 2 à 12) et ajoute le bonus que te donnent tes qualités. Il faut atteindre <b>${seuil}</b> pour réussir. Plus une qualité dépasse 9, meilleur est le bonus, mais celui-ci est <b>plafonné</b> : même le plus grand roi peut être trahi par le sort, et un double-un échoue toujours.</div><div class="dz-calc">Qualités en jeu : ${epreuveDetail(e)}. Bonus appliqué : <b>${modTxt}</b>. Chances de réussite : <b>${pct} %</b>.</div></div><div class="dz-roll"><span class="die" id="d1">?</span><span class="die" id="d2">?</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div></div>`;
+  dz.innerHTML=`<div class="dz-live"><div class="dz-explain"><div class="dz-rule">Lance 2 dés (de 2 à 12) et ajoute le bonus que te donnent tes qualités. Il faut atteindre <b>${seuil}</b> pour réussir. Plus une qualité dépasse 9, meilleur est le bonus, mais celui-ci est <b>plafonné</b> : même le plus grand roi peut être trahi par le sort, et un double-un échoue toujours.</div><div class="dz-calc">Qualités en jeu : ${epreuveDetail(e)}. Bonus appliqué : <b>${modTxt}</b>. Chances de réussite : <b>${pct} %</b>.</div></div><div class="dz-roll"><span class="die" id="d1">${dieFace(0)}</span><span class="die" id="d2">${dieFace(0)}</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div></div>`;
   $("#rollbtn").onclick=()=>{
+    audioInit();audioResume();
     const a=d6(),bb=d6(),score=a+bb+mod,ok=score>=seuil;
-    const d1=$("#d1"),d2=$("#d2");d1.textContent=a;d2.textContent=bb;d1.classList.add("roll");d2.classList.add("roll");
-    $("#rollbtn").disabled=true;
-    setTimeout(()=>{
-      const out=ok?e.ok:e.penalite,b=snap();
-      if(out.sceau)F.sceaux.add(out.sceau);appliquer(out.eff);if(out.reg)F.registre.push(out.reg);
-      const diff=diffFrom(b);rendreTablette(diff.changed);flashes.forEach(el=>el.classList.remove("flash"));
-      impactModal({kicker:ok?"Réussite":"Échec",title:r.t,
-        verdict:{cls:ok?"ok":"no",txt:`Tu obtiens ${a} et ${bb} (total ${a+bb}). Avec ton bonus de ${modTxt}, ton résultat est ${score}. Il fallait ${seuil} : ${ok?"réussite !":"échec."} ${out.txt}`},
-        body:out.impact,unlock:unlockNotice(b),deltas:diff.deltas,
-        onContinue:()=>{
-          if(ok){F.journal.push({t:r.t,juge:r.juge||"neutre"});finaliser(btn,r.cibleFn?r.cibleFn(F):r.cible,out.suite);}
-          else{
-            dz.classList.remove("show");dz.innerHTML="";
-            btn.classList.add("burned");btn.disabled=true;const go=btn.querySelector(".go");if(go)go.textContent="raté";
-            const node=STORY[F.noeud];
-            document.querySelectorAll("#renvois .renvoi.open").forEach(b2=>{if(b2===btn)return;const rr=node.renvois[+b2.dataset.i];if(!rr.cond||rr.cond(F))b2.disabled=false;});
-          }
-        }});
-    },520);
+    const d1=$("#d1"),d2=$("#d2"),rb=$("#rollbtn");
+    rb.disabled=true;rb.textContent="Les dés roulent…";
+    d1.classList.add("tumbling");d2.classList.add("tumbling");
+    let ticks=0;const iv=setInterval(()=>{
+      d1.innerHTML=dieFace(d6());d2.innerHTML=dieFace(d6());sfxClack();
+      if(++ticks<8)return;
+      clearInterval(iv);
+      d1.classList.remove("tumbling");d2.classList.remove("tumbling");
+      d1.innerHTML=dieFace(a);d2.innerHTML=dieFace(bb);d1.classList.add("settle");d2.classList.add("settle");
+      setTimeout(()=>{
+        if(ok)sfxSuccess();else sfxFail();
+        const out=ok?e.ok:e.penalite,b=snap();
+        if(out.sceau)F.sceaux.add(out.sceau);appliquer(out.eff);if(out.reg)F.registre.push(out.reg);
+        if(METRES_X.some(k=>(!b[k]||b[k]<=0)&&F[k]>0))setTimeout(sfxUnlock,200);
+        const diff=diffFrom(b);rendreTablette(diff.changed,diff.deltas);flashes.forEach(el=>el.classList.remove("flash"));
+        impactModal({kicker:ok?"Réussite":"Échec",title:r.t,
+          verdict:{cls:ok?"ok":"no",txt:`Tu obtiens ${a} et ${bb} (total ${a+bb}). Avec ton bonus de ${modTxt}, ton résultat est ${score}. Il fallait ${seuil} : ${ok?"réussite !":"échec."} ${out.txt}`},
+          body:out.impact,unlock:unlockNotice(b),deltas:diff.deltas,
+          onContinue:()=>{
+            if(ok){F.journal.push({t:r.t,juge:r.juge||"neutre"});finaliser(btn,r.cibleFn?r.cibleFn(F):r.cible,out.suite);}
+            else{
+              dz.classList.remove("show");dz.innerHTML="";
+              btn.classList.add("burned");btn.disabled=true;const go=btn.querySelector(".go");if(go)go.textContent="raté";
+              const node=STORY[F.noeud];
+              document.querySelectorAll("#renvois .renvoi.open").forEach(b2=>{if(b2===btn)return;const rr=node.renvois[+b2.dataset.i];if(!rr.cond||rr.cond(F))b2.disabled=false;});
+            }
+          }});
+      },360);
+    },78);
   };
 }
 function finaliser(btn,cible,suite){
@@ -764,7 +888,7 @@ function finaliser(btn,cible,suite){
 
 function entrer(cible){
   F.noeud=cible;const n=STORY[cible];
-  if(!n.fin){const lead=F._suite||[];F._suite=null;F.histoire.push({num:F.histoire.length+1,folio:n.folio,paras:lead.concat(n.texte)});F._atPresent=true;}
+  if(!n.fin){const lead=F._suite||[];F._suite=null;F.histoire.push({num:F.histoire.length+1,folio:n.folio,paras:lead.concat(n.texte)});F._atPresent=true;sfxPage();}
   rendre(true);
 }
 function beatHTML(i,lead){
@@ -852,6 +976,7 @@ function rendre(flash){
     const liste=(arr,vide)=>arr.length?arr.map(t=>`<li>${t}</li>`).join(""):`<li class="vide">${vide}</li>`;
     const marquesHtml=marques.length?`<div class="bmarques"><span class="bm-h">Ce qui aura marqué ton règne</span>${marques.map(m=>`<span class="bm">${m}</span>`).join("")}</div>`:"";
     const grid=QUALITES.map(k=>cell(LAB[k],F[k],niveau(F[k]))).join("")+[...METRES,...METRES_X.filter(k=>F[k]>0)].map(k=>cell(LAB[k],F[k],niveauM(F[k]))).join("");
+    const dec=enregistrerFin(F.noeud);const decHtml=decouvertesHtml(dec,n.titre);
     pages.innerHTML=`<div class="spine"></div>
       <div class="leaf leaf-l bilan">
         <div class="signet sg-decision">Le verdict du règne</div>
@@ -862,6 +987,7 @@ function rendre(flash){
           <div class="fin-prose">${n.prose[0]}</div>
           <div class="fin-duree">Ton règne aura traversé ${F.histoire.length} décisions, ${esc(F.nom)} ${/^[aeiouhAEIOUH]/.test(F.cite)?"d'":"de "}${esc(F.cite)}.</div>
           <div class="bgrid">${grid}</div>
+          ${decHtml}
         </div>
       </div>
       <div class="leaf leaf-r bilan">
@@ -872,12 +998,16 @@ function rendre(flash){
             <div class="bj-sect bj-risque"><span class="bj-h">Décisions périlleuses pour ta cité</span><ul class="bj-list">${liste(risques,"aucune, ton règne fut prudent")}</ul></div>
           </div>
           ${marquesHtml}
-          <button class="restart" id="restart">${RESTART_IC} Régner à nouveau</button>
+          <div class="bilan-actions">
+            <button class="bilan-link" type="button" onclick="openGalerie()">La galerie · ${dec.finsCount}/13</button>
+            <button class="restart" id="restart">${RESTART_IC} Régner à nouveau</button>
+          </div>
         </div>
       </div>`;
-    $("#restart").onclick=reset;return;
+    $("#restart").onclick=reset;sfxFin(triomphe);return;
   }
   const s=n.src?SRC[n.src]:null;
+  if(s)F._srcTotal=(F._srcTotal||0)+1;
   const ordre=n.renvois.map((_,i)=>i);
   for(let i=ordre.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=ordre[i];ordre[i]=ordre[j];ordre[j]=t;}
   const renv=ordre.map(i=>{
@@ -907,7 +1037,7 @@ function rendre(flash){
       let t=READ_LOCK;
       const iv=setInterval(()=>{t--;const num=$("#srcnum");if(num)num.textContent=Math.max(t,0);
         if(t<=0){clearInterval(iv);const b=$("#srcclose");if(b){b.disabled=false;b.textContent="J'ai étudié la source »";}const tm=$("#srctimer");if(tm)tm.textContent="Tu peux maintenant décider.";}},1000);
-      $("#srcclose").onclick=()=>{const b=$("#srcclose");if(b&&b.disabled)return;studied=true;enableOpen();
+      $("#srcclose").onclick=()=>{const b=$("#srcclose");if(b&&b.disabled)return;studied=true;F._srcSeen=(F._srcSeen||0)+1;enableOpen();
         const cb=$("#consultbtn");if(cb)cb.innerHTML=`${SCROLL} Revoir la source`;
         const hint=$("#consultrow")&&$("#consultrow").querySelector(".consult-hint");if(hint)hint.textContent="déjà étudiée ; tu peux la rouvrir à tout moment";
         close();};
@@ -917,6 +1047,80 @@ function rendre(flash){
 }
 
 /* ----- frontispice : répartition des points ----- */
+/* ====== Persistance locale (galerie + distinctions) ====== */
+const MEM={};
+function loadSet(key){try{const v=localStorage.getItem(key);return new Set(v?JSON.parse(v):[]);}catch(e){return MEM[key]||(MEM[key]=new Set());}}
+function saveSet(key,s){try{localStorage.setItem(key,JSON.stringify([...s]));}catch(e){MEM[key]=s;}}
+const KFINS="lugal.fins",KTITRES="lugal.titres";
+const TRIOMPHES=["nF_legislateur","nF_orfevre","nF_dieu","nF_savoir"];
+const FINS_ORDRE=["nF_legislateur","nF_savoir","nF_orfevre","nF_dieu","nF_empire","nF_pretres","nF_maison","nF_oubli","nF_greniers","nF_vengeance","nF_poignards","nF_revolte","nF_deluge"];
+const FIN_INDICE={
+ nF_legislateur:"Un règne où la justice fut gravée pour les siècles.",
+ nF_savoir:"Un règne où le savoir et les nombres l'emportèrent.",
+ nF_orfevre:"Un âge d'or où la cité brilla de tout son éclat.",
+ nF_dieu:"Un règne où le trône s'éleva jusqu'au ciel des dieux.",
+ nF_empire:"Un règne bâti sur la crainte et la force.",
+ nF_pretres:"Un règne où le temple prit le pas sur le trône.",
+ nF_maison:"Une cité bâtie sur un sol trop meuble.",
+ nF_oubli:"Une cité que l'histoire ne sut pas retenir.",
+ nF_greniers:"Une cité que la faim finit par emporter.",
+ nF_vengeance:"Des voisins qui n'oublièrent pas l'affront.",
+ nF_poignards:"Un règne achevé dans l'ombre d'un complot.",
+ nF_revolte:"Un peuple qui finit par briser ses chaînes.",
+ nF_deluge:"Un règne que les dieux finirent par abandonner."};
+const TITRES=[
+ {id:"legislateur",nom:"Le Législateur",crit:"Finir comme Législateur éternel.",test:(F,c)=>c.fin==="nF_legislateur"},
+ {id:"accompli",nom:"Le Souverain accompli",crit:"Atteindre l'une des grandes fins de triomphe.",test:(F,c)=>TRIOMPHES.includes(c.fin)},
+ {id:"scribe",nom:"Le Scribe couronné",crit:"Élever le Savoir de ta cité à 8 ou plus.",test:(F)=>(F.savoir||0)>=8},
+ {id:"batisseur",nom:"Le Bâtisseur",crit:"Élever la Technique de ta cité à 8 ou plus.",test:(F)=>(F.technique||0)>=8},
+ {id:"civilisateur",nom:"Le Civilisateur",crit:"Éveiller le Savoir et la Technique dans un même règne.",test:(F)=>(F.savoir||0)>0&&(F.technique||0)>0},
+ {id:"juste",nom:"Le Juste",crit:"Graver une loi équitable pour ton peuple.",test:(F)=>F.sceaux.has("Loi équitable")&&F.sceaux.has("Code gravé")},
+ {id:"prudent",nom:"Le Prudent",crit:"Régner au moins 10 décisions sans aucune décision périlleuse.",test:(F)=>F.histoire.length>=10&&!(F.journal||[]).some(d=>d.juge==="risque")},
+ {id:"sage_sources",nom:"Le Sage des sources",crit:"Consulter chaque source proposée durant un règne.",test:(F)=>(F._srcTotal||0)>=5&&(F._srcSeen||0)>=(F._srcTotal||0)},
+ {id:"explorateur",nom:"L'Explorateur",crit:"Découvrir au moins 6 des 13 fins.",test:(F,c)=>c.finsCount>=6}];
+function enregistrerFin(finId){
+  const fins=loadSet(KFINS),nouvelleFin=!fins.has(finId);fins.add(finId);saveSet(KFINS,fins);
+  const titres=loadSet(KTITRES),ctx={fin:finId,finsCount:fins.size},nouveaux=[];
+  TITRES.forEach(t=>{try{if(t.test(F,ctx)&&!titres.has(t.id)){titres.add(t.id);nouveaux.push(t.nom);}}catch(e){}});
+  saveSet(KTITRES,titres);
+  return {nouvelleFin,finsCount:fins.size,nouveaux};
+}
+function decouvertesHtml(d,finTitre){
+  if(!d.nouvelleFin&&!d.nouveaux.length)return "";
+  const bits=[];
+  if(d.nouvelleFin)bits.push(`une nouvelle fin, <b>${finTitre}</b>`);
+  if(d.nouveaux.length)bits.push(`${d.nouveaux.length>1?'les distinctions':'la distinction'} <b>${d.nouveaux.join(", ")}</b>`);
+  return `<div class="decouvertes"><span class="dec-h">Nouveau dans ta galerie</span>Ce règne t'a fait découvrir ${bits.join(" et ")}.</div>`;
+}
+function openOverlay(html){const o=$("#overlay");o.innerHTML=`<div class="ov-card">${html}<button class="ov-close" onclick="closeOverlay()">Fermer</button></div>`;o.classList.add("show");}
+function closeOverlay(){const o=$("#overlay");o.classList.remove("show");o.innerHTML="";}
+function openGalerie(){
+  const fins=loadSet(KFINS);
+  const cards=FINS_ORDRE.map(id=>{const ok=fins.has(id),trio=TRIOMPHES.includes(id);
+    return `<div class="gcard ${ok?'found':'locked'}${trio&&ok?' trio':''}">${ok?`<span class="gc-tt">${STORY[id].titre}</span>`:`<span class="gc-seal">?</span>`}<span class="gc-hint">${FIN_INDICE[id]}</span></div>`;}).join("");
+  openOverlay(`<div class="ov-h">La galerie des règnes</div><div class="ov-sub">${fins.size} des 13 destins découverts</div><div class="ggrid">${cards}</div>`);
+}
+function openDistinctions(){
+  const titres=loadSet(KTITRES);
+  const rows=TITRES.map(t=>{const ok=titres.has(t.id);return `<div class="dcard ${ok?'found':'locked'}"><span class="dc-n">${ok?t.nom:'Distinction à mériter'}</span><span class="dc-c">${t.crit}</span>${ok?'<span class="dc-mark">obtenue</span>':''}</div>`;}).join("");
+  openOverlay(`<div class="ov-h">Le registre des distinctions</div><div class="ov-sub">${titres.size} des ${TITRES.length} distinctions obtenues</div><div class="dlist">${rows}</div>`);
+}
+/* ====== Cités sumériennes : note historique + atout de départ ====== */
+const CITES=[
+ {n:"Eridu",note:"La plus ancienne cité, demeure d'Enki, dieu des eaux douces.",k:"piete"},
+ {n:"Uruk",note:"Cité de Gilgamesh, berceau de l'écriture et des grandes murailles.",k:"sagesse"},
+ {n:"Ur",note:"Cité d'Ur-Nammu, de sa ziggourat et de son grand code de lois.",k:"legitimite"},
+ {n:"Lagash",note:"Cité d'Urukagina, qui proclama l'amargi, la liberté des endettés.",k:"legitimite"},
+ {n:"Kish",note:"Là, dit-on, la royauté descendit du ciel après le déluge.",k:"autorite"},
+ {n:"Nippur",note:"Cité sainte d'Enlil, cœur religieux de Sumer.",k:"piete"}];
+let cityIdx=0;
+function renderCites(){
+  const cc=$("#citechips");if(!cc)return;
+  cc.innerHTML=CITES.map((c,i)=>`<button type="button" data-ci="${i}" class="${i===cityIdx?'on':''}">${c.n}</button>`).join("");
+  const c=CITES[cityIdx];
+  $("#citenote").innerHTML=`<span class="cn-note">${c.note}</span> <span class="cn-atout">Atout : +1 ${LAB[c.k]}</span>`;
+}
+
 let genre="roi",alloc={autorite:0,sagesse:0,piete:0,legitimite:0};
 function pointsLeft(){return POOL-QUALITES.reduce((s,k)=>s+alloc[k],0);}
 function renderAlloc(){
@@ -937,17 +1141,22 @@ $("#alloc").addEventListener("click",e=>{
   alloc[k]+=d;renderAlloc();
 });
 $("#seg").addEventListener("click",e=>{const b=e.target.closest("button[data-g]");if(!b)return;genre=b.dataset.g;document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x===b));});
+$("#introgo").addEventListener("click",()=>{$("#intro").style.display="none";$("#frontis").style.display="flex";});
+$("#citechips").addEventListener("click",e=>{const b=e.target.closest("button[data-ci]");if(!b)return;cityIdx=+b.dataset.ci;renderCites();});
 $("#begin").addEventListener("click",()=>{
   if(pointsLeft()!==0)return;
-  F=nouvelle();F.nom=$("#nom").value.trim()||"Anonyme";F.cite=$("#cite").value.trim()||"la Cité";F.genre=genre;
+  const cite=CITES[cityIdx];
+  F=nouvelle();F.nom=$("#nom").value.trim()||"Anonyme";F.cite=cite.n;F.genre=genre;
   QUALITES.forEach(k=>F[k]=BASE+alloc[k]);
+  F[cite.k]+=1;
   F.registre.push("Avènement sur le trône.");
   F.noeud="eau";const n=STORY.eau;F.histoire.push({num:1,folio:n.folio,paras:n.texte});
   $("#frontis").style.display="none";rendre(false);
 });
 function reset(){F=null;alloc={autorite:0,sagesse:0,piete:0,legitimite:0};document.body.classList.remove("finstate");const m=$("#modal");m.classList.remove("show");m.innerHTML="";$("#frontis").style.display="flex";renderAlloc();}
 renderAlloc();
-
+renderCites();
+loadSound();
 if(document.fonts&&document.fonts.ready){document.fonts.ready.then(()=>{if(F&&$("#story"))renderLeft();});}
 window.addEventListener("resize",()=>{if(F&&$("#story"))renderLeft();});
 if(typeof module!=="undefined"){module.exports={STORY,SRC,SCEAUX_ORDRE,QUALITES,METRES,evaluerFin,pReussite,BASE,POOL,MAXADD};}

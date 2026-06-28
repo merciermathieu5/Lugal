@@ -15,12 +15,42 @@ du roi et l'état de sa civilisation.
 Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance, aucune image
 externe (tout est dessiné ou écrit dans le fichier).
 
+## La page de présentation
+Au lancement, une **page d'accueil** met l'élève en contexte avant tout choix.
+Elle nomme la réalité sociale (**L'émergence d'une civilisation**, en Histoire et
+éducation à la citoyenneté), situe le décor (la Mésopotamie, entre le Tigre et
+l'Euphrate, au pays de Sumer), explique le rôle de l'élève et l'objectif du règne,
+et résume en quatre points comment on joue. Une petite scène gravée (ziggourat,
+soleil, les deux fleuves, roseaux) ouvre l'écran. Le bouton **Façonner mon roi**
+mène ensuite à la création du personnage. La présentation n'apparaît qu'au premier
+lancement : après un règne, l'élève revient directement à la création.
+
 ## L'accueil : l'élève façonne son roi
-Avant de jouer, l'élève **répartit lui-même ses points** entre les quatre
-qualités du roi (Autorité, Sagesse, Piété, Légitimité). Chaque qualité est
-accompagnée d'une **explication de son importance** : elles décident des paris
-que le roi pourra tenter, des voies qui s'ouvriront à lui et de la façon dont
-son règne se terminera. Ce choix de départ donne du sens à toute la partie.
+Avant de jouer, l'élève **nomme son roi** et **choisit sa cité** parmi six
+véritables cités sumériennes (Eridu, Uruk, Ur, Lagash, Kish, Nippur). Chacune
+porte une **note historique** d'une ligne et accorde un petit **atout de départ**
+fidèle à son histoire (Uruk et l'écriture donnent +1 Sagesse, Kish et la première
+royauté +1 Autorité, etc.) : un choix d'identité qui enseigne la géographie réelle
+de Sumer. L'élève **répartit ensuite lui-même ses points** entre les quatre
+qualités du roi (Autorité, Sagesse, Piété, Légitimité), chacune accompagnée d'une
+**explication de son importance** : elles décident des paris que le roi pourra
+tenter, des voies qui s'ouvriront à lui et de la façon dont son règne se terminera.
+
+## Ludification : galerie, distinctions, son
+Pour soutenir le plaisir et la rejouabilité, trois couches s'ajoutent au jeu,
+**sauvegardées localement** d'une partie à l'autre (localStorage). La **galerie
+des règnes** est un codex des 13 fins : les fins atteintes se révèlent (les
+triomphes en doré), les autres restent scellées avec un indice mystérieux qui
+donne envie de les débusquer. Le **registre des distinctions** réunit neuf titres
+à mériter (Le Législateur, Le Scribe couronné, Le Bâtisseur, Le Juste, Le Prudent,
+Le Sage des sources qui récompense la consultation des sources, etc.), avec le
+critère affiché pour chaque titre non encore obtenu. À la fin d'un règne, un
+bandeau annonce les nouvelles découvertes. Enfin, un **habillage sonore**
+synthétisé (dés qui roulent, fanfare de réussite, scintillement de déblocage,
+froissement de page) s'active par un bouton dans la barre du haut, **coupé par
+défaut** pour la classe ; les dés sont désormais **animés** (faces qui défilent
+puis se figent) et les jauges **réagissent** à chaque changement (flash vert ou
+rouge et valeur flottante).
 
 ## Le livre, en deux pages
 Chaque zone porte un **signet** qui l'identifie d'un coup d'œil : **Trame
