@@ -28,33 +28,33 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .progress{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.05em;color:#b39a72;white-space:nowrap;font-style:normal}
 .stage{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1.62fr .72fr;gap:14px;margin-top:5px}
 
-/* ---------- LE LIVRE OUVERT ---------- */
-.book{height:100%;min-height:0;display:flex;padding:10px;border-radius:7px;position:relative;
+/* ---------- LE LIVRE (page unique reliée) ---------- */
+.book{height:100%;min-height:0;display:flex;padding:10px 10px 10px 8px;border-radius:7px;position:relative;
   background:linear-gradient(135deg,var(--cover-1),var(--cover-2) 58%,var(--cover-3));
   box-shadow:0 20px 54px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,220,170,.09),inset 0 0 0 7px rgba(0,0,0,.28),inset 0 0 24px rgba(0,0,0,.4)}
-.pages{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;position:relative;border-radius:3px;overflow:hidden;
+.pages{flex:1;min-height:0;position:relative;border-radius:3px 5px 5px 3px;overflow:hidden;
   background:linear-gradient(180deg,var(--paper),var(--paper-2));
   box-shadow:inset 0 0 44px rgba(120,90,50,.2)}
+/* la tranche : un mince sliver de la page précédente + l'ombre de la reliure */
+.pages::before{content:"";position:absolute;top:0;bottom:0;left:0;width:17px;z-index:3;pointer-events:none;
+  background:linear-gradient(90deg,#d8c9a3,#cdbd95 52%,rgba(80,55,25,.30) 90%,rgba(55,36,16,.45));
+  box-shadow:inset -2px 0 5px rgba(60,40,18,.35)}
 .pages::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:4;
-  background:radial-gradient(120% 80% at 50% 50%,transparent 60%,rgba(80,55,25,.14) 100%)}
-.spine{position:absolute;top:0;bottom:0;left:50%;width:40px;transform:translateX(-50%);z-index:3;pointer-events:none;
-  background:linear-gradient(90deg,rgba(90,62,30,0),rgba(90,62,30,.16) 38%,rgba(55,36,16,.42) 50%,rgba(90,62,30,.16) 62%,rgba(90,62,30,0))}
-.ribbon{position:absolute;top:-5px;right:48px;width:15px;height:58px;z-index:6;background:linear-gradient(180deg,#a83e2e,#7d2c20);box-shadow:0 4px 7px rgba(0,0,0,.35)}
+  background:radial-gradient(130% 90% at 60% 50%,transparent 62%,rgba(80,55,25,.13) 100%)}
+.ribbon{position:absolute;top:-5px;right:40px;width:15px;height:62px;z-index:6;background:linear-gradient(180deg,#a83e2e,#7d2c20);box-shadow:0 4px 7px rgba(0,0,0,.35)}
 .ribbon::after{content:"";position:absolute;bottom:-8px;left:0;border-left:7.5px solid transparent;border-right:7.5px solid transparent;border-top:8px solid #7d2c20}
-.leaf{min-height:0;overflow:auto;display:flex;flex-direction:column;padding:12px 20px 8px;position:relative;z-index:2}
-.leaf-l{box-shadow:inset -22px 0 28px -22px rgba(70,46,18,.5)}
-.leaf-r{box-shadow:inset 22px 0 28px -22px rgba(70,46,18,.5)}
-.leaf-full{grid-column:1/-1;align-items:center;text-align:center;padding:20px 14%}
+.leaf{height:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;padding:13px 30px 10px 34px;position:relative;z-index:2}
+.leaf-full{align-items:center;text-align:center;padding:22px 12% 18px}
 .rhead{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;gap:8px;
-  font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);
+  font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
   padding-bottom:5px;border-bottom:1px solid var(--rule);margin-bottom:9px}
 .rhead .rno{font-family:"IM Fell English",serif;font-style:italic;font-size:17px;color:var(--rubric);letter-spacing:0;text-transform:none}
-.dropcap-wrap{flex:0 1 auto;min-height:0;overflow:auto}
+.dropcap-wrap{flex:0 0 auto}
 .prose{font-size:15.5px;line-height:1.62;text-align:justify;hyphens:auto}
 .prose p{margin:0 0 9px}
 .prose .dropcap::first-letter{font-family:"IM Fell English",serif;font-size:3em;line-height:.78;float:left;padding:6px 9px 0 0;color:var(--rubric)}
 .prose em{font-style:italic;color:#5a4a30}
-.folio-no{flex:0 0 auto;margin-top:auto;padding-top:8px;font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:var(--ink-soft);text-align:center;opacity:.8}
+.folio-no{flex:0 0 auto;margin-top:auto;padding-top:9px;font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:var(--ink-soft);text-align:center;opacity:.8}
 
 /* consulter la source */
 .consult-row{flex:0 0 auto;display:flex;align-items:center;gap:9px;margin:9px 0 2px;flex-wrap:wrap}
@@ -89,7 +89,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 /* page de droite : décision */
 .consigne{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:16px;color:var(--rubric);margin-bottom:3px}
 .locknote{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11.5px;color:#8a6a44;margin:2px 0 4px}
-.renvois{flex:0 1 auto;min-height:0;overflow:auto;border-top:1px solid var(--rule);padding-top:4px;margin-top:4px}
+.renvois{flex:0 0 auto;border-top:1px solid var(--rule);padding-top:4px;margin-top:6px}
 .renvoi{display:flex;gap:9px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:7px 4px;font-family:"EB Garamond",serif;font-size:15px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px;border-bottom:1px dotted rgba(120,90,45,.3)}
 .renvoi:last-child{border-bottom:none}
 .renvoi:hover:not(:disabled){background:rgba(156,58,44,.07)}
@@ -196,9 +196,8 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 @media(max-width:900px){
   html,body{overflow:auto;height:auto}body{min-height:100%}
   .stage{grid-template-columns:1fr}.book,.tablet{height:auto;min-height:0}.tablet{order:-1}
-  .pages{grid-template-columns:1fr}.spine,.ribbon{display:none}
-  .leaf-r{box-shadow:none;border-top:1px solid var(--rule)}
-  .dropcap-wrap,.renvois,.seals{overflow:visible}
+  .ribbon{display:none}.leaf{height:auto;overflow:visible}
+  .seals{overflow:visible}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
@@ -496,7 +495,7 @@ const STORY={
     texte:["Ta civilisation a son sommet — toi, les scribes, les prêtres — et son fond : paysans accablés, débiteurs, esclaves. C'est sur leurs épaules que repose tout l'édifice. Trop les presser le fait vaciller ; trop les ménager t'appauvrit."],
     consigne:"Que fais-tu de l'ordre social ?",
     renvois:[
-      {t:"Durcir l'ordre : corvées et dettes strictes.",eff:{prosperite:1,legitimite:-2},reg:"Ordre durci — la richesse monte, la colère aussi.",impact:"Presser les plus faibles enrichit l'État à court terme, mais l'histoire mésopotamienne est jalonnée de révoltes de débiteurs : une société trop dure finit par se soulever.",cible:"n23"},
+      {t:"Durcir l'ordre : corvées et dettes strictes.",eff:{prosperite:1,legitimite:-2},sceau:"Ordre durci",reg:"Ordre durci — la richesse monte, la colère aussi.",impact:"Presser les plus faibles enrichit l'État à court terme, mais l'histoire mésopotamienne est jalonnée de révoltes de débiteurs : une société trop dure finit par se soulever.",cible:"n23"},
       {t:"Alléger dettes et corvées.",eff:{legitimite:2,prosperite:-1},reg:"Dettes allégées — le peuple respire et t'aime.",impact:"Effacer les dettes et alléger les corvées — certains rois le firent vraiment — apaise les tensions et s'attache le peuple, au prix de revenus moindres. Un investissement dans la paix sociale.",cible:"n23"},
       {t:"Ne rien changer à l'ordre établi.",eff:{},reg:"L'ordre demeure — ni mieux, ni pire.",impact:"Laisser l'ordre tel quel évite les remous immédiats, mais ne résout aucune des tensions qui couvent : l'immobilisme n'est qu'un sursis.",cible:"n23"}
     ]},
@@ -538,7 +537,7 @@ function evaluerFin(F){
   const s=F.sceaux,ray=F.rayonnement,leg=F.legitimite,pro=F.prosperite,aut=F.autorite,pie=F.piete,sag=F.sagesse;
   if(pro<=0) return "nF_greniers";
   if(s.has("Sans écriture")&&ray<3) return "nF_oubli";
-  if(leg<=8) return (s.has("Loi de fer")||s.has("Prérogative royale"))?"nF_poignards":"nF_revolte";
+  if(leg<=8) return s.has("Ordre durci")?"nF_revolte":"nF_poignards";
   if(s.has("Ennemis jurés")&&!s.has("Murailles")) return "nF_vengeance";
   if(s.has("Loi de fer")) return (aut>=11&&pro>=3)?"nF_empire":"nF_poignards";
   if(s.has("Ordalie")||s.has("Temple puissant")){
@@ -578,7 +577,7 @@ function ebsFor(r){
   if(r.lawref)out.push(`<span class="eb law ${r.lawnone?'none':''}">${r.lawref}</span>`);
   if(r.epreuve){
     const e=r.epreuve,pct=pReussite(F[e.stat],e.seuil||8);
-    out.push(`<span class="eb die">${DICO}${pct} % · ${LAB[e.stat]}</span>`);
+    out.push(`<span class="eb die">pari · ${pct} % · ${LAB[e.stat]}</span>`);
     deltaBadges(e.ok.eff).forEach(x=>out.push(x));
     if(e.ok.sceau)out.push(`<span class="eb seal">sceau : ${e.ok.sceau}</span>`);
     out.push(`<span class="eb neg dim">si échec : ${penInline(e.penalite)}</span>`);
@@ -679,7 +678,7 @@ function rendre(flash){
   $("#progress").textContent=n.fin?"Fin du règne":(num?`Décision ${num} / 24`:"");
   if(n.fin){
     const bilan=QUALITES.map(k=>`<span class="eb pos">${LAB[k]} ${F[k]}</span>`).join("")+METRES.map(k=>`<span class="eb seal">${LAB[k]} ${F[k]}</span>`).join("");
-    pages.innerHTML=`<div class="spine"></div><div class="leaf leaf-full">
+    pages.innerHTML=`<div class="leaf leaf-full">
       <div class="rhead" style="width:100%"><span>${n.folio}</span><span class="rno">fin du règne</span></div>
       <div class="fin-title">${n.titre}</div>
       <div class="fin-prose">${n.prose[0]}</div>
@@ -695,9 +694,14 @@ function rendre(flash){
     return `<button class="renvoi open" data-i="${i}"${r.arts?` data-arts="${r.arts.join(',')}"`:''} disabled><span class="lt"><span>${r.t}</span><span class="ebs">${ebsFor(r)}</span></span><span class="go">${r.go||'»'}</span></button>`;
   }).join("");
   const srcBlock=s?`<div class="consult-row" id="consultrow"><button class="consult-btn" id="consultbtn">${SCROLL} Consulter la source</button><span class="consult-hint">pour décider en connaissance de cause</span></div><div class="source-wrap" id="sourcewrap">${plate(s)}</div><div class="readlock" id="readlock"><span class="rl-txt">Étudie la source — <span class="rl-num">${READ_LOCK}</span> s</span><div class="rl-bar"><i></i></div></div>`:'';
-  const left=`<div class="leaf leaf-l"><div class="rhead"><span>${n.folio}</span><span class="rno">§${num}</span></div><div class="dropcap-wrap"><div class="prose"><p class="dropcap">${n.texte[0]}</p>${n.texte.slice(1).map(p=>`<p>${p}</p>`).join("")}</div>${srcBlock}</div><div class="folio-no">~ ${num} ~</div></div>`;
-  const right=`<div class="leaf leaf-r"><div class="rhead"><span>Le choix du roi</span><span>${esc(F.cite)}</span></div><div class="consigne">${n.consigne}</div>${s?'<div class="locknote" id="locknote">Consulte d\'abord la source pour pouvoir choisir.</div>':''}<div class="renvois" id="renvois">${renv}</div><div class="dice-zone" id="dicezone"></div><div class="folio-no"></div></div>`;
-  pages.innerHTML=`<div class="spine"></div>${left}${right}`;
+  pages.innerHTML=`<div class="leaf"><div class="rhead"><span>${n.folio}</span><span class="rno">§${num}</span></div>`
+    +`<div class="dropcap-wrap"><div class="prose"><p class="dropcap">${n.texte[0]}</p>${n.texte.slice(1).map(p=>`<p>${p}</p>`).join("")}</div></div>`
+    +`<div class="consigne">${n.consigne}</div>`
+    +srcBlock
+    +`${s?'<div class="locknote" id="locknote">Consulte la source pour pouvoir choisir.</div>':''}`
+    +`<div class="renvois" id="renvois">${renv}</div>`
+    +`<div class="dice-zone" id="dicezone"></div>`
+    +`<div class="folio-no">~ ${num} ~</div></div>`;
   bindRenvois(n);rendreTablette(flash);
   if(s){$("#consultbtn").onclick=()=>{$("#sourcewrap").style.display="block";$("#consultrow").innerHTML='<span class="consult-done">Source consultée — étudie-la, puis décide.</span>';startReadLock(READ_LOCK);};}
   else{enableOpen();}
