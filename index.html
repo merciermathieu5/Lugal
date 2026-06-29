@@ -21,17 +21,17 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
   background:radial-gradient(140% 100% at 50% -20%,#33291f 0%,var(--desk) 70%,#150f0a 100%);
   display:flex;flex-direction:column;padding:9px 14px 13px}
 .topbar{flex:0 0 auto;display:flex;align-items:baseline;justify-content:center;gap:13px;padding-bottom:5px;flex-wrap:wrap}
-.soundtgl{align-self:center;width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(210,180,120,.4);border-radius:50%;background:rgba(40,28,14,.3);color:#9a8252;cursor:pointer;padding:0;transition:color .25s,border-color .25s,background .25s}
+.soundtgl{position:fixed;top:9px;right:12px;z-index:50;width:32px;height:32px;display:grid;place-items:center;border:1px solid rgba(210,180,120,.45);border-radius:50%;background:rgba(30,21,11,.72);color:#b09a68;cursor:pointer;padding:0;transition:color .25s,border-color .25s,background .25s;backdrop-filter:blur(2px)}
 .soundtgl:hover{color:#c2ad8d;border-color:rgba(210,180,120,.7)}
 .soundtgl.on{color:#e7c66a;border-color:rgba(231,198,106,.65);background:rgba(231,198,106,.12)}
 .soundtgl svg{width:18px;height:18px}
 .topbar b{font-family:"IM Fell English SC",serif;font-size:29px;letter-spacing:.13em;color:#eed9a8;font-weight:400}
 .topbar span{font-style:italic;font-size:13px;color:#c2ad8d}
 .progress{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.05em;color:#b39a72;white-space:nowrap;font-style:normal}
-.stage{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1.62fr .72fr;gap:14px;margin-top:5px}
+.stage{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr;margin-top:5px}
 
 /* ---------- LE LIVRE OUVERT (deux pages) ---------- */
-.book{height:100%;min-height:0;display:flex;padding:10px;border-radius:7px;position:relative;
+.book{height:100%;min-height:0;width:100%;max-width:1200px;margin:0 auto;display:flex;padding:10px;border-radius:7px;position:relative;
   background:linear-gradient(135deg,var(--cover-1),var(--cover-2) 58%,var(--cover-3));
   box-shadow:0 20px 54px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,220,170,.09),inset 0 0 0 7px rgba(0,0,0,.28),inset 0 0 24px rgba(0,0,0,.4)}
 .pages{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;position:relative;border-radius:3px;overflow:hidden;
@@ -57,7 +57,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .para{margin:0 0 15px}
 .para:last-child{margin-bottom:0}
 .para .pf{font-family:"IM Fell English SC",serif;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--rubric);display:block;margin-bottom:8px;padding-bottom:5px;border-bottom:1px dotted var(--rule)}
-.para .pt{font-size:16.5px;line-height:1.66;text-align:justify;hyphens:auto;color:var(--ink)}
+.para .pt{font-size:17.5px;line-height:1.62;text-align:justify;hyphens:auto;color:var(--ink)}
 .para.past .pt{color:#8a7c60}
 .para.past .pf{color:#b29a6a;border-bottom-color:rgba(120,90,45,.18)}
 .para.past .pt em{color:#8a7656}
@@ -104,15 +104,15 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .readlock .rl-num{font-family:"IM Fell English",serif;color:var(--rubric);font-style:normal}
 .readlock .rl-bar{flex:1;height:5px;background:rgba(120,96,52,.18);border-radius:3px;overflow:hidden}
 .readlock .rl-bar i{display:block;height:100%;width:0;background:var(--rubric);transition:width 1s linear}
-.consigne{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:15.5px;line-height:1.3;color:var(--rubric);margin:0 0 7px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.consigne{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:17px;line-height:1.32;color:var(--rubric);margin:0 0 7px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
 .locknote{flex:0 0 auto;font-family:"IM Fell English",serif;font-style:italic;font-size:11.5px;color:#8a6a44;margin:2px 0 4px}
 .renvois{flex:0 0 auto;border-top:1px solid var(--rule);padding-top:4px;margin-top:5px}
-.renvoi{display:flex;gap:9px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:5px 4px;font-family:"EB Garamond",serif;font-size:13.5px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px;border-bottom:1px dotted rgba(120,90,45,.3)}
+.renvoi{display:flex;gap:9px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;background:none;border:none;padding:5px 4px;font-family:"EB Garamond",serif;font-size:15px;color:var(--ink);cursor:pointer;transition:background .12s;border-radius:2px;border-bottom:1px dotted rgba(120,90,45,.3)}
 .renvoi:last-child{border-bottom:none}
 .renvoi:hover:not(:disabled){background:rgba(156,58,44,.07)}
 .renvoi:focus-visible{outline:2px solid var(--rubric);outline-offset:1px}
 .renvoi .lt{display:flex;flex-direction:column;gap:4px;align-items:flex-start;flex:1;min-width:0}
-.renvoi .go{font-family:"IM Fell English",serif;font-style:italic;color:var(--rubric);font-size:13px;white-space:nowrap;padding-top:2px}
+.renvoi .go{font-family:"IM Fell English",serif;font-style:italic;color:var(--rubric);font-size:14px;white-space:nowrap;padding-top:2px}
 .renvoi:disabled{cursor:not-allowed;opacity:.6}
 .renvoi.burned{opacity:.45}.renvoi.burned .go{color:#b04a3a}
 .renvoi.chosen{background:rgba(58,90,40,.1);opacity:1}
@@ -170,7 +170,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .fin-wrap.chute .fin-kicker{color:#9a6a58}
 .fin-wrap.chute .bcell{border-top-color:#b98a78}
 .fin-wrap.chute .restart{background:#6f4438;box-shadow:0 4px 12px rgba(60,30,22,.3)}
-.leaf.bilan{overflow:hidden}body.finstate .stage{grid-template-columns:1fr}body.finstate .tablet{display:none}.bj-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;flex:0 1 auto;min-height:0}.fin-wrap.bl{max-width:none;margin-top:2px}.fin-wrap.bl .fin-title{font-size:23px}.fin-wrap.bl .fin-prose{font-size:13.5px;line-height:1.52;margin-bottom:11px}.fin-wrap.bl .fin-duree{margin-bottom:13px}.fin-wrap.bl .bgrid{grid-template-columns:repeat(2,1fr);max-width:none;gap:8px;margin-bottom:0}.fin-wrap.bl .bcell{padding:7px 5px 6px}.fin-wrap.bl .bcell .bv{font-size:22px}.bilan-juge{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:13px;padding-top:4px}.bj-h{display:block;font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5f7a3a;margin-bottom:5px;padding-bottom:3px;border-bottom:1px solid rgba(95,122,58,.3)}.bj-risque .bj-h{color:#9c4a36;border-bottom-color:rgba(156,74,54,.3)}.bj-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}.bj-list li{font-family:"EB Garamond",serif;font-size:12.5px;line-height:1.32;color:var(--ink);padding-left:16px;position:relative}.bj-list li::before{content:"";position:absolute;left:2px;top:6px;width:6px;height:6px;border-radius:50%;background:#6a8a3e}.bj-risque .bj-list li::before{background:#b1503a;border-radius:0;transform:rotate(45deg)}.bj-list li.vide{font-style:italic;color:#9a8a6a;padding-left:0}.bj-list li.vide::before{display:none}.bilan-juge .bmarques{align-items:flex-start;max-width:none;margin:2px 0 14px}.bilan-juge .bmarques .bm-h{align-self:flex-start}.bilan-juge .restart{align-self:center;margin-top:auto}
+.leaf.bilan{overflow:hidden}body.finstate .sheet-drawer{display:none}.bj-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;flex:0 1 auto;min-height:0}.fin-wrap.bl{max-width:none;margin-top:2px}.fin-wrap.bl .fin-title{font-size:23px}.fin-wrap.bl .fin-prose{font-size:13.5px;line-height:1.52;margin-bottom:11px}.fin-wrap.bl .fin-duree{margin-bottom:13px}.fin-wrap.bl .bgrid{grid-template-columns:repeat(2,1fr);max-width:none;gap:8px;margin-bottom:0}.fin-wrap.bl .bcell{padding:7px 5px 6px}.fin-wrap.bl .bcell .bv{font-size:22px}.bilan-juge{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:13px;padding-top:4px}.bj-h{display:block;font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5f7a3a;margin-bottom:5px;padding-bottom:3px;border-bottom:1px solid rgba(95,122,58,.3)}.bj-risque .bj-h{color:#9c4a36;border-bottom-color:rgba(156,74,54,.3)}.bj-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}.bj-list li{font-family:"EB Garamond",serif;font-size:12.5px;line-height:1.32;color:var(--ink);padding-left:16px;position:relative}.bj-list li::before{content:"";position:absolute;left:2px;top:6px;width:6px;height:6px;border-radius:50%;background:#6a8a3e}.bj-risque .bj-list li::before{background:#b1503a;border-radius:0;transform:rotate(45deg)}.bj-list li.vide{font-style:italic;color:#9a8a6a;padding-left:0}.bj-list li.vide::before{display:none}.bilan-juge .bmarques{align-items:flex-start;max-width:none;margin:2px 0 14px}.bilan-juge .bmarques .bm-h{align-self:flex-start}.bilan-juge .restart{align-self:center;margin-top:auto}
 
 /* pop-up impact */
 .modal{position:fixed;inset:0;background:rgba(20,16,12,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:40}
@@ -194,9 +194,20 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .modal-verdict.ok{color:#3c6b3a}.modal-verdict.no{color:var(--rubric)}
 
 /* ---------- TABLETTE (qualités utiles) ---------- */
+.sheet-drawer{position:fixed;top:0;right:0;height:100vh;width:min(380px,88vw);transform:translateX(100%);transition:transform .4s cubic-bezier(.33,0,.2,1);z-index:36;will-change:transform}
+.sheet-drawer.open{transform:none}
+body:not(.playing) .sheet-drawer{display:none}
+.sheet-tab{position:absolute;left:-48px;top:50%;transform:translateY(-50%);width:48px;padding:15px 0 13px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;color:#f3e7cd;background:linear-gradient(180deg,#5c4628,#43311c);border:1px solid #5c4628;border-right:none;border-radius:9px 0 0 9px;box-shadow:-4px 2px 10px rgba(40,26,10,.34);transition:color .2s}
+.sheet-tab:hover{color:#fff}
+.st-bust{width:23px;height:23px;flex:0 0 auto}
+.st-lbl{writing-mode:vertical-rl;text-orientation:mixed;font-family:"IM Fell English SC",serif;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase}
+.st-chev{width:12px;height:16px;flex:0 0 auto;opacity:.8;transition:transform .35s}
+.sheet-drawer.open .st-chev{transform:rotate(180deg)}
+.sheet-tab.pulse{animation:tabpulse 1.1s ease 2}
+@keyframes tabpulse{0%,100%{box-shadow:-4px 2px 10px rgba(40,26,10,.34)}50%{box-shadow:-4px 2px 10px rgba(40,26,10,.34),0 0 0 3px rgba(231,198,106,.6)}}
 .tablet{height:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;
-  background:linear-gradient(165deg,var(--clay-1),var(--clay-2));border:1px solid var(--clay-edge);border-radius:5px;padding:11px 14px;color:var(--clay-ink);
-  box-shadow:0 18px 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,245,220,.35),inset 0 0 40px rgba(80,50,15,.18);position:relative}
+  background:linear-gradient(165deg,var(--clay-1),var(--clay-2));border:none;border-left:2px solid #5c4628;border-radius:0;padding:14px 18px;color:var(--clay-ink);
+  box-shadow:-18px 0 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,245,220,.35),inset 0 0 40px rgba(80,50,15,.18);position:relative}
 .wedge{flex:0 0 auto;height:8px;display:flex;gap:5px;justify-content:center;opacity:.45;margin-bottom:4px}
 .wedge i{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:7px solid var(--clay-edge)}
 .t-head{flex:0 0 auto;display:flex;align-items:center;gap:10px;margin-bottom:4px}
@@ -229,7 +240,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 
 /* frontispice + répartition des points */
 .frontis{position:fixed;inset:0;background:rgba(18,13,9,.94);display:flex;align-items:center;justify-content:center;padding:14px;z-index:30}
-.fcard{width:min(560px,100%);max-height:96vh;overflow:auto;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:14px 26px 16px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.fcard{width:min(840px,96vw);max-height:94vh;overflow:auto;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:14px 30px 16px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .fcard .wm{font-family:"IM Fell English SC",serif;font-size:27px;letter-spacing:.1em;color:var(--rubric);text-align:center;margin:0;line-height:1}
 .fcard .k{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;text-align:center;margin:1px 0 7px}
 .fcard h2{font-family:"IM Fell English",serif;font-style:italic;font-size:18px;margin:0 0 4px;color:var(--ink);text-align:center}
@@ -244,7 +255,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .fseg button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .pool{font-family:"IM Fell English SC",serif;font-size:11px;letter-spacing:.05em;text-align:center;color:var(--ink-soft);margin:1px 0 6px;text-transform:uppercase}
 .pool b{font-family:"IM Fell English",serif;font-style:italic;font-size:19px;color:var(--rubric);text-transform:none}
-.alloc{display:flex;flex-direction:column;gap:6px;margin:0 0 9px}
+.alloc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 9px}
 .arow{border:1px solid var(--paper-edge);border-radius:5px;padding:6px 10px;background:rgba(255,252,242,.5)}
 .arow .ah{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .arow .an{font-family:"IM Fell English",serif;font-style:italic;font-size:16px;color:var(--ink)}
@@ -258,7 +269,8 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .fcta:not(:disabled):hover{filter:brightness(1.07)}
 @media(max-width:900px){
   html,body{overflow:auto;height:auto}body{min-height:100%}
-  .stage{grid-template-columns:1fr}.book,.tablet{height:auto;min-height:0}.tablet{order:-1}.bj-cols{grid-template-columns:1fr;gap:13px}
+  .stage{grid-template-columns:1fr}.book{height:auto;min-height:0;max-width:none}.bj-cols{grid-template-columns:1fr;gap:13px}
+  .icols{grid-template-columns:1fr;gap:0}.alloc{grid-template-columns:1fr}.sheet-drawer{width:min(340px,92vw)}
   .pages{grid-template-columns:1fr}.spine,.ribbon{display:none}
   .leaf{overflow:visible}.leaf-r{border-top:1px solid var(--rule)}
   .story,.dec,.registre{overflow:visible}
@@ -304,7 +316,9 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .bilan-link{background:none;border:none;font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.06em;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .bilan-link:hover{color:var(--rubric)}
 .intro{position:fixed;inset:0;background:rgba(18,13,9,.95);display:flex;align-items:center;justify-content:center;padding:14px;z-index:35}
-.icard{width:min(640px,100%);max-height:96vh;overflow:auto;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:10px 30px 22px;box-shadow:0 30px 80px rgba(0,0,0,.6);text-align:center}
+.icard{width:min(880px,96vw);max-height:94vh;overflow:auto;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid var(--paper-edge);border-radius:4px;padding:10px 34px 20px;box-shadow:0 30px 80px rgba(0,0,0,.6);text-align:center}
+.icols{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;text-align:left;margin-top:2px}
+.icol{display:flex;flex-direction:column}
 .ibanner{margin:2px auto 0;max-width:430px}
 .ibanner svg{width:100%;height:auto;display:block}
 .iwm{font-family:"IM Fell English SC",serif;font-size:40px;letter-spacing:.14em;color:var(--rubric);margin:0}
@@ -328,8 +342,15 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 <div class="topbar"><b>Lugal</b><span>un livre dont vous êtes le roi · Mésopotamie</span><span class="progress" id="progress"></span><button class="soundtgl" id="soundtgl" onclick="toggleSound()" title="Activer le son" aria-label="Son"></button></div>
 <div class="stage">
   <section class="book"><div class="ribbon"></div><div class="pages" id="pages"></div></section>
-  <aside class="tablet" id="tablet"></aside>
 </div>
+<aside class="sheet-drawer" id="sheetdrawer" aria-hidden="true">
+  <button class="sheet-tab" id="sheettab" aria-label="Ouvrir la feuille du personnage">
+    <svg class="st-bust" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9.5" r="3.3"/><path d="M5.5 20q0-5 6.5-5t6.5 5"/><path d="M8.4 5.6l1.2-2.4 2.4 1.9 2.4-1.9 1.2 2.4"/></svg>
+    <span class="st-lbl" id="sheetlbl">Le roi</span>
+    <svg class="st-chev" viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 8l4 5"/></svg>
+  </button>
+  <div class="tablet" id="tablet"></div>
+</aside>
 
 <div class="intro" id="intro">
   <div class="icard">
@@ -337,11 +358,17 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
     <p class="iwm">Lugal</p>
     <p class="isub">un livre dont vous êtes le roi · un jeu sérieux d'histoire</p>
     <div class="ireal"><span class="ireal-k">Réalité sociale · Histoire et éducation à la citoyenneté</span><span class="ireal-t">L'émergence d'une civilisation</span></div>
-    <div class="isection"><h3>Le monde où tu entres</h3><p>Il y a plus de cinq mille ans, en Mésopotamie, entre le Tigre et l'Euphrate, des villages de paysans sont devenus les premières grandes cités de l'histoire. C'est là, au pays de Sumer, qu'apparaissent pour la première fois l'écriture, l'État, les lois et une société divisée en groupes. Cette grande transformation, c'est l'émergence d'une civilisation.</p></div>
-    <div class="isection"><h3>Ton rôle</h3><p>Tu es le lugal, le roi d'une jeune cité de roseaux posée au bord du fleuve. De décision en décision, tu vas tenter de la conduire du village à la véritable civilisation : maîtriser l'eau, nourrir ton peuple, ouvrir le commerce, adopter l'écriture, fonder des écoles, bâtir des temples et graver des lois.</p></div>
-    <div class="isection"><h3>Ton objectif</h3><p>Chaque choix a un prix et des conséquences. Tu dois garder l'équilibre entre tes quatre qualités de roi et la prospérité de ta cité, tout en affrontant les crises d'un monde qui s'invente : crues, disettes, voleurs, révoltes, guerres. À la fin, l'histoire jugera ton règne. Il existe treize destins possibles, du plus glorieux au plus sombre.</p></div>
-    <div class="isteps"><span class="ist-h">Comment jouer</span><ol><li>Façonne ton roi et choisis ta cité sumérienne.</li><li>À chaque page, lis la situation et consulte la source avant de décider.</li><li>Certaines décisions sont des paris : deux dés et tes qualités décident du sort.</li><li>Ton règne se referme sur un bilan et une place dans l'histoire. Rejoue pour découvrir les treize fins.</li></ol></div>
-    <button class="icta" id="introgo">Façonner mon roi »</button>
+    <div class="icols">
+      <div class="icol">
+        <div class="isection"><h3>Le monde où tu entres</h3><p>Il y a plus de cinq mille ans, en Mésopotamie, entre le Tigre et l'Euphrate, des villages de paysans sont devenus les premières grandes cités de l'histoire. C'est là, au pays de Sumer, qu'apparaissent pour la première fois l'écriture, l'État, les lois et une société divisée en groupes. Cette grande transformation, c'est l'émergence d'une civilisation.</p></div>
+        <div class="isection"><h3>Ton rôle</h3><p>Tu es le lugal : le roi ou la reine d'une jeune cité de roseaux posée au bord du fleuve. De décision en décision, tu vas tenter de la conduire du village à la véritable civilisation : maîtriser l'eau, nourrir ton peuple, ouvrir le commerce, adopter l'écriture, fonder des écoles, bâtir des temples et graver des lois.</p></div>
+      </div>
+      <div class="icol">
+        <div class="isection"><h3>Ton objectif</h3><p>Chaque choix a un prix et des conséquences. Tu dois garder l'équilibre entre tes quatre qualités de souverain et la prospérité de ta cité, tout en affrontant les crises d'un monde qui s'invente : crues, disettes, voleurs, révoltes, guerres. À la fin, l'histoire jugera ton règne. Il existe treize destins possibles, du plus glorieux au plus sombre.</p></div>
+        <div class="isteps"><span class="ist-h">Comment jouer</span><ol><li>Façonne ton roi ou ta reine et choisis ta cité sumérienne.</li><li>À chaque page, lis la situation et consulte la source avant de décider.</li><li>Certaines décisions sont des paris : deux dés et tes qualités décident du sort.</li><li>Ton règne se referme sur un bilan et une place dans l'histoire. Rejoue pour découvrir les treize fins.</li></ol></div>
+      </div>
+    </div>
+    <button class="icta" id="introgo">Façonner mon roi ou ma reine »</button>
   </div>
 </div>
 
@@ -349,8 +376,8 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
   <div class="fcard">
     <p class="wm">Lugal</p>
     <p class="k">L'émergence d'une civilisation</p>
-    <h2>Façonne le roi que tu seras</h2>
-    <p>Un village de roseaux attend un maître. Répartis tes points entre les quatre qualités du roi : elles décideront des paris possibles, des voies qui s'ouvriront, et de la fin de ton règne.</p>
+    <h2>Façonne le roi ou la reine que tu seras</h2>
+    <p>Un village de roseaux attend son souverain. Répartis tes points entre les quatre qualités du roi ou de la reine que tu incarnes : elles décideront des paris possibles, des voies qui s'ouvriront, et de la fin de ton règne.</p>
     <div class="frow"><label>Ton titre</label><div class="fseg" id="seg"><button data-g="roi" class="on">Roi</button><button data-g="reine">Reine</button></div></div>
     <div class="frow2"><div class="frow"><label>Ton nom</label><input id="nom" maxlength="16" value="Ur-Nammu"></div><div class="frow"><label>Ta cité</label><div class="citechips" id="citechips"></div></div></div>
     <div class="citenote" id="citenote"></div>
@@ -365,6 +392,7 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 <div class="overlay" id="overlay"></div>
 
 <div class="modal" id="modal"></div>
+<audio id="ambiance" loop preload="auto"><source src="ambiance.mp3" type="audio/mpeg"></audio>
 
 <script>
 const READ_LOCK=4;
@@ -781,10 +809,12 @@ function sfxFail(){if(!SOUND||!AC)return;const t=AC.currentTime;envTone(196,t,0.
 function sfxUnlock(){if(!SOUND||!AC)return;const t=AC.currentTime;[1046.5,1396.9,1760].forEach((f,i)=>envTone(f,t+i*0.06,0.38,"sine",0.11));}
 function sfxPage(){if(!SOUND||!AC)return;envNoise(AC.currentTime,0.2,0.05,2800,650);}
 function sfxFin(triomphe){if(!SOUND||!AC)return;const t=AC.currentTime;if(triomphe){[392,523.25,659.25,783.99,1046.5].forEach((f,i)=>envTone(f,t+i*0.12,0.7,"triangle",0.15));}else{[294,247,196,147].forEach((f,i)=>envTone(f,t+i*0.16,0.8,"sine",0.15));}}
+function ambiance(){return document.getElementById("ambiance");}
+function kickAmbiance(){if(!SOUND)return;const a=ambiance();if(a&&a.paused){a.volume=0.16;const p=a.play();if(p&&p.catch)p.catch(()=>{});}}
 function updateSoundBtn(){const b=$("#soundtgl");if(!b)return;b.classList.toggle("on",SOUND);b.innerHTML=SOUND?ICO_SND_ON:ICO_SND_OFF;b.title=SOUND?"Couper le son":"Activer le son";}
-function setSound(on){SOUND=on;try{localStorage.setItem("lugal.sound",on?"1":"0");}catch(e){}if(on){audioInit();audioResume();}updateSoundBtn();}
+function setSound(on){SOUND=on;try{localStorage.setItem("lugal.sound",on?"1":"0");}catch(e){}const a=ambiance();if(on){audioInit();audioResume();if(a){a.volume=0.16;const p=a.play();if(p&&p.catch)p.catch(()=>{});}}else if(a){a.pause();}updateSoundBtn();}
 function toggleSound(){setSound(!SOUND);if(SOUND)sfxUnlock();}
-function loadSound(){let v=null;try{v=localStorage.getItem("lugal.sound");}catch(e){}SOUND=(v==="1");if(SOUND)audioInit();updateSoundBtn();}
+function loadSound(){let v=null;try{v=localStorage.getItem("lugal.sound");}catch(e){}SOUND=(v==="1");if(SOUND)audioInit();updateSoundBtn();if(SOUND)window.addEventListener("pointerdown",kickAmbiance,{once:true});}
 const PIPS={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
 function dieFace(n){let s="";for(let i=0;i<9;i++)s+=`<i class="pip${n&&PIPS[n]&&PIPS[n].includes(i)?' on':''}"></i>`;return s;}
 
@@ -799,10 +829,11 @@ function rendreTablette(changed,deltas){
   $("#tablet").innerHTML=`<div class="wedge"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="signet sg-stats">Capacités du personnage</div>
     <div class="t-head"><div class="t-emblem">${EMBLEME}</div><div class="t-name">${esc(F.nom)}<span>${F.genre==="roi"?"Lugal":"Reine"} de ${esc(F.cite)}</span></div></div>
-    <div class="t-sect">Qualités du roi</div><div class="qualites">${quals}</div>
+    <div class="t-sect">Tes qualités</div><div class="qualites">${quals}</div>
     <div class="t-sect">Sa civilisation</div><div class="meters">${meters}</div>
     <div class="t-sect">Chronique du règne</div><div class="registre">${reg}</div>`;
-  if(deltas&&deltas.length){deltas.forEach(d=>{const cell=$("#qual-"+d.k)||$("#met-"+d.k);if(cell){const s=document.createElement("span");s.className="fly "+(d.d>0?'up':'down');s.textContent=(d.d>0?'+':'−')+Math.abs(d.d);cell.appendChild(s);setTimeout(()=>{if(s.parentNode)s.parentNode.removeChild(s);},1200);}});}
+  const lbl=document.getElementById("sheetlbl");if(lbl)lbl.textContent=F.genre==="roi"?"Le roi":"La reine";
+  if(deltas&&deltas.length){deltas.forEach(d=>{const cell=$("#qual-"+d.k)||$("#met-"+d.k);if(cell){const s=document.createElement("span");s.className="fly "+(d.d>0?'up':'down');s.textContent=(d.d>0?'+':'−')+Math.abs(d.d);cell.appendChild(s);setTimeout(()=>{if(s.parentNode)s.parentNode.removeChild(s);},1200);}});const dr=$("#sheetdrawer"),tb=$("#sheettab");if(tb&&dr&&!dr.classList.contains("open")){tb.classList.remove("pulse");void tb.offsetWidth;tb.classList.add("pulse");}}
 }
 
 function impactModal(o){
@@ -1142,6 +1173,9 @@ $("#alloc").addEventListener("click",e=>{
 });
 $("#seg").addEventListener("click",e=>{const b=e.target.closest("button[data-g]");if(!b)return;genre=b.dataset.g;document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x===b));});
 $("#introgo").addEventListener("click",()=>{$("#intro").style.display="none";$("#frontis").style.display="flex";});
+function toggleSheet(){const d=$("#sheetdrawer");if(!d)return;const open=d.classList.toggle("open");d.setAttribute("aria-hidden",open?"false":"true");const t=$("#sheettab");if(open&&t)t.classList.remove("pulse");}
+$("#sheettab").addEventListener("click",toggleSheet);
+window.addEventListener("keydown",e=>{if(e.key==="Escape"){const d=$("#sheetdrawer");if(d&&d.classList.contains("open")){d.classList.remove("open");d.setAttribute("aria-hidden","true");}}});
 $("#citechips").addEventListener("click",e=>{const b=e.target.closest("button[data-ci]");if(!b)return;cityIdx=+b.dataset.ci;renderCites();});
 $("#begin").addEventListener("click",()=>{
   if(pointsLeft()!==0)return;
@@ -1151,9 +1185,9 @@ $("#begin").addEventListener("click",()=>{
   F[cite.k]+=1;
   F.registre.push("Avènement sur le trône.");
   F.noeud="eau";const n=STORY.eau;F.histoire.push({num:1,folio:n.folio,paras:n.texte});
-  $("#frontis").style.display="none";rendre(false);
+  $("#frontis").style.display="none";document.body.classList.add("playing");const dr=$("#sheetdrawer");if(dr){dr.classList.remove("open");dr.setAttribute("aria-hidden","true");}rendre(false);
 });
-function reset(){F=null;alloc={autorite:0,sagesse:0,piete:0,legitimite:0};document.body.classList.remove("finstate");const m=$("#modal");m.classList.remove("show");m.innerHTML="";$("#frontis").style.display="flex";renderAlloc();}
+function reset(){F=null;alloc={autorite:0,sagesse:0,piete:0,legitimite:0};document.body.classList.remove("finstate");document.body.classList.remove("playing");const dr=$("#sheetdrawer");if(dr)dr.classList.remove("open");const m=$("#modal");m.classList.remove("show");m.innerHTML="";$("#frontis").style.display="flex";renderAlloc();}
 renderAlloc();
 renderCites();
 loadSound();

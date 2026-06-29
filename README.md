@@ -45,12 +45,14 @@ donne envie de les débusquer. Le **registre des distinctions** réunit neuf tit
 à mériter (Le Législateur, Le Scribe couronné, Le Bâtisseur, Le Juste, Le Prudent,
 Le Sage des sources qui récompense la consultation des sources, etc.), avec le
 critère affiché pour chaque titre non encore obtenu. À la fin d'un règne, un
-bandeau annonce les nouvelles découvertes. Enfin, un **habillage sonore**
-synthétisé (dés qui roulent, fanfare de réussite, scintillement de déblocage,
-froissement de page) s'active par un bouton dans la barre du haut, **coupé par
-défaut** pour la classe ; les dés sont désormais **animés** (faces qui défilent
-puis se figent) et les jauges **réagissent** à chaque changement (flash vert ou
-rouge et valeur flottante).
+bandeau annonce les nouvelles découvertes. Enfin, un **habillage sonore** combine
+une **musique d'ambiance mésopotamienne** en **boucle de fond légère** (un extrait
+court, monté en boucle sans couture) et des **bruitages synthétisés** (dés qui
+roulent, fanfare de réussite, scintillement de déblocage, froissement de page).
+Le tout s'active par un **bouton haut-parleur** flottant (en haut à droite, présent
+dès l'accueil), **coupé par défaut** pour la classe ; les dés sont **animés** (faces
+qui défilent puis se figent) et les jauges **réagissent** à chaque changement (flash
+vert ou rouge et valeur flottante).
 
 ## Le livre, en deux pages
 Chaque zone porte un **signet** qui l'identifie d'un coup d'œil : **Trame
@@ -119,8 +121,15 @@ fait basculer dans une problématique** : c'est là que les écarts se paient. L
 choix sont en outre **présentés dans un ordre aléatoire** — le bon n'est jamais à
 la même place.
 
-## La feuille du roi
-Volontairement sobre et utile : les **quatre qualités** du roi (qui montent et
+## La feuille du roi, en tiroir latéral
+Pour que **la lecture prime**, la feuille du personnage n'occupe plus une colonne
+permanente : elle est rangée dans un **tiroir** qui s'ouvre **à la demande** par une
+**languette** sur le bord droit (libellée « Le roi » ou « La reine » selon le titre
+choisi). Le **livre prend ainsi toute la largeur**, le texte est plus grand et les
+polices plus homogènes. La languette **pulse discrètement** quand une jauge change,
+sans interrompre la lecture ; l'élève ouvre le tiroir quand il veut vérifier ses
+chiffres, et le referme d'un clic ou avec **Échap**. La feuille reste **sobre et
+utile** : les **quatre qualités** du roi ou de la reine (qui montent et
 descendent selon les choix, et qu'on a soi-même réparties) et le bloc **« Sa
 civilisation »**, qui dit ce que la cité devient. Ce bloc compte **quatre
 dimensions** : Prospérité et Rayonnement, toujours visibles, plus **Savoir**
@@ -149,10 +158,15 @@ comme reconstitutions. Voir `SOURCES.md`.
 ## Structure
 ```
 index.html   jeu complet : livre deux pages, moteur, trame et sources
+ambiance.mp3 musique d'ambiance (boucle de fond, sous le bouton son)
 .nojekyll    pour GitHub Pages
 SOURCES.md   note sur les sources (toutes créées pour le jeu)
 LICENSE      MIT — couvre le code, les illustrations et les textes
 ```
+
+Remarque : `ambiance.mp3` est un court extrait monté en boucle à partir d'une
+piste fournie. Assure-toi d'avoir le droit de l'utiliser et de la créditer selon sa
+licence ; tu peux remplacer le fichier par n'importe quel autre MP3 du même nom.
 
 ## Personnaliser (dans `index.html`)
 - **Points de départ** : `BASE` (par qualité), `POOL` (à répartir), `MAXADD`.
