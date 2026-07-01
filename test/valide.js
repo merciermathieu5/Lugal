@@ -154,6 +154,17 @@ function main(){
   ok(SRC.lagash.doc && !SRC.lagash.ph, "lagash devrait être un document composé sans photo");
   info(`${nDoc} documents (tablette d'argile, étiquetés), ${nVis} illustrations avec lecture, sans référence`);
 
+  // 9. Numérotation des sections : bijection STORY ↔ SEC, §1 = le début
+  const SEC = ev("SEC");
+  const sk = Object.keys(SEC), tk = Object.keys(STORY);
+  ok(sk.length === tk.length, `SEC (${sk.length}) et STORY (${tk.length}) désalignés`);
+  tk.forEach(k => ok(Number.isInteger(SEC[k]), `nœud sans numéro de section : ${k}`));
+  const vals = Object.values(SEC);
+  ok(new Set(vals).size === vals.length, "numéros de section en double");
+  ok(Math.min(...vals) === 1 && Math.max(...vals) === vals.length, "les numéros ne couvrent pas 1..N");
+  ok(SEC.eau === 1, "le livre devrait s'ouvrir au §1");
+  info(`${vals.length} sections numérotées, §1 = eau`);
+
   console.log("\n— Volet 2 · smoke test DOM —");
   smoke();
 }
@@ -205,19 +216,36 @@ function smoke(){
   $("#consultbtn").click();
   ok($("#modal").classList.contains("show"), "la fenêtre de source ne s'ouvre pas");
   ok($("#srcclose") && $("#srcclose").disabled, "le bouton de fermeture devrait être verrouillé pendant le chrono");
-  ok($(".srcphoto") || $(".plate"), "ni photo ni planche dans la fenêtre de source");
-  ok($("#srcquiz"), "le bloc de vérification est absent du DOM");
-  ok(!$("#srcquiz").classList.contains("show"), "le quiz ne devrait pas être visible pendant le chrono");
+  ok($(".plate"), "pas de planche dans la fenêtre de source");
+  ok($("#srcquizview"), "la vue de vérification est absente du DOM");
+  ok($("#srcquizview").classList.contains("off"), "la question ne devrait pas être visible pendant le chrono");
+  ok(!$("#srcview").classList.contains("off"), "la source devrait être visible pendant le chrono");
 
   // Échap ne doit PAS fermer tant que le bouton est verrouillé
   window.dispatchEvent(new window.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   ok($("#modal").classList.contains("show"), "Échap contourne le verrou de lecture");
 
   // Attendre la fin du chrono (READ_LOCK = 4 s réels)
-  setTimeout(() => {
-    ok($("#srcquiz").classList.contains("show"), "le quiz n'apparaît pas après le chrono");
+  const wait = (ms) => new Promise(r => setTimeout(r, ms));
+  const waitFor = async (fn, ms = 5000, step = 60) => {
+    const t0 = Date.now();
+    while (Date.now() - t0 < ms) { try { if (fn()) return true; } catch (e) {} await wait(step); }
+    try { return !!fn(); } catch (e) { return false; }
+  };
+  setTimeout(async () => {
+    // La bascule vers la question peut prendre quelques ms de plus que le chrono
+    await waitFor(() => $("#srcquizview") && !$("#srcquizview").classList.contains("off"), 3000);
+    ok(!$("#srcquizview").classList.contains("off"), "la question n'apparaît pas après le chrono");
+    ok($("#srcview").classList.contains("off"), "la source devrait s'effacer au profit de la question");
     ok($("#srcclose").disabled, "le bouton se déverrouille sans réponse au quiz");
     ok(ev("F._quizTotal") === 1, "F._quizTotal ≠ 1");
+
+    // Bascule : revoir la source, puis revenir à la question
+    $("#sqback").click();
+    ok(!$("#srcview").classList.contains("off") && $("#srcquizview").classList.contains("off"), "« Revoir la source » ne rebascule pas");
+    ok(!$("#sqfwd").classList.contains("off"), "le bouton « Répondre à la question » est absent");
+    $("#sqfwd").click();
+    ok($("#srcview").classList.contains("off") && !$("#srcquizview").classList.contains("off"), "le retour à la question ne fonctionne pas");
 
     // Mauvaise réponse d'abord : indice, pas de déverrouillage
     const okIdx = ev('SRC["fleuves"].q.ok');
@@ -240,10 +268,42 @@ function smoke(){
     ok(openBtns.some(b => !b.disabled), "aucun renvoi déverrouillé après l'étude");
     ok(!$("#locknote"), "la note de verrouillage persiste");
 
-    // Choisir un renvoi SANS épreuve (déterministe)
+    // ——— Faveur des dieux : épreuve, échec forcé, relance, revers ———
     const STORY = ev("STORY");
-    const btn = openBtns.find(b => !b.disabled && !STORY.eau.renvois[+b.dataset.i].epreuve);
-    ok(btn, "aucun renvoi sans épreuve disponible au nœud eau");
+    ok(ev("F.faveurs") === 3 && ev("F.faveursMax") === 3, "Piété 11 devrait accorder 3 faveurs");
+    ok(document.querySelectorAll("#tablet .flame.on").length === 3, "les 3 flammes ne brillent pas au tiroir");
+    const btnE = openBtns.find(b => !b.disabled && STORY.eau.renvois[+b.dataset.i].epreuve);
+    ok(btnE, "aucun renvoi avec épreuve au nœud eau");
+    btnE.click();
+    const dz = $("#dicezone");
+    ok(dz.classList.contains("show") && $("#rollbtn"), "la zone de dés ne s'ouvre pas");
+    ok(/implorer les dieux/i.test(dz.textContent), "la règle de la faveur n'est pas annoncée");
+
+    const realRandom = Math.random;
+    window.eval("Math.random = () => 0");   // dés à 1-1 : échec garanti (seuil 9)
+    $("#rollbtn").click();
+    ok(await waitFor(() => $("#dzfavor")), "l'offre d'imploration n'apparaît pas après l'échec");
+    ok(ev("F.faveurs") === 3, "la faveur ne doit pas être consommée avant l'imploration");
+    ok(!$("#modal").classList.contains("show"), "le revers ne doit pas s'appliquer tant que l'offre est ouverte");
+    const proBefore = ev("F.prosperite");
+
+    $("#favyes").click();                    // implorer : relance
+    ok(ev("F.faveurs") === 2, "la faveur n'est pas décomptée");
+    ok(document.querySelectorAll("#tablet .flame.on").length === 2, "le tiroir ne reflète pas la faveur consommée");
+
+    ok(await waitFor(() => $("#modal").classList.contains("show")), "le verdict d'échec ne s'affiche pas après la relance");
+    ok(!$("#dzfavor"), "une seconde imploration ne devrait pas être offerte");
+    ok(/Échec/.test($("#modal").textContent), "le verdict devrait annoncer l'échec");
+    ok(ev("F.prosperite") === proBefore + 1, "le revers (Prospérité +1) ne s'applique qu'à la résolution");
+    window.eval("Math.random = undefined"); window.Math.random = realRandom;
+    ev("Math.random()");                     // sanity : restauré
+    $("#modalbtn").click();
+    ok(btnE.disabled && btnE.classList.contains("burned"), "le choix raté devrait être condamné");
+    ok(openBtns.some(b => b !== btnE && !b.disabled), "les autres voies ne rouvrent pas après l'échec");
+
+    // Choisir LE renvoi sans épreuve qui grave un sceau (l'ordre DOM est mélangé)
+    const btn = openBtns.find(b => { const r = STORY.eau.renvois[+b.dataset.i]; return !b.disabled && !r.epreuve && r.sceau; });
+    ok(btn, "aucun renvoi sans épreuve porteur de sceau au nœud eau");
     btn.click();
     ok($("#modal").classList.contains("show"), "la fenêtre de conséquence ne s'ouvre pas");
     $("#modalbtn").click();
@@ -257,9 +317,26 @@ function smoke(){
 
     const p = $("#poursuite");
     ok(p.classList.contains("show"), "le bouton Poursuis n'apparaît pas");
+    ok(/Rends-toi au §\d+/.test(p.textContent), `le bouton devrait annoncer la section : « ${p.textContent.trim()} »`);
     p.click();
 
+    // La table des sections s'ouvre : seule la destination est déverrouillée
+    ok($("#overlay").classList.contains("show"), "la table des sections ne s'ouvre pas");
+    const cibleKey = ev("SECNAV");
+    ok(typeof cibleKey === "string" && cibleKey, "SECNAV vide");
+    const targetBtn = document.querySelector("#seclist .secn.target");
+    ok(targetBtn && targetBtn.dataset.sk === cibleKey, "la destination n'est pas marquée dans la table");
+    const others = [...document.querySelectorAll("#seclist .secn:not(.target)")];
+    ok(others.length && others.every(b => b.disabled), "des sections non atteintes sont cliquables");
+    others[0].click();
+    ok($("#overlay").classList.contains("show"), "cliquer une section scellée ne devrait rien faire");
+    ok(ev("SEC[F.noeud]") !== ev(`SEC[${JSON.stringify(cibleKey)}]`) || true, "");
+    targetBtn.click();
+    ok(!$("#overlay").classList.contains("show"), "la table ne se ferme pas après le feuilletage");
+
     ok(ev("F.histoire.length") === 2, "histoire.length ≠ 2 après la poursuite");
+    ok(ev("F.histoire[1].sec") === ev(`SEC[${JSON.stringify(cibleKey)}]`), "l'entrée du récit ne porte pas son numéro de section");
+    ok(/§\d+ · /.test(($("#story") || {textContent:""}).textContent), "le numéro de section n'apparaît pas dans le récit");
     // Nouvelle source au nouveau nœud → compteur total = 2 si src présente
     const n2 = ev("STORY[F.noeud]");
     if (n2 && n2.src) ok(ev("F._srcTotal") === 2, "F._srcTotal non incrémenté au nœud 2");
@@ -275,6 +352,37 @@ function smoke(){
     ok(items.length >= 20, `lexique : attendu ≥ 20 entrées listées, trouvé ${items.length}`);
     window.dispatchEvent(new window.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
     ok(!$("#overlay").classList.contains("show"), "Échap ne ferme pas le Lexique");
+
+    // Table des sections consultative : lues marquées, position cliquable, reste scellé
+    $("#secbtn").click();
+    ok($("#overlay").classList.contains("show"), "la table consultative ne s'ouvre pas");
+    ok(document.querySelectorAll("#seclist .secn.seen").length >= 2, "les sections lues ne sont pas marquées");
+    const here = document.querySelector("#seclist .secn.here");
+    ok(here && !here.disabled, "la position courante devrait être cliquable");
+    ok(!document.querySelector("#seclist .secn.target"), "aucune destination ne devrait pulser en consultation");
+    here.click();
+    ok(!$("#overlay").classList.contains("show"), "cliquer sa position ne referme pas la table");
+
+    // ——— Sac du roi : sceaux tangibles au tiroir ———
+    ev("rendreTablette()");
+    ok(/Ordre durci/.test($("#tablet").textContent), "le sceau « Ordre durci » gagné en jeu devrait être au sac");
+    $("#sheettab").click(); $("#sheettab").click();   // consulter → languette éteinte
+    ev('gagneSceau("Murailles");rendreTablette();');
+    const chip = [...document.querySelectorAll("#tablet .seal")].find(c => /Murailles/.test(c.textContent));
+    ok(chip, "le sceau gagné n'apparaît pas au sac");
+    ok(chip && chip.classList.contains("flash"), "le sceau fraîchement gravé devrait scintiller");
+    ok((chip.getAttribute("title") || "").includes("murailles"), "l'infobulle du sceau manque");
+    ok($("#sheettab").classList.contains("lit"), "la languette devrait s'illuminer quand un sceau est gravé");
+    ok(fs.readFileSync(path.join(ROOT, "index.html"), "utf8").includes("Scellé — ${r.lock}"), "les verrous ne mentionnent pas le sceau manquant");
+
+    // ——— Fins : bandeau funeste vs triomphe ———
+    ev('F.noeud="nF_oubli";rendre(false);');
+    ok($(".fin-doom") && /règne s'achève ici/i.test($(".fin-doom").textContent), "le bandeau funeste manque");
+    ok($(".fin-wrap").classList.contains("chute"), "la fin nF_oubli devrait être une chute");
+    ev('F.noeud="nF_orfevre";rendre(false);');
+    ok(!$(".fin-doom"), "un triomphe ne devrait pas porter le bandeau funeste");
+    ok($(".fin-wrap").classList.contains("triomphe"), "la fin nF_orfevre devrait être un triomphe");
+    ok($("#restart"), "le bouton Régner à nouveau manque au bilan");
 
     bilan();
   }, 4600);

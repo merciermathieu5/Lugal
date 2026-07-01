@@ -72,19 +72,48 @@ narrative** (le récit, à gauche), **Décision royale** (le choix, à droite) e
   sa décision en cours.
 - **Page de droite — la décision.** Dans l'ordre : la **question**, un bouton
   **Consulter la source** (qui ouvre le document créé dans une **fenêtre**), les
-  **choix**, puis un bouton **« Poursuis »** pour tourner la page.
+  **choix** (chacun annonçant sa section de destination), puis le bouton
+  **« Rends-toi au §N »** qui ouvre la table des sections pour tourner la page.
 
 À chaque page : les choix restent **verrouillés tant que la source n'a pas été
 étudiée**. Cliquer **Consulter la source** l'ouvre en **pop-up** avec un **chrono
-de 4 secondes**, puis une **question de vérification à trois choix** (mélangés)
-confirme la lecture : bonne réponse, les choix se déverrouillent ; erreur, un
-**indice bienveillant** renvoie à la source et l'élève réessaie **sans pénalité**.
-La source reste ensuite **rouvrable à volonté** (« Revoir la source »), sans
-encombrer la page. Chaque choix
+de 4 secondes** ; au terme du chrono, la fenêtre **bascule** vers une **question
+de vérification à trois choix** (mélangés) qui occupe tout le cadre — **aucun
+défilement**. Un lien « ↑ Revoir la source » permet d'alterner à volonté entre
+la source et la question. Bonne réponse, les choix se déverrouillent ; erreur,
+un **indice bienveillant** renvoie à la source et l'élève réessaie **sans
+pénalité**. La source reste ensuite **rouvrable à volonté** (« Revoir la
+source »), sans encombrer la page. Chaque choix
 montre son **effet sur les qualités** et, pour les paris, le badge **« Réussite :
 X % »** ; les choix à dés portent **« (Jet de dés) »**. La zone de dés **explique
 tout le calcul** (règle, bonus détaillé par qualité, seuil, % de réussite, puis
 verdict chiffré). Un **pop-up** présente enfin la conséquence — la leçon à retenir.
+
+## Les mécaniques du livre-jeu
+Lugal assume pleinement son héritage « dont vous êtes le héros ».
+
+- **Sections numérotées et mélangées.** Les 39 nœuds de la trame portent des
+  numéros de section fixes, dispersés comme dans un vrai livre-jeu (le §1 ouvre
+  le règne… et le §2 cache une fin funeste). Chaque choix annonce sa
+  destination (« Creuser les canaux → §34 »), le bandeau et le récit affichent
+  le numéro courant, et les destinations que le destin décidera portent « §… ».
+- **La table des sections.** Après chaque décision, le bouton **« Rends-toi au
+  §N »** ouvre la **table des sections** : l'élève y *feuillette* lui-même
+  jusqu'au bon numéro, qui pulse — les sections déjà lues portent l'encre de
+  son règne, les autres demeurent **scellées** (impossible de tricher). Un
+  bouton **Sections** du bandeau permet aussi de consulter la table à tout
+  moment.
+- **La faveur des dieux.** Au couronnement, le roi reçoit **2 faveurs** (3 si sa
+  Piété atteint 10) : après un jet de dés raté, il peut **implorer les dieux**
+  et relancer — une seule fois par épreuve, et le revers ne s'applique qu'une
+  fois le sort accepté. La réserve de flammes vit dans la feuille du roi.
+- **Le sac du roi.** Les **sceaux royaux** gagnés en cours de règne s'affichent
+  en breloques d'argile dans le tiroir (le dernier gravé scintille, la
+  languette s'illumine), et les choix verrouillés annoncent la couleur :
+  *« Scellé — exige murs ou alliés »*.
+- **« Ton règne s'achève ici. »** Les fins funestes s'ouvrent sur le bandeau
+  sombre rituel du genre, frappé d'un sceau brisé ; les triomphes gardent
+  leur or.
 
 ## Repères pédagogiques : frise des actes et lexique
 Le bandeau du livre porte une **frise des huit actes** : huit encoches gravées qui
@@ -151,8 +180,9 @@ jauge change (lueur dorée respirante et pastille), et **reste allumée tant que
 tiroir n'a pas été ouvert** : l'élève voit qu'il y a du nouveau sans être
 interrompu, consulte quand il veut, et referme d'un clic ou avec **Échap**. La feuille reste **sobre et
 utile** : les **quatre qualités** du roi ou de la reine (qui montent et
-descendent selon les choix, et qu'on a soi-même réparties) et le bloc **« Sa
-civilisation »**, qui dit ce que la cité devient. Ce bloc compte **quatre
+descendent selon les choix, et qu'on a soi-même réparties), le bloc **« Sa
+civilisation »**, qui dit ce que la cité devient, le **sac des sceaux royaux**
+et la réserve de **faveurs des dieux**. Ce bloc compte **quatre
 dimensions** : Prospérité et Rayonnement, toujours visibles, plus **Savoir**
 (écriture, mathématiques en base 60, astronomie, école) et **Technique**
 (irrigation, bronze, roue, grands ouvrages) qui restent **cachées tant qu'elles
