@@ -88,9 +88,11 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .plate-kind{font-family:"EB Garamond",serif;font-style:italic;font-size:11px;color:#7a6a4a;text-transform:none;letter-spacing:0;white-space:nowrap}
 .illus{border:1px solid var(--clay-edge);border-radius:2px;background:#efe5c8;padding:4px;display:flex;justify-content:center}
 .illus svg{width:100%;height:auto;max-height:64px;display:block}
-.scroll{font-family:"EB Garamond",serif;font-size:17.5px;line-height:1.6;color:#33271a;padding:1px 4px 1px 11px;border-left:2px solid rgba(120,90,45,.32)}
-.scroll p{margin:0 0 8px;font-style:italic;color:#4b3b23}
-.scroll p:last-child{margin-bottom:0}
+.clay{position:relative;margin:2px 2px 4px;padding:15px 19px 13px;background:radial-gradient(130% 100% at 28% 16%,#d3b78d 0%,#c4a375 46%,#a8845b 100%);border-radius:16px 24px 14px 26px/22px 15px 26px 17px;border:1px solid rgba(88,60,29,.55);box-shadow:inset 0 2px 7px rgba(255,243,212,.5),inset 0 -4px 9px rgba(70,46,21,.42),inset 3px 0 6px rgba(70,46,21,.18),0 3px 9px rgba(40,26,10,.26)}
+.clay p{font-family:"EB Garamond",serif;font-style:italic;font-size:16.5px;line-height:1.55;color:#3a2812;margin:0 0 9px;text-shadow:0 1px 0 rgba(255,241,206,.4)}
+.clay p:last-child{margin-bottom:0}
+.clay.stone{background:radial-gradient(130% 100% at 30% 14%,#7b7160 0%,#645b4c 48%,#494237 100%);border-color:rgba(28,22,15,.65);box-shadow:inset 0 2px 7px rgba(214,205,182,.28),inset 0 -4px 9px rgba(15,11,7,.55),0 3px 9px rgba(20,14,7,.4)}
+.clay.stone p{color:#ece2c8;text-shadow:0 -1px 0 rgba(15,11,6,.75)}
 .plate-read{margin-top:7px;padding:6px 10px 4px;border-top:1px solid var(--rule);background:rgba(120,96,52,.07);border-radius:0 0 3px 3px}
 .plate-read-h{font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#9a6a3a;margin-bottom:5px}
 .plate .art{font-size:16.5px;line-height:1.55;margin:0 0 5px;padding:1px 4px;border-radius:2px;color:#3a2f1f;transition:background .15s,opacity .15s}
@@ -202,8 +204,9 @@ body:not(.playing) .sheet-drawer{display:none}
 .st-lbl{writing-mode:vertical-rl;text-orientation:mixed;font-family:"IM Fell English SC",serif;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase}
 .st-chev{width:12px;height:16px;flex:0 0 auto;opacity:.8;transition:transform .35s}
 .sheet-drawer.open .st-chev{transform:rotate(180deg)}
-.sheet-tab.pulse{animation:tabpulse .85s ease 3}
-@keyframes tabpulse{0%,100%{box-shadow:-4px 2px 10px rgba(40,26,10,.34);color:#f3e7cd}50%{box-shadow:-4px 2px 10px rgba(40,26,10,.34),0 0 16px 4px rgba(231,198,106,.92);color:#fff4dc}}
+.sheet-tab.lit{animation:tabglow 1.9s ease-in-out infinite}
+.sheet-tab.lit::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:#ffd76e;box-shadow:0 0 8px 2px rgba(255,215,110,.9)}
+@keyframes tabglow{0%,100%{box-shadow:-4px 2px 10px rgba(40,26,10,.34),0 0 5px 1px rgba(231,198,106,.3);color:#f3e7cd}50%{box-shadow:-4px 2px 10px rgba(40,26,10,.34),0 0 18px 5px rgba(231,198,106,.9);color:#fff6df}}
 .tablet{height:100%;min-height:0;overflow:auto;display:flex;flex-direction:column;
   background:linear-gradient(165deg,var(--clay-1),var(--clay-2));border:none;border-left:2px solid #5c4628;border-radius:0;padding:14px 18px;color:var(--clay-ink);
   box-shadow:-18px 0 50px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,245,220,.35),inset 0 0 40px rgba(80,50,15,.18);position:relative}
@@ -337,10 +340,50 @@ body:not(.playing) .sheet-drawer{display:none}
 .isteps li{font-size:14px;line-height:1.46;color:var(--ink);margin-bottom:4px}
 .icta{width:100%;padding:11px;border:none;border-radius:3px;background:var(--rubric);color:#f6e7d8;font-family:"IM Fell English SC",serif;font-size:14px;letter-spacing:.1em;cursor:pointer}
 .icta:hover{filter:brightness(1.07)}
+
+/* ---------- vérification de lecture ---------- */
+.srcquiz{display:none;margin-top:12px;padding:10px 13px 11px;border:1px solid var(--paper-edge);border-radius:3px;background:rgba(120,96,52,.08)}
+.srcquiz.show{display:block}
+.sq-h{font-family:"IM Fell English SC",serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9a6a3a;margin-bottom:5px}
+.sq-q{font-family:"IM Fell English",serif;font-style:italic;font-size:15.5px;line-height:1.3;color:var(--ink);margin:0 0 8px}
+.sq-ch{display:flex;flex-direction:column;gap:6px}
+.sq-ch button{text-align:left;font-family:"EB Garamond",serif;font-size:14.5px;color:var(--ink);background:rgba(255,252,242,.65);border:1px solid var(--paper-edge);border-radius:3px;padding:7px 11px;cursor:pointer;transition:background .15s}
+.sq-ch button:hover:not(:disabled){background:rgba(156,58,44,.08)}
+.sq-ch button:focus-visible{outline:2px solid var(--rubric);outline-offset:1px}
+.sq-ch button.ok{background:rgba(58,90,40,.16);border-color:rgba(58,90,40,.55);color:#2e4a2e}
+.sq-ch button.no{background:rgba(156,58,44,.09);border-color:rgba(156,58,44,.38);color:#8a2e22;text-decoration:line-through;cursor:not-allowed}
+.sq-ch button:disabled:not(.ok):not(.no){opacity:.5;cursor:not-allowed}
+.sq-hint{font-family:"IM Fell English",serif;font-style:italic;font-size:12.5px;margin:7px 0 0}
+.sq-hint.err{color:var(--rubric)}.sq-hint.win{color:#3c6b3a}
+/* ---------- frise des actes ---------- */
+.progress{display:inline-flex;align-items:center;gap:8px}
+.frise{display:inline-flex;align-items:flex-end;gap:4px}
+.frise i{width:9px;height:12px;clip-path:polygon(50% 0,100% 100%,0 100%);background:rgba(178,154,114,.3);transition:background .3s}
+.frise i.fait{background:#a8905f}
+.frise i.cur{background:#e7c66a}
+.frise i.cur.ep{background:#c96a48}
+.progress .plabel{font-style:normal}
+.progress .plabel.ep{color:#d08a6a}
+/* ---------- lexique ---------- */
+.lexbtn{position:fixed;top:9px;right:52px;z-index:50;height:32px;padding:0 14px;display:inline-flex;align-items:center;border:1px solid rgba(210,180,120,.45);border-radius:16px;background:rgba(30,21,11,.72);color:#b09a68;font-family:"IM Fell English SC",serif;font-size:10.5px;letter-spacing:.08em;cursor:pointer;backdrop-filter:blur(2px);transition:color .25s,border-color .25s}
+.lexbtn:hover{color:#e7c66a;border-color:rgba(231,198,106,.65)}
+.gl{border-bottom:1px dotted rgba(156,90,34,.75);cursor:help;color:inherit}
+.gl:hover{background:rgba(156,90,34,.12)}
+.para.past .gl{border-bottom-color:rgba(156,90,34,.35)}
+.lexlist{display:grid;grid-template-columns:1fr 1fr;gap:2px 20px}
+.lex-e{border-bottom:1px dotted rgba(120,90,45,.3);padding:6px 2px 8px}
+.lex-t{font-family:"IM Fell English",serif;font-size:15.5px;color:var(--rubric)}
+.lex-d{font-size:12.5px;line-height:1.4;color:#3a2f1f;margin-top:1px}
+@media(max-width:900px){.lexlist{grid-template-columns:1fr}.lexbtn{position:static;margin-left:6px}}
+/* ---------- divers ---------- */
+.poursuite.show{animation:pousse 1.05s ease 2}
+@keyframes pousse{0%,100%{box-shadow:0 0 0 0 rgba(156,58,44,0)}50%{box-shadow:0 0 0 6px rgba(156,58,44,.25)}}
+.fin-src{font-family:"IM Fell English",serif;font-style:italic;font-size:12px;color:#7a6a4a;margin:-9px 0 14px}
+.fin-wrap.bl .fin-src{margin:-6px 0 11px}
 </style>
 </head>
 <body>
-<div class="topbar"><b>Lugal</b><span>un livre dont vous êtes le roi · Mésopotamie</span><span class="progress" id="progress"></span><button class="soundtgl" id="soundtgl" onclick="toggleSound()" title="Activer le son" aria-label="Son"></button></div>
+<div class="topbar"><b>Lugal</b><span>un livre dont vous êtes le roi · Mésopotamie</span><span class="progress" id="progress"></span><button class="lexbtn" id="lexbtn" onclick="openLexique()" title="Petit lexique de la Mésopotamie">Lexique</button><button class="soundtgl" id="soundtgl" onclick="toggleSound()" title="Activer le son" aria-label="Son"></button></div>
 <div class="stage">
   <section class="book"><div class="ribbon"></div><div class="pages" id="pages"></div></section>
 </div>
@@ -366,7 +409,7 @@ body:not(.playing) .sheet-drawer{display:none}
       </div>
       <div class="icol">
         <div class="isection"><h3>Ton objectif</h3><p>Chaque choix a un prix et des conséquences. Tu dois garder l'équilibre entre tes quatre qualités de souverain et la prospérité de ta cité, tout en affrontant les crises d'un monde qui s'invente : crues, disettes, voleurs, révoltes, guerres. À la fin, l'histoire jugera ton règne. Il existe treize destins possibles, du plus glorieux au plus sombre.</p></div>
-        <div class="isteps"><span class="ist-h">Comment jouer</span><ol><li>Façonne ton roi ou ta reine et choisis ta cité sumérienne.</li><li>À chaque page, lis la situation et consulte la source avant de décider.</li><li>Certaines décisions sont des paris : deux dés et tes qualités décident du sort.</li><li>Ton règne se referme sur un bilan et une place dans l'histoire. Rejoue pour découvrir les treize fins.</li></ol></div>
+        <div class="isteps"><span class="ist-h">Comment jouer</span><ol><li>Façonne ton roi ou ta reine et choisis ta cité sumérienne.</li><li>À chaque page, lis la situation, consulte la source et réponds à sa question avant de décider.</li><li>Certaines décisions sont des paris : deux dés et tes qualités décident du sort.</li><li>Ton règne se referme sur un bilan et une place dans l'histoire. Rejoue pour découvrir les treize fins.</li></ol></div>
       </div>
     </div>
     <button class="icta" id="introgo">Façonner mon roi ou ma reine »</button>
@@ -386,7 +429,7 @@ body:not(.playing) .sheet-drawer{display:none}
     <div class="pool" id="pool"></div>
     <div class="alloc" id="alloc"></div>
     <button class="fcta" id="begin" disabled>Place tous tes points pour commencer</button>
-    <div class="fmeta"><button type="button" onclick="openGalerie()">La galerie des règnes</button><span>·</span><button type="button" onclick="openDistinctions()">Les distinctions</button></div>
+    <div class="fmeta"><button type="button" onclick="openGalerie()">La galerie des règnes</button><span>·</span><button type="button" onclick="openDistinctions()">Les distinctions</button><span>·</span><button type="button" onclick="openLexique()">Le lexique</button></div>
   </div>
 </div>
 
@@ -420,7 +463,7 @@ const QDESC={
 const SCEAUX_ORDRE=["Écriture adoptée","Temple puissant","Sans écriture","Code gravé","Loi de fer","Loi équitable","Prérogative royale","Ordalie","Alliés","Ennemis jurés","Murailles","Héritier désigné","Ordre durci"];
 const BASE=6, POOL=16, MAXADD=10;   // chaque qualité : 6 à 16
 let F=null;
-const nouvelle=()=>({nom:"Ur-Nammu",genre:"roi",cite:"Eridu",autorite:0,sagesse:0,piete:0,legitimite:0,prosperite:4,rayonnement:1,savoir:0,technique:0,sceaux:new Set(),registre:[],histoire:[],journal:[],feuillet:0,noeud:"eau",_srcTotal:0,_srcSeen:0});
+const nouvelle=()=>({nom:"Ur-Nammu",genre:"roi",cite:"Eridu",autorite:0,sagesse:0,piete:0,legitimite:0,prosperite:4,rayonnement:1,savoir:0,technique:0,sceaux:new Set(),registre:[],histoire:[],journal:[],feuillet:0,noeud:"eau",_srcTotal:0,_srcSeen:0,_quizTotal:0,_quizFirst:0});
 const d6=()=>1+Math.floor(Math.random()*6);
 function statsOf(e){return e.stats?e.stats:(e.stat?[e.stat]:[]);}
 function epreuveRaw(e){
@@ -442,85 +485,93 @@ function pReussite(mod,seuil){let f=0;for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)
 const ILLUS="Illustration originale";const DOC="Document composé pour Lugal";
 const SS='fill="none" stroke="#3a2c18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
 const SRC={
-  carte:{h:"Une cité entre deux fleuves",kind:ILLUS,
+  carte:{h:"Une cité entre deux fleuves",kind:ILLUS,q:{txt:"D'après cette source, qu'est-ce qui décide où une cité peut naître en Mésopotamie ?",ch:["L'eau des fleuves","L'or des montagnes","La proximité de la mer"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><g stroke="#b29a64" stroke-width="1"><path d="M10 12l12 12M26 12l12 12M178 14l10 10M194 16l10 10M10 106l12 12M188 102l10 10"/></g><path d="M40 18 C72 44,80 62,116 76 C150 88,172 104,196 120" stroke="#2f6f86" stroke-width="3"/><path d="M86 14 C100 42,104 60,118 74" stroke="#2f6f86" stroke-width="3"/><path d="M54 32 C86 54,94 72,128 86 C154 96,170 108,188 120" stroke="#5a8a5a" stroke-width="2" stroke-dasharray="2 5"/><circle cx="117" cy="76" r="5.5" fill="#9c3a2c" stroke="none"/><path d="M117 70v-9M114 64h7v5h-7" stroke="#9c3a2c"/></svg>`,
     arts:["Entre deux fleuves court une mince bande de terres fertiles ; tout autour, le désert. En Mésopotamie, l'eau décide où une cité peut naître."]},
-  fleuves:{h:"La crue, qui féconde ou qui noie",kind:ILLUS,
+  fleuves:{h:"La crue, qui féconde ou qui noie",kind:ILLUS,q:{txt:"Pourquoi la crue des deux fleuves est-elle à la fois attendue et redoutée ?",ch:["Elle peut féconder les champs comme les noyer","Elle n'arrive jamais à la même saison que la pêche","Elle apporte seulement du sable"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M72 8 C86 40,86 72,98 124" stroke="#2f6f86" stroke-width="3"/><path d="M150 8 C142 40,152 72,140 124" stroke="#2f6f86" stroke-width="3"/><g stroke="#2f6f86" stroke-width="1.4"><path d="M36 52 q8 -6 16 0 q8 6 16 0"/><path d="M36 66 q8 -6 16 0 q8 6 16 0"/><path d="M154 56 q8 -6 16 0 q8 6 16 0"/><path d="M160 72 q8 -6 16 0 q8 6 16 0"/></g><path d="M98 124 q12 -9 26 0 q12 9 20 0" stroke="#2f6f86" stroke-width="2"/></svg>`,
     arts:["Le Tigre et l'Euphrate nourrissent la plaine, mais leur crue est imprévisible : elle féconde les champs une année, les noie la suivante. Maîtriser l'eau, c'est maîtriser la vie."]},
-  dattes:{h:"Le surplus des champs irrigués",kind:ILLUS,
+  dattes:{h:"Le surplus des champs irrigués",kind:ILLUS,q:{txt:"Que permet le surplus des récoltes, pour la première fois ?",ch:["Libérer des bras pour d'autres métiers","Abandonner l'agriculture","Se passer des fleuves"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M110 122 C108 92,108 72,110 54" stroke-width="2.4"/><g stroke-width="1.7"><path d="M110 54 C92 44,78 46,62 38"/><path d="M110 54 C128 44,142 46,158 38"/><path d="M110 56 C96 52,84 56,68 56"/><path d="M110 56 C124 52,136 56,152 56"/><path d="M110 58 C100 62,92 68,80 72"/><path d="M110 58 C120 62,128 68,140 72"/></g><g stroke="#9c5a22" stroke-width="2"><path d="M104 60v3M116 60v3M110 64v3"/></g><g stroke="#8a7450" stroke-width="1"><path d="M18 110h184M18 118h184"/><path d="M44 104v22M86 104v22M134 104v22M176 104v22"/></g></svg>`,
     arts:["Irriguée, la plaine donne l'orge, le blé et la datte. C'est le surplus de ces récoltes qui, pour la première fois, libère des bras pour d'autres métiers, artisans, prêtres, scribes."]},
-  calculi:{h:"Compter avant d'écrire",kind:ILLUS,
+  calculi:{h:"Compter avant d'écrire",kind:ILLUS,q:{txt:"À quoi servaient les petits jetons d'argile, les calculi ?",ch:["À compter les marchandises avant l'écriture","À jouer aux dés","À payer les soldats"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><circle cx="80" cy="72" r="34"/><path d="M80 38 a34 34 0 0 1 0 68" stroke-dasharray="3 5"/><g stroke="#9c5a22"><circle cx="74" cy="66" r="3"/><circle cx="88" cy="74" r="3"/><path d="M72 84l6 -6 4 6z"/></g><g><circle cx="156" cy="48" r="7"/><path d="M150 84l16 -12 6 14z"/><rect x="150" y="92" width="18" height="11" rx="1"/></g></svg>`,
     arts:["Avant l'écriture, on compte avec de petits jetons d'argile scellés dans une boule creuse : un jeton pour une marchandise. La comptabilité précède la lettre."]},
-  pictogrammes:{h:"La naissance de l'écriture",kind:ILLUS,
+  pictogrammes:{h:"La naissance de l'écriture",kind:ILLUS,q:{txt:"De quel besoin l'écriture est-elle née en Mésopotamie ?",ch:["Noter des comptes","Écrire des chansons","Envoyer des lettres d'amour"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="48" y="18" width="124" height="96" rx="9"/><g stroke-width="1.2"><path d="M66 40l7 4 -7 4M80 40l7 4 -7 4M94 38v10M108 40l-7 4 7 4M122 38v10"/><path d="M66 60l7 4 -7 4M80 58v10M94 60l7 4 -7 4M110 58l-7 4 7 4M124 60v8"/><path d="M66 80l7 4 -7 4M80 78v10M96 80l7 4 -7 4M110 80v8M124 78v10"/><path d="M66 98l7 4 -7 4M80 100l7 4 -7 4M96 96v10M110 100l-7 4 7 4"/></g></svg>`,
     arts:["Du dessin au signe en forme de clou : l'écriture naît du besoin de noter des comptes, puis sert bientôt à fixer lois, récits et savoirs, et à transmettre un nom à travers les siècles."]},
-  sceau:{h:"Le sceau-cylindre, signature de l'autorité",kind:ILLUS,
+  sceau:{h:"Le sceau-cylindre, signature de l'autorité",kind:ILLUS,q:{txt:"À quoi sert le sceau-cylindre ?",ch:["À signer les contrats et les ordres officiels","À moudre le grain","À mesurer les champs"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="42" y="44" width="26" height="56" rx="13"/><path d="M46 54h18M46 64h18M46 74h18M46 84h18M46 94h18" stroke-width="1"/><path d="M55 44v-8M55 100v8"/><rect x="92" y="50" width="102" height="46" rx="2" stroke-width="1.3"/><g stroke-width="1.2"><path d="M104 62a6 6 0 1 1 -0.1 0M122 86l6-16 6 16M142 62v22M142 62l10 6-10 6M168 60a8 8 0 0 1 0 16"/></g></svg>`,
     arts:["Roulé sur l'argile fraîche, le sceau-cylindre imprime une frise unique : il signe contrats et ordres officiels. Posséder un sceau, c'est détenir une part de l'autorité."]},
-  animisme:{h:"L'âme des choses",kind:ILLUS,
+  animisme:{h:"L'âme des choses",kind:ILLUS,q:{txt:"Avant les grands dieux, à quoi les peuples prêtaient-ils une âme ?",ch:["Aux arbres, aux rivières et aux animaux","Aux pièces de monnaie","Aux murailles des villes"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M84 122 C82 98,82 80,86 60" stroke-width="2.4"/><path d="M84 60 C70 50,60 56,48 46M84 60 C104 50,116 54,130 44M84 66 C76 72,64 72,56 68M84 66 C100 72,114 70,126 66"/><path d="M156 40 q10 8 0 16 q-10 8 0 16 q10 8 0 16" stroke="#2f6f86" stroke-width="2"/></svg>`,
     arts:["Avant les grands dieux, les peuples prêtent une âme aux arbres, aux rivières, aux animaux. La religion accompagne l'humanité dès ses premiers villages."]},
-  ziggourat:{h:"La ziggourat, montagne des dieux",kind:ILLUS,
+  ziggourat:{h:"La ziggourat, montagne des dieux",kind:ILLUS,q:{txt:"Que proclame la ziggourat, dressée au cœur de la cité ?",ch:["La puissance de la cité et de ses dieux","La richesse des marchands étrangers","La fin des récoltes"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M36 120h148"/><path d="M56 120v-22h108v22M72 98v-20h76v20M86 78v-18h48v18M98 60v-14h24v14M104 46v-8h12v8M110 38v-6"/><path d="M110 120v-22" stroke-width="1" stroke-dasharray="3 3"/><path d="M94 120l8 -22M126 120l-8 -22" stroke-width="1"/></svg>`,
     arts:["La haute terrasse à degrés élève le temple vers le ciel : elle proclame la puissance de la cité et de ses dieux, et celle des prêtres qui la desservent."]},
-  cadastre:{h:"Borner les champs par l'écrit",kind:ILLUS,
+  cadastre:{h:"Borner les champs par l'écrit",kind:ILLUS,q:{txt:"Que change le registre écrit des champs ?",ch:["La propriété peut se prouver devant le roi","Les champs n'ont plus besoin d'eau","Les paysans ne paient plus rien"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="34" y="22" width="152" height="88" rx="2"/><path d="M84 22v88M134 22v88M34 56h152M34 82h152" stroke-width="1.1"/><g stroke="#9c5a22" stroke-width="1.2"><path d="M44 34l30 12M150 36l28 -8M44 96l30 8"/></g><g stroke-width="1"><path d="M58 40v8M104 66v10M150 92v9"/></g></svg>`,
     arts:["Fixer par écrit les limites des champs fait du registre l'arbitre des querelles : la propriété se prouve, donc se conteste devant le roi. L'écrit remplace peu à peu l'arbitraire."]},
-  hammurabi:{h:"La stèle des lois",kind:ILLUS,
+  hammurabi:{h:"La stèle des lois",kind:ILLUS,q:{txt:"Que dit la loi du talion ?",ch:["Qui cause une mort répond de sa propre vie","Le voleur est toujours pardonné","Seul le roi peut être jugé"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M84 124 V46 a26 26 0 0 1 52 0 V124 Z"/><path d="M84 62h52M84 76h52M84 90h52M84 104h52" stroke-width="1"/><g stroke="#9c3a2c" stroke-width="1"><path d="M97 36a6 6 0 0 1 26 0"/><path d="M105 32v8M115 32v8"/></g><g stroke-width="1"><path d="M90 68h12M108 68h22M90 82h22M118 82h12M90 96h10M104 96h26M90 110h26M122 110h8"/></g></svg>`,
     arts:[
       {id:"a229",ref:"loi du talion",txt:"qui cause une mort répond de sa propre vie : « œil pour œil »."},
       {id:"a53",ref:"loi de restitution",txt:"qui néglige son ouvrage répare le dommage et indemnise la victime."},
       {id:"a2",ref:"jugement par le fleuve",txt:"faute de preuve et de témoin, on s'en remet à l'épreuve du fleuve."},
       {ref:"peine graduée",txt:"la sanction varie selon le rang de l'offenseur et de la victime."}]},
-  barque:{h:"Le fleuve, grande route de la cité",kind:ILLUS,
+  barque:{h:"Le fleuve, grande route de la cité",kind:ILLUS,q:{txt:"Pourquoi la barque compte-t-elle autant pour la cité ?",ch:["Le fleuve est la grande route des marchandises","Elle sert surtout aux courses de vitesse","Elle remplace les canaux d'irrigation"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M44 92 C70 104,150 104,176 92"/><path d="M44 92 C32 88,30 76,38 68"/><path d="M176 92 C188 88,190 76,182 68"/><path d="M52 90 C90 98,130 98,168 90" stroke-width="1"/><path d="M58 92 C92 99,128 99,162 92" stroke-width="0.8"/><path d="M110 90 V46"/><path d="M92 50 H128"/><path d="M96 50 Q110 56 124 50 L121 76 Q110 81 99 76 Z"/><path d="M104 52 V75M114 52 V75" stroke-width="0.8"/><g stroke-width="1.2"><path d="M70 88 q5 -9 10 0M84 88 q5 -9 10 0"/></g><path d="M44 92 L34 104"/><g stroke="#2f6f86" stroke-width="1.4"><path d="M22 114 q10 -6 20 0 q10 6 20 0 q10 -6 20 0 q10 6 20 0 q10 -6 20 0 q10 6 20 0 q10 -6 20 0"/><path d="M28 122 q10 -6 20 0 q10 6 20 0 q10 -6 20 0 q10 6 20 0 q10 -6 20 0 q10 6 20 0" stroke-width="1"/></g></svg>`,
     arts:["Sur le Tigre et l'Euphrate, la barque porte le grain, le bois et la pierre. La cité qui maîtrise le transport fluvial commande la richesse de toute la région."]},
-  etendard:{h:"Les deux visages du roi",kind:ILLUS,
+  etendard:{h:"Les deux visages du roi",kind:ILLUS,q:{txt:"Que montrent les deux faces de l'étendard ?",ch:["Le banquet de la paix et la guerre","Les saisons de l'année","La liste des rois de la cité"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><rect x="38" y="26" width="144" height="80" rx="2"/><path d="M38 66h144" stroke-width="1.2"/><g stroke-width="1.2"><circle cx="68" cy="46" r="5"/><circle cx="94" cy="46" r="5"/><circle cx="120" cy="46" r="5"/><path d="M62 53h12M88 53h12M114 53h12M150 40v14M158 40v14M166 40v14"/></g><g stroke-width="1.2"><path d="M60 96v-10l8 6 8 -6v10M96 86v10M96 86l8 6M118 86v10l8 -8M150 84l9 7 9 -7v10"/></g></svg>`,
     arts:["L'étendard montre deux faces : sur l'une, le banquet et l'alliance ; sur l'autre, la guerre et les prisonniers. Le roi choisit lequel sera le sien, et en paie le prix."]},
-  ishtar:{h:"La porte qui éblouit",kind:ILLUS,
+  ishtar:{h:"La porte qui éblouit",kind:ILLUS,q:{txt:"Pourquoi une cité bâtit-elle une porte aussi éblouissante ?",ch:["Pour proclamer la puissance de son roi et de ses dieux","Pour empêcher la crue d'entrer","Pour cacher ses greniers"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M62 120V58 a48 48 0 0 1 96 0 V120"/><path d="M84 120V72 a26 26 0 0 1 52 0 V120"/><g stroke-width="1"><path d="M62 84h22M136 84h22M62 102h22M136 102h22M70 64l10 6M150 64l-10 6"/></g><g stroke-width="1.2"><path d="M98 98 q6 -8 15 -4 q9 4 13 -2M104 102l4 7M118 100l4 7"/></g></svg>`,
     arts:["Briques vernissées, dragons et taureaux : une grande cité éblouit pour proclamer la puissance de son roi et de ses dieux. La monumentalité est un langage politique."]},
 
   lagash:{h:"Un registre de grenier",kind:DOC,
-    doc:["Mois des moissons, troisième année du règne.","Au grenier du palais : 240 mesures d'orge reçues ; 30 versées en rations aux ouvriers du canal ; 12 portées au temple.","Reste en réserve : 198 mesures. Scellé par la main du scribe."],
-    arts:["Reconstitution d'un registre de grenier : l'État se gouverne par l'écrit. Tout ce qui entre et sort est noté, pesé, scellé, l'écriture rend l'impôt et l'administration possibles."]},
-  codeTexte:{h:"Des lois gravées dans la pierre",kind:DOC,
+    q:{txt:"D'après ce registre, à quoi sert l'écriture au palais ?",ch:["À noter tout ce qui entre et sort des greniers","À décorer les murs du temple","À amuser les enfants des scribes"],ok:0},
+    doc:["Mois des moissons, troisième année du règne.","Au grenier du palais : 240 mesures d'orge reçues ; 30 versées en rations aux ouvriers du canal ; 12 portées au temple.","Reste en réserve : 198 mesures. Scellé par la main du scribe."]},
+  codeTexte:{h:"Des lois gravées dans la pierre",kind:DOC,mat:"stone",note:"Lois composées pour Lugal dans l'esprit des grands codes mésopotamiens — reconstitution, non un document d'archive.",
+    q:{txt:"Pourquoi graver les lois dans la pierre, à la vue de tous ?",ch:["Pour que la règle s'impose à tous, même au puissant","Pour que seuls les scribes les connaissent","Pour décorer la salle du trône"],ok:0},
     doc:["Si un homme rompt sa digue et inonde le champ d'autrui, il mesurera le grain perdu et le rendra.","Si un batelier perd par négligence la barque qu'on lui confie, il en paiera la valeur.","Que ces lois demeurent gravées, afin que le fort n'opprime pas le faible."],
     arts:["Lois reconstituées dans l'esprit des grands codes mésopotamiens : rendre la règle visible de tous, c'est l'imposer même au puissant, et la faire survivre à son auteur."]},
   commerce:{h:"La lettre d'un marchand",kind:DOC,
+    q:{txt:"Pourquoi la cité fait-elle du commerce avec des pays lointains ?",ch:["Sa plaine ne produit ni bois, ni métal, ni pierres précieuses","Ses habitants refusent de cultiver","Ses fleuves sont à sec"],ok:0},
     doc:["À mon frère, salut. La caravane est rentrée des montagnes.","J'ai troqué vingt ballots de laine contre du cuivre, du bois de cèdre et trois pierres bleues pour le temple.","Envoie de l'orge avant la crue, car les routes seront bientôt coupées."],
     arts:["Lettre de marchand reconstituée : c'est par ces échanges lointains que la cité obtient le bois, le métal et les pierres précieuses que sa plaine ne produit pas."]},
-  gilgamesh:{h:"Le roi et l'immortalité",kind:DOC,
+  gilgamesh:{h:"Le roi et l'immortalité",kind:DOC,note:"Récit composé pour Lugal dans l'esprit des grandes épopées mésopotamiennes — reconstitution, non un document d'archive.",
+    q:{txt:"Selon le vieux sage, qu'est-ce qui traverse les siècles ?",ch:["Le nom gravé dans l'argile","Les murailles de la cité","Le corps du roi"],ok:0},
     doc:["Le roi voulait ne jamais mourir.","Un vieux sage lui dit : « Tes murs tomberont, ton corps deviendra poussière.","Mais ton nom, gravé dans l'argile, lui, traversera les siècles. »"],
     arts:["Récit composé dans l'esprit des grandes épopées mésopotamiennes : très tôt, les hommes ont cherché l'immortalité non dans la chair, mais dans la mémoire écrite."]},
-  deluge:{h:"La mémoire du déluge",kind:DOC,
+  deluge:{h:"La mémoire du déluge",kind:DOC,q:{txt:"Comment ces peuples comprenaient-ils les grandes catastrophes ?",ch:["Comme des messages des dieux","Comme de simples hasards","Comme des ruses des marchands"],ok:0},
     doc:["Les dieux, dit-on, envoyèrent jadis un déluge sur la plaine.","Les eaux montèrent sept jours et sept nuits et engloutirent les cités.","Un seul homme, averti à temps, bâtit une grande barque et sauva le vivant."],
     arts:["Récit composé d'après les vieux mythes mésopotamiens du déluge : pour ces peuples, les grandes catastrophes étaient des messages des dieux, et l'écrit servait à en garder la trace."]},
   bronze:{h:"Le métal qui change le monde",kind:ILLUS,
+    q:{txt:"Comment obtient-on le bronze ?",ch:["En fondant ensemble le cuivre et un peu d'étain","En chauffant de l'argile très fort","En martelant de l'or pur"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M40 40h34l-5 30a12 12 0 0 1 -24 0z"/><path d="M52 70l8 12" stroke-width="1.4"/><g stroke="#9c5a22" stroke-width="1.4"><path d="M56 84q3 6 0 11M62 82q3 6 0 11"/></g><rect x="42" y="104" width="40" height="14" rx="2"/><path d="M150 44l24 -8v40l-24 -8z"/><path d="M150 56h-20" stroke-width="2"/><path d="M130 56v36" stroke-width="2"/><path d="M182 96l8 -2 -2 30 -6 0z"/></svg>`,
     arts:["Gravure originale. En fondant ensemble le cuivre et un peu d'étain venu de loin, les Mésopotamiens obtiennent le bronze, bien plus dur : outils, armes et parures changent d'échelle. C'est l'âge du bronze."]},
-  savoirTexte:{h:"Une tablette de savoir",kind:DOC,
+  savoirTexte:{h:"Une tablette de savoir",kind:DOC,q:{txt:"Quel « grand compte » divise le cercle et le jour ?",ch:["Soixante","Dix","Mille"],ok:0},
     doc:["Que le scribe le sache : soixante est le grand compte ; il divise le cercle et le jour.",
 "Douze lunes font l'année, et trois cent soixante jours la mesurent.",
 "Quand l'astre du soir reparaît à l'orient, qu'on note le jour, car le ciel garde son ordre."],
     arts:["Tablette reconstituée dans l'esprit des savoirs mésopotamiens. La base soixante (nos 60 minutes et 360 degrés), le calendrier lunaire et l'observation des astres sont nés de la comptabilité et du temple."]},
   edubbaTexte:{h:"À la maison des tablettes",kind:DOC,
+    q:{txt:"Comment les jeunes scribes apprenaient-ils, à l'edubba ?",ch:["En recopiant signes et listes, encore et encore","En écoutant des chansons","En partant à la guerre"],ok:0},
     doc:["Le maître dit à l'élève : recopie cent fois ce signe, puis cette liste de mesures.",
 "Que l'on reprenne celui qui se lève sans permission, et que l'on loue celui qui écrit droit.",
 "Ainsi se forment, d'âge en âge, les scribes qui tiennent les comptes du roi."],
     arts:["Exercice d'école reconstitué. Dans l'edubba, la maison des tablettes, de jeunes scribes apprenaient par la copie : c'est ainsi que l'écrit et le calcul se transmettaient de génération en génération."]},
   roue:{h:"La roue, pour le pot et le chariot",kind:ILLUS,
+    q:{txt:"À quoi la roue a-t-elle d'abord servi ?",ch:["Au tour du potier, puis au chariot","Aux moulins à vent","Aux horloges du temple"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><circle cx="72" cy="74" r="34"/><circle cx="72" cy="74" r="7"/><g stroke-width="1.4"><path d="M72 40v68M38 74h68M48 50l48 48M96 50l-48 48"/></g><path d="M118 86h66l-6 -22h-54z"/><circle cx="134" cy="98" r="10"/><circle cx="170" cy="98" r="10"/><path d="M118 70l-12 -7" stroke-width="1.4"/></svg>`,
     arts:["Gravure originale. Née en Mésopotamie pour le tour du potier puis le chariot, la roue démultiplie la production et le transport. C'est l'une des inventions les plus fécondes de l'humanité."]},
   jardins:{h:"Des jardins en terrasses",kind:ILLUS,
+    q:{txt:"Que faut-il maîtriser pour faire vivre des jardins en terrasses ?",ch:["L'irrigation","La navigation en mer","L'écriture des poèmes"],ok:0},
     svg:`<svg viewBox="0 0 220 132" ${SS}><path d="M12 122h196"/><path d="M44 122V44H68V62H96V80H124V98H152V122"/><g stroke-width="1.2"><path d="M54 122V108a12 12 0 0 1 24 0v14"/><path d="M86 122V108a12 12 0 0 1 24 0v14"/><path d="M118 122V108a12 12 0 0 1 24 0v14"/></g><g stroke-width="1.2"><path d="M56 44v-7"/><ellipse cx="56" cy="28" rx="5" ry="11"/><path d="M80 62v-7"/><circle cx="76" cy="52" r="5"/><circle cx="84" cy="52" r="5"/><circle cx="80" cy="47" r="5"/><path d="M108 80v-7"/><ellipse cx="108" cy="66" rx="5" ry="11"/><path d="M140 98v-7"/><circle cx="136" cy="88" r="5"/><circle cx="144" cy="88" r="5"/><circle cx="140" cy="83" r="5"/></g><g stroke-width="1"><path d="M68 46q10 8 6 22M64 46q-2 9 2 16M72 47q4 8 1 14"/><path d="M96 64q10 8 6 22M92 64q-2 9 2 16M100 65q4 8 1 14"/><path d="M124 82q10 8 6 22M120 82q-2 9 2 16M128 83q4 8 1 14"/><path d="M152 100q9 8 6 20M148 100q-2 8 2 15"/></g><g stroke-width="1"><path d="M50 62q2 -5 4 0M88 80q2 -5 4 0M116 98q2 -5 4 0"/></g><g stroke="#2f6f86" stroke-width="1.2"><path d="M150 122q26 -3 54 0"/><path d="M160 119h30M168 116h16"/><path d="M44 98q-5 11 0 22"/></g></svg>`,
     arts:["Gravure originale. Elle évoque la maîtrise mésopotamienne de l'irrigation poussée jusqu'au prestige. La célèbre légende des jardins suspendus est tardive et débattue : aucun texte babylonien ne les mentionne, et certains les situent à Ninive."]},
-  amargiTexte:{h:"L'édit de liberté",kind:DOC,
+  amargiTexte:{h:"L'édit de liberté",kind:DOC,note:"Édit composé pour Lugal dans l'esprit de l'amargi (attesté à Lagash vers 2350 av. J.-C.) — reconstitution, non un document d'archive.",
+    q:{txt:"Que signifie proclamer l'amargi ?",ch:["Effacer les dettes et rendre la liberté aux endettés","Doubler les impôts du royaume","Fermer les portes de la cité"],ok:0},
     doc:["En cette année, le roi a rétabli la liberté dans le pays.",
 "Les dettes de l'orge et de l'argent sont effacées ; nul ne sera plus saisi pour elles.",
 "Que celui qui s'était vendu retourne à sa maison, et l'enfant à sa mère."],
@@ -772,15 +823,12 @@ function diffFrom(b){const deltas=[],changed=new Set();KEYS.forEach(k=>{const d=
 
 function plate(s){
   const head=`<div class="plate-h"><span>${s.h}</span><span class="plate-kind">${s.kind}</span></div>`;
-  let visual="";
-  if(s.svg)visual=`<div class="illus">${s.svg}</div>`;
-  else if(s.doc)visual=`<div class="scroll">${s.doc.map(p=>`<p>${p}</p>`).join("")}</div>`;
-  const items=(s.arts||[]).map(a=>typeof a==="string"?`<p class="art">${a}</p>`:`<p class="art"${a.id?` data-art="${a.id}"`:''}><b>${a.ref.charAt(0).toUpperCase()+a.ref.slice(1)}</b> : ${a.txt}</p>`).join("");
-  const lecture=(items&&s.svg)?`<div class="plate-read"><div class="plate-read-h">Ce que montre l'image</div>${items}</div>`:"";
-  const note=s.svg?"Illustration originale créée pour Lugal.":(s.doc?"Texte composé pour Lugal, reconstitution, non un document d'archive.":"");
-  return `<div class="plate">${head}${visual}${lecture}<div class="cite">${note}</div></div>`;
+  const visual=s.doc?`<div class="clay${s.mat==="stone"?" stone":""}">${s.doc.map(p=>`<p>${p}</p>`).join("")}</div>`:(s.svg?`<div class="illus">${s.svg}</div>`:"");
+  const items=s.doc?"":(s.arts||[]).map(a=>typeof a==="string"?`<p class="art">${a}</p>`:`<p class="art"${a.id?` data-art="${a.id}"`:''}><b>${a.ref.charAt(0).toUpperCase()+a.ref.slice(1)}</b> : ${a.txt}</p>`).join("");
+  const lecture=items?`<div class="plate-read"><div class="plate-read-h">Ce que montre l'image</div>${items}</div>`:"";
+  const note=s.doc?(s.note||"Document composé pour Lugal — reconstitution, non un document d'archive."):"";
+  return `<div class="plate">${head}${visual}${lecture}${note?`<div class="cite">${note}</div>`:""}</div>`;
 }
-
 function deltaBadges(eff){if(!eff)return [];return Object.keys(eff).filter(k=>eff[k]).map(k=>`<span class="eb ${eff[k]>0?'pos':'neg'}">${LAB[k]} ${eff[k]>0?'+':'−'}${Math.abs(eff[k])}</span>`);}
 function penInline(pen){const p=Object.keys(pen.eff||{}).filter(k=>pen.eff[k]).map(k=>`${LAB[k]} ${pen.eff[k]>0?'+':'−'}${Math.abs(pen.eff[k])}`);return p.length?p.join(", "):"un revers";}
 function ebsFor(r){
@@ -819,6 +867,82 @@ function loadSound(){let v=null;try{v=localStorage.getItem("lugal.sound");}catch
 const PIPS={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
 function dieFace(n){let s="";for(let i=0;i<9;i++)s+=`<i class="pip${n&&PIPS[n]&&PIPS[n].includes(i)?' on':''}"></i>`;return s;}
 
+/* ----- frise des actes ----- */
+const ROMAN={I:1,II:2,III:3,IV:4,V:5,VI:6,VII:7,VIII:8};
+const ROMAN_INV=["I","II","III","IV","V","VI","VII","VIII"];
+const ACTE_TT=["Les eaux","Le surplus et les échanges","L'écriture et le savoir","La société et la cité","Les dieux","La justice","La défense","L'héritage"];
+function renderProgress(n){
+  const p=$("#progress");if(!p||!F)return;
+  if(n.fin){p.innerHTML=`<span class="plabel">Fin du règne</span>`;return;}
+  const m=String(n.folio).match(/^Acte ([IVX]+)/);
+  if(m&&ROMAN[m[1]])F._acte=ROMAN[m[1]];
+  const acte=F._acte||1,ep=/^Épreuve/.test(n.folio);
+  const ticks=ROMAN_INV.map((r,i)=>{const a=i+1,cls=a<acte?"fait":(a===acte?("cur"+(ep?" ep":"")):"");
+    return `<i class="${cls}" title="Acte ${r} · ${ACTE_TT[i]}"></i>`;}).join("");
+  p.innerHTML=`<span class="frise" aria-hidden="true">${ticks}</span><span class="plabel${ep?' ep':''}">${esc(n.folio)} · §${F.histoire.length}</span>`;
+}
+/* ----- lexique : concepts de la réalité sociale ----- */
+const GLOSS={
+ "lugal":"« Grand homme » en sumérien : le titre que porte le roi d'une cité-État de Mésopotamie.",
+ "civilisation":"Société organisée qui possède des villes, un État, des lois, une religion et, souvent, l'écriture.",
+ "cité-État":"Une ville et les campagnes qui l'entourent, gouvernées ensemble comme un petit État indépendant.",
+ "irrigation":"Amener l'eau du fleuve jusqu'aux champs par des canaux, pour cultiver même sans pluie.",
+ "crue":"Montée des eaux du fleuve qui déborde sur la plaine : elle la fertilise ou la ravage.",
+ "digue":"Levée de terre dressée le long du fleuve pour retenir ses eaux.",
+ "surplus":"Ce que les récoltes donnent en plus des besoins : il nourrit ceux qui ne cultivent pas et permet l'échange.",
+ "artisan":"Personne qui fabrique des objets de ses mains : potier, tisserand, fondeur…",
+ "scribe":"Spécialiste de l'écriture, formé à l'école, qui tient les comptes et rédige les actes.",
+ "sceau-cylindre":"Petit cylindre de pierre gravée qu'on roule sur l'argile fraîche pour signer un document.",
+ "ziggourat":"Haute tour à étages portant un temple à son sommet, au cœur des cités mésopotamiennes.",
+ "prêtre":"Serviteur des dieux : il dirige le temple, ses cérémonies, ses terres et ses greniers.",
+ "présage":"Signe que l'on croit envoyé par les dieux pour annoncer l'avenir.",
+ "tribut":"Richesses qu'un peuple soumis doit livrer régulièrement à un plus puissant.",
+ "corvée":"Travail obligatoire et non payé dû au roi : creuser les canaux, dresser les murailles…",
+ "talion":"Principe de justice « œil pour œil » : la peine reproduit le tort causé.",
+ "ordalie":"Épreuve, comme le jugement par le fleuve, censée laisser les dieux désigner le coupable.",
+ "amargi":"Mot sumérien qui signifie « retour à la liberté » : l'effacement des dettes proclamé par le roi.",
+ "edubba":"« Maison des tablettes » : l'école où les futurs scribes apprennent à écrire et à compter.",
+ "bronze":"Métal dur obtenu en fondant ensemble le cuivre et un peu d'étain venu de loin.",
+ "caravane":"File de marchands et de bêtes de charge qui transporte les marchandises au loin.",
+ "cadastre":"Registre officiel qui décrit et borne les terrains : qui possède quel champ.",
+ "hiérarchie":"Classement des personnes, du plus puissant au plus humble : chacun a un rang dans la société."
+};
+const GLOSS_LOOKUP={};Object.keys(GLOSS).forEach(k=>GLOSS_LOOKUP[k.toLowerCase()]=k);
+const GLOSS_RE=new RegExp("(^|[^\\p{L}])("+Object.keys(GLOSS).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")(s?)(?=[^\\p{L}]|$)","giu");
+function linkifyGloss(root){
+  if(!root)return;const seen=new Set();
+  const tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null);
+  const nodes=[];let nd;while(nd=tw.nextNode()){const pe=nd.parentElement;if(pe&&(pe.closest(".pf")||pe.closest(".gl")))continue;nodes.push(nd);}
+  nodes.forEach(node=>{
+    const txt=node.nodeValue;GLOSS_RE.lastIndex=0;
+    let m,frag=null,last=0;
+    while((m=GLOSS_RE.exec(txt))){
+      const key=GLOSS_LOOKUP[m[2].toLowerCase()];
+      if(!key||seen.has(key))continue;
+      seen.add(key);
+      if(!frag)frag=document.createDocumentFragment();
+      const start=m.index+m[1].length;
+      frag.appendChild(document.createTextNode(txt.slice(last,start)));
+      const sp=document.createElement("span");sp.className="gl";sp.dataset.g=key;sp.title="Clique pour la définition";sp.textContent=m[2]+m[3];
+      frag.appendChild(sp);
+      last=start+m[2].length+m[3].length;
+    }
+    if(frag){frag.appendChild(document.createTextNode(txt.slice(last)));node.parentNode.replaceChild(frag,node);}
+  });
+}
+function openGloss(key){
+  const m=$("#modal");
+  m.innerHTML=`<div class="modal-card"><div class="modal-k">Lexique</div><div class="modal-title">${esc(key)}</div><div class="modal-body" style="text-align:left">${GLOSS[key]}</div><button class="modal-btn" id="modalbtn">Bien »</button></div>`;
+  m.classList.add("show");
+  $("#modalbtn").onclick=()=>{m.classList.remove("show");m.innerHTML="";};
+}
+function openLexique(){
+  const keys=Object.keys(GLOSS).sort((a,b)=>a.localeCompare(b,"fr"));
+  const rows=keys.map(k=>`<div class="lex-e"><span class="lex-t">${esc(k)}</span><div class="lex-d">${GLOSS[k]}</div></div>`).join("");
+  openOverlay(`<div class="ov-h">Petit lexique de la Mésopotamie</div><div class="ov-sub">Dans le récit, les mots soulignés d'un pointillé s'expliquent d'un clic.</div><div class="lexlist">${rows}</div>`);
+}
+document.addEventListener("click",e=>{const g=e.target.closest(".gl");if(g&&GLOSS[g.dataset.g])openGloss(g.dataset.g);});
+
 function rendreTablette(changed,deltas){
   changed=(changed&&changed.has)?changed:new Set();
   if(deltas&&deltas.length)F._lastDeltas=deltas;
@@ -836,7 +960,7 @@ function rendreTablette(changed,deltas){
     <div class="t-sect">Sa civilisation</div><div class="meters">${meters}</div>
     <div class="t-sect">Chronique du règne</div><div class="registre">${reg}</div>`;
   const lbl=document.getElementById("sheetlbl");if(lbl)lbl.textContent=F.genre==="roi"?"Le roi":"La reine";
-  if(deltas&&deltas.length){deltas.forEach(d=>{const cell=$("#qual-"+d.k)||$("#met-"+d.k);if(cell){const s=document.createElement("span");s.className="fly "+(d.d>0?'up':'down');s.textContent=(d.d>0?'+':'−')+Math.abs(d.d);cell.appendChild(s);setTimeout(()=>{if(s.parentNode)s.parentNode.removeChild(s);},1200);}});const dr=$("#sheetdrawer"),tb=$("#sheettab");if(tb&&dr&&!dr.classList.contains("open")){tb.classList.remove("pulse");void tb.offsetWidth;tb.classList.add("pulse");}}
+  if(deltas&&deltas.length){deltas.forEach(d=>{const cell=$("#qual-"+d.k)||$("#met-"+d.k);if(cell){const s=document.createElement("span");s.className="fly "+(d.d>0?'up':'down');s.textContent=(d.d>0?'+':'−')+Math.abs(d.d);cell.appendChild(s);setTimeout(()=>{if(s.parentNode)s.parentNode.removeChild(s);},1200);}});const dr=$("#sheetdrawer"),tb=$("#sheettab");if(tb&&dr&&!dr.classList.contains("open"))tb.classList.add("lit");}
 }
 
 function impactModal(o){
@@ -961,6 +1085,7 @@ function renderLeft(){
   F.feuillet=Math.max(0,Math.min(pages.length-1,F.feuillet||0));
   const page=pages[F.feuillet]||[];
   host.innerHTML=page.map((j,k)=>beatHTML(j,k===0)).join("");
+  linkifyGloss(host);
   host.scrollTop=0;
   const no=$("#leafno");
   if(no&&page.length){const a=F.histoire[page[0]],b=F.histoire[page[page.length-1]];no.textContent=a===b?("§"+a.num):("§"+a.num+"–"+b.num);}
@@ -996,7 +1121,7 @@ function bindRenvois(n){
 function rendre(flash){
   const n=STORY[F.noeud],num=ordreNoeud(F.noeud),pages=$("#pages");
   document.body.classList.toggle("finstate",!!n.fin);
-  $("#progress").textContent=n.fin?"Fin du règne":("Décision "+F.histoire.length+" · "+n.folio.replace(/ · .*/,""));
+  renderProgress(n);
   if(n.fin){
     const niveau=v=>v<=6?"chancelante":v<=9?"modeste":v<=12?"solide":v<=15?"remarquable":"éclatante";
     const niveauM=v=>v<=2?"faible":v<=6?"moyen":v<=12?"fort":"rayonnant";
@@ -1021,6 +1146,7 @@ function rendre(flash){
           <div class="fin-orn"></div>
           <div class="fin-prose">${n.prose[0]}</div>
           <div class="fin-duree">Ton règne aura traversé ${F.histoire.length} décisions, ${esc(F.nom)} ${/^[aeiouhAEIOUH]/.test(F.cite)?"d'":"de "}${esc(F.cite)}.</div>
+          ${F._srcTotal?`<div class="fin-src">Tu as étudié ${F._srcSeen||0} des ${F._srcTotal} sources et répondu juste du premier coup à ${F._quizFirst||0} vérification${(F._quizFirst||0)>1?"s":""} de lecture.</div>`:""}
           <div class="bgrid">${grid}</div>
           ${decHtml}
         </div>
@@ -1065,17 +1191,41 @@ function rendre(flash){
       const foot=studied
         ?`<button class="modal-btn" id="srcclose">Fermer la source</button>`
         :`<span class="src-timer" id="srctimer">Prends le temps de l'étudier… <b id="srcnum">${READ_LOCK}</b> s</span><button class="modal-btn" id="srcclose" disabled>Patiente…</button>`;
-      m.innerHTML=`<div class="modal-card wide srcmodal"><div class="modal-k">Source à consulter</div>${plate(s)}<div class="src-foot">${foot}</div></div>`;
+      const quiz=(!studied&&s.q)?`<div class="srcquiz" id="srcquiz"><div class="sq-h">Vérifie ta lecture</div><p class="sq-q">${s.q.txt}</p><div class="sq-ch" id="sqch"></div><p class="sq-hint" id="sqhint"></p></div>`:"";
+      m.innerHTML=`<div class="modal-card wide srcmodal"><div class="modal-k">Source à consulter</div>${plate(s)}${quiz}<div class="src-foot">${foot}</div></div>`;
       m.classList.add("show");
       const close=()=>{m.classList.remove("show");m.innerHTML="";};
       if(studied){$("#srcclose").onclick=close;return;}
+      const done=()=>{studied=true;F._srcSeen=(F._srcSeen||0)+1;enableOpen();
+        const cb=$("#consultbtn");if(cb)cb.innerHTML=`${SCROLL} Revoir la source`;
+        const hint=$("#consultrow")&&$("#consultrow").querySelector(".consult-hint");if(hint)hint.textContent="déjà étudiée ; tu peux la rouvrir à tout moment";};
+      const armClose=()=>{const b=$("#srcclose");if(b){b.disabled=false;b.textContent="J'ai étudié la source »";b.onclick=()=>{done();close();};}};
       let t=READ_LOCK;
       const iv=setInterval(()=>{t--;const num=$("#srcnum");if(num)num.textContent=Math.max(t,0);
-        if(t<=0){clearInterval(iv);const b=$("#srcclose");if(b){b.disabled=false;b.textContent="J'ai étudié la source »";}const tm=$("#srctimer");if(tm)tm.textContent="Tu peux maintenant décider.";}},1000);
-      $("#srcclose").onclick=()=>{const b=$("#srcclose");if(b&&b.disabled)return;studied=true;F._srcSeen=(F._srcSeen||0)+1;enableOpen();
-        const cb=$("#consultbtn");if(cb)cb.innerHTML=`${SCROLL} Revoir la source`;
-        const hint=$("#consultrow")&&$("#consultrow").querySelector(".consult-hint");if(hint)hint.textContent="déjà étudiée ; tu peux la rouvrir à tout moment";
-        close();};
+        if(t<=0){clearInterval(iv);
+          if(s.q){
+            F._quizTotal=(F._quizTotal||0)+1;let tried=false;
+            const tm=$("#srctimer");if(tm)tm.textContent="Montre que tu as bien lu :";
+            const bt=$("#srcclose");if(bt)bt.textContent="Réponds d'abord à la question";
+            const qz=$("#srcquiz");if(qz)qz.classList.add("show");
+            const order=s.q.ch.map((_,i)=>i);
+            for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const x=order[i];order[i]=order[j];order[j]=x;}
+            const box=$("#sqch");if(!box){armClose();return;}
+            box.innerHTML=order.map(i=>`<button type="button" data-qi="${i}">${s.q.ch[i]}</button>`).join("");
+            box.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+              if(+b.dataset.qi===s.q.ok){
+                b.classList.add("ok");box.querySelectorAll("button").forEach(x=>x.disabled=true);
+                if(!tried)F._quizFirst=(F._quizFirst||0)+1;
+                const h=$("#sqhint");if(h){h.textContent="C'est bien cela.";h.className="sq-hint win";}
+                const tm2=$("#srctimer");if(tm2)tm2.textContent="Tu peux maintenant décider.";
+                sfxUnlock();armClose();
+              }else{
+                tried=true;b.classList.add("no");b.disabled=true;sfxClack();
+                const h=$("#sqhint");if(h){h.textContent="Pas tout à fait : la réponse se trouve dans la source, juste au-dessus.";h.className="sq-hint err";}
+              }
+            });
+          }else{const tm=$("#srctimer");if(tm)tm.textContent="Tu peux maintenant décider.";armClose();}
+        }},1000);
     };
   }
   else{enableOpen();}
@@ -1112,6 +1262,7 @@ const TITRES=[
  {id:"juste",nom:"Le Juste",crit:"Graver une loi équitable pour ton peuple.",test:(F)=>F.sceaux.has("Loi équitable")&&F.sceaux.has("Code gravé")},
  {id:"prudent",nom:"Le Prudent",crit:"Régner au moins 10 décisions sans aucune décision périlleuse.",test:(F)=>F.histoire.length>=10&&!(F.journal||[]).some(d=>d.juge==="risque")},
  {id:"sage_sources",nom:"Le Sage des sources",crit:"Consulter chaque source proposée durant un règne.",test:(F)=>(F._srcTotal||0)>=5&&(F._srcSeen||0)>=(F._srcTotal||0)},
+ {id:"oeil",nom:"L'Œil du scribe",crit:"Répondre juste du premier coup à 5 vérifications de lecture dans un même règne.",test:(F)=>(F._quizFirst||0)>=5},
  {id:"explorateur",nom:"L'Explorateur",crit:"Découvrir au moins 6 des 13 fins.",test:(F,c)=>c.finsCount>=6}];
 function enregistrerFin(finId){
   const fins=loadSet(KFINS),nouvelleFin=!fins.has(finId);fins.add(finId);saveSet(KFINS,fins);
@@ -1177,9 +1328,21 @@ $("#alloc").addEventListener("click",e=>{
 });
 $("#seg").addEventListener("click",e=>{const b=e.target.closest("button[data-g]");if(!b)return;genre=b.dataset.g;document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x===b));});
 $("#introgo").addEventListener("click",()=>{$("#intro").style.display="none";$("#frontis").style.display="flex";});
-function toggleSheet(){const d=$("#sheetdrawer");if(!d)return;const open=d.classList.toggle("open");d.setAttribute("aria-hidden",open?"false":"true");const t=$("#sheettab");if(open&&t)t.classList.remove("pulse");}
+function toggleSheet(){const d=$("#sheetdrawer");if(!d)return;const open=d.classList.toggle("open");d.setAttribute("aria-hidden",open?"false":"true");const t=$("#sheettab");if(open&&t){t.classList.remove("pulse");t.classList.remove("lit");}}
 $("#sheettab").addEventListener("click",toggleSheet);
-window.addEventListener("keydown",e=>{if(e.key==="Escape"){const d=$("#sheetdrawer");if(d&&d.classList.contains("open")){d.classList.remove("open");d.setAttribute("aria-hidden","true");}}});
+window.addEventListener("keydown",e=>{
+  if(e.key!=="Escape")return;
+  const m=$("#modal");
+  if(m&&m.classList.contains("show")){
+    const b=m.querySelector("#modalbtn")||m.querySelector("#srcclose");
+    if(b&&!b.disabled)b.click();
+    return;
+  }
+  const o=$("#overlay");
+  if(o&&o.classList.contains("show")){closeOverlay();return;}
+  const d=$("#sheetdrawer");
+  if(d&&d.classList.contains("open")){d.classList.remove("open");d.setAttribute("aria-hidden","true");}
+});
 $("#citechips").addEventListener("click",e=>{const b=e.target.closest("button[data-ci]");if(!b)return;cityIdx=+b.dataset.ci;renderCites();});
 $("#begin").addEventListener("click",()=>{
   if(pointsLeft()!==0)return;

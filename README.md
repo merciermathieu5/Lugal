@@ -9,11 +9,11 @@ l'écriture, le **savoir** (maths en base 60, calendrier, astronomie), l'**écol
 des scribes**, la société, la **cité** et son urbanisme, la **roue**, les **grands
 jardins**, les dieux, la justice et l'**amargi** (remise des dettes), la défense et
 l'héritage ; dès qu'on s'écarte de ce chemin, des **problématiques** pénalisent et
-rallongent le parcours. La partie mène à l'une de **12 fins** selon les qualités
+rallongent le parcours. La partie mène à l'une de **13 fins** selon les qualités
 du roi et l'état de sa civilisation.
 
 Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance, aucune image
-externe (tout est dessiné ou écrit dans le fichier).
+externe : tout est dessiné (SVG au trait) ou écrit dans le fichier.
 
 ## La page de présentation
 Au lancement, une **page d'accueil** met l'élève en contexte avant tout choix.
@@ -41,10 +41,11 @@ Pour soutenir le plaisir et la rejouabilité, trois couches s'ajoutent au jeu,
 **sauvegardées localement** d'une partie à l'autre (localStorage). La **galerie
 des règnes** est un codex des 13 fins : les fins atteintes se révèlent (les
 triomphes en doré), les autres restent scellées avec un indice mystérieux qui
-donne envie de les débusquer. Le **registre des distinctions** réunit neuf titres
+donne envie de les débusquer. Le **registre des distinctions** réunit dix titres
 à mériter (Le Législateur, Le Scribe couronné, Le Bâtisseur, Le Juste, Le Prudent,
-Le Sage des sources qui récompense la consultation des sources, etc.), avec le
-critère affiché pour chaque titre non encore obtenu. À la fin d'un règne, un
+Le Sage des sources qui récompense la consultation des sources, **L'Œil du
+scribe** qui récompense cinq vérifications de lecture réussies du premier coup,
+etc.), avec le critère affiché pour chaque titre non encore obtenu. À la fin d'un règne, un
 bandeau annonce les nouvelles découvertes. Enfin, un **habillage sonore** combine
 une **musique d'ambiance mésopotamienne** en **boucle de fond légère** (un extrait
 court, monté en boucle sans couture) et des **bruitages synthétisés** (dés qui
@@ -75,12 +76,29 @@ narrative** (le récit, à gauche), **Décision royale** (le choix, à droite) e
 
 À chaque page : les choix restent **verrouillés tant que la source n'a pas été
 étudiée**. Cliquer **Consulter la source** l'ouvre en **pop-up** avec un **chrono
-de 4 secondes** ; une fois étudiée, les choix se déverrouillent et l'élève peut la
-**rouvrir à volonté** (« Revoir la source »), sans encombrer la page. Chaque choix
+de 4 secondes**, puis une **question de vérification à trois choix** (mélangés)
+confirme la lecture : bonne réponse, les choix se déverrouillent ; erreur, un
+**indice bienveillant** renvoie à la source et l'élève réessaie **sans pénalité**.
+La source reste ensuite **rouvrable à volonté** (« Revoir la source »), sans
+encombrer la page. Chaque choix
 montre son **effet sur les qualités** et, pour les paris, le badge **« Réussite :
 X % »** ; les choix à dés portent **« (Jet de dés) »**. La zone de dés **explique
 tout le calcul** (règle, bonus détaillé par qualité, seuil, % de réussite, puis
 verdict chiffré). Un **pop-up** présente enfin la conséquence — la leçon à retenir.
+
+## Repères pédagogiques : frise des actes et lexique
+Le bandeau du livre porte une **frise des huit actes** : huit encoches gravées qui
+se remplissent au fil du règne (actes accomplis, acte en cours, teinte rouge
+pendant une **problématique**), chacune avec une infobulle nommant l'acte (« Les
+eaux », « Le surplus et les échanges », « L'écriture et le savoir »…). L'élève
+sait toujours **où il en est** dans la trame — et voit d'un coup d'œil que
+s'écarter du chemin l'immobilise dans l'acte.
+
+Dans le récit, **23 concepts de la réalité sociale** (irrigation, surplus, scribe,
+ziggourat, corvée, talion, amargi, cité-État…) sont **soulignés d'un pointillé** :
+un clic ouvre une **définition d'une phrase**, écrite pour le niveau sec. 1. Le
+bouton **Lexique** du bandeau regroupe les 23 entrées en ordre alphabétique — un
+petit référentiel de la Mésopotamie toujours à portée de main.
 
 ## La trame en arbre : le chemin optimal et ses écarts
 Le bon roi suit un **chemin optimal court** : à chaque acte, un choix sûr fait
@@ -101,7 +119,9 @@ verdict** : le titre de la fin, le récit de l'épilogue, la durée du règne et
 la liste des **décisions avisées** prises pendant la partie et celle des
 **décisions périlleuses pour la cité**, suivies de ce qui aura marqué le règne.
 L'élève voit ainsi, noir sur blanc, **ce qui a fait grandir sa civilisation et ce
-qui l'a mise en danger**.
+qui l'a mise en danger**. Une ligne de bilan indique aussi **combien de sources il
+a étudiées** et **combien de vérifications de lecture il a réussies du premier
+coup** — la matière première de la distinction *L'Œil du scribe*.
 
 ## Les dés conjugués aux points du roi
 Les jets de dés sont nombreux, mais **jamais gratuits** : chacun met en jeu les
@@ -126,9 +146,10 @@ Pour que **la lecture prime**, la feuille du personnage n'occupe plus une colonn
 permanente : elle est rangée dans un **tiroir** qui s'ouvre **à la demande** par une
 **languette** sur le bord droit (libellée « Le roi » ou « La reine » selon le titre
 choisi). Le **livre prend ainsi toute la largeur**, le texte est plus grand et les
-polices plus homogènes. La languette **pulse discrètement** quand une jauge change,
-sans interrompre la lecture ; l'élève ouvre le tiroir quand il veut vérifier ses
-chiffres, et le referme d'un clic ou avec **Échap**. La feuille reste **sobre et
+polices plus homogènes. La languette **s'illumine** dès qu'une
+jauge change (lueur dorée respirante et pastille), et **reste allumée tant que le
+tiroir n'a pas été ouvert** : l'élève voit qu'il y a du nouveau sans être
+interrompu, consulte quand il veut, et referme d'un clic ou avec **Échap**. La feuille reste **sobre et
 utile** : les **quatre qualités** du roi ou de la reine (qui montent et
 descendent selon les choix, et qu'on a soi-même réparties) et le bloc **« Sa
 civilisation »**, qui dit ce que la cité devient. Ce bloc compte **quatre
@@ -143,12 +164,16 @@ ouvrages (la cité planifiée, les jardins en terrasses), et un très haut Savoi
 ouvre une fin dédiée, **« Le berceau du savoir »**. Les qualités, elles, fixent
 les probabilités des paris et déterminent la fin.
 
-## Sources — toutes créées
-Chaque source distingue clairement le **document/illustration** lui-même de sa
-**« Lecture de la source »** (le commentaire pédagogique), et de son attribution.
-Aucune image d'archive. **13 illustrations originales** au trait (style gravure,
-dessinées en SVG) et **5 documents composés** pour le jeu, honnêtement étiquetés
-comme reconstitutions. Voir `SOURCES.md`.
+## Sources — toutes créées pour le jeu
+**16 illustrations originales** au trait (style gravure, dessinées en SVG) et
+**8 documents composés**. Les **illustrations** portent un bloc **« Ce que
+montre l'image »** (le commentaire pédagogique) et, étant des créations du jeu
+— non des iconographies d'archives —, **aucune référence**. Les **documents**
+parlent d'eux-mêmes, sans commentaire, et s'affichent comme de véritables
+**tablettes d'argile** aux bords irréguliers (**pierre sombre** pour les lois
+gravées) ; seule demeure sous chacun l'étiquette d'honnêteté *« Document composé
+pour Lugal — reconstitution, non un document d'archive »*. Aucune image
+externe, aucune licence tierce : voir `SOURCES.md`.
 
 ## Héberger sur GitHub Pages
 1. Pousse le contenu de ce dossier dans un dépôt.
@@ -157,11 +182,13 @@ comme reconstitutions. Voir `SOURCES.md`.
 
 ## Structure
 ```
-index.html   jeu complet : livre deux pages, moteur, trame et sources
-ambiance.mp3 musique d'ambiance (boucle de fond, sous le bouton son)
-.nojekyll    pour GitHub Pages
-SOURCES.md   note sur les sources (toutes créées pour le jeu)
-LICENSE      MIT — couvre le code, les illustrations et les textes
+index.html     jeu complet : livre deux pages, moteur, trame et sources
+ambiance.mp3   musique d'ambiance (boucle de fond, sous le bouton son)
+.nojekyll      pour GitHub Pages
+SOURCES.md     note sur les sources (toutes créées pour le jeu)
+LICENSE        MIT — couvre le code, les illustrations et les textes
+test/valide.js harnais de validation (node : `npm i jsdom` puis
+               `node test/valide.js` — plus de 500 vérifications)
 ```
 
 Remarque : `ambiance.mp3` est un court extrait monté en boucle à partir d'une
@@ -172,7 +199,11 @@ licence ; tu peux remplacer le fichier par n'importe quel autre MP3 du même nom
 - **Points de départ** : `BASE` (par qualité), `POOL` (à répartir), `MAXADD`.
 - **Trame** : objet `STORY` (chaque nœud : `texte`, `consigne`, `src` optionnel,
   `renvois` avec `eff`, `impact`, parfois `epreuve`).
-- **Sources** : objet `SRC` (illustration `svg` ou document `doc`).
+- **Sources** : objet `SRC` (illustration `svg` ou document `doc`, question de
+  vérification `q` à trois choix, variante `mat:"stone"` pour un texte sur
+  pierre).
+- **Lexique** : objet `GLOSS` (23 concepts de la réalité sociale, soulignés d'un
+  pointillé dans le récit et regroupés sous le bouton **Lexique** du bandeau).
 - **Fins** : fonction `evaluerFin()` (seuils de qualités, de Rayonnement, de
   Légitimité, et sceaux requis).
 
