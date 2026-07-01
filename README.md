@@ -9,7 +9,7 @@ l'écriture, le **savoir** (maths en base 60, calendrier, astronomie), l'**écol
 des scribes**, la société, la **cité** et son urbanisme, la **roue**, les **grands
 jardins**, les dieux, la justice et l'**amargi** (remise des dettes), la défense et
 l'héritage ; dès qu'on s'écarte de ce chemin, des **problématiques** pénalisent et
-rallongent le parcours. La partie mène à l'une de **13 fins** selon les qualités
+rallongent le parcours. La partie mène à l'une de **14 fins** selon les qualités
 du roi et l'état de sa civilisation.
 
 Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance, aucune image
@@ -39,7 +39,7 @@ tenter, des voies qui s'ouvriront à lui et de la façon dont son règne se term
 ## Ludification : galerie, distinctions, son
 Pour soutenir le plaisir et la rejouabilité, trois couches s'ajoutent au jeu,
 **sauvegardées localement** d'une partie à l'autre (localStorage). La **galerie
-des règnes** est un codex des 13 fins : les fins atteintes se révèlent (les
+des règnes** est un codex des 14 fins : les fins atteintes se révèlent (les
 triomphes en doré), les autres restent scellées avec un indice mystérieux qui
 donne envie de les débusquer. Le **registre des distinctions** réunit dix titres
 à mériter (Le Législateur, Le Scribe couronné, Le Bâtisseur, Le Juste, Le Prudent,
@@ -92,7 +92,7 @@ verdict chiffré). Un **pop-up** présente enfin la conséquence — la leçon �
 ## Les mécaniques du livre-jeu
 Lugal assume pleinement son héritage « dont vous êtes le héros ».
 
-- **Sections numérotées et mélangées.** Les 39 nœuds de la trame portent des
+- **Sections numérotées et mélangées.** Les 46 nœuds de la trame portent des
   numéros de section fixes, dispersés comme dans un vrai livre-jeu (le §1 ouvre
   le règne… et le §2 cache une fin funeste). Chaque choix annonce sa
   destination (« Creuser les canaux → §34 »), le bandeau et le récit affichent
@@ -114,6 +114,36 @@ Lugal assume pleinement son héritage « dont vous êtes le héros ».
 - **« Ton règne s'achève ici. »** Les fins funestes s'ouvrent sur le bandeau
   sombre rituel du genre, frappé d'un sceau brisé ; les triomphes gardent
   leur or.
+
+## Une trame ramifiée — et trois manières de tomber
+Six embranchements s'ouvrent sur des choix qui restaient jusqu'ici sans
+conséquence, chacun ancré dans une réalité mésopotamienne documentée :
+
+- **La grande sécheresse** — choisir les vergers de prestige plutôt que l'orge
+  expose désormais la cité à une année sans pluie (irrigation d'urgence,
+  arbitrage prestige/subsistance, offrandes à Enki).
+- **Les tentes aux portes** — se replier sur sa seule plaine attire les
+  pasteurs nomades : marché de la laine, mercenaires des steppes ou portes
+  closes (et le sceau **Portes ouvertes** ou des **Ennemis jurés**).
+- **Le chantier de la ziggourat** — la promesse faite au temple se paie
+  comptant : corvée massive et risquée, chantier lent payé en rations justes
+  (d'après les rôles de corvée d'Ur et de Girsu), ou promesse reprise… que les
+  prêtres n'oublieront pas.
+- **Le souffle de Nergal** — laisser la ville croître en désordre allume la
+  fièvre dans les ruelles : quarantaines et eau saine (comme dans les lettres
+  de Mari), processions qui propagent, ou palais muré qui ruine la confiance.
+- **Le fleuve juge** — remettre la justice à l'ordalie amène sa première
+  grande affaire : la veuve accusée par un puissant, entre verdict du
+  dieu-fleuve, enquête minutieuse et justice achetée.
+- **Les couteaux dans l'ombre** — vouloir tout garder jusqu'au dernier souffle
+  réveille une conjuration de palais : frapper le premier (épreuve la plus
+  dure du jeu), acheter le silence… ou pardonner devant la ville assemblée.
+
+S'y ajoutent une **quatorzième fin** (*Les chemins de l'exil*) et des **seuils
+d'effondrement** : si la **Prospérité**, la **Légitimité** ou l'**Autorité**
+tombe à zéro, le règne s'achève aussitôt (greniers vides, révolte ou nuit des
+poignards). Les trois jauges vitales **pulsent en rouge** dans la feuille du
+roi dès qu'elles frôlent le gouffre.
 
 ## Repères pédagogiques : frise des actes et lexique
 Le bandeau du livre porte une **frise des huit actes** : huit encoches gravées qui

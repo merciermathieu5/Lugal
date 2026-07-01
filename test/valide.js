@@ -82,7 +82,7 @@ function main(){
     ok(new Set(q.ch).size === 3, `quiz ${k} : choix en double`);
     ok(q.txt && q.txt.length > 8, `quiz ${k} : question vide`);
   }
-  info(`${nQ}/24 sources avec question de vérification`);
+  info(`${nQ}/${Object.keys(SRC).length} sources avec question de vérification`);
 
   // 5. Folios parsables → frise des actes
   let nActes = 0;
@@ -374,6 +374,26 @@ function smoke(){
     ok((chip.getAttribute("title") || "").includes("murailles"), "l'infobulle du sceau manque");
     ok($("#sheettab").classList.contains("lit"), "la languette devrait s'illuminer quand un sceau est gravé");
     ok(fs.readFileSync(path.join(ROOT, "index.html"), "utf8").includes("Scellé — ${r.lock}"), "les verrous ne mentionnent pas le sceau manquant");
+
+    // ——— Seuils d'effondrement : trois manières de tomber avant l'heure ———
+    const secOf = (k) => ev(`SEC[${JSON.stringify(k)}]`);
+    ev('F.prosperite=0;');
+    ev('finaliser(null,"terre",null);');
+    const pBtn = $("#poursuite");
+    ok(pBtn.textContent.includes(`§${secOf("nF_greniers")}`), "Prospérité à zéro devrait détourner vers Les greniers vides");
+    pBtn.click();
+    ok(ev("SECNAV") === "nF_greniers", "la table devrait mener à la fin des greniers");
+    ev("SECNAV=null;closeOverlay();");
+    ev('F.prosperite=4;F.autorite=0;');
+    ev('finaliser(null,"terre",null);');
+    ok(pBtn.textContent.includes(`§${secOf("nF_poignards")}`), "Autorité à zéro devrait détourner vers La nuit des poignards");
+    ev('F.autorite=8;F.legitimite=0;');
+    ev('finaliser(null,"terre",null);');
+    ok(pBtn.textContent.includes(`§${secOf("nF_revolte")}`), "Légitimité à zéro devrait détourner vers La révolte des opprimés");
+    ev('F.legitimite=8;');
+    ev('finaliser(null,"terre",null);');
+    ok(pBtn.textContent.includes(`§${secOf("terre")}`), "jauges rétablies, le renvoi normal devrait reprendre");
+    ok(!pBtn.textContent.includes("Découvre le sort"), "sans effondrement, pas de détour vers une fin");
 
     // ——— Fins : bandeau funeste vs triomphe ———
     ev('F.noeud="nF_oubli";rendre(false);');
