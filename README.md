@@ -9,7 +9,7 @@ l'écriture, le **savoir** (maths en base 60, calendrier, astronomie), l'**écol
 des scribes**, la société, la **cité** et son urbanisme, la **roue**, les **grands
 jardins**, les dieux, la justice et l'**amargi** (remise des dettes), la défense et
 l'héritage ; dès qu'on s'écarte de ce chemin, des **problématiques** pénalisent et
-rallongent le parcours. La partie mène à l'une de **14 fins** selon les qualités
+rallongent le parcours. La partie mène à l'une de **15 fins** selon les qualités
 du roi et l'état de sa civilisation.
 
 Vanilla **HTML / CSS / JS** — aucun serveur, aucune dépendance, aucune image
@@ -39,7 +39,7 @@ tenter, des voies qui s'ouvriront à lui et de la façon dont son règne se term
 ## Ludification : galerie, distinctions, son
 Pour soutenir le plaisir et la rejouabilité, trois couches s'ajoutent au jeu,
 **sauvegardées localement** d'une partie à l'autre (localStorage). La **galerie
-des règnes** est un codex des 14 fins : les fins atteintes se révèlent (les
+des règnes** est un codex des 15 fins : les fins atteintes se révèlent (les
 triomphes en doré), les autres restent scellées avec un indice mystérieux qui
 donne envie de les débusquer. Le **registre des distinctions** réunit dix titres
 à mériter (Le Législateur, Le Scribe couronné, Le Bâtisseur, Le Juste, Le Prudent,
@@ -92,7 +92,7 @@ verdict chiffré). Un **pop-up** présente enfin la conséquence — la leçon �
 ## Les mécaniques du livre-jeu
 Lugal assume pleinement son héritage « dont vous êtes le héros ».
 
-- **Sections numérotées et mélangées.** Les 46 nœuds de la trame portent des
+- **Sections numérotées et mélangées.** Les 47 nœuds de la trame portent des
   numéros de section fixes, dispersés comme dans un vrai livre-jeu (le §1 ouvre
   le règne… et le §2 cache une fin funeste). Chaque choix annonce sa
   destination (« Creuser les canaux → §34 »), le bandeau et le récit affichent
@@ -115,7 +115,7 @@ Lugal assume pleinement son héritage « dont vous êtes le héros ».
   sombre rituel du genre, frappé d'un sceau brisé ; les triomphes gardent
   leur or.
 
-## Une trame ramifiée — et trois manières de tomber
+## Une trame ramifiée, un règne plus périlleux
 Six embranchements s'ouvrent sur des choix qui restaient jusqu'ici sans
 conséquence, chacun ancré dans une réalité mésopotamienne documentée :
 
@@ -139,11 +139,26 @@ conséquence, chacun ancré dans une réalité mésopotamienne documentée :
   réveille une conjuration de palais : frapper le premier (épreuve la plus
   dure du jeu), acheter le silence… ou pardonner devant la ville assemblée.
 
-S'y ajoutent une **quatorzième fin** (*Les chemins de l'exil*) et des **seuils
-d'effondrement** : si la **Prospérité**, la **Légitimité** ou l'**Autorité**
-tombe à zéro, le règne s'achève aussitôt (greniers vides, révolte ou nuit des
-poignards). Les trois jauges vitales **pulsent en rouge** dans la feuille du
-roi dès qu'elles frôlent le gouffre.
+S'y ajoutent deux fins nouvelles (*Les chemins de l'exil* et *Le roi maudit*)
+et un vrai régime de difficulté :
+
+- **Quatre seuils d'effondrement.** Si la **Prospérité**, la **Légitimité**,
+  l'**Autorité** ou la **Piété** tombe à zéro, le règne s'achève aussitôt
+  (greniers vides, révolte, nuit des poignards ou abandon des dieux). Les
+  jauges vitales **pulsent en rouge** dans la feuille du roi dès qu'elles
+  frôlent le gouffre.
+- **Le courroux des dieux.** Chaque revers aux dés attise le courroux,
+  visible en éclairs dans la feuille du roi : au **troisième revers du
+  règne**, la cité tient son souverain pour **maudit** et la partie s'achève.
+  La faveur des dieux (relance) devient un enjeu de survie, et le deuxième
+  revers est annoncé en toutes lettres.
+- **Le double-un échoue toujours.** La règle, affichée depuis le début, est
+  désormais réellement appliquée : aucun bonus ne sauve un double-un.
+- **Vingt épreuves de dés.** Trois grandes entreprises jusqu'ici sans risque
+  passent aux dés : les **caravanes du commerce** (pillables), la **fondation
+  de l'edubba** (les maîtres manquent) et la **proclamation de l'amargi**
+  (les créanciers résistent). Réussir un règne sans jamais lancer les dés
+  n'est plus possible.
 
 ## Repères pédagogiques : frise des actes et lexique
 Le bandeau du livre porte une **frise des huit actes** : huit encoches gravées qui

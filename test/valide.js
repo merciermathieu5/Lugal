@@ -165,6 +165,13 @@ function main(){
   ok(SEC.eau === 1, "le livre devrait s'ouvrir au §1");
   info(`${vals.length} sections numérotées, §1 = eau`);
 
+  // 10. Les grandes entreprises passent aux dés
+  ["commerce","edubba","amargi"].forEach(k => ok(!!STORY[k].renvois[0].epreuve, `le premier choix de ${k} devrait être une épreuve`));
+  let nEp = 0;
+  Object.values(STORY).forEach(n => (n.renvois||[]).forEach(r => { if (r.epreuve) nEp++; }));
+  info(`${nEp} épreuves de dés sur le graphe`);
+  ok(STORY.nF_maudit && STORY.nF_maudit.fin, "la fin du roi maudit manque");
+
   console.log("\n— Volet 2 · smoke test DOM —");
   smoke();
 }
@@ -278,6 +285,8 @@ function smoke(){
     const dz = $("#dicezone");
     ok(dz.classList.contains("show") && $("#rollbtn"), "la zone de dés ne s'ouvre pas");
     ok(/implorer les dieux/i.test(dz.textContent), "la règle de la faveur n'est pas annoncée");
+    ok(/maudit/i.test(dz.textContent), "la règle du courroux n'est pas annoncée dans la zone de dés");
+    ok(ev("F._echecs") === 0 && document.querySelectorAll("#tablet .bolt").length === 3 && document.querySelectorAll("#tablet .bolt.on").length === 0, "le courroux devrait afficher 0 éclair sur 3 au départ");
 
     const realRandom = Math.random;
     window.eval("Math.random = () => 0");   // dés à 1-1 : échec garanti (seuil 9)
@@ -293,6 +302,9 @@ function smoke(){
 
     ok(await waitFor(() => $("#modal").classList.contains("show")), "le verdict d'échec ne s'affiche pas après la relance");
     ok(!$("#dzfavor"), "une seconde imploration ne devrait pas être offerte");
+    ok(/double-un/.test($("#modal").textContent) && /parlent contre toi/.test($("#modal").textContent), "le verdict devrait nommer le double-un");
+    ok(ev("F._echecs") === 1, "l'échec résolu devrait compter un revers");
+    ok(document.querySelectorAll("#tablet .bolt.on").length === 1, "le tiroir devrait afficher 1 éclair de courroux");
     ok(/Échec/.test($("#modal").textContent), "le verdict devrait annoncer l'échec");
     ok(ev("F.prosperite") === proBefore + 1, "le revers (Prospérité +1) ne s'applique qu'à la résolution");
     window.eval("Math.random = undefined"); window.Math.random = realRandom;
@@ -390,7 +402,13 @@ function smoke(){
     ev('F.autorite=8;F.legitimite=0;');
     ev('finaliser(null,"terre",null);');
     ok(pBtn.textContent.includes(`§${secOf("nF_revolte")}`), "Légitimité à zéro devrait détourner vers La révolte des opprimés");
-    ev('F.legitimite=8;');
+    ev('F.legitimite=8;F.piete=0;');
+    ev('finaliser(null,"terre",null);');
+    ok(pBtn.textContent.includes(`§${secOf("nF_deluge")}`), "Piété à zéro devrait détourner vers Abandonné des dieux");
+    ev('F.piete=8;F._echecs=3;');
+    ev('finaliser(null,"terre",null);');
+    ok(pBtn.textContent.includes(`§${secOf("nF_maudit")}`), "trois revers devraient détourner vers Le roi maudit");
+    ev('F._echecs=1;');
     ev('finaliser(null,"terre",null);');
     ok(pBtn.textContent.includes(`§${secOf("terre")}`), "jauges rétablies, le renvoi normal devrait reprendre");
     ok(!pBtn.textContent.includes("Découvre le sort"), "sans effondrement, pas de détour vers une fin");
