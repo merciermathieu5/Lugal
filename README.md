@@ -77,7 +77,7 @@ narrative** (le récit, à gauche), **Décision royale** (le choix, à droite) e
 
 À chaque page : les choix restent **verrouillés tant que la source n'a pas été
 étudiée**. Cliquer **Consulter la source** l'ouvre en **pop-up** avec un **chrono
-de 4 secondes** ; au terme du chrono, la fenêtre **bascule** vers une **question
+de 6 secondes** ; au terme du chrono, la fenêtre **bascule** vers une **question
 de vérification à trois choix** (mélangés) qui occupe tout le cadre — **aucun
 défilement**. Un lien « ↑ Revoir la source » permet d'alterner à volonté entre
 la source et la question. Bonne réponse, les choix se déverrouillent ; erreur,

@@ -225,7 +225,7 @@ function smoke(){
   window.dispatchEvent(new window.KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   ok($("#modal").classList.contains("show"), "Échap contourne le verrou de lecture");
 
-  // Attendre la fin du chrono (READ_LOCK = 4 s réels)
+  // Attendre la fin du chrono (READ_LOCK s réels, lu dans le jeu)
   const wait = (ms) => new Promise(r => setTimeout(r, ms));
   const waitFor = async (fn, ms = 5000, step = 60) => {
     const t0 = Date.now();
@@ -268,7 +268,7 @@ function smoke(){
     ok(openBtns.some(b => !b.disabled), "aucun renvoi déverrouillé après l'étude");
     ok(!$("#locknote"), "la note de verrouillage persiste");
 
-    // ——— Faveur des dieux : épreuve, échec forcé, relance, revers ———
+    // --- Faveur des dieux : épreuve, échec forcé, relance, revers ---
     const STORY = ev("STORY");
     ok(ev("F.faveurs") === 3 && ev("F.faveursMax") === 3, "Piété 11 devrait accorder 3 faveurs");
     ok(document.querySelectorAll("#tablet .flame.on").length === 3, "les 3 flammes ne brillent pas au tiroir");
@@ -363,7 +363,7 @@ function smoke(){
     here.click();
     ok(!$("#overlay").classList.contains("show"), "cliquer sa position ne referme pas la table");
 
-    // ——— Sac du roi : sceaux tangibles au tiroir ———
+    // --- Sac du roi : sceaux tangibles au tiroir ---
     ev("rendreTablette()");
     ok(/Ordre durci/.test($("#tablet").textContent), "le sceau « Ordre durci » gagné en jeu devrait être au sac");
     $("#sheettab").click(); $("#sheettab").click();   // consulter → languette éteinte
@@ -373,9 +373,9 @@ function smoke(){
     ok(chip && chip.classList.contains("flash"), "le sceau fraîchement gravé devrait scintiller");
     ok((chip.getAttribute("title") || "").includes("murailles"), "l'infobulle du sceau manque");
     ok($("#sheettab").classList.contains("lit"), "la languette devrait s'illuminer quand un sceau est gravé");
-    ok(fs.readFileSync(path.join(ROOT, "index.html"), "utf8").includes("Scellé — ${r.lock}"), "les verrous ne mentionnent pas le sceau manquant");
+    ok(fs.readFileSync(path.join(ROOT, "index.html"), "utf8").includes("Scellé : ${r.lock}"), "les verrous ne mentionnent pas le sceau manquant");
 
-    // ——— Seuils d'effondrement : trois manières de tomber avant l'heure ———
+    // --- Seuils d'effondrement : trois manières de tomber avant l'heure ---
     const secOf = (k) => ev(`SEC[${JSON.stringify(k)}]`);
     ev('F.prosperite=0;');
     ev('finaliser(null,"terre",null);');
@@ -395,7 +395,7 @@ function smoke(){
     ok(pBtn.textContent.includes(`§${secOf("terre")}`), "jauges rétablies, le renvoi normal devrait reprendre");
     ok(!pBtn.textContent.includes("Découvre le sort"), "sans effondrement, pas de détour vers une fin");
 
-    // ——— Fins : bandeau funeste vs triomphe ———
+    // --- Fins : bandeau funeste vs triomphe ---
     ev('F.noeud="nF_oubli";rendre(false);');
     ok($(".fin-doom") && /règne s'achève ici/i.test($(".fin-doom").textContent), "le bandeau funeste manque");
     ok($(".fin-wrap").classList.contains("chute"), "la fin nF_oubli devrait être une chute");
@@ -405,7 +405,7 @@ function smoke(){
     ok($("#restart"), "le bouton Régner à nouveau manque au bilan");
 
     bilan();
-  }, 4600);
+  }, ev("READ_LOCK") * 1000 + 600);
 }
 
 function bilan(){
