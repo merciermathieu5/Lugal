@@ -228,6 +228,14 @@ modèle de Virtù.
 Les entraves retirent de 12 à 29 points à un roi préparé ; les aides en rendent
 de 30 à 41 à un roi moyen. Le duel dure de 2,6 à 5,1 rondes.
 
+## Lisibilité
+Toutes les tailles de police du jeu ont été relevées selon une échelle graduée
+(les plus petites de 2,5 px, les corps de texte de 1 à 1,5 px, les grands titres
+inchangés) et un **plancher de 12 px** est désormais garanti par le harnais :
+`npm test` échoue si une règle CSS redescend sous cette valeur. La page
+d'accueil tient toujours sans défilement en 1280x800 et en 1366x768, vérifié au
+rendu réel.
+
 ## Repères pédagogiques : frise des actes et lexique
 Le bandeau du livre porte une **frise des huit actes** : huit encoches gravées qui
 se remplissent au fil du règne (actes accomplis, acte en cours, teinte rouge

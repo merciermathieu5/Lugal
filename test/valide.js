@@ -175,11 +175,35 @@ function main(){
   console.log("\n— Volet 1 bis · report des sceaux sur les épreuves —");
   voletSceaux(STORY);
 
+  console.log("\n— Volet 1 bis bis · lisibilité —");
+  voletLisibilite(html);
+
   console.log("\n— Volet 1 ter · affrontements —");
   voletCombats(STORY);
 
   console.log("\n— Volet 2 · smoke test DOM —");
   smoke();
+}
+
+/* ---- Volet 1 bis bis : plancher de lisibilite --------------------------- */
+function voletLisibilite(html){
+  const PLANCHER = 12;
+  const css = html.slice(html.indexOf("<style>"), html.indexOf("</style>"));
+  const regles = [...css.matchAll(/([^{}\n]+)\{([^}]*)\}/g)];
+  const fautives = [];
+  let n = 0;
+  regles.forEach(m => {
+    const fs = m[2].match(/font-size:\s*([0-9.]+)px/);
+    if (!fs) return;
+    n++;
+    const v = parseFloat(fs[1]);
+    if (v < PLANCHER) fautives.push(`${m[1].trim().slice(0,40)} à ${v}px`);
+  });
+  ok(fautives.length === 0, `texte sous ${PLANCHER}px : ${fautives.join(" · ")}`);
+  info(`${n} règles de taille, plancher tenu à ${PLANCHER}px`);
+  // aucune taille en px ne doit trainer hors de la feuille de style
+  const hors = html.slice(0, html.indexOf("<style>")) + html.slice(html.indexOf("</style>"));
+  ok(!/font-size:\s*[0-9.]+px/.test(hors), "une taille de police traîne hors de la feuille de style");
 }
 
 /* ---- Volet 1 ter : integrite et equilibre des affrontements ------------- */
