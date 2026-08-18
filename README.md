@@ -160,6 +160,73 @@ et un vrai régime de difficulté :
   (les créanciers résistent). Réussir un règne sans jamais lancer les dés
   n'est plus possible.
 
+## Le report du règne sur les épreuves
+Les sceaux ne servent plus seulement à ouvrir ou fermer des choix : ils pèsent
+désormais dans les jets de dés.
+
+- **Aides et entraves.** 18 des 20 épreuves déclarent une liste d'`aides` et
+  d'`entraves`. Chaque sceau pertinent déjà en main vaut **+1** ou **−1** sur le
+  jet. Fonder l'edubba aide à graver le code ; s'être placé au-dessus de la loi
+  nuit au procès, au présage et à l'amargi ; la conjuration des couteaux
+  convoque tout le règne d'un coup, avec trois aides possibles et trois
+  entraves.
+- **Deux plafonds.** Le report est borné à **±2** (constante `SCEAU_CAP`), et le
+  total appliqué est borné à `seuil − 3`, pour qu'aucune épreuve ne devienne une
+  certitude. Le sort garde toujours sa part.
+- **Lisible pour l'élève.** La pastille du choix annonce « Ton règne t'aide :
+  + 2 » ou « Ton règne te nuit : − 1 ». La zone de dés sépare trois lignes :
+  bonus des qualités, report du règne, total appliqué, puis nomme chaque sceau
+  qui entre en compte.
+- **Chronologie garantie.** Le harnais reconstruit le graphe amont de chaque
+  épreuve et vérifie qu'aucune aide ne dépend d'un sceau impossible à obtenir
+  avant elle.
+
+### Difficulté mesurée
+`npm test` publie la table de difficulté des 20 épreuves sur trois profils de
+roi (qualités en jeu à 12, à 10, à 6), avec 20 000 tirages par cas. Moyennes
+actuelles : roi préparé 72 / 80 / 91 % (entravé, neutre, aidé), roi moyen
+35 / 45 / 66 %, roi négligent 1 / 2 / 10 %. Les épreuves restent des paris
+facultatifs, et la pastille annonce toujours le pourcentage avant de s'engager.
+
+## Les affrontements
+Trois nœuds ne se règlent plus en un jet, mais en rondes de dés opposées, sur le
+modèle de Virtù.
+
+| Affrontement | Acte | Aptitude | Adversaire | Jauges |
+|---|---|---|---|---|
+| Le marchandage aux portes | II | Sagesse | L'ancien des tentes noires | 6 contre 4 |
+| Le contradictoire devant l'assemblée | VI | Légitimité | Le maître des trois greniers | 6 contre 6 |
+| La nuit des couteaux | fin de règne | Autorité | Les conjurés du palais | 6 contre 8 |
+
+- **La règle.** Chacun lance 2 dés et ajoute son aptitude ; le plus haut total
+  fait perdre 2 points à l'autre. Doublé fatal : un double-six inflige 4 points,
+  un double-un fait perdre la ronde à celui qui l'obtient. La première jauge à
+  zéro perd l'affrontement.
+- **Les jauges portent un nom.** Pas de barre de vie abstraite : « ce qu'il te
+  reste de fidèles » contre « ce qu'il leur reste de complices ».
+- **Le règne pèse.** Les mêmes aides et entraves que sur les épreuves, sauf
+  qu'ici les entraves majorent directement l'aptitude de l'adversaire. Avoir
+  régné par la loi de fer arme littéralement les conjurés.
+- **Les chances sont annoncées.** La pastille du choix affiche « issue
+  favorable : 78 % », estimée par simulation avec l'état réel du roi. Un duel
+  perdu d'avance n'est jamais un piège caché.
+- **Les dieux valent aussi en duel.** Une relance par affrontement, prélevée sur
+  la même réserve de faveurs.
+- **Un duel perdu compte comme un revers** : au troisième, le règne est maudit,
+  exactement comme aux épreuves.
+
+### Équilibre mesuré
+`npm test` simule 4 000 duels par cas et par profil.
+
+| | Roi préparé (14) | Roi moyen (10) | Roi négligent (6) |
+|---|---|---|---|
+| Marchandage | 95 % | 50 % | 11 % |
+| Contradictoire | 91 % | 31 % | 3 % |
+| Nuit des couteaux | 93 % | 36 % | 1 % |
+
+Les entraves retirent de 12 à 29 points à un roi préparé ; les aides en rendent
+de 30 à 41 à un roi moyen. Le duel dure de 2,6 à 5,1 rondes.
+
 ## Repères pédagogiques : frise des actes et lexique
 Le bandeau du livre porte une **frise des huit actes** : huit encoches gravées qui
 se remplissent au fil du règne (actes accomplis, acte en cours, teinte rouge

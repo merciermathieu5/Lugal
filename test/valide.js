@@ -172,8 +172,248 @@ function main(){
   info(`${nEp} épreuves de dés sur le graphe`);
   ok(STORY.nF_maudit && STORY.nF_maudit.fin, "la fin du roi maudit manque");
 
+  console.log("\n— Volet 1 bis · report des sceaux sur les épreuves —");
+  voletSceaux(STORY);
+
+  console.log("\n— Volet 1 ter · affrontements —");
+  voletCombats(STORY);
+
   console.log("\n— Volet 2 · smoke test DOM —");
   smoke();
+}
+
+/* ---- Volet 1 ter : integrite et equilibre des affrontements ------------- */
+function voletCombats(STORY){
+  const QUAL = ev("QUALITES");
+  const ids = Object.keys(STORY).filter(k => STORY[k].combat);
+  ok(ids.length === 3, `3 affrontements attendus, ${ids.length} trouvés`);
+  info(`${ids.length} affrontements : ${ids.join(", ")}`);
+
+  ids.forEach(k => {
+    const c = STORY[k].combat;
+    ok(QUAL.includes(c.stat), `${k} : aptitude « ${c.stat} » inconnue`);
+    ok(typeof c.advNom === "string" && c.advNom.length > 3, `${k} : l'adversaire doit être nommé`);
+    ok(c.advApt >= 8 && c.advApt <= 13, `${k} : aptitude adverse hors bornes (${c.advApt})`);
+    [["jPts",c.jPts],["advPts",c.advPts]].forEach(([n,v]) =>
+      ok(v >= 4 && v <= 10 && v % 2 === 0, `${k} : ${n} devrait être pair entre 4 et 10 (${v})`));
+    ok(c.jLbl && c.advLbl, `${k} : les deux jauges doivent porter un libellé narratif`);
+    ["win","lose"].forEach(b => {
+      const o = c[b];
+      ok(!!o, `${k} : issue « ${b} » manquante`);
+      if (!o) return;
+      ok(Array.isArray(o.suite) && o.suite.length, `${k}.${b} : récit de suite manquant`);
+      ok(typeof o.impact === "string" && o.impact.length > 60, `${k}.${b} : encadré d'impact trop court`);
+      ok(typeof o.reg === "string", `${k}.${b} : entrée de registre manquante`);
+      const dec0 = (STORY[k].renvois||[]).find(r => r.combat);
+      const dest = o.cible || (dec0 && dec0.cibleFn ? "cibleFn" : (dec0 ? dec0.cible : null));
+      ok(!!dest, `${k}.${b} : aucune destination après l'affrontement`);
+      if (dest && dest !== "cibleFn") ok(!!STORY[dest], `${k}.${b} : destination « ${dest} » inconnue`);
+    });
+    // le choix qui declenche l'affrontement existe et n'a pas d'effets en double
+    const dec = (STORY[k].renvois||[]).filter(r => r.combat);
+    ok(dec.length === 1, `${k} : un seul choix devrait déclencher l'affrontement (${dec.length})`);
+    if (dec[0]) ok(!dec[0].eff && !dec[0].sceau && !dec[0].epreuve,
+      `${k} : le choix d'affrontement ne doit porter ni effet, ni sceau, ni épreuve`);
+    // aucun sceau ne peut etre a la fois aide et entrave
+    const a = (c.aides||[]).map(x=>x.sceau), e = (c.entraves||[]).map(x=>x.sceau);
+    ok(!a.some(x => e.includes(x)), `${k} : un sceau est à la fois aide et entrave`);
+  });
+
+  // Monte-Carlo : equilibre reel des trois affrontements
+  console.log("\n       Équilibre des affrontements · 4 000 duels par cas");
+  const sim = ev("simulerCombat");
+  const PROFILS = [["préparé",14],["moyen",10],["négligent",6]];
+  const lignes = [];
+  ids.forEach(k => {
+    const c = STORY[k].combat;
+    const ligne = { k, p:{} };
+    PROFILS.forEach(([nom,v]) => {
+      const mesure = (bd, ad) => {
+        const profil = { [c.stat]: v, _bd: bd, _ad: ad };
+        let g = 0, rd = 0;
+        for (let i=0;i<4000;i++){ const r = sim(k, profil); if (r.win) g++; rd += r.rondes; }
+        return { pct: Math.round(100*g/4000), rondes: (rd/4000).toFixed(1) };
+      };
+      ligne.p[nom] = {
+        neutre: mesure(0,0),
+        aide: mesure(Math.min(2,(c.aides||[]).length), 0),
+        entrave: mesure(0, Math.min(2,(c.entraves||[]).length))
+      };
+    });
+    lignes.push(ligne);
+    PROFILS.forEach(([nom]) => {
+      const x = ligne.p[nom];
+      info(`  ${(k+" · roi "+nom).padEnd(30)} entravé ${String(x.entrave.pct).padStart(3)} %  ·  neutre ${String(x.neutre.pct).padStart(3)} %  ·  aidé ${String(x.aide.pct).padStart(3)} %  ·  ${x.neutre.rondes} rondes`);
+    });
+  });
+
+  lignes.forEach(l => {
+    const P = l.p["préparé"], M = l.p["moyen"], N = l.p["négligent"];
+    // 1. investir l'aptitude est la première décision qui compte
+    ok(P.neutre.pct >= 75, `${l.k} : spécialiser l'aptitude ne paie pas assez (${P.neutre.pct} %)`);
+    ok(N.neutre.pct <= 20, `${l.k} : négliger l'aptitude ne coûte pas assez (${N.neutre.pct} %)`);
+    // 2. le roi moyen doit vivre un vrai duel, ni formalité ni condamnation
+    ok(M.neutre.pct >= 25 && M.neutre.pct <= 75, `${l.k} : déséquilibré pour un roi moyen (${M.neutre.pct} %)`);
+    // 3. le règne doit peser, dans les deux sens et de façon perceptible
+    ok(P.aide.pct >= P.neutre.pct, `${l.k} : une aide ne devrait pas nuire`);
+    ok(P.entrave.pct <= P.neutre.pct, `${l.k} : une entrave ne devrait pas aider`);
+    ok(P.neutre.pct - P.entrave.pct >= 5, `${l.k} : les entraves ne mordent pas assez sur un roi préparé (${P.neutre.pct - P.entrave.pct} points)`);
+    ok(M.aide.pct - M.neutre.pct >= 10, `${l.k} : les aides pèsent trop peu sur un roi moyen (${M.aide.pct - M.neutre.pct} points)`);
+    // 4. un duel doit durer assez pour se raconter, pas assez pour lasser
+    ok(+M.neutre.rondes >= 2 && +M.neutre.rondes <= 12, `${l.k} : durée de duel hors bornes (${M.neutre.rondes} rondes)`);
+  });
+
+  // 5. aucun affrontement ne s'engage sans que les chances soient annoncées
+  const cc = ev("combatChances");
+  ids.forEach(k => {
+    window.eval(`F={noeud:"${k}",sceaux:new Set(),${STORY[k].combat.stat}:10}`);
+    const ch = cc(k);
+    ok(typeof ch === "number" && ch >= 0 && ch <= 100, `${k} : les chances devraient être chiffrées avant de s'engager`);
+    const r = STORY[k].renvois.find(x => x.combat);
+    ok(/issue favorable : \d+ %/.test(ev("ebsFor")(r)), `${k} : la pastille doit annoncer le pourcentage`);
+  });
+  window.eval("F=null");
+}
+
+/* ---- Volet 1 bis : aides et entraves des sceaux ------------------------- */
+function voletSceaux(STORY){
+  const SCEAUX = new Set(ev("SCEAUX_ORDRE"));
+  const CAP = ev("SCEAU_CAP");
+
+  // graphe inverse : quels sceaux sont gagnables avant d'atteindre un noeud
+  const pred = {};
+  Object.keys(STORY).forEach(k => {
+    const cb = STORY[k].combat;
+    (STORY[k].renvois||[]).forEach(r => {
+      const cs = [];
+      if (typeof r.cible === "string") cs.push(r.cible);
+      if (r.epreuve){ ["ok","penalite"].forEach(b => { const c = r.epreuve[b] && r.epreuve[b].cible; if (typeof c === "string") cs.push(c); }); }
+      if (r.combat && cb){ ["win","lose"].forEach(b => { const c = cb[b] && cb[b].cible; if (typeof c === "string") cs.push(c); }); }
+      cs.forEach(c => { (pred[c] = pred[c] || new Set()).add(k); });
+    });
+  });
+  const sceauxDe = k => {
+    const out = new Set();
+    const cb = STORY[k].combat;
+    if (cb) ["win","lose"].forEach(b => { const o = cb[b]; if(o){ [o.sceau,o.sceau2].forEach(x => x && out.add(x)); } });
+    (STORY[k].renvois||[]).forEach(r => {
+      [r.sceau, r.sceau2].forEach(x => x && out.add(x));
+      if (r.epreuve) ["ok","penalite"].forEach(b => { const o = r.epreuve[b]; if(o){ [o.sceau,o.sceau2].forEach(x => x && out.add(x)); } });
+    });
+    return out;
+  };
+  const amont = cible => {
+    const vus = new Set(), pile = [cible], sc = new Set();
+    while (pile.length){
+      const x = pile.pop();
+      (pred[x] ? [...pred[x]] : []).forEach(pp => { if (!vus.has(pp)){ vus.add(pp); pile.push(pp); sceauxDe(pp).forEach(y => sc.add(y)); } });
+    }
+    return sc;
+  };
+
+  let nAides = 0, nEntraves = 0, nEnrichies = 0;
+  Object.keys(STORY).forEach(k => {
+    (STORY[k].renvois||[]).forEach(r => {
+      if (!r.epreuve) return;
+      const e = r.epreuve, a = e.aides||[], en = e.entraves||[];
+      if (!a.length && !en.length) return;
+      nEnrichies++; nAides += a.length; nEntraves += en.length;
+      const dispo = amont(k);
+      [...a, ...en].forEach(x => {
+        ok(SCEAUX.has(x.sceau) || ev("MARQUES")[x.sceau] !== undefined, `${k} : sceau inconnu « ${x.sceau} »`);
+        ok(dispo.has(x.sceau), `${k} : le sceau « ${x.sceau} » n'est pas gagnable avant cette épreuve`);
+        ok(x.d === 1, `${k} : le report de « ${x.sceau} » devrait valoir 1`);
+      });
+      const noms = [...a, ...en].map(x => x.sceau);
+      ok(new Set(noms).size === noms.length, `${k} : un sceau apparaît deux fois dans la même épreuve`);
+    });
+  });
+  info(`${nEnrichies} épreuves enrichies, ${nAides} aides et ${nEntraves} entraves déclarées`);
+  ok(CAP === 2, "le plafond de report devrait valoir 2");
+
+  // le plafond tient, dans les deux sens
+  const avait = ev("F");
+  window.eval("F={sceaux:new Set(SCEAUX_ORDRE)}");
+  let plafondOk = true, plancherOk = true;
+  Object.keys(STORY).forEach(k => (STORY[k].renvois||[]).forEach(r => {
+    if (!r.epreuve) return;
+    const d = ev("epreuveSceaux")(r.epreuve).d;
+    if (d > CAP) plafondOk = false;
+    if (d < -CAP) plancherOk = false;
+  }));
+  ok(plafondOk, "un report dépasse le plafond avec tous les sceaux en main");
+  ok(plancherOk, "un report dépasse le plancher avec tous les sceaux en main");
+  window.eval("F=null");
+  ok(ev("F") === null && avait === null, "l'état du roi devrait être restauré après la mesure");
+
+  // Monte-Carlo : mesurer l'effet reel du report sur trois profils de roi
+  console.log("\n       Difficulté mesurée · 20 000 tirages par cas");
+  console.log("       BASE 6, POOL 16 : roi préparé = qualités en jeu à 12, roi moyen = 10, roi négligent = 6");
+  const d6 = () => 1 + Math.floor(Math.random()*6);
+  const PROFILS = [["préparé",12],["moyen",10],["négligent",6]];
+  const cas = [];
+  Object.keys(STORY).forEach(k => (STORY[k].renvois||[]).forEach(r => {
+    if (!r.epreuve) return;
+    const e = r.epreuve, seuil = e.seuil||8, cap = seuil-4;
+    const stats = e.stats ? e.stats : (e.stat ? [e.stat] : []);
+    const raw = (v) => {
+      let m = stats.reduce((t) => t + (v-9), 0);
+      if (e.mod) m += Math.round(((e.mod==="prosperite"?4:e.mod==="rayonnement"?1:0)-4)/2);
+      return Math.max(-4, Math.min(cap, m));
+    };
+    const mesure = (v, ds) => {
+      const mod = Math.max(-6, Math.min(seuil-3, raw(v) + ds));
+      let g = 0;
+      for (let i=0;i<20000;i++){ const a=d6(), b=d6(); if (a===1&&b===1) continue; if (a+b+mod >= seuil) g++; }
+      return Math.round(100*g/20000);
+    };
+    const dMax = Math.min(CAP, (e.aides||[]).length);
+    const dMin = -Math.min(CAP, (e.entraves||[]).length);
+    const ligne = { k, seuil, dMax, dMin, p:{} };
+    PROFILS.forEach(([nom,v]) => { ligne.p[nom] = { neutre: mesure(v,0), aide: mesure(v,dMax), entrave: mesure(v,dMin) }; });
+    cas.push(ligne);
+  }));
+
+  // monotonie verifiee analytiquement, sans bruit de tirage
+  const pR = ev("pReussite");
+  cas.forEach(c => {
+    const base = 0;
+    ok(pR(base+c.dMax, c.seuil) >= pR(base, c.seuil), `${c.k} : une aide ne devrait jamais nuire`);
+    ok(pR(base+c.dMin, c.seuil) <= pR(base, c.seuil), `${c.k} : une entrave ne devrait jamais aider`);
+    if (c.dMax > 0) ok(pR(base+c.dMax, c.seuil) > pR(base, c.seuil), `${c.k} : l'aide devrait être perceptible`);
+    if (c.dMin < 0) ok(pR(base+c.dMin, c.seuil) < pR(base, c.seuil), `${c.k} : l'entrave devrait être perceptible`);
+  });
+
+  PROFILS.forEach(([nom]) => {
+    console.log(`\n       Roi ${nom}`);
+    cas.forEach(c => {
+      const x = c.p[nom];
+      info(`  ${(c.k+" (seuil "+c.seuil+")").padEnd(28)} entravé ${String(x.entrave).padStart(3)} %  ·  neutre ${String(x.neutre).padStart(3)} %  ·  aidé ${String(x.aide).padStart(3)} %`);
+    });
+    const moy = (ch) => Math.round(cas.reduce((t,c)=>t+c.p[nom][ch],0)/cas.length);
+    info(`  ${"moyenne des 20 épreuves".padEnd(28)} entravé ${String(moy("entrave")).padStart(3)} %  ·  neutre ${String(moy("neutre")).padStart(3)} %  ·  aidé ${String(moy("aide")).padStart(3)} %`);
+  });
+
+  // le roi negligent doit rester en difficulte, le roi prepare ne doit pas etre invincible
+  const moyProf = (nom, ch) => Math.round(cas.reduce((t,c)=>t+c.p[nom][ch],0)/cas.length);
+  ok(moyProf("négligent","neutre") < moyProf("préparé","neutre"), "la préparation devrait rester payante");
+  const meilleur = Math.max(...cas.map(c => c.p["préparé"].aide));
+  ok(meilleur < 100, `une épreuve devient une certitude pour un roi aidé (${meilleur} %)`);
+  info(`  meilleure épreuve pour un roi préparé et aidé : ${meilleur} %`);
+  // une entrave ne doit jamais transformer un pari jouable en cul-de-sac
+  const pireMoyen = Math.min(...cas.map(c => c.p["moyen"].entrave));
+  ok(pireMoyen >= 10, `une entrave rend une épreuve injouable pour un roi moyen (${pireMoyen} %)`);
+  info(`  pire épreuve entravée pour un roi moyen : ${pireMoyen} %`);
+  info(`  rappel : un roi qui n'a jamais investi la qualité en jeu tourne autour de ${moyProf("négligent","neutre")} %. Les épreuves restent des paris facultatifs, annoncés par leur pastille.`);
+
+  // le libelle ne s'affiche que lorsqu'un sceau est reellement en main
+  const epTest = STORY.code.renvois.find(r => r.epreuve).epreuve;
+  window.eval("F={sceaux:new Set()}");
+  ok(ev("epreuveSceauxTxt")(epTest) === "", "aucun sceau en main : la ligne des sceaux devrait rester vide");
+  window.eval('F={sceaux:new Set(["Maison des tablettes"])}');
+  ok(/Maison des tablettes/.test(ev("epreuveSceauxTxt")(epTest)), "un sceau en main devrait apparaître dans la ligne des sceaux");
+  ok(ev("epreuveSceaux")(epTest).d === 1, "un seul sceau d'aide devrait valoir + 1");
+  window.eval("F=null");
 }
 
 function smoke(){
@@ -421,6 +661,31 @@ function smoke(){
     ok(!$(".fin-doom"), "un triomphe ne devrait pas porter le bandeau funeste");
     ok($(".fin-wrap").classList.contains("triomphe"), "la fin nF_orfevre devrait être un triomphe");
     ok($("#restart"), "le bouton Régner à nouveau manque au bilan");
+
+    // --- Affrontement : le panneau de duel s'ouvre et se renseigne ---
+    ev('F.noeud="complot";F.autorite=14;F.sceaux.add("Loi de fer");F.sceaux.add("Ordre durci");F._echecs=0;rendre(false);');
+    const cBtn = [...document.querySelectorAll("#renvois .renvoi")].find(b => /traquer les conjurés/i.test(b.textContent));
+    ok(!!cBtn, "le choix d'affrontement du complot est introuvable");
+    ok(/issue favorable : \d+ %/.test(cBtn.textContent), "la pastille du duel doit annoncer les chances");
+    if (cBtn){
+      cBtn.click();
+      ok($("#dicezone").classList.contains("show"), "la zone de duel ne s'ouvre pas");
+      ok($(".cz-side.me") && $(".cz-side.adv"), "les deux camps du duel devraient être affichés");
+      ok(/Les conjurés du palais/.test($(".cz-side.adv .cz-n").textContent), "l'adversaire n'est pas nommé");
+      ok($("#czj").querySelectorAll("i").length === 6 && $("#cza").querySelectorAll("i").length === 8,
+        "les deux jauges devraient afficher 6 et 8 points");
+      ok(/arme l'adversaire/.test($(".cz-aides").textContent), "les entraves devraient être annoncées avant la première ronde");
+      ok(/Aptitude 10 \+ 2/.test($(".cz-side.adv .cz-apt").textContent), "les entraves devraient majorer l'aptitude adverse");
+      ok(!!$("#czroll"), "le bouton de lancer manque au duel");
+      // issue forcee : victoire immediate, la chaine doit mener au renvoi
+      ev("CB.a=0;czFinir(true);");
+      const mb = $("#modalbtn");
+      ok(!!mb, "l'issue du duel devrait ouvrir la fenêtre d'impact");
+      if (mb) mb.click();
+      ok($("#poursuite").classList.contains("show"), "après un duel gagné, le renvoi devrait s'afficher");
+      ok(/§\d+/.test($("#poursuite").textContent), "le renvoi devrait porter un numéro de section");
+      ok(ev("F.sceaux").has("Conjuration brisée"), "la victoire devrait graver le sceau de la conjuration brisée");
+    }
 
     bilan();
   }, ev("READ_LOCK") * 1000 + 600);

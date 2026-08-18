@@ -132,7 +132,38 @@ body{font-family:"EB Garamond",Georgia,serif;color:var(--ink);
 .dice-zone.show{display:flex}
 .dz-live{display:flex;flex-direction:column;gap:7px;width:100%}
 .dz-explain{font-family:"EB Garamond",serif;font-size:13px;line-height:1.42;color:var(--ink)}
+.swapbtn.primo{display:flex;align-items:center;justify-content:center;margin:16px auto 4px;background:var(--rubric);color:#f6e7d8;border:1px solid #7d2c20;text-decoration:none;font-style:normal;font-family:"IM Fell English SC",serif;font-size:13.5px;letter-spacing:.06em;padding:10px 22px;border-radius:4px;cursor:pointer;animation:primopulse 1.7s ease-in-out infinite}
+.swapbtn.primo:hover{filter:brightness(1.1)}
+@keyframes primopulse{0%,100%{box-shadow:0 2px 6px rgba(60,20,10,.3)}50%{box-shadow:0 2px 16px rgba(156,58,44,.6)}}
+.cz{display:flex;flex-direction:column;gap:8px}
+.cz-duel{display:flex;align-items:stretch;gap:8px}
+.cz-side{flex:1;border:1px solid var(--paper-edge);border-radius:4px;padding:7px 9px;background:rgba(255,252,242,.55)}
+.cz-side.adv{background:rgba(156,58,44,.07)}
+.cz-n{display:block;font-family:"IM Fell English SC",serif;font-size:12.5px;letter-spacing:.04em}
+.cz-apt{display:block;font-size:12px;color:var(--ink-soft);margin:1px 0 5px}
+.cz-lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+.cz-pts{display:flex;gap:3px;margin-top:3px;flex-wrap:wrap}
+.cz-pts i{width:11px;height:11px;border:1px solid var(--ink-soft);border-radius:2px;background:transparent}
+.cz-pts i.on{background:var(--rubric);border-color:var(--rubric)}
+.cz-side.me .cz-pts i.on{background:var(--pos);border-color:var(--pos)}
+.cz-vs{align-self:center;font-family:"IM Fell English",serif;font-style:italic;color:var(--ink-soft);font-size:13px}
+.cz-aides{font-size:11.5px;color:var(--ink-soft);line-height:1.5}
+.cz-aides b{color:var(--ink)}
+.cz-dice{display:flex;justify-content:space-around;gap:10px;flex-wrap:wrap}
+.cz-dr{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-soft)}
+.cz-dr b{color:var(--ink);min-width:34px}
+.cz-log{max-height:96px;overflow:auto;border-top:1px dashed var(--rule);padding-top:5px;display:flex;flex-direction:column;gap:3px;font-size:12px}
+.cz-log .lg{color:var(--ink-soft)}
+.cz-log .lg b{color:var(--ink)}
+.cz-log .lg.win b{color:var(--pos)}
+.cz-log .lg.lose b{color:var(--rubric)}
+.cz-roll{align-self:center}
+.cz-favor{border:1px solid var(--paper-edge);background:rgba(231,198,106,.16);border-radius:4px;padding:6px 9px;font-size:12.5px}
+.cz-favor p{margin:0 0 6px}
 .dz-rule{margin-bottom:3px}
+.dz-sceaux{margin-top:4px;padding-top:4px;border-top:1px dotted rgba(90,64,26,.4);font-size:12.5px;font-style:italic}
+.dz-sceaux b{font-style:normal}
+.eb.sceau{border-style:dashed}
 .dz-calc b,.dz-rule b{color:var(--rubric);font-weight:600}
 .dz-roll{display:flex;align-items:center;gap:10px}
 .die{width:34px;height:34px;border:1.7px solid var(--ink);border-radius:6px;background:var(--paper);display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:4px;gap:1px;place-items:center;box-shadow:0 1px 2px rgba(60,40,15,.25)}
@@ -451,7 +482,7 @@ body:not(.playing) .sheet-drawer{display:none}
       <div class="hcard"><svg viewBox="0 0 32 32" fill="none" stroke="#7a5a1e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22 L9 12 L13.5 17.5 L16 9 L18.5 17.5 L23 12 L25 22 Z"/><path d="M7 24.5 h18" stroke="#9c3a2c"/><circle cx="16" cy="6.5" r="1.4" stroke="#9c3a2c"/></svg><h4>Façonne ton souverain</h4><p>Ton nom, ta cité, et quatre qualités à répartir : elles ouvriront ou fermeront des chemins.</p></div>
       <div class="hcard"><svg viewBox="0 0 32 32" fill="none" stroke="#7a5a1e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5 h13 l2 3 v18 l-2 2 H9 l-2 -2 V8 Z"/><path d="M11 11h10M11 15h10M11 19h7" stroke-width="1.3"/><path d="M11 24.5h5" stroke="#9c3a2c" stroke-width="1.3"/></svg><h4>Étudie les sources</h4><p>Chaque page cache un document d'époque : lis-le, réponds à sa question, puis décide.</p></div>
       <div class="hcard"><svg viewBox="0 0 32 32" fill="none" stroke="#7a5a1e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8 q-5 -3 -10 -2 v18 q5 -1 10 2 q5 -3 10 -2 V6 q-5 -1 -10 2 Z"/><path d="M16 8v18"/><text x="8" y="19" font-size="9" font-family="serif" fill="#9c3a2c" stroke="none">§</text><text x="19.5" y="19" font-size="9" font-family="serif" fill="#9c3a2c" stroke="none">14</text></svg><h4>Feuillette les sections</h4><p>Chaque choix t'envoie à un numéro du livre : retrouve-le dans la table, comme dans un vrai livre-jeu.</p></div>
-      <div class="hcard"><svg viewBox="0 0 32 32" fill="none" stroke="#7a5a1e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="14" width="11" height="11" rx="2"/><circle cx="8.5" cy="17.5" r=".9" fill="#7a5a1e"/><circle cx="12.5" cy="21.5" r=".9" fill="#7a5a1e"/><rect x="17.5" y="16" width="9" height="9" rx="2" transform="rotate(8 22 20.5)"/><circle cx="22" cy="20.5" r=".9" fill="#7a5a1e"/><path d="M21.5 11 C22.6 8.8 24.5 7.6 24.5 5.2 c1.7 2 2.6 3.4 2.6 5.3 a3.1 3.1 0 0 1 -6.2 0 c0 -1 .3 -1.7 .6 -2.4" stroke="#9c3a2c" stroke-width="1.4"/></svg><h4>Tente le sort</h4><p>Certains choix se jouent aux dés, et les dieux accordent parfois une seconde chance.</p></div>
+      <div class="hcard"><svg viewBox="0 0 32 32" fill="none" stroke="#7a5a1e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="14" width="11" height="11" rx="2"/><circle cx="8.5" cy="17.5" r=".9" fill="#7a5a1e"/><circle cx="12.5" cy="21.5" r=".9" fill="#7a5a1e"/><rect x="17.5" y="16" width="9" height="9" rx="2" transform="rotate(8 22 20.5)"/><circle cx="22" cy="20.5" r=".9" fill="#7a5a1e"/><path d="M21.5 11 C22.6 8.8 24.5 7.6 24.5 5.2 c1.7 2 2.6 3.4 2.6 5.3 a3.1 3.1 0 0 1 -6.2 0 c0 -1 .3 -1.7 .6 -2.4" stroke="#9c3a2c" stroke-width="1.4"/></svg><h4>Tente le sort</h4><p>Certains choix se jouent aux dés, et trois se jouent en duel, ronde après ronde. Les sceaux gagnés plus tôt pèsent dans chaque jet, et les dieux accordent parfois une seconde chance.</p></div>
     </div>
     <div class="idoom"><svg viewBox="0 0 30 16" fill="none" stroke="#b09a68" stroke-width="1"><g transform="rotate(-9 8 8)"><rect x="4" y="2" width="6" height="12" rx="3"/><path d="M5 5h4M5 8h4M5 11h4" stroke-width=".9"/></g><g transform="rotate(11 22 8)"><rect x="19" y="2" width="6" height="12" rx="3"/><path d="M20 5h4M20 8h4M20 11h4" stroke-width=".9"/></g><path d="M13 3l2 4-2 3 2 4" stroke-width=".8" stroke-dasharray="2 2"/></svg><span>Quinze destins t'attendent, du plus glorieux au plus funeste. Les jauges de ton règne peuvent s'effondrer, et <b>les dieux comptent chacun de tes revers aux dés</b>.</span></div>
     <button class="icta" id="introgo">Façonner mon roi ou ma reine »</button>
@@ -481,7 +512,7 @@ body:not(.playing) .sheet-drawer{display:none}
 <audio id="ambiance" loop preload="auto"><source src="ambiance.mp3" type="audio/mpeg"></audio>
 
 <script>
-const READ_LOCK=6;const MALCHANCE=3;
+const READ_LOCK=0;const MALCHANCE=3;
 const EMBLEME=`<svg viewBox="0 0 40 40" fill="none" stroke="#5e451f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 34q-4-18 8-22"/><circle cx="22" cy="14" r="7"/><path d="M15 9l3-6 3 5 3-6 3 6 3-5 3 6"/><path d="M19 17q3 3 7 1"/></svg>`;
 const ICO_PROSP=`<svg viewBox="0 0 20 20" fill="none" stroke="#5f421e" stroke-width="1.4"><rect x="3" y="7" width="14" height="9" rx="1.5"/><path d="M3 10h14M10 7V5"/></svg>`;
 const ICO_RAYON=`<svg viewBox="0 0 20 20" fill="none" stroke="#5f421e" stroke-width="1.4"><path d="M3 16h14l-3-4H6zM6 12l2-3h4l2 3M9 9l1-2 1 2"/></svg>`;
@@ -514,11 +545,29 @@ function epreuveRaw(e){
   if(e.mod)m+=Math.round(((F[e.mod]||0)-4)/2);
   return m;
 }
-function epreuveMod(e){
+const SCEAU_CAP=2;
+function epreuveSceaux(e){
+  const has=x=>!!(typeof F!=="undefined"&&F&&F.sceaux&&F.sceaux.has(x));
+  const aides=(e.aides||[]).filter(x=>has(x.sceau));
+  const entraves=(e.entraves||[]).filter(x=>has(x.sceau));
+  let d=aides.reduce((t,x)=>t+x.d,0)-entraves.reduce((t,x)=>t+x.d,0);
+  const brut=d;
+  if(d>SCEAU_CAP)d=SCEAU_CAP;
+  if(d<-SCEAU_CAP)d=-SCEAU_CAP;
+  return {aides,entraves,d,brut,plafonne:brut!==d};
+}
+function epreuveModApt(e){
   const seuil=e.seuil||8,cap=seuil-4;
   let m=epreuveRaw(e);
   if(m>cap)m=cap;
   if(m<-4)m=-4;
+  return m;
+}
+function epreuveMod(e){
+  const seuil=e.seuil||8,haut=seuil-3,bas=-6;
+  let m=epreuveModApt(e)+epreuveSceaux(e).d;
+  if(m>haut)m=haut;
+  if(m<bas)m=bas;
   return m;
 }
 function epreuveLabel(e){return statsOf(e).map(k=>`${LAB[k]} ${F[k]}`).join(" + ")+(e.mod?` + ${LAB[e.mod]} ${F[e.mod]}`:"");}
@@ -637,7 +686,7 @@ const STORY={
     texte:["Le fleuve, laissé à lui-même, a rompu ses berges. Les eaux noient les champs, emportent les bêtes et menacent les greniers. Le peuple court vers le palais : le roi a-t-il un plan ?"],
     consigne:"Les eaux ravagent la plaine. Que fais-tu ?",
     renvois:[
-      {t:"Mobiliser toute la cité pour relever les digues en hâte.",juge:"bon",epreuve:{stats:["autorite"],seuil:8,ok:{eff:{prosperite:1,legitimite:1},reg:"Les digues tiennent à temps.",suite:["Tu jettes toute la cité sur les berges. Hommes, femmes et enfants empilent terre et roseaux jusqu'à la nuit tombée. Au matin, les digues tiennent et la plaine est sauvée de justesse : on raconte déjà comment le roi a tenu tête au fleuve en furie."],txt:"Les digues tiennent, la plaine est sauvée.",impact:"Réagir vite à une crise de l'eau sauve la récolte : la gestion hydraulique est le socle matériel de la civilisation."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"Les digues cèdent.",txt:"Trop tard : l'eau emporte tout.",impact:"Tarder face au fleuve coûte la récolte d'une année : sans maîtrise de l'eau, pas de surplus, pas de cité."}},cible:"terre"},
+      {t:"Mobiliser toute la cité pour relever les digues en hâte.",juge:"bon",epreuve:{stats:["autorite"],seuil:8,aides:[{sceau:"Ordre durci",d:1}],entraves:[],ok:{eff:{prosperite:1,legitimite:1},reg:"Les digues tiennent à temps.",suite:["Tu jettes toute la cité sur les berges. Hommes, femmes et enfants empilent terre et roseaux jusqu'à la nuit tombée. Au matin, les digues tiennent et la plaine est sauvée de justesse : on raconte déjà comment le roi a tenu tête au fleuve en furie."],txt:"Les digues tiennent, la plaine est sauvée.",impact:"Réagir vite à une crise de l'eau sauve la récolte : la gestion hydraulique est le socle matériel de la civilisation."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"Les digues cèdent.",txt:"Trop tard : l'eau emporte tout.",impact:"Tarder face au fleuve coûte la récolte d'une année : sans maîtrise de l'eau, pas de surplus, pas de cité."}},cible:"terre"},
       {t:"Laisser les eaux se retirer seules et multiplier les prières.",juge:"risque",eff:{piete:1,prosperite:-3,legitimite:-1},reg:"La plaine reste noyée longtemps.",suite:["Tu laisses les eaux décider et tu pries. Elles se retirent enfin, mais trop tard : la boue a tout pourri, les bêtes ont péri et les greniers sont vides. La cité repart affaiblie, et certains osent murmurer qu'un roi devrait faire plus que prier."],impact:"S'en remettre aux prières devant un fléau matériel appauvrit durablement la cité : tu repars affaibli.",cible:"terre"}],
     },
   terre:{folio:"Acte I · la terre",src:"dattes",
@@ -667,7 +716,7 @@ const STORY={
     texte:["Les fêtes ont vidé les greniers, et voici qu'une mauvaise récolte succède à l'abondance. La réserve est presque nulle, l'hiver approche, et le peuple qui t'acclamait hier commence à avoir faim."],
     consigne:"La disette menace. Que fais-tu ?",
     renvois:[
-      {t:"Rationner avec rigueur et acheter du grain au-dehors.",juge:"bon",epreuve:{stats:["sagesse"],mod:"prosperite",seuil:9,ok:{eff:{prosperite:2},reg:"Le rationnement sauve l'hiver.",suite:["Tu rationnes avec rigueur et tu envoies des marchands acheter du grain au loin. La ceinture est serrée, les portions comptées, mais la cité passe l'hiver sans qu'on enterre les affamés. On retient la leçon : un roi prévoyant tient là où un prodigue aurait sombré."],txt:"La cité passe l'hiver de justesse.",impact:"Anticiper la disette par la réserve et le commerce protège des famines : c'est tout l'enjeu de la gestion du surplus."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"La faim s'installe.",txt:"Le grain manque, le peuple murmure.",impact:"Sans réserve gérée, une seule mauvaise récolte affame une cité entière."}},cible:"commerce"},
+      {t:"Rationner avec rigueur et acheter du grain au-dehors.",juge:"bon",epreuve:{stats:["sagesse"],mod:"prosperite",seuil:9,aides:[{sceau:"Ordre durci",d:1}],entraves:[],ok:{eff:{prosperite:2},reg:"Le rationnement sauve l'hiver.",suite:["Tu rationnes avec rigueur et tu envoies des marchands acheter du grain au loin. La ceinture est serrée, les portions comptées, mais la cité passe l'hiver sans qu'on enterre les affamés. On retient la leçon : un roi prévoyant tient là où un prodigue aurait sombré."],txt:"La cité passe l'hiver de justesse.",impact:"Anticiper la disette par la réserve et le commerce protège des famines : c'est tout l'enjeu de la gestion du surplus."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"La faim s'installe.",txt:"Le grain manque, le peuple murmure.",impact:"Sans réserve gérée, une seule mauvaise récolte affame une cité entière."}},cible:"commerce"},
       {t:"Distribuer le peu qui reste en festins, et espérer demain.",juge:"risque",eff:{legitimite:1,prosperite:-2},reg:"On mange tout, on prie pour demain.",suite:["Plutôt que de rationner, tu distribues le peu qui reste en festins, pour calmer les ventres et les murmures. On mange, on prie, on espère encore un peu. Mais demain vient toujours, et cette fois il vient les mains tout à fait vides."],impact:"Repousser le problème par de nouvelles largesses précipite la famine au lieu de l'éviter.",cible:"commerce"}],
     },
   voleurs:{folio:"Épreuve · les voleurs",
@@ -689,7 +738,7 @@ const STORY={
     texte:["Faute d'écriture pour tout vérifier, ton intendant a détourné l'orge des greniers, et les marchands se disputent des dettes que nul ne peut prouver. Le soupçon empoisonne la cité, et l'on murmure que le roi ne sait plus ce qu'il possède."],
     consigne:"On te vole sans que rien ne le prouve. Que fais-tu ?",
     renvois:[
-      {t:"Instituer l'écriture et vérifier chaque compte.",juge:"bon",epreuve:{stats:["sagesse"],seuil:8,ok:{eff:{sagesse:1,savoir:1},sceau:"Écriture adoptée",reg:"Tout est désormais consigné et vérifiable.",suite:["Tu imposes l'écrit partout et tu fais vérifier chaque compte, ligne après ligne. Les tablettes ne mentent pas : le détournement de l'intendant éclate au grand jour. Avec la preuve écrite entre les mains, ta justice tient enfin sur du solide."],txt:"Les comptes écrits confondent le voleur.",impact:"L'écrit permet le contrôle et la preuve : il fonde l'administration et prépare le droit écrit."},penalite:{eff:{legitimite:-2},reg:"Le doute s'installe partout.",txt:"Sans preuve, le soupçon empoisonne tout.",impact:"Sans trace écrite, impossible de prouver une fraude : la confiance, ciment de la cité, se défait."}},cible:"savoir"},
+      {t:"Instituer l'écriture et vérifier chaque compte.",juge:"bon",epreuve:{stats:["sagesse"],seuil:8,aides:[{sceau:"Écriture adoptée",d:1}],entraves:[{sceau:"Sans écriture",d:1}],ok:{eff:{sagesse:1,savoir:1},sceau:"Écriture adoptée",reg:"Tout est désormais consigné et vérifiable.",suite:["Tu imposes l'écrit partout et tu fais vérifier chaque compte, ligne après ligne. Les tablettes ne mentent pas : le détournement de l'intendant éclate au grand jour. Avec la preuve écrite entre les mains, ta justice tient enfin sur du solide."],txt:"Les comptes écrits confondent le voleur.",impact:"L'écrit permet le contrôle et la preuve : il fonde l'administration et prépare le droit écrit."},penalite:{eff:{legitimite:-2},reg:"Le doute s'installe partout.",txt:"Sans preuve, le soupçon empoisonne tout.",impact:"Sans trace écrite, impossible de prouver une fraude : la confiance, ciment de la cité, se défait."}},cible:"savoir"},
       {t:"Trancher à l'oreille et fermer les yeux sur le reste.",juge:"risque",eff:{legitimite:-2},sceau:"Sans écriture",reg:"On gouverne à l'aveugle.",suite:["Tu tranches à l'oreille, au jugé, en fermant les yeux sur le reste. Faute de preuve, les coupables s'en tirent et les innocents trinquent. La cité finit par se gouverner à l'aveugle, et par douter de tout."],impact:"Gouverner sans écrit, c'est gouverner à l'aveugle : la cité risque d'oublier jusqu'à ses propres affaires.",cible:"savoir"}],
     },
   societe:{folio:"Acte IV · la société",src:"sceau",
@@ -712,7 +761,7 @@ const STORY={
     texte:["Une éclipse a noirci le soleil, des agneaux sont nés morts, et les prêtres lisent dans le ciel la colère des dieux délaissés. La cité tremble, et l'on murmure que le malheur vient de l'impiété du roi."],
     consigne:"Un présage funeste affole la cité. Que fais-tu ?",
     renvois:[
-      {t:"Honorer les dieux par de grands sacrifices pour apaiser leur colère.",juge:"bon",epreuve:{stats:["piete"],seuil:9,ok:{eff:{piete:2,legitimite:1},sceau:"Temple puissant",reg:"Les autels refument, la peur reflue.",suite:["Tu réponds au présage par de grands sacrifices, et ta piété, sincère et connue de tous, rend le geste crédible. Les autels refument, les prêtres se rassérènent, la peur reflue dans les ruelles. On dit que le roi a su parler aux dieux."],txt:"Les dieux semblent apaisés : la cité respire.",impact:"Apaiser les dieux apaise le peuple ; encore faut-il une piété assez forte pour être crédible. Le roi doit composer avec le pouvoir religieux."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Les sacrifices n'apaisent rien.",txt:"Rien n'y fait : on dit les dieux sourds à un roi impie.",impact:"Un roi qui a négligé les dieux peine à s'en faire entendre dans la crise : la piété se cultive avant l'orage."}},cible:"loi"},
+      {t:"Honorer les dieux par de grands sacrifices pour apaiser leur colère.",juge:"bon",epreuve:{stats:["piete"],seuil:9,aides:[{sceau:"Temple puissant",d:1}],entraves:[{sceau:"Prérogative royale",d:1}],ok:{eff:{piete:2,legitimite:1},sceau:"Temple puissant",reg:"Les autels refument, la peur reflue.",suite:["Tu réponds au présage par de grands sacrifices, et ta piété, sincère et connue de tous, rend le geste crédible. Les autels refument, les prêtres se rassérènent, la peur reflue dans les ruelles. On dit que le roi a su parler aux dieux."],txt:"Les dieux semblent apaisés : la cité respire.",impact:"Apaiser les dieux apaise le peuple ; encore faut-il une piété assez forte pour être crédible. Le roi doit composer avec le pouvoir religieux."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Les sacrifices n'apaisent rien.",txt:"Rien n'y fait : on dit les dieux sourds à un roi impie.",impact:"Un roi qui a négligé les dieux peine à s'en faire entendre dans la crise : la piété se cultive avant l'orage."}},cible:"loi"},
       {t:"Défier les prêtres et te moquer du présage.",juge:"risque",eff:{piete:-2,legitimite:-2},reg:"Tu braves les dieux et leurs prêtres.",suite:["Tu défies ouvertement les prêtres et tu te moques du présage devant la cité assemblée. Le geste est audacieux, mais dans un peuple qui craint le ciel, il glace les cœurs. Si ta piété est déjà trop faible, on y verra la preuve qu'il faut un autre roi."],impact:"Mépriser à la fois les dieux et leurs prêtres, dans une cité croyante, peut coûter le trône : leur pouvoir est bien réel.",cibleFn:function(F){return F.piete<=7?"nF_pretres":"loi";}}],
     },
   loi:{folio:"Acte VI · le jugement",src:"hammurabi",
@@ -728,7 +777,7 @@ const STORY={
     texte:["Ton jugement a fait jurisprudence. Reste à décider s'il restera une parole en l'air ou s'il deviendra une loi gravée dans la pierre, dressée sur la place, une loi qui lie le faible comme le fort, et le roi lui-même."],
     consigne:"Que fais-tu de ta justice ?",
     renvois:[
-      {t:"La graver dans la pierre et la faire respecter de tous.",juge:"bon",epreuve:{stats:["autorite","sagesse"],seuil:10,ok:{eff:{sagesse:1,rayonnement:2,legitimite:1},sceau:"Code gravé",sceau2:"Loi équitable",reg:"Tes lois, gravées, défendent le faible.",suite:["Tu fais dresser sur la place une grande stèle où tes lois sont gravées pour tous les yeux. La même règle vaut désormais pour le faible et le puissant, et le roi lui-même s'y soumet. On vient de loin lire ta justice de pierre, et ton nom s'attache pour toujours à l'idée de droit."],txt:"Ta loi écrite s'impose à tous, du faible au puissant.",impact:"Faire respecter une loi écrite et égale demande de l'autorité pour l'imposer et de la sagesse pour la rendre juste : c'est un jalon majeur de l'histoire du droit."},penalite:{eff:{legitimite:-1},reg:"La loi gravée, mais bafouée.",txt:"Les puissants ignorent ta loi, et nul ne l'applique.",impact:"Une loi qu'on n'a ni l'autorité d'imposer ni la sagesse de rendre acceptable reste lettre morte, même gravée dans la pierre."}},cible:"defense"},
+      {t:"La graver dans la pierre et la faire respecter de tous.",juge:"bon",epreuve:{stats:["autorite","sagesse"],seuil:10,aides:[{sceau:"Écriture adoptée",d:1},{sceau:"Maison des tablettes",d:1}],entraves:[{sceau:"Sans écriture",d:1},{sceau:"Prérogative royale",d:1}],ok:{eff:{sagesse:1,rayonnement:2,legitimite:1},sceau:"Code gravé",sceau2:"Loi équitable",reg:"Tes lois, gravées, défendent le faible.",suite:["Tu fais dresser sur la place une grande stèle où tes lois sont gravées pour tous les yeux. La même règle vaut désormais pour le faible et le puissant, et le roi lui-même s'y soumet. On vient de loin lire ta justice de pierre, et ton nom s'attache pour toujours à l'idée de droit."],txt:"Ta loi écrite s'impose à tous, du faible au puissant.",impact:"Faire respecter une loi écrite et égale demande de l'autorité pour l'imposer et de la sagesse pour la rendre juste : c'est un jalon majeur de l'histoire du droit."},penalite:{eff:{legitimite:-1},reg:"La loi gravée, mais bafouée.",txt:"Les puissants ignorent ta loi, et nul ne l'applique.",impact:"Une loi qu'on n'a ni l'autorité d'imposer ni la sagesse de rendre acceptable reste lettre morte, même gravée dans la pierre."}},cible:"defense"},
       {t:"La graver, mais dure et sans pitié, pour faire trembler.",juge:"risque",eff:{autorite:2,legitimite:-1},sceau:"Code gravé",sceau2:"Loi de fer",reg:"Des lois gravées, mais impitoyables.",suite:["Tu graves bien la loi, mais dure, sans pitié, taillée pour faire trembler. L'ordre règne, net et glacé, car chacun redoute le châtiment. Sous ce silence, pourtant, la peur n'est pas l'adhésion, et la rancœur s'amasse comme l'eau derrière une digue."],impact:"Une loi écrite mais brutale impose l'ordre par la peur : durable en apparence, elle nourrit la rancœur.",cible:"defense"},
       {t:"Ne rien graver : ta seule parole suffit.",juge:"risque",eff:{legitimite:-2},sceau:"Prérogative royale",reg:"Aucune loi écrite ne te lie.",suite:["Tu refuses de rien graver : ta parole, dis-tu, suffit à tout. Le pouvoir reste tout entier entre tes mains, sans limite ni repère. Mais ce que nul n'a écrit, nul ne s'en souvient, et le droit de ta cité s'effacera avec ton dernier souffle."],impact:"Refuser d'écrire la loi laisse le pouvoir sans limite et la cité sans repère : la mémoire du droit s'efface avec toi.",cible:"defense"}],
     },
@@ -743,16 +792,16 @@ const STORY={
     texte:["Ta cité riche attire les convoitises. Une cité rivale masse ses troupes, des pillards harcèlent tes routes. Le roi a deux visages, dit-on : celui qui bâtit et celui qui combat. Lequel montreras-tu ?"],
     consigne:"Une cité rivale menace. Comment réponds-tu ?",
     renvois:[
-      {t:"Dresser de hautes murailles et négocier la paix.",juge:"bon",epreuve:{stats:["autorite"],mod:"prosperite",seuil:9,ok:{eff:{autorite:1,rayonnement:1},sceau:"Murailles",reg:"Des murailles montent, la paix se traite.",suite:["Tu fais dresser de hautes murailles de brique autour de la cité et tu négocies, fort de ta puissance, une paix avantageuse. Derrière ses remparts, la cité respire enfin en sûreté. Bien défendue, elle peut affronter les convoitises sans trembler."],txt:"De solides remparts s'élèvent : la cité respire en sûreté.",impact:"Bâtir de vraies fortifications demande de l'autorité et un trésor garni : bien défendue, la cité-État survit aux convoitises."},penalite:{eff:{prosperite:-1},reg:"Des murs trop bas, déjà fissurés.",txt:"Faute de moyens, tes murs ne valent rien.",impact:"Des murailles exigent des ressources et du commandement : une cité trop pauvre ou mal tenue reste exposée."}},cible:"heritage"},
+      {t:"Dresser de hautes murailles et négocier la paix.",juge:"bon",epreuve:{stats:["autorite"],mod:"prosperite",seuil:9,aides:[{sceau:"Bronze maîtrisé",d:1},{sceau:"Routes du commerce",d:1}],entraves:[{sceau:"Ennemis jurés",d:1}],ok:{eff:{autorite:1,rayonnement:1},sceau:"Murailles",reg:"Des murailles montent, la paix se traite.",suite:["Tu fais dresser de hautes murailles de brique autour de la cité et tu négocies, fort de ta puissance, une paix avantageuse. Derrière ses remparts, la cité respire enfin en sûreté. Bien défendue, elle peut affronter les convoitises sans trembler."],txt:"De solides remparts s'élèvent : la cité respire en sûreté.",impact:"Bâtir de vraies fortifications demande de l'autorité et un trésor garni : bien défendue, la cité-État survit aux convoitises."},penalite:{eff:{prosperite:-1},reg:"Des murs trop bas, déjà fissurés.",txt:"Faute de moyens, tes murs ne valent rien.",impact:"Des murailles exigent des ressources et du commandement : une cité trop pauvre ou mal tenue reste exposée."}},cible:"heritage"},
       {t:"Nouer une grande alliance par le commerce.",juge:"bon",cond:function(F){return F.sagesse>=11;},lock:"exige une grande Sagesse",eff:{rayonnement:2,legitimite:1},sceau:"Alliés",reg:"Des alliés sûrs et des routes ouvertes.",suite:["Tu noues, par le commerce, une grande alliance : cuivre, bois et pierres circulent sur des routes désormais ouvertes et gardées. Tes alliés ont tout intérêt à te savoir prospère et en paix. La cité se protège autant par ses amis que par ses murs."],impact:"La diplomatie et le commerce au loin enrichissent et protègent : Sumer vivait d'échanges de cuivre, de bois et de pierres.",cible:"heritage"},
-      {t:"Lancer la guerre et soumettre la rivale.",juge:"risque",epreuve:{stats:["autorite"],seuil:9,ok:{eff:{autorite:2,rayonnement:1,prosperite:1},sceau:"Ennemis jurés",reg:"La rivale tombe, mais te voue une haine durable.",suite:["Tu lances la guerre et tu soumets la rivale par les armes. Ton pouvoir s'étend, ton butin gonfle tes greniers, ton nom inspire la crainte alentour. Mais les vaincus n'oublient pas, et tu t'es fait là des ennemis jurés qui attendront patiemment leur heure."],txt:"Tu l'emportes, mais tu t'es fait un ennemi mortel.",impact:"La conquête agrandit le pouvoir et crée des ennemis jurés : la guerre est un pari coûteux qui se paie plus tard."},penalite:{eff:{prosperite:2,legitimite:1},sceau:"Ennemis jurés",reg:"La campagne s'enlise et t'épuise.",txt:"La guerre tourne mal et te coûte cher.",impact:"Une guerre mal engagée ruine et expose la cité : le pari militaire peut tout faire perdre."}},cible:"bataille"}],
+      {t:"Lancer la guerre et soumettre la rivale.",juge:"risque",epreuve:{stats:["autorite"],seuil:9,aides:[{sceau:"Bronze maîtrisé",d:1},{sceau:"Loi de fer",d:1}],entraves:[{sceau:"Ennemis jurés",d:1}],ok:{eff:{autorite:2,rayonnement:1,prosperite:1},sceau:"Ennemis jurés",reg:"La rivale tombe, mais te voue une haine durable.",suite:["Tu lances la guerre et tu soumets la rivale par les armes. Ton pouvoir s'étend, ton butin gonfle tes greniers, ton nom inspire la crainte alentour. Mais les vaincus n'oublient pas, et tu t'es fait là des ennemis jurés qui attendront patiemment leur heure."],txt:"Tu l'emportes, mais tu t'es fait un ennemi mortel.",impact:"La conquête agrandit le pouvoir et crée des ennemis jurés : la guerre est un pari coûteux qui se paie plus tard."},penalite:{eff:{prosperite:2,legitimite:1},sceau:"Ennemis jurés",reg:"La campagne s'enlise et t'épuise.",txt:"La guerre tourne mal et te coûte cher.",impact:"Une guerre mal engagée ruine et expose la cité : le pari militaire peut tout faire perdre."}},cible:"bataille"}],
     },
   bataille:{folio:"Épreuve · le siège",
     texte:["Les peuples que tu as provoqués reviennent, alliés contre toi, et dressent leur camp devant ta cité. Les tambours de guerre roulent. Ce que tu as bâti, ou négligé, pour ta défense va décider de tout."],
     consigne:"L'ennemi assiège la cité. Que fais-tu ?",
     renvois:[
       {t:"Tenir derrière tes murailles et endurer le siège.",juge:"bon",cond:function(F){return F.sceaux.has("Murailles")||F.sceaux.has("Alliés");},lock:"exige murs ou alliés",eff:{autorite:1,prosperite:1},reg:"Les murs tiennent, l'ennemi renonce.",suite:["Tu te retranches derrière ce que tu avais bâti : tes murailles, ou tes alliés accourus à l'appel. L'ennemi se brise sur tes défenses, s'épuise, puis renonce et lève le camp. Ce que tu avais préparé en temps de paix vient de sauver la cité."],impact:"Des murailles ou des alliés transforment un siège mortel en simple épreuve : la défense préparée sauve la cité.",cible:"heritage"},
-      {t:"Sortir livrer bataille en rase campagne.",juge:"risque",epreuve:{stats:["autorite"],seuil:9,ok:{eff:{autorite:1,rayonnement:1},reg:"Tu repousses l'ennemi de justesse.",suite:["Faute de murs, tu dois sortir livrer bataille en rase campagne. Le combat est rude et le sort hésite longtemps, mais tu repousses l'ennemi, à grand prix de sang. Une défense préparée t'aurait épargné un pari aussi cruel."],txt:"La bataille est gagnée, à grand prix.",impact:"Sans murs, il faut vaincre au champ : un pari risqué qu'une bonne défense aurait évité."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Ton armée plie sous le nombre.",txt:"Tes lignes cèdent dans la plaine.",impact:"Une cité sans défense préparée qui perd au champ est à la merci de l'ennemi."}},cible:"heritage"},
+      {t:"Sortir livrer bataille en rase campagne.",juge:"risque",epreuve:{stats:["autorite"],seuil:9,aides:[{sceau:"Alliés",d:1},{sceau:"Murailles",d:1}],entraves:[{sceau:"Ennemis jurés",d:1}],ok:{eff:{autorite:1,rayonnement:1},reg:"Tu repousses l'ennemi de justesse.",suite:["Faute de murs, tu dois sortir livrer bataille en rase campagne. Le combat est rude et le sort hésite longtemps, mais tu repousses l'ennemi, à grand prix de sang. Une défense préparée t'aurait épargné un pari aussi cruel."],txt:"La bataille est gagnée, à grand prix.",impact:"Sans murs, il faut vaincre au champ : un pari risqué qu'une bonne défense aurait évité."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Ton armée plie sous le nombre.",txt:"Tes lignes cèdent dans la plaine.",impact:"Une cité sans défense préparée qui perd au champ est à la merci de l'ennemi."}},cible:"heritage"},
       {t:"Demander grâce et payer un lourd tribut.",juge:"risque",eff:{prosperite:-3,legitimite:-2,rayonnement:-1},reg:"La cité ploie sous le tribut.",suite:["Tu demandes grâce et tu achètes la paix au prix d'un lourd tribut. L'ennemi se retire, repu, emportant ton or et ta fierté. La cité survit, mais saignée, courbée, et l'on se demande tout bas pour combien de temps encore."],impact:"Acheter la paix après une guerre mal engagée épuise la cité ; trop affaiblie, elle peut sombrer.",cibleFn:function(F){return (F.prosperite<=0||F.legitimite<=4)?"nF_vengeance":"heritage";}}],
     },
   heritage:{folio:"Acte VIII · l'héritage",src:"gilgamesh",
@@ -767,7 +816,7 @@ const STORY={
     texte:["Ta plaine donne le grain en abondance, mais elle n'a ni bois, ni pierre, ni métal : tout cela vit dans les montagnes lointaines. Pour bâtir, armer et parer ta cité, il te faut ce qui ne pousse pas chez toi."],
     consigne:"Comment obtiens-tu ce que ta terre ne produit pas ?",
     renvois:[
-      {t:"Organiser des routes et des marchands pour troquer ton grain.",juge:"bon",epreuve:{stats:["sagesse","autorite"],mod:"rayonnement",seuil:8,ok:{eff:{rayonnement:2,prosperite:1},sceau:"Routes du commerce",reg:"Des caravanes partent troquer l'orge.",txt:"Les caravanes reviennent chargées.",suite:["Tu envoies des marchands sur les pistes et les fleuves, l'orge contre le cuivre, le bois de cèdre et la pierre. Les caravanes reviennent chargées, et ta cité reçoit enfin ce que sa plaine ne donne pas. Le négoce devient un nerf de ta puissance."],impact:"La Mésopotamie, pauvre en bois, pierre et métal, vivait du commerce au loin : échanger son surplus de grain contre ces matières est une nécessité, pas un luxe."},penalite:{eff:{prosperite:-1},reg:"Une caravane pillée dans les collines.",txt:"Ta première caravane ne revient pas.",impact:"Les routes du commerce traversaient steppes et montagnes sans protection : marchands pillés et caravanes perdues faisaient partie du prix des échanges lointains."}},cible:"bronze"},
+      {t:"Organiser des routes et des marchands pour troquer ton grain.",juge:"bon",epreuve:{stats:["sagesse","autorite"],mod:"rayonnement",seuil:8,aides:[{sceau:"Écriture adoptée",d:1}],entraves:[{sceau:"Sans écriture",d:1}],ok:{eff:{rayonnement:2,prosperite:1},sceau:"Routes du commerce",reg:"Des caravanes partent troquer l'orge.",txt:"Les caravanes reviennent chargées.",suite:["Tu envoies des marchands sur les pistes et les fleuves, l'orge contre le cuivre, le bois de cèdre et la pierre. Les caravanes reviennent chargées, et ta cité reçoit enfin ce que sa plaine ne donne pas. Le négoce devient un nerf de ta puissance."],impact:"La Mésopotamie, pauvre en bois, pierre et métal, vivait du commerce au loin : échanger son surplus de grain contre ces matières est une nécessité, pas un luxe."},penalite:{eff:{prosperite:-1},reg:"Une caravane pillée dans les collines.",txt:"Ta première caravane ne revient pas.",impact:"Les routes du commerce traversaient steppes et montagnes sans protection : marchands pillés et caravanes perdues faisaient partie du prix des échanges lointains."}},cible:"bronze"},
       {t:"Envoyer des soldats razzier le métal des voisins.",juge:"risque",eff:{autorite:1,prosperite:1,legitimite:-1},sceau:"Ennemis jurés",reg:"Tu prends par la force ce qui te manque.",suite:["Plutôt que de troquer, tu envoies tes hommes prendre par la force le métal et le bois des voisins. Le butin remplit tes ateliers, mais tu sèmes la rancune sur toutes les routes. On se souviendra du roi qui pille."],impact:"Razzier au lieu d'échanger procure des biens à court terme mais ferme les routes et crée des ennemis : le commerce durable repose sur la confiance.",cible:"bronze"},
       {t:"Te suffire de ce que donne ta seule plaine.",juge:"risque",eff:{rayonnement:-1},reg:"La cité se replie sur elle-même.",suite:["Tu refuses de dépendre du dehors et tu te contentes de ta plaine. La cité vit, mais sans bon bois pour ses charpentes ni métal pour ses outils, elle reste fruste et à l'écart du monde. Le repli a un prix."],impact:"Une cité repliée sur ses seules ressources stagne : sans échanges, elle se prive du bois, du métal et des idées qui circulent avec les marchands.",cible:"nomades"}],
     },
@@ -791,7 +840,7 @@ const STORY={
     texte:["Le savoir des scribes mourrait avec eux si nul ne le transmettait. Tes plus vieux scribes proposent d'ouvrir une maison des tablettes, une école où l'on formerait les scribes de demain en recopiant les signes et les calculs."],
     consigne:"Comment transmets-tu le savoir des scribes ?",
     renvois:[
-      {t:"Fonder l'edubba, la maison des tablettes.",juge:"bon",epreuve:{stats:["sagesse"],mod:"savoir",seuil:8,ok:{eff:{sagesse:1,rayonnement:1,savoir:2},sceau:"Maison des tablettes",reg:"L'école des scribes ouvre ses portes.",txt:"La maison des tablettes ouvre ses portes.",suite:["Tu fais ouvrir l'edubba, la maison des tablettes. Du matin au soir, de jeunes élèves y recopient signes, listes et calculs sous l'œil du maître. Le savoir cesse de tenir dans quelques têtes : il se transmet, génération après génération."],impact:"L'edubba, l'école de scribes mésopotamienne, institutionnalise la transmission du savoir : former des scribes garantit que l'écrit et le calcul survivent au-delà d'une vie d'homme."},penalite:{eff:{prosperite:-1},reg:"L'école peine à trouver ses maîtres.",txt:"Peu de maîtres, peu d'élèves : l'école végète.",impact:"Fonder une école exigeait des scribes déjà formés et des familles prêtes à confier leurs fils : sans eux, la maison des tablettes restait une salle vide."}},cible:"societe"},
+      {t:"Fonder l'edubba, la maison des tablettes.",juge:"bon",epreuve:{stats:["sagesse"],mod:"savoir",seuil:8,aides:[{sceau:"Écriture adoptée",d:1},{sceau:"Savoir",d:1}],entraves:[{sceau:"Sans écriture",d:1}],ok:{eff:{sagesse:1,rayonnement:1,savoir:2},sceau:"Maison des tablettes",reg:"L'école des scribes ouvre ses portes.",txt:"La maison des tablettes ouvre ses portes.",suite:["Tu fais ouvrir l'edubba, la maison des tablettes. Du matin au soir, de jeunes élèves y recopient signes, listes et calculs sous l'œil du maître. Le savoir cesse de tenir dans quelques têtes : il se transmet, génération après génération."],impact:"L'edubba, l'école de scribes mésopotamienne, institutionnalise la transmission du savoir : former des scribes garantit que l'écrit et le calcul survivent au-delà d'une vie d'homme."},penalite:{eff:{prosperite:-1},reg:"L'école peine à trouver ses maîtres.",txt:"Peu de maîtres, peu d'élèves : l'école végète.",impact:"Fonder une école exigeait des scribes déjà formés et des familles prêtes à confier leurs fils : sans eux, la maison des tablettes restait une salle vide."}},cible:"societe"},
       {t:"Garder quelques scribes, tout dépendants du palais.",juge:"risque",eff:{autorite:1,sagesse:-1},reg:"Le savoir reste rare et surveillé.",suite:["Tu préfères peu de scribes, choisis et tenus de près, tout entiers dépendants de ta faveur. Tu contrôles le savoir, mais il reste rare et fragile : qu'une peste les emporte, et la cité redevient muette."],impact:"Concentrer le savoir entre quelques mains le rend contrôlable mais fragile : sans transmission large, une cité peut perdre d'un coup son écrit et son calcul.",cible:"societe"},
       {t:"Ne rien organiser : qui veut apprendre apprendra.",juge:"risque",eff:{sagesse:-1},reg:"Chacun apprend comme il peut.",suite:["Tu laisses faire : qui veut apprendre se débrouillera. Sans école ni méthode, le savoir se transmet au hasard des rencontres, se déforme et se perd. Ce qu'une cité ne se donne pas la peine d'enseigner, elle finit par l'oublier."],impact:"Sans institution pour l'enseigner, un savoir se transmet mal et s'érode : l'école est ce qui transforme une découverte en héritage durable.",cible:"societe"}],
     },
@@ -799,7 +848,7 @@ const STORY={
     texte:["Ta population grossit, et la ville avec elle. Les maisons s'entassent, les ruelles serpentent, les eaux usées stagnent. Une grande cité ne s'improvise pas : il faut décider comment elle s'organise."],
     consigne:"Comment bâtis-tu ta cité ?",
     renvois:[
-      {t:"Planifier rues, canaux d'évacuation et grand temple.",juge:"bon",epreuve:{stats:["autorite","sagesse"],mod:"technique",seuil:9,ok:{eff:{prosperite:1,rayonnement:2,technique:1},sceau:"Cité planifiée",reg:"La cité s'ordonne autour de ses rues.",txt:"Rues, canaux et temple s'organisent : la cité respire.",suite:["Tu fais tracer de larges rues, creuser des canaux d'évacuation et dresser un grand temple au cœur de la ville. L'eau s'écoule, l'air circule, chacun trouve son quartier. Ta cité n'est plus un entassement, mais une œuvre ordonnée."],impact:"Les grandes cités mésopotamiennes, Ur et Uruk, avaient temples, remparts, quartiers et réseaux d'eau : planifier la ville est un acte politique autant que technique."},penalite:{eff:{prosperite:-1},reg:"Les grands travaux s'enlisent.",txt:"Faute de moyens ou de bras, le chantier patine.",suite:["Tu rêves d'une cité ordonnée, mais le chantier dépasse tes forces : les canaux restent à moitié creusés, les rues encombrées. La ville grandit quand même, mais dans le désordre que tu voulais éviter."],impact:"Aménager une ville exige autorité et savoir-faire : sans moyens suffisants, les grands travaux urbains s'enlisent."}},cible:"roue"},
+      {t:"Planifier rues, canaux d'évacuation et grand temple.",juge:"bon",epreuve:{stats:["autorite","sagesse"],mod:"technique",seuil:9,aides:[{sceau:"Écriture adoptée",d:1},{sceau:"Maison des tablettes",d:1}],entraves:[{sceau:"Sans écriture",d:1}],ok:{eff:{prosperite:1,rayonnement:2,technique:1},sceau:"Cité planifiée",reg:"La cité s'ordonne autour de ses rues.",txt:"Rues, canaux et temple s'organisent : la cité respire.",suite:["Tu fais tracer de larges rues, creuser des canaux d'évacuation et dresser un grand temple au cœur de la ville. L'eau s'écoule, l'air circule, chacun trouve son quartier. Ta cité n'est plus un entassement, mais une œuvre ordonnée."],impact:"Les grandes cités mésopotamiennes, Ur et Uruk, avaient temples, remparts, quartiers et réseaux d'eau : planifier la ville est un acte politique autant que technique."},penalite:{eff:{prosperite:-1},reg:"Les grands travaux s'enlisent.",txt:"Faute de moyens ou de bras, le chantier patine.",suite:["Tu rêves d'une cité ordonnée, mais le chantier dépasse tes forces : les canaux restent à moitié creusés, les rues encombrées. La ville grandit quand même, mais dans le désordre que tu voulais éviter."],impact:"Aménager une ville exige autorité et savoir-faire : sans moyens suffisants, les grands travaux urbains s'enlisent."}},cible:"roue"},
       {t:"Laisser la ville s'étendre comme elle veut.",juge:"risque",eff:{prosperite:1,legitimite:-1},reg:"La ville s'étend en désordre.",suite:["Tu laisses chacun bâtir où il veut. La ville s'étend vite, vivante et grouillante, mais les ruelles s'enchevêtrent, les eaux croupissent et les épidémies guettent. Le désordre d'aujourd'hui coûtera cher demain."],impact:"Une ville qui croît sans plan devient vite insalubre et difficile à gouverner : l'absence d'aménagement se paie en maladies et en désordre.",cible:"epidemie"},
       {t:"Tout concentrer dans un palais somptueux.",juge:"risque",eff:{rayonnement:1,legitimite:-1},reg:"Le palais brille, la ville s'entasse.",suite:["Tu consacres tout l'effort à un palais somptueux pendant que le reste de la ville s'entasse à ses pieds. Ta demeure éblouit les visiteurs, mais le peuple vit dans la boue et finit par comparer. Le faste, seul, ne nourrit que la rancœur."],impact:"Concentrer la richesse dans le palais en négligeant la ville flatte le prestige mais creuse l'écart avec le peuple et nourrit le ressentiment.",cible:"roue"}],
     },
@@ -815,7 +864,7 @@ const STORY={
     texte:["Riche et sûr de ta maîtrise de l'eau, ta cour rêve de grandeur : non plus seulement nourrir, mais éblouir. Tes ingénieurs proposent d'élever de grands jardins en terrasses, irrigués jusqu'en haut par des machines à eau, un défi que nulle cité n'a encore relevé."],
     consigne:"Élèves-tu ces jardins en terrasses ?",
     renvois:[
-      {t:"Élever les grands jardins en terrasses, prouesse d'ingénieur.",juge:"bon",epreuve:{stats:["sagesse"],mod:"technique",seuil:9,ok:{eff:{rayonnement:3,prosperite:-1,technique:1},sceau:"Grands jardins",reg:"Des jardins en terrasses montent vers le ciel.",txt:"Les terrasses verdoient en plein ciel : on vient de loin les admirer.",suite:["Tu fais bâtir des terrasses superposées où l'eau, hissée par des vis et des seaux, fait verdir arbres et fleurs en plein ciel. Le spectacle est si rare que les voyageurs en parlent jusqu'aux confins du monde. Ta cité devient une merveille."],impact:"Ces jardins en terrasses montrent la maîtrise mésopotamienne de l'irrigation poussée jusqu'au prestige. La légende des jardins suspendus, tardive et débattue, en garde l'écho."},penalite:{eff:{prosperite:-2},reg:"Les jardins se fanent, l'eau ne monte pas.",txt:"L'eau ne monte pas assez haut : les terrasses se dessèchent.",suite:["Tu lances le chantier, mais hisser l'eau si haut dépasse ton savoir et ton trésor. Les terrasses se dessèchent, les arbres meurent, et il ne reste qu'un escalier de boue, coûteux témoin d'un rêve trop grand."],impact:"Un projet de prestige mal maîtrisé engloutit des ressources pour rien : l'ambition doit rester à la mesure du savoir et des moyens."}},cible:"temple"},
+      {t:"Élever les grands jardins en terrasses, prouesse d'ingénieur.",juge:"bon",epreuve:{stats:["sagesse"],mod:"technique",seuil:9,aides:[{sceau:"Savoir",d:1},{sceau:"Bronze maîtrisé",d:1}],entraves:[],ok:{eff:{rayonnement:3,prosperite:-1,technique:1},sceau:"Grands jardins",reg:"Des jardins en terrasses montent vers le ciel.",txt:"Les terrasses verdoient en plein ciel : on vient de loin les admirer.",suite:["Tu fais bâtir des terrasses superposées où l'eau, hissée par des vis et des seaux, fait verdir arbres et fleurs en plein ciel. Le spectacle est si rare que les voyageurs en parlent jusqu'aux confins du monde. Ta cité devient une merveille."],impact:"Ces jardins en terrasses montrent la maîtrise mésopotamienne de l'irrigation poussée jusqu'au prestige. La légende des jardins suspendus, tardive et débattue, en garde l'écho."},penalite:{eff:{prosperite:-2},reg:"Les jardins se fanent, l'eau ne monte pas.",txt:"L'eau ne monte pas assez haut : les terrasses se dessèchent.",suite:["Tu lances le chantier, mais hisser l'eau si haut dépasse ton savoir et ton trésor. Les terrasses se dessèchent, les arbres meurent, et il ne reste qu'un escalier de boue, coûteux témoin d'un rêve trop grand."],impact:"Un projet de prestige mal maîtrisé engloutit des ressources pour rien : l'ambition doit rester à la mesure du savoir et des moyens."}},cible:"temple"},
       {t:"Consacrer plutôt cet effort aux canaux utiles.",juge:"risque",eff:{prosperite:2},reg:"Pas de faste : de l'eau pour les champs.",suite:["Tu juges les jardins de prestige trop coûteux et tu consacres l'effort à de nouveaux canaux pour les champs. Les récoltes s'en trouvent mieux, et le trésor aussi. La cité gagne en solidité ce qu'elle perd en éclat."],impact:"Préférer l'utile au prestige est un choix prudent : moins éclatant, il consolide la base matérielle de la cité plutôt que sa renommée.",cible:"temple"},
       {t:"Épuiser le trésor pour une merveille démesurée.",juge:"risque",eff:{rayonnement:2,prosperite:-3,legitimite:-1},reg:"La merveille éblouit, le trésor se vide.",suite:["Tu veux ta merveille à tout prix et tu y jettes le trésor sans compter. Les jardins éblouissent, mais les greniers se vident et le peuple murmure qu'on a tout dépensé pour le plaisir des yeux du roi. La gloire a un goût amer."],impact:"Une merveille bâtie au mépris des moyens ruine la cité qu'elle devait glorifier : le prestige ne vaut que s'il repose sur une prospérité solide.",cible:"temple"}],
     },
@@ -823,32 +872,55 @@ const STORY={
     texte:["Les années ont passé, et les dettes ont enchaîné une part de ton peuple : des hommes libres se sont vendus, eux ou leurs enfants, pour survivre à une mauvaise récolte. Tes anciens te rappellent un geste que faisaient les rois justes : proclamer l'amargi, l'effacement des dettes."],
     consigne:"Que fais-tu des dettes qui écrasent ton peuple ?",
     renvois:[
-      {t:"Proclamer l'amargi : effacer les dettes, libérer les asservis.",juge:"bon",epreuve:{stats:["legitimite","sagesse"],seuil:9,ok:{eff:{legitimite:2,prosperite:-1},sceau:"Amargi proclamé",reg:"Le roi efface les dettes et libère le faible.",txt:"L'amargi est proclamé malgré les grands.",suite:["Tu proclames l'amargi : les dettes sont effacées, les hommes vendus pour survivre retrouvent leur liberté et leurs terres. Le peuple acclame un roi qui protège le faible contre la spirale des dettes. Le trésor y perd un peu, ta légitimité beaucoup y gagne."],impact:"L'amargi, « retour à la liberté » d'Urukagina de Lagash, est l'une des plus anciennes réformes sociales connues : effacer les dettes protégeait les hommes libres de l'asservissement et apaisait la cité."},penalite:{eff:{legitimite:-1,prosperite:-1},reg:"Les grands vident l'amargi de sa force.",txt:"Les créanciers résistent : ta proclamation reste lettre morte.",impact:"Effacer les dettes heurtait de front les intérêts des puissants : sans rapport de force, une proclamation d'équité restait un vœu gravé dans l'argile."}},cible:"code"},
+      {t:"Proclamer l'amargi : effacer les dettes, libérer les asservis.",juge:"bon",epreuve:{stats:["legitimite","sagesse"],seuil:9,aides:[{sceau:"Loi équitable",d:1},{sceau:"Portes ouvertes",d:1}],entraves:[{sceau:"Ordre durci",d:1},{sceau:"Prérogative royale",d:1}],ok:{eff:{legitimite:2,prosperite:-1},sceau:"Amargi proclamé",reg:"Le roi efface les dettes et libère le faible.",txt:"L'amargi est proclamé malgré les grands.",suite:["Tu proclames l'amargi : les dettes sont effacées, les hommes vendus pour survivre retrouvent leur liberté et leurs terres. Le peuple acclame un roi qui protège le faible contre la spirale des dettes. Le trésor y perd un peu, ta légitimité beaucoup y gagne."],impact:"L'amargi, « retour à la liberté » d'Urukagina de Lagash, est l'une des plus anciennes réformes sociales connues : effacer les dettes protégeait les hommes libres de l'asservissement et apaisait la cité."},penalite:{eff:{legitimite:-1,prosperite:-1},reg:"Les grands vident l'amargi de sa force.",txt:"Les créanciers résistent : ta proclamation reste lettre morte.",impact:"Effacer les dettes heurtait de front les intérêts des puissants : sans rapport de force, une proclamation d'équité restait un vœu gravé dans l'argile."}},cible:"code"},
       {t:"Laisser jouer les dettes : un contrat est un contrat.",juge:"risque",eff:{prosperite:2,legitimite:-2},reg:"Les dettes courent, le faible s'enfonce.",suite:["Tu refuses d'effacer quoi que ce soit : une dette est une dette. Les créanciers prospèrent, ton trésor aussi, mais une part grandissante du peuple glisse dans la servitude. Sous le calme apparent, la rancœur des endettés s'amasse."],impact:"Laisser les dettes asservir librement le peuple enrichit les puissants mais fragilise la cité : c'est pour éviter ce déséquilibre que les rois proclamaient des remises de dettes.",cible:"code"},
       {t:"Durcir le recouvrement pour remplir le trésor.",juge:"risque",eff:{autorite:1,prosperite:1,legitimite:-2},sceau:"Ordre durci",reg:"On saisit, on vend, on emprisonne pour dette.",suite:["Tu durcis encore le recouvrement : on saisit, on vend, on jette en servitude pour la moindre dette. Le trésor se remplit et l'ordre règne, mais la haine des écrasés couve, et un tel ressentiment a déjà coûté des trônes."],impact:"Durcir la contrainte pour dette gonfle le trésor à court terme mais pousse le peuple à bout : l'excès d'asservissement nourrit la révolte.",cible:"code"}],
     },
   secheresse:{folio:"Épreuve · la sécheresse",texte:["Tes vergers de prestige boivent sans compter, et voilà que le ciel se ferme. Des mois sans pluie, le fleuve au plus bas, l'orge qui jaunit sur pied pendant que tes jardins d'apparat restent verts. Le peuple murmure : le roi arrose ses fleurs et laisse sécher son pain."],consigne:"La sécheresse frappe : que sauves-tu ?",renvois:[
-    {t:"Creuser des puits et des rigoles jusqu'aux champs d'orge.",juge:"bon",epreuve:{stats:["sagesse","autorite"],mod:"technique",seuil:9,ok:{eff:{prosperite:1,technique:1,legitimite:1},reg:"Les puits sauvent l'orge.",txt:"L'eau remonte : les champs reverdissent.",suite:["Tu fais creuser des puits profonds et tracer des rigoles jusqu'aux champs. L'eau est rare, mais elle va d'abord à l'orge. La récolte sera maigre, mais elle ne sera pas perdue. Le peuple a vu son roi choisir le pain."],impact:"En Mésopotamie, l'irrigation était une affaire d'État : maîtriser l'eau en année sèche, c'était garder le pouvoir de nourrir, donc de gouverner."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"Les puits restent secs.",txt:"On creuse, mais la nappe se dérobe.",suite:["Les puits descendent, l'eau ne vient pas. Les rigoles s'ensablent, l'orge grille, et les greniers se vident plus vite qu'ils ne se remplissent. Une année de sécheresse peut défaire dix années de bonne gestion."],impact:"Les famines liées aux sécheresses comptaient parmi les grands dangers des cités mésopotamiennes : leur agriculture dépendait entièrement de l'eau maîtrisée."}},cible:"surplus"},
+    {t:"Creuser des puits et des rigoles jusqu'aux champs d'orge.",juge:"bon",epreuve:{stats:["sagesse","autorite"],mod:"technique",seuil:9,aides:[{sceau:"Ordre durci",d:1}],entraves:[],ok:{eff:{prosperite:1,technique:1,legitimite:1},reg:"Les puits sauvent l'orge.",txt:"L'eau remonte : les champs reverdissent.",suite:["Tu fais creuser des puits profonds et tracer des rigoles jusqu'aux champs. L'eau est rare, mais elle va d'abord à l'orge. La récolte sera maigre, mais elle ne sera pas perdue. Le peuple a vu son roi choisir le pain."],impact:"En Mésopotamie, l'irrigation était une affaire d'État : maîtriser l'eau en année sèche, c'était garder le pouvoir de nourrir, donc de gouverner."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"Les puits restent secs.",txt:"On creuse, mais la nappe se dérobe.",suite:["Les puits descendent, l'eau ne vient pas. Les rigoles s'ensablent, l'orge grille, et les greniers se vident plus vite qu'ils ne se remplissent. Une année de sécheresse peut défaire dix années de bonne gestion."],impact:"Les famines liées aux sécheresses comptaient parmi les grands dangers des cités mésopotamiennes : leur agriculture dépendait entièrement de l'eau maîtrisée."}},cible:"surplus"},
     {t:"Sacrifier les vergers d'apparat pour sauver l'orge.",juge:"bon",eff:{prosperite:1,sagesse:1,rayonnement:-1},reg:"Les vergers meurent, le pain survit.",suite:["Tu fermes les rigoles des jardins. Les grenadiers sèchent, les allées d'ombrage jaunissent. L'orge, elle, tient. Ta cité perd un peu de sa gloire et garde son pain. D'autres rois auraient choisi l'inverse."],impact:"Gouverner, c'est arbitrer : entre le prestige qui impressionne et le grain qui nourrit, les cités qui ont duré sont celles qui ont d'abord protégé leur agriculture.",cible:"surplus"},
     {t:"Multiplier les offrandes à Enki en puisant les réserves.",juge:"risque",eff:{piete:1,prosperite:-2},reg:"Les réserves partent en offrandes.",suite:["Tu ouvres les greniers pour les autels : bière versée, agneaux offerts, prières au dieu des eaux douces. Enki entendra peut-être. Mais en attendant, ce que tu offres aux dieux manque déjà aux hommes."],impact:"Les Mésopotamiens attribuaient sécheresses et crues aux dieux, et les offrandes faisaient partie de la réponse royale, au risque d'épuiser des réserves déjà maigres.",cible:"surplus"}]},
-  nomades:{folio:"Acte II · les tentes",src:"tentes",texte:["Tu as choisi de vivre de ta seule plaine. Mais la steppe, elle, vient à toi. Des pasteurs nomades dressent leurs tentes noires en vue des murailles : des troupeaux entiers, de la laine par ballots, et des récits de pays que tes marchands ne connaissent pas. Tes gardes attendent l'ordre."],consigne:"Que fais-tu des gens des tentes ?",renvois:[
-    {t:"Ouvrir un marché aux portes : leur laine contre ton grain.",juge:"bon",eff:{prosperite:1,rayonnement:1},sceau:"Portes ouvertes",reg:"Le marché des tentes s'installe aux portes.",suite:["Tu fais ouvrir un marché hors les murs : leur laine et leurs bêtes contre ton orge et tes outils. Les tentes reviennent chaque saison, et avec elles la laine, les troupeaux et des nouvelles du vaste monde."],impact:"Sédentaires et nomades ont toujours échangé en Mésopotamie : laine et bétail des steppes contre grain et objets des cités. Ces échanges complétaient l'agriculture des plaines.",cible:"bronze"},
+  nomades:{folio:"Acte II · les tentes",src:"tentes",combat:{stat:"sagesse",advNom:"L'ancien des tentes noires",advApt:11,advPts:4,advLbl:"Ce qu'il retient encore",jPts:6,jLbl:"Ce que tu obtiens",
+      aides:[{sceau:"Routes du commerce",d:1},{sceau:"Écriture adoptée",d:1}],entraves:[{sceau:"Ordre durci",d:1},{sceau:"Sans écriture",d:1}],
+      win:{sceau:"Portes ouvertes",eff:{prosperite:2,rayonnement:1,sagesse:1},reg:"Le marchandage des tentes conclu à ton avantage.",cible:"bronze",
+        impact:"Sédentaires et nomades ont toujours échangé en Mésopotamie : laine et bétail des steppes contre grain et objets des cités. Ces échanges se négociaient, ils ne se décrétaient pas.",
+        suite:["Vous parlez jusqu'à ce que le soleil tombe, mesure après mesure, ballot après ballot. L'ancien finit par cracher dans sa paume et te la tendre : l'usage vaut contrat. Les tentes reviendront chaque saison, et avec elles la laine, les bêtes et des nouvelles du vaste monde."]},
+      lose:{sceau:"Portes ouvertes",eff:{prosperite:1,rayonnement:1,sagesse:-1},reg:"Le marchandage des tentes conclu à leur avantage.",cible:"bronze",
+        impact:"L'échange a bien lieu, mais aux conditions de la steppe. Les cités dépendaient de ce que les nomades apportaient, et cette dépendance se payait au moment de fixer les prix.",
+        suite:["L'ancien connaît la valeur de chaque toison mieux que tes scribes, et il le sait. Le marché s'ouvre tout de même aux portes, mais à son compte : tu paies l'orge cher et tu reçois la laine au poids qu'il annonce. Tes marchands baissent les yeux."]}},texte:["Tu as choisi de vivre de ta seule plaine. Mais la steppe, elle, vient à toi. Des pasteurs nomades dressent leurs tentes noires en vue des murailles : des troupeaux entiers, de la laine par ballots, et des récits de pays que tes marchands ne connaissent pas. Tes gardes attendent l'ordre."],consigne:"Que fais-tu des gens des tentes ?",renvois:[
+    {t:"Marchander aux portes : leur laine contre ton grain.",juge:"bon",combat:true,cible:"bronze"},
     {t:"Enrôler leurs jeunes guerriers à ta solde.",juge:"risque",eff:{autorite:1,legitimite:-1},reg:"Des lances des steppes servent le roi.",suite:["Tu prends à ta solde leurs frondeurs et leurs meneurs d'ânes. Tes rangs grossissent de guerriers endurants. Mais tes propres soldats regardent de travers ces étrangers payés en grain, et le peuple se demande qui garde vraiment la cité."],impact:"Les cités mésopotamiennes ont souvent recruté des combattants venus des steppes ; utile à court terme, cette dépendance pouvait fragiliser le pouvoir qui l'employait.",cible:"bronze"},
     {t:"Fermer les portes et chasser les tentes loin des murs.",juge:"risque",eff:{autorite:1,rayonnement:-1},sceau:"Ennemis jurés",reg:"Les tentes chassées s'éloignent en silence.",suite:["Tes gardes repoussent les campements à une journée de marche. Les tentes plient sans un mot. Mais la steppe a de la mémoire : ceux qu'on chasse aujourd'hui savent revenir un jour, sans laine à vendre cette fois."],impact:"Repousser les nomades protégeait à court terme, mais transformait des partenaires d'échange en ennemis potentiels : la frontière entre la steppe et la ville était d'abord une relation.",cible:"bronze"}]},
   ziggourat:{folio:"Acte V · la montagne",src:"corveeTexte",texte:["Tu l'as promise : une montagne de briques pour porter le temple plus près du ciel. Mais une ziggourat ne se dresse pas d'un décret. Il faut des milliers de bras, des montagnes d'orge pour les nourrir, du bitume, des roseaux et des années. Les scribes t'attendent, rôle de corvée en main."],consigne:"Comment mènes-tu le chantier de la ziggourat ?",renvois:[
-    {t:"Lever une corvée massive et bâtir vite, quoi qu'il en coûte.",juge:"risque",epreuve:{stats:["autorite","sagesse"],mod:"technique",seuil:9,ok:{eff:{rayonnement:2,piete:1,legitimite:-1},sceau:"Temple puissant",reg:"La montagne des dieux s'élève.",txt:"Étage après étage, la ziggourat monte.",suite:["Des milliers d'hommes montent la brique, saison après saison. Les champs manquent de bras, les familles grognent. Mais la montagne s'élève, et le jour où le sanctuaire couronne le sommet, toute la plaine voit qui règne ici."],impact:"Les ziggourats, comme celle d'Ur, exigeaient une organisation immense : corvées, rations, architectes. De tels chantiers montrent le pouvoir d'un État capable de mobiliser sa population."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Le grand chantier s'effondre à demi.",txt:"Trop vite montée, une terrasse s'affaisse.",suite:["Tu presses le chantier, et la brique crue le paie : une terrasse gorgée de pluie s'affaisse, entraînant des mois de travail. Il faudra reconstruire, et le peuple, lui, retient surtout les rations perdues."],impact:"La brique crue, séchée au soleil, restait fragile : mal drainée ou trop chargée, elle s'effondrait. Bâtir trop vite en Mésopotamie, c'était souvent bâtir deux fois."}},cible:"loi"},
+    {t:"Lever une corvée massive et bâtir vite, quoi qu'il en coûte.",juge:"risque",epreuve:{stats:["autorite","sagesse"],mod:"technique",seuil:9,aides:[{sceau:"Ordre durci",d:1},{sceau:"La roue",d:1}],entraves:[],ok:{eff:{rayonnement:2,piete:1,legitimite:-1},sceau:"Temple puissant",reg:"La montagne des dieux s'élève.",txt:"Étage après étage, la ziggourat monte.",suite:["Des milliers d'hommes montent la brique, saison après saison. Les champs manquent de bras, les familles grognent. Mais la montagne s'élève, et le jour où le sanctuaire couronne le sommet, toute la plaine voit qui règne ici."],impact:"Les ziggourats, comme celle d'Ur, exigeaient une organisation immense : corvées, rations, architectes. De tels chantiers montrent le pouvoir d'un État capable de mobiliser sa population."},penalite:{eff:{prosperite:-1,legitimite:-1},reg:"Le grand chantier s'effondre à demi.",txt:"Trop vite montée, une terrasse s'affaisse.",suite:["Tu presses le chantier, et la brique crue le paie : une terrasse gorgée de pluie s'affaisse, entraînant des mois de travail. Il faudra reconstruire, et le peuple, lui, retient surtout les rations perdues."],impact:"La brique crue, séchée au soleil, restait fragile : mal drainée ou trop chargée, elle s'effondrait. Bâtir trop vite en Mésopotamie, c'était souvent bâtir deux fois."}},cible:"loi"},
     {t:"Bâtir lentement, en payant chaque équipe en rations justes.",juge:"bon",eff:{piete:1,rayonnement:1,prosperite:-1},sceau:"Temple puissant",reg:"La ziggourat monte, saison après saison.",suite:["Tu étales le chantier sur des années : des équipes tournantes, des rations d'orge et de bière versées sans retard, des absents inscrits au rôle plutôt que fouettés. La montagne monte moins vite, mais elle monte, et personne ne maudit son roi en portant la brique."],impact:"Les rôles de corvée retrouvés montrent des travailleurs organisés en équipes et payés en rations : le grand chantier religieux était aussi une immense machine à redistribuer le grain.",cible:"loi"},
     {t:"Reprendre ta promesse : un simple sanctuaire suffira.",juge:"risque",eff:{prosperite:1,piete:-1},reg:"La promesse de la montagne est reprise.",suite:["Tu fais savoir que les dieux se contenteront d'un sanctuaire à hauteur d'homme. Les greniers respirent, les champs gardent leurs bras. Mais les prêtres n'oublient pas une promesse reprise, et ils ont la mémoire longue."],impact:"Renoncer à un grand chantier religieux libérait des ressources, mais fragilisait l'alliance entre le palais et le temple, deux piliers du pouvoir mésopotamien.",cible:"presage"}]},
   epidemie:{folio:"Épreuve · le souffle de Nergal",texte:["La ville que tu as laissée pousser en désordre te le fait payer : dans les ruelles où l'eau croupit, la fièvre s'allume. On barre déjà des portes à la craie, on brûle des herbes, on chuchote le nom de Nergal. Chaque jour compte."],consigne:"La fièvre court la ville : comment réponds-tu ?",renvois:[
-    {t:"Isoler les quartiers touchés et faire puiser l'eau en amont.",juge:"bon",epreuve:{stats:["sagesse","autorite"],seuil:9,ok:{eff:{legitimite:1,savoir:1},reg:"La fièvre est contenue quartier par quartier.",txt:"Quartiers isolés, la fièvre s'essouffle.",suite:["Tu fais fermer les ruelles atteintes, porter l'eau saine d'amont, nourrir les enfermés aux frais du palais. Les guérisseurs passent de maison en maison. La fièvre brûle ce qu'elle tient déjà, puis s'arrête aux barrières."],impact:"Les Mésopotamiens savaient la maladie contagieuse : des lettres royales de Mari ordonnent déjà d'isoler une personne atteinte et de ne pas partager sa coupe ni son lit."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"La fièvre saute les barrières.",txt:"Trop tard, trop lent : la fièvre déborde.",suite:["Les barrières se ferment mal, l'eau saine arrive trop tard, et la fièvre saute de quartier en quartier. Quand elle s'éteint enfin, d'elle-même, la ville compte ses morts et le marché reste à demi vide une saison entière."],impact:"Sans mesures rapides, une épidémie dans une ville dense vidait ateliers et marchés : la maladie frappait la population, donc toute l'économie de la cité."}},cible:"roue"},
+    {t:"Isoler les quartiers touchés et faire puiser l'eau en amont.",juge:"bon",epreuve:{stats:["sagesse","autorite"],seuil:9,aides:[{sceau:"Cité planifiée",d:1},{sceau:"Savoir",d:1}],entraves:[],ok:{eff:{legitimite:1,savoir:1},reg:"La fièvre est contenue quartier par quartier.",txt:"Quartiers isolés, la fièvre s'essouffle.",suite:["Tu fais fermer les ruelles atteintes, porter l'eau saine d'amont, nourrir les enfermés aux frais du palais. Les guérisseurs passent de maison en maison. La fièvre brûle ce qu'elle tient déjà, puis s'arrête aux barrières."],impact:"Les Mésopotamiens savaient la maladie contagieuse : des lettres royales de Mari ordonnent déjà d'isoler une personne atteinte et de ne pas partager sa coupe ni son lit."},penalite:{eff:{prosperite:-2,legitimite:-1},reg:"La fièvre saute les barrières.",txt:"Trop tard, trop lent : la fièvre déborde.",suite:["Les barrières se ferment mal, l'eau saine arrive trop tard, et la fièvre saute de quartier en quartier. Quand elle s'éteint enfin, d'elle-même, la ville compte ses morts et le marché reste à demi vide une saison entière."],impact:"Sans mesures rapides, une épidémie dans une ville dense vidait ateliers et marchés : la maladie frappait la population, donc toute l'économie de la cité."}},cible:"roue"},
     {t:"Ordonner processions et fumigations dans toute la ville.",juge:"risque",eff:{piete:1,prosperite:-2},reg:"Les processions traversent la fièvre.",suite:["Tu fais sortir les statues divines, brûler le genévrier à chaque carrefour, chanter les lamentations. Le peuple se rassemble, prie, s'embrasse, et la fièvre voyage avec les cortèges. Les dieux ont été honorés ; les ruelles, elles, se vident."],impact:"Face à la maladie, la réponse mésopotamienne mêlait soins, purifications et rituels : on cherchait à apaiser les dieux autant qu'à soigner les corps, parfois au prix de rassemblements qui propageaient le mal.",cible:"roue"},
     {t:"Fermer le palais et laisser passer l'orage.",juge:"risque",eff:{autorite:-1,legitimite:-2},reg:"Le palais s'est muré pendant la fièvre.",suite:["Tu fais murer les portes du palais : nul n'entre, rien ne sort que tes ordres. La fièvre finit par se lasser. Mais en ville, chacun a vu les murs clos du roi pendant que les ruelles pleuraient. Certaines absences ne se pardonnent pas."],impact:"Un souverain devait être vu protégeant les siens : s'abriter pendant que la population souffrait sauvait peut-être le roi, mais ruinait la confiance qui fondait son pouvoir.",cible:"roue"}]},
-  proces:{folio:"Acte VI · le fleuve juge",src:"ordalieTexte",texte:["Tu as remis la justice au fleuve, et voici sa première grande affaire. Un homme puissant, maître de trois greniers, accuse la veuve de son frère de sorcellerie : condamnée, sa maison lui revient. Nulle preuve, deux serments contraires. La ville entière attend de voir ce que vaut ta justice."],consigne:"Comment tranches-tu l'affaire de la veuve ?",renvois:[
-    {t:"Appliquer l'ordalie : que le fleuve divin décide.",juge:"risque",epreuve:{stats:["piete","sagesse"],seuil:8,ok:{eff:{legitimite:1,piete:1},reg:"Le fleuve a lavé la veuve.",txt:"Le fleuve rend la veuve, saine et lavée.",suite:["Devant la ville assemblée, la veuve entre dans le fleuve, et le fleuve la rend. Lavée par le dieu, elle reprend sa maison ; l'accusateur, selon la règle, répond de sa fausse accusation. Nul ne discute un verdict venu de l'eau."],impact:"L'ordalie du fleuve est attestée dans les codes mésopotamiens : faute de preuves, on s'en remettait au dieu-fleuve, et l'accusateur d'un innocent était lourdement puni."},penalite:{eff:{legitimite:-1,piete:-1},reg:"L'ordalie tourne au scandale.",txt:"Le courant emporte la veuve : la ville gronde.",suite:["Le courant est fort ce jour-là, et la veuve manque d'y rester ; on la repêche à demi noyée pendant que l'accusateur crie victoire. Verdict des dieux ou hasard des eaux ? La ville en débat encore, et ta justice avec elle."],impact:"L'ordalie remettait le verdict au hasard des eaux : elle réglait les affaires sans preuves, mais son résultat pouvait passer pour arbitraire et fragiliser la confiance dans la justice."}},cible:"amargi"},
-    {t:"Enquêter toi-même : témoins, registres, serments croisés.",juge:"bon",eff:{sagesse:1,legitimite:1},sceau:"Loi équitable",reg:"L'enquête confond le faux accusateur.",suite:["Tu fais comparaître voisins et scribes, relire les registres du grenier, croiser les serments. L'accusation se défait fil à fil : c'est la maison que voulait l'homme, pas la vérité. La veuve garde son toit, et la ville apprend que ta justice écoute avant de trancher."],impact:"À côté de l'ordalie, la justice mésopotamienne s'appuyait sur témoins, serments et tablettes : les archives judiciaires conservent des enquêtes minutieuses menées par les juges.",cible:"amargi"},
+  proces:{folio:"Acte VI · le fleuve juge",src:"ordalieTexte",combat:{stat:"legitimite",advNom:"Le maître des trois greniers",advApt:11,advPts:6,advLbl:"Le crédit qu'on lui accorde",jPts:6,jLbl:"Le crédit qu'on t'accorde",
+      aides:[{sceau:"Loi équitable",d:1},{sceau:"Maison des tablettes",d:1},{sceau:"Écriture adoptée",d:1}],
+      entraves:[{sceau:"Prérogative royale",d:1},{sceau:"Ordre durci",d:1}],
+      win:{sceau:"Loi équitable",eff:{sagesse:1,legitimite:2},reg:"L'enquête a confondu le faux accusateur.",cible:"amargi",
+        impact:"À côté de l'ordalie, la justice mésopotamienne s'appuyait sur les témoins, les serments et les tablettes : les archives judiciaires conservent des enquêtes minutieuses menées par les juges.",
+        suite:["Voisins, scribes et registres défilent devant l'assemblée. Chaque serment que tu fais répéter creuse une fissure de plus dans l'accusation, jusqu'à ce qu'elle cède tout entière : c'est la maison qu'il voulait, pas la vérité. La veuve garde son toit, et la ville apprend que ta justice écoute avant de trancher."]},
+      lose:{eff:{legitimite:-2,sagesse:-1},reg:"Le puissant a retourné l'assemblée.",cible:"amargi",
+        impact:"La justice dépendait aussi du rapport de force : un notable disposait de témoins, de dettes à rappeler et de clients à mobiliser. L'égalité devant la loi restait un idéal proclamé plus qu'une réalité.",
+        suite:["L'homme a de la mémoire et des débiteurs. Un témoin se rétracte, un autre se souvient mal, un troisième ne vient pas. Tu tiens la vérité et tu la sens t'échapper entre les doigts, faute de preuve à opposer. La veuve perd sa maison, et chacun a vu que le puissant pesait plus lourd que le roi."]}},texte:["Tu as remis la justice au fleuve, et voici sa première grande affaire. Un homme puissant, maître de trois greniers, accuse la veuve de son frère de sorcellerie : condamnée, sa maison lui revient. Nulle preuve, deux serments contraires. La ville entière attend de voir ce que vaut ta justice."],consigne:"Comment tranches-tu l'affaire de la veuve ?",renvois:[
+    {t:"Appliquer l'ordalie : que le fleuve divin décide.",juge:"risque",epreuve:{stats:["piete","sagesse"],seuil:8,aides:[{sceau:"Ordalie",d:1},{sceau:"Temple puissant",d:1}],entraves:[{sceau:"Prérogative royale",d:1}],ok:{eff:{legitimite:1,piete:1},reg:"Le fleuve a lavé la veuve.",txt:"Le fleuve rend la veuve, saine et lavée.",suite:["Devant la ville assemblée, la veuve entre dans le fleuve, et le fleuve la rend. Lavée par le dieu, elle reprend sa maison ; l'accusateur, selon la règle, répond de sa fausse accusation. Nul ne discute un verdict venu de l'eau."],impact:"L'ordalie du fleuve est attestée dans les codes mésopotamiens : faute de preuves, on s'en remettait au dieu-fleuve, et l'accusateur d'un innocent était lourdement puni."},penalite:{eff:{legitimite:-1,piete:-1},reg:"L'ordalie tourne au scandale.",txt:"Le courant emporte la veuve : la ville gronde.",suite:["Le courant est fort ce jour-là, et la veuve manque d'y rester ; on la repêche à demi noyée pendant que l'accusateur crie victoire. Verdict des dieux ou hasard des eaux ? La ville en débat encore, et ta justice avec elle."],impact:"L'ordalie remettait le verdict au hasard des eaux : elle réglait les affaires sans preuves, mais son résultat pouvait passer pour arbitraire et fragiliser la confiance dans la justice."}},cible:"amargi"},
+    {t:"Enquêter toi-même : témoins, registres, serments croisés.",juge:"bon",combat:true,cible:"amargi"},
     {t:"Donner raison au puissant : ses greniers servent ta cité.",juge:"risque",eff:{prosperite:1,legitimite:-2},sceau:"Ordre durci",reg:"La veuve a perdu sa maison.",suite:["Tu tranches pour le maître des greniers, et il sait s'en montrer reconnaissant : de l'orge pour tes réserves, des hommes pour tes chantiers. La veuve quitte sa maison sans un mot. La ville non plus ne dit rien. Mais elle compte."],impact:"Quand la justice favorisait les puissants, la confiance dans le roi s'effritait : les proclamations d'équité, comme celle d'Urukagina, répondaient justement à ces abus.",cible:"amargi"}]},
-  complot:{folio:"Épreuve · les couteaux",texte:["Tu as choisi de tout garder jusqu'au dernier souffle, et autour du trône, on s'impatiente. Un échanson trop pâle, des cousins qui chuchotent, ta garde qui change ses tours sans ordre. Ce soir, une servante glisse trois mots à ton oreille : ils ont juré ta mort."],consigne:"La conjuration se resserre : que fais-tu cette nuit ?",renvois:[
-    {t:"Frapper le premier : arrêter les conjurés avant l'aube.",juge:"risque",epreuve:{stats:["autorite","sagesse"],seuil:10,ok:{eff:{autorite:1,legitimite:-1},sceau:"Conjuration brisée",reg:"Les conjurés arrêtés avant l'aube.",txt:"Tes gardes cueillent les conjurés dans le noir.",suite:["Tu fais lever ta garde la plus sûre et cueillir les conjurés un à un, dans le noir, sans un cri. Au matin, la ville apprend d'un même souffle le complot et sa chute. On te craint davantage, on t'aime un peu moins."],impact:"Les complots de palais ont emporté plus d'un souverain mésopotamien : des textes évoquent des rois tués par leur entourage. Survivre au palais demandait des fidélités bien placées."},penalite:{eff:{autorite:-2,legitimite:-1},reg:"La nuit des arrestations tourne mal.",txt:"Tes ordres fuient : les conjurés t'échappent.",suite:["Quelqu'un a parlé : quand tes gardes enfoncent les portes, les chambres sont vides. Les conjurés courent la ville, plus dangereux que jamais, et chacun a vu que le roi avait frappé dans le vide. Le trône n'a jamais semblé si peu solide."],impact:"Un coup de force manqué contre des conjurés révélait la faiblesse du souverain : le pouvoir reposait autant sur la crainte inspirée que sur les armées."}},cibleFn:function(F){return evaluerFin(F);}},
+  complot:{folio:"Épreuve · les couteaux",combat:{stat:"autorite",advNom:"Les conjurés du palais",advApt:10,advPts:8,advLbl:"Ce qu'il leur reste de complices",jPts:6,jLbl:"Ce qu'il te reste de fidèles",
+      aides:[{sceau:"Héritier désigné",d:1},{sceau:"Loi équitable",d:1},{sceau:"Amargi proclamé",d:1}],
+      entraves:[{sceau:"Loi de fer",d:1},{sceau:"Prérogative royale",d:1},{sceau:"Ordre durci",d:1}],
+      win:{sceau:"Conjuration brisée",eff:{autorite:1,legitimite:-1},reg:"Les conjurés démasqués un à un.",
+        impact:"Les complots de palais ont emporté plus d'un souverain mésopotamien : des textes évoquent des rois tués par leur entourage. Survivre au palais demandait des fidélités bien placées, accumulées longtemps avant la nuit décisive.",
+        suite:["La nuit se joue nom par nom. Un échanson parle, une porte cède, un cousin s'enfuit et se fait prendre au dernier mur. Au matin, la ville apprend d'un même souffle le complot et sa chute. On te craint davantage, on t'aime un peu moins."]},
+      lose:{eff:{autorite:-2,legitimite:-1},reg:"La nuit des couteaux a tourné contre toi.",
+        impact:"Un coup de force manqué contre des conjurés révélait la faiblesse du souverain : le pouvoir reposait autant sur les fidélités patiemment nouées que sur la crainte inspirée.",
+        suite:["Chaque porte que tes gardes enfoncent s'ouvre sur une chambre vide : quelqu'un a parlé avant toi, et il a parlé plus vite. Les conjurés courent la ville, plus dangereux que jamais, et chacun a vu le roi frapper dans le vide. Le trône n'a jamais semblé si peu solide."]}},texte:["Tu as choisi de tout garder jusqu'au dernier souffle, et autour du trône, on s'impatiente. Un échanson trop pâle, des cousins qui chuchotent, ta garde qui change ses tours sans ordre. Ce soir, une servante glisse trois mots à ton oreille : ils ont juré ta mort."],consigne:"La conjuration se resserre : que fais-tu cette nuit ?",renvois:[
+    {t:"Frapper le premier : traquer les conjurés avant l'aube.",juge:"risque",combat:true,cibleFn:function(F){return evaluerFin(F);}},
     {t:"Acheter leur silence : or, terres et places au palais.",juge:"risque",eff:{prosperite:-2,autorite:-1},reg:"Les conjurés achetés se taisent, pour l'instant.",suite:["Tu convoques les meneurs un à un : des terres, de l'or, des charges au palais. Les couteaux rentrent aux fourreaux, les sourires reviennent, achetés. Tu règnes encore, mais tu sais désormais ce que coûte chaque saison de silence."],impact:"Acheter la paix au palais vidait le trésor et enseignait aux ambitieux que la menace payait : une solution qui repoussait le danger sans jamais l'éteindre.",cibleFn:function(F){return F.legitimite<=3?"nF_exil":evaluerFin(F);}},
     {t:"Pardonner en pleine assemblée, à visage découvert.",juge:"bon",eff:{legitimite:2,autorite:-1},reg:"Le pardon du roi désarme les couteaux.",suite:["Au matin, tu fais entrer les conjurés dans la grande cour. Devant la ville assemblée, tu les nommes un à un, puis tu leur rends ta main. Certains pleurent ; d'autres attendront leur heure. Mais ce jour-là, personne n'ose frapper un roi si sûr de lui."],impact:"Le pardon public était un pari de souverain : il transformait une faiblesse en démonstration de force morale, mais laissait vivre des rivaux qui pouvaient s'en souvenir.",cibleFn:function(F){return evaluerFin(F);}}]},
   nF_legislateur:{fin:true,folio:"Apogée",titre:"Le Législateur éternel",prose:["À ta mort, les scribes recopient ton code pour des millénaires ; tes canaux nourrissent encore des cités lointaines. Quatre mille ans plus tard, on déchiffrera ton nom sur l'argile. Tu n'as pas seulement régné : tu as fondé une civilisation."]},
@@ -905,10 +977,23 @@ function deltaBadges(eff){if(!eff)return [];return Object.keys(eff).filter(k=>ef
 function penInline(pen){const p=Object.keys(pen.eff||{}).filter(k=>pen.eff[k]).map(k=>`${LAB[k]} ${pen.eff[k]>0?'+':'−'}${Math.abs(pen.eff[k])}`);return p.length?p.join(", "):"un revers";}
 function ebsFor(r){
   const out=[];
+  if(r.combat){
+    const c=(F&&F.noeud&&STORY[F.noeud])?STORY[F.noeud].combat:null;
+    const ch=(F&&F.noeud)?combatChances(F.noeud):null;
+    out.push(`<span class="eb pari">Affrontement · issue favorable : ${ch===null?"?":ch+" %"}${c?" · "+LAB[c.stat]+" "+F[c.stat]:""}</span>`);
+    if(c){
+      const m=combatMods(c);
+      if(m.bd)out.push(`<span class="eb sceau pos">Ton règne t'aide : + ${m.bd}</span>`);
+      if(m.ad)out.push(`<span class="eb sceau neg">Ton règne arme l'adversaire : + ${m.ad}</span>`);
+    }
+  }
   if(r.lawref)out.push(`<span class="eb law ${r.lawnone?'none':''}">${r.lawref.charAt(0).toUpperCase()+r.lawref.slice(1)}</span>`);
   if(r.epreuve){
     const e=r.epreuve,pct=pReussite(epreuveMod(e),e.seuil||8);
     out.push(`<span class="eb pari">Réussite : ${pct} % · ${epreuveLabel(e)}</span>`);
+    const ts=epreuveSceaux(e);
+    if(ts.d>0)out.push(`<span class="eb sceau pos">Ton règne t'aide : + ${ts.d}</span>`);
+    if(ts.d<0)out.push(`<span class="eb sceau neg">Ton règne te nuit : − ${-ts.d}</span>`);
     deltaBadges(e.ok.eff).forEach(x=>out.push(x));
     out.push(`<span class="eb neg dim">si échec : ${penInline(e.penalite)}</span>`);
   }else{
@@ -1088,6 +1173,7 @@ function unlockNotice(b){
 }
 
 function choisir(r,btn){
+  if(r.combat){tenterCombat(r,btn);return;}
   if(r.epreuve){tenterEpreuve(r,btn);return;}
   gagneSceau(r.sceau);gagneSceau(r.sceau2);
   const b=snap();appliquer(r.eff);const diff=diffFrom(b);
@@ -1097,20 +1183,195 @@ function choisir(r,btn){
   rendreTablette(diff.changed,diff.deltas);
   impactModal({title:r.t,body:r.impact,unlock:unlockNotice(b),deltas:diff.deltas,onContinue:()=>finaliser(btn,r.cibleFn?r.cibleFn(F):r.cible,r.suite)});
 }
+function epreuveSceauxTxt(e){
+  const t=epreuveSceaux(e);
+  if(!t.aides.length&&!t.entraves.length)return "";
+  const a=t.aides.map(x=>`<b>${x.sceau}</b> +${x.d}`).join(", ");
+  const b=t.entraves.map(x=>`<b>${x.sceau}</b> −${x.d}`).join(", ");
+  const parts=[];
+  if(a)parts.push("ce que ton règne t'apporte : "+a);
+  if(b)parts.push("ce qu'il te coûte : "+b);
+  return parts.join(" ; ")+(t.plafonne?" (report plafonné à ±"+SCEAU_CAP+")":"")+".";
+}
 function epreuveDetail(e){
   const parts=statsOf(e).map(k=>`${LAB[k]} ${F[k]}`);
   if(e.mod)parts.push(`${LAB[e.mod]} ${F[e.mod]}`);
   return parts.join(", ");
 }
+/* ====== Affrontements : rondes de dés opposées ====== */
+function voirEl(el){if(el&&typeof el.scrollIntoView==="function"){try{el.scrollIntoView({block:"nearest",behavior:"smooth"});}catch(e){}}}
+function combatDegats(p,a){
+  let dj=0,da=0;const notes=[];
+  const pd=(p.d1===p.d2)?p.d1:0, ad=(a.d1===a.d2)?a.d1:0;
+  let decisif=false;
+  if(pd===6){da+=4;decisif=true;notes.push("doublé fatal : ton double-six compte double");}
+  if(pd===1){dj+=2;decisif=true;notes.push("doublé fatal : ton double-un te coûte la ronde");}
+  if(ad===6){dj+=4;decisif=true;notes.push("doublé fatal : son double-six compte double");}
+  if(ad===1){da+=2;decisif=true;notes.push("doublé fatal : son double-un le trahit");}
+  if(!decisif){
+    if(p.tot>a.tot)da+=2;
+    else if(a.tot>p.tot)dj+=2;
+    else notes.push("égalité : les forces s'équilibrent");
+  }
+  return {dj,da,notes};
+}
+function combatMods(c){
+  const aides=(c.aides||[]).filter(x=>F&&F.sceaux.has(x.sceau));
+  const entraves=(c.entraves||[]).filter(x=>F&&F.sceaux.has(x.sceau));
+  return {aides,entraves,bd:aides.reduce((s,x)=>s+x.d,0),ad:entraves.reduce((s,x)=>s+x.d,0)};
+}
+function simulerCombat(id,profil){
+  const c=STORY[id].combat;let j=c.jPts,a=c.advPts,r=0;
+  const pmod=((profil&&profil[c.stat])||8)+((profil&&profil._bd)||0),amod=c.advApt+((profil&&profil._ad)||0);
+  while(j>0&&a>0&&r<80){r++;
+    const p={d1:d6(),d2:d6()},q={d1:d6(),d2:d6()};
+    p.tot=p.d1+p.d2+pmod;q.tot=q.d1+q.d2+amod;
+    const g=combatDegats(p,q);j-=g.dj;a-=g.da;}
+  return {win:a<=0&&j>0,rondes:r};
+}
+let CB=null;
+function czPts(cur,max,me){
+  let s="";for(let i=0;i<max;i++)s+=`<i class="${i<cur?'on':''}"></i>`;
+  return s;
+}
+function czMaj(){
+  const j=$("#czj"),a=$("#cza");
+  if(j)j.innerHTML=czPts(Math.max(0,CB.j),CB.c.jPts,true);
+  if(a)a.innerHTML=czPts(Math.max(0,CB.a),CB.c.advPts,false);
+}
+function czLog(html,cls){
+  const l=$("#czlog");if(!l)return;
+  const d=document.createElement("div");d.className="lg"+(cls?" "+cls:"");d.innerHTML=html;
+  l.prepend(d);
+}
+const CH_CACHE={};
+function combatChances(id){
+  const c=STORY[id]&&STORY[id].combat;if(!c||!F)return null;
+  const m=combatMods(c);
+  const cle=id+"|"+F[c.stat]+"|"+m.bd+"|"+m.ad;
+  if(CH_CACHE[cle]!==undefined)return CH_CACHE[cle];
+  const profil={};profil[c.stat]=F[c.stat];profil._bd=m.bd;profil._ad=m.ad;
+  let g=0;const N=800;
+  for(let i=0;i<N;i++){if(simulerCombat(id,profil).win)g++;}
+  return CH_CACHE[cle]=Math.round(100*g/N);
+}
+function tenterCombat(r,btn){
+  const n=STORY[F.noeud],c=n.combat;if(!c)return;
+  const m=combatMods(c);
+  CB={n,c,r,btn,m,j:c.jPts,a:c.advPts,rd:0,relance:false,fini:false};
+  document.querySelectorAll("#renvois .renvoi").forEach(x=>x.disabled=true);
+  const cell=$("#qual-"+c.stat);if(cell)cell.classList.add("flash");
+  const aidesHtml=(m.aides.length||m.entraves.length)?`<div class="cz-aides">${m.aides.map(x=>`<b>${x.sceau}</b> te donne +${x.d}`).join(" · ")}${m.aides.length&&m.entraves.length?" · ":""}${m.entraves.map(x=>`<b>${x.sceau}</b> arme l'adversaire de +${x.d}`).join(" · ")}</div>`:"";
+  const dz=$("#dicezone");dz.classList.add("show");
+  dz.innerHTML=`<div class="cz">
+    <div class="dz-explain"><div class="dz-rule">À chaque ronde, chacun lance 2 dés et y ajoute son aptitude : le plus haut total fait perdre <b>2 points</b> à l'autre. <b>Doublé fatal</b> : un double-six inflige 4 points quel que soit le total, un double-un fait perdre la ronde à celui qui l'obtient. La première jauge à zéro perd l'affrontement.</div></div>
+    <div class="cz-duel">
+      <div class="cz-side me"><span class="cz-n">${esc(F.nom)}</span><span class="cz-apt">${LAB[c.stat]} ${F[c.stat]}${m.bd?` + ${m.bd}`:""}</span><div class="cz-lbl">${c.jLbl}</div><div class="cz-pts" id="czj"></div></div>
+      <div class="cz-vs">contre</div>
+      <div class="cz-side adv"><span class="cz-n">${c.advNom}</span><span class="cz-apt">Aptitude ${c.advApt}${m.ad?` + ${m.ad}`:""}</span><div class="cz-lbl">${c.advLbl}</div><div class="cz-pts" id="cza"></div></div>
+    </div>
+    ${aidesHtml}
+    <div class="cz-dice">
+      <div class="cz-dr">toi <span class="die" id="cd1">${dieFace()}</span><span class="die" id="cd2">${dieFace()}</span><b id="czpt"></b></div>
+      <div class="cz-dr">lui <span class="die" id="ce1">${dieFace()}</span><span class="die" id="ce2">${dieFace()}</span><b id="czat"></b></div>
+    </div>
+    <div class="cz-log" id="czlog"></div>
+    <button class="btn-ink cz-roll" id="czroll">Lancer les dés · ronde 1</button>
+  </div>`;
+  czMaj();
+  $("#czroll").onclick=()=>{audioInit();audioResume();czTour();};
+  voirEl(dz);
+}
+function czMontrerDes(p,q,cb){
+  const ids=[["cd1",p.d1],["cd2",p.d2],["ce1",q.d1],["ce2",q.d2]];
+  ids.forEach(([id])=>{const el=$("#"+id);if(el){el.classList.remove("settle");el.classList.add("tumbling");}});
+  let ticks=0;const iv=setInterval(()=>{
+    ids.forEach(([id])=>{const el=$("#"+id);if(el)el.innerHTML=dieFace(d6());});
+    sfxClack();
+    if(++ticks<7)return;
+    clearInterval(iv);
+    ids.forEach(([id,v])=>{const el=$("#"+id);if(el){el.classList.remove("tumbling");el.innerHTML=dieFace(v);el.classList.add("settle");}});
+    const pt=$("#czpt"),at=$("#czat");
+    if(pt)pt.textContent="= "+p.tot;
+    if(at)at.textContent="= "+q.tot;
+    setTimeout(cb,340);
+  },78);
+}
+function czTour(){
+  if(!CB||CB.fini)return;
+  const c=CB.c,m=CB.m,rb=$("#czroll");
+  if(rb){rb.disabled=true;rb.textContent="Les dés roulent…";}
+  const old=$("#czfavor");if(old)old.remove();
+  CB.rd++;
+  const p={d1:d6(),d2:d6()},q={d1:d6(),d2:d6()};
+  p.tot=p.d1+p.d2+F[c.stat]+m.bd;q.tot=q.d1+q.d2+c.advApt+m.ad;
+  CB.p=p;CB.q=q;
+  czMontrerDes(p,q,()=>{
+    const g=combatDegats(p,q);
+    if(g.dj>0&&!CB.relance&&F.faveurs>0&&CB.j-g.dj>0){czOffrirRelance(g);return;}
+    czAppliquer(g,false);
+  });
+}
+function czOffrirRelance(g){
+  const dz=$("#dicezone");if(!dz)return;
+  const div=document.createElement("div");div.id="czfavor";div.className="cz-favor";
+  div.innerHTML=`<p>La ronde tourne contre toi : tu perds <b>${g.dj}</b> point${g.dj>1?"s":""}. Tu peux <b>implorer les dieux</b> et relancer tes dés, une seule fois par affrontement.</p><div class="dz-favor-b"><button type="button" class="btn-ink" id="czfy">Implorer les dieux · faveur −1</button><button type="button" class="btn-ink" id="czfn">Accepter le sort</button></div>`;
+  dz.querySelector(".cz").appendChild(div);voirEl(div);
+  $("#czfy").onclick=()=>{
+    CB.relance=true;F.faveurs=Math.max(0,F.faveurs-1);rendreTablette();sfxUnlock();div.remove();
+    const c=CB.c,m=CB.m;
+    const p={d1:d6(),d2:d6()};p.tot=p.d1+p.d2+F[c.stat]+m.bd;CB.p=p;
+    czLog("Les dieux entendent : tu relances tes dés.","");
+    czMontrerDes(p,CB.q,()=>czAppliquer(combatDegats(p,CB.q),true));
+  };
+  $("#czfn").onclick=()=>{div.remove();czAppliquer(g,false);};
+}
+function czAppliquer(g,relance){
+  CB.j-=g.dj;CB.a-=g.da;czMaj();
+  const bits=[];
+  if(g.da>0)bits.push(`l'adversaire perd <b>${g.da}</b>`);
+  if(g.dj>0)bits.push(`tu perds <b>${g.dj}</b>`);
+  if(!g.da&&!g.dj)bits.push("personne ne cède");
+  const note=g.notes.length?` · ${g.notes.join(" · ")}`:"";
+  czLog(`Ronde ${CB.rd} : ${CB.p.tot} contre ${CB.q.tot}, ${bits.join(", ")}${note}`,g.da>g.dj?"win":(g.dj>g.da?"lose":""));
+  if(g.da>g.dj)sfxSuccess();else if(g.dj>g.da)sfxFail();else sfxClack();
+  if(CB.a<=0&&CB.j>0){czFinir(true);return;}
+  if(CB.j<=0){czFinir(false);return;}
+  const rb=$("#czroll");if(rb){rb.disabled=false;rb.textContent=`Lancer les dés · ronde ${CB.rd+1}`;voirEl(rb);}
+}
+function czFinir(win){
+  CB.fini=true;
+  F._combats=(F._combats||0)+1;
+  if(win)F._combatsWin=(F._combatsWin||0)+1;else F._echecs=(F._echecs||0)+1;
+  const out=win?CB.c.win:CB.c.lose,b=snap();
+  gagneSceau(out.sceau);appliquer(out.eff);
+  if(out.reg)F.registre.push(out.reg);
+  F.journal.push({t:CB.r?CB.r.t:"Affrontement",juge:win?(CB.r&&CB.r.juge||"bon"):"risque"});
+  const diff=diffFrom(b);rendreTablette(diff.changed,diff.deltas);
+  const cell=$("#qual-"+CB.c.stat);if(cell)cell.classList.remove("flash");
+  sfxFin(win);
+  const maudit=!win&&(F._echecs||0)>=MALCHANCE;
+  const dest=out.cible||(CB.r&&CB.r.cibleFn?CB.r.cibleFn(F):(CB.r?CB.r.cible:null));
+  const btn=CB.btn,cible=maudit?"nF_maudit":dest,suite=maudit?null:out.suite;
+  impactModal({kicker:win?"L'affrontement tourne en ta faveur":"L'affrontement t'échappe",
+    title:CB.c.advNom,
+    body:out.impact+(maudit?" C'est ton troisième revers : dans la cité, on murmure que les dieux ont retiré leur main de ton règne.":(!win&&(F._echecs||0)===MALCHANCE-1?" C'est ton deuxième revers. Les prêtres froncent les sourcils : au prochain, la cité te tiendra pour maudit.":"")),
+    deltas:diff.deltas,
+    onContinue:()=>{const dz=$("#dicezone");if(dz){dz.classList.remove("show");dz.innerHTML="";}CB=null;finaliser(btn,cible,suite);}});
+}
+/* ====== fin des affrontements ====== */
 function tenterEpreuve(r,btn){
   gagneSceau(r.sceau);gagneSceau(r.sceau2);appliquer(r.eff);
   const e=r.epreuve,mod=epreuveMod(e),seuil=e.seuil||8,pct=pReussite(mod,seuil);
-  const raw=epreuveRaw(e),plafonne=raw>mod;
-  const modTxt=(mod>=0?`+ ${mod}`:`− ${-mod}`)+(plafonne?" (plafonné)":"");
+  const modApt=epreuveModApt(e),ts=epreuveSceaux(e);
+  const raw=epreuveRaw(e),plafonne=raw>modApt;
+  const sgn=v=>v>=0?`+ ${v}`:`− ${-v}`;
+  const aptTxt=sgn(modApt)+(plafonne?" (plafonné)":"");
+  const modTxt=sgn(mod);
   document.querySelectorAll("#renvois .renvoi").forEach(x=>x.disabled=true);
   const flashes=statsOf(e).map(k=>$("#qual-"+k)).filter(Boolean);flashes.forEach(el=>el.classList.add("flash"));
   const dz=$("#dicezone");dz.classList.add("show");
-  dz.innerHTML=`<div class="dz-live"><div class="dz-explain"><div class="dz-rule">Lance 2 dés (de 2 à 12) et ajoute le bonus que te donnent tes qualités. Il faut atteindre <b>${seuil}</b> pour réussir. Plus une qualité dépasse 9, meilleur est le bonus, mais celui-ci est <b>plafonné</b> : même le plus grand roi peut être trahi par le sort, et un double-un échoue toujours, et les dieux comptent tes revers : au troisième, ton règne est maudit.${F.faveurs>0?" Si le sort te trahit, tu pourras <b>implorer les dieux</b> et relancer, une seule fois par épreuve.":""}</div><div class="dz-calc">Qualités en jeu : ${epreuveDetail(e)}. Bonus appliqué : <b>${modTxt}</b>. Chances de réussite : <b>${pct} %</b>.</div></div><div class="dz-roll"><span class="die" id="d1">${dieFace(0)}</span><span class="die" id="d2">${dieFace(0)}</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div></div>`;
+  dz.innerHTML=`<div class="dz-live"><div class="dz-explain"><div class="dz-rule">Lance 2 dés (de 2 à 12), ajoute le bonus que te donnent tes qualités, puis le report de ton règne : les sceaux que tu as gagnés jusqu'ici peuvent t'aider ou te nuire. Il faut atteindre <b>${seuil}</b> pour réussir. Plus une qualité dépasse 9, meilleur est le bonus, mais celui-ci est <b>plafonné</b> : même le plus grand roi peut être trahi par le sort, et un double-un échoue toujours, et les dieux comptent tes revers : au troisième, ton règne est maudit.${F.faveurs>0?" Si le sort te trahit, tu pourras <b>implorer les dieux</b> et relancer, une seule fois par épreuve.":""}</div><div class="dz-calc">Qualités en jeu : ${epreuveDetail(e)}. Bonus des qualités : <b>${aptTxt}</b>.${ts.d?` Report de ton règne : <b>${sgn(ts.d)}</b>.`:""} Total appliqué : <b>${modTxt}</b>${mod!==modApt+ts.d?" (plafonné : le sort garde toujours sa part)":""}. Chances de réussite : <b>${pct} %</b>.</div>${epreuveSceauxTxt(e)?`<div class="dz-sceaux">${epreuveSceauxTxt(e)}</div>`:""}</div><div class="dz-roll"><span class="die" id="d1">${dieFace(0)}</span><span class="die" id="d2">${dieFace(0)}</span><button class="btn-ink" id="rollbtn">Lancer les dés</button></div></div>`;
   let favUsed=false;
   const offrirFaveur=(a,bb,score)=>{
     const old=$("#dzfavor");if(old)old.remove();
@@ -1329,7 +1590,7 @@ function rendre(flash){
         ?`<button class="modal-btn" id="srcclose">Fermer la source</button>`
         :`<span class="src-timer" id="srctimer">Prends le temps de l'étudier… <b id="srcnum">${READ_LOCK}</b> s</span><button class="modal-btn" id="srcclose" disabled>Patiente…</button>`;
       const quizView=(!studied&&s.q)?`<div class="srcqv off" id="srcquizview"><div class="sq-h">Vérifie ta lecture</div><p class="sq-q">${s.q.txt}</p><div class="sq-ch" id="sqch"></div><p class="sq-hint" id="sqhint"></p><button type="button" class="swapbtn" id="sqback">↑ Revoir la source</button></div>`:"";
-      m.innerHTML=`<div class="modal-card wide srcmodal"><div class="modal-k">Source à consulter</div><div class="srcview" id="srcview">${plate(s)}<button type="button" class="swapbtn off" id="sqfwd">Répondre à la question ↓</button></div>${quizView}<div class="src-foot">${foot}</div></div>`;
+      m.innerHTML=`<div class="modal-card wide srcmodal"><div class="modal-k">Source à consulter</div><div class="srcview" id="srcview">${plate(s)}<button type="button" class="swapbtn primo off" id="sqfwd">Répondre à la question ↓</button></div>${quizView}<div class="src-foot">${foot}</div></div>`;
       m.classList.add("show");
       const close=()=>{m.classList.remove("show");m.innerHTML="";};
       if(studied){$("#srcclose").onclick=close;return;}
