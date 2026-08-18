@@ -76,10 +76,11 @@ narrative** (le récit, à gauche), **Décision royale** (le choix, à droite) e
   **« Rends-toi au §N »** qui ouvre la table des sections pour tourner la page.
 
 À chaque page : les choix restent **verrouillés tant que la source n'a pas été
-étudiée**. Cliquer **Consulter la source** l'ouvre en **pop-up** avec un **chrono
-de 6 secondes** ; au terme du chrono, la fenêtre **bascule** vers une **question
-de vérification à trois choix** (mélangés) qui occupe tout le cadre — **aucun
-défilement**. Un lien « ↑ Revoir la source » permet d'alterner à volonté entre
+étudiée**. Cliquer **Consulter la source** l'ouvre en **pop-up**, sans minuterie :
+la source reste affichée aussi longtemps que l'élève en a besoin. Le bouton
+**« Répondre à la question ↓ »**, mis en évidence, bascule vers une **question
+de vérification à trois choix** (mélangés) qui occupe tout le cadre, sans
+défilement. Le verrou pédagogique est la question, jamais le temps. Un lien « ↑ Revoir la source » permet d'alterner à volonté entre
 la source et la question. Bonne réponse, les choix se déverrouillent ; erreur,
 un **indice bienveillant** renvoie à la source et l'élève réessaie **sans
 pénalité**. La source reste ensuite **rouvrable à volonté** (« Revoir la

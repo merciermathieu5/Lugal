@@ -480,17 +480,25 @@ function smoke(){
     try { return !!fn(); } catch (e) { return false; }
   };
   setTimeout(async () => {
-    // La bascule vers la question peut prendre quelques ms de plus que le chrono
-    await waitFor(() => $("#srcquizview") && !$("#srcquizview").classList.contains("off"), 3000);
-    ok(!$("#srcquizview").classList.contains("off"), "la question n'apparaît pas après le chrono");
-    ok($("#srcview").classList.contains("off"), "la source devrait s'effacer au profit de la question");
+    // Aucun chrono : la source reste affichée tant que l'élève ne demande pas la question
+    ok(!$("#srcview").classList.contains("off"), "la source devrait rester affichée à l'ouverture");
+    ok($("#srcquizview").classList.contains("off"), "la question ne devrait pas s'afficher d'elle-même");
+    ok(!$("#sqfwd").classList.contains("off"), "le bouton « Répondre à la question » devrait être disponible tout de suite");
+    ok(!/\bs\b|[0-9]/.test($("#srctimer").textContent), "aucun compte à rebours ne devrait subsister");
+    ok(!$("#srcnum"), "le compteur de secondes ne devrait plus exister");
     ok($("#srcclose").disabled, "le bouton se déverrouille sans réponse au quiz");
     ok(ev("F._quizTotal") === 1, "F._quizTotal ≠ 1");
 
-    // Bascule : revoir la source, puis revenir à la question
+    // La source tient dans la durée : elle ne bascule pas toute seule
+    await wait(1400);
+    ok(!$("#srcview").classList.contains("off"), "la source s'est refermée toute seule après un délai");
+    ok($("#srcquizview").classList.contains("off"), "la question s'est ouverte toute seule après un délai");
+
+    // Bascule : c'est l'élève qui décide, dans les deux sens
+    $("#sqfwd").click();
+    ok($("#srcview").classList.contains("off") && !$("#srcquizview").classList.contains("off"), "le passage à la question ne fonctionne pas");
     $("#sqback").click();
     ok(!$("#srcview").classList.contains("off") && $("#srcquizview").classList.contains("off"), "« Revoir la source » ne rebascule pas");
-    ok(!$("#sqfwd").classList.contains("off"), "le bouton « Répondre à la question » est absent");
     $("#sqfwd").click();
     ok($("#srcview").classList.contains("off") && !$("#srcquizview").classList.contains("off"), "le retour à la question ne fonctionne pas");
 
