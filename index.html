@@ -805,6 +805,54 @@ body.finstate .leaf .signet{display:inline-block}
   .cnav button{padding:6px 16px;font-size:14px}
 }
 
+/* ---- C v5 · la vue Histoire est un vrai livre : une page par section ---- */
+body.playing:not(.finstate):not(.cvue-dec) .stage{display:flex;flex-direction:column;overflow:hidden}
+body.playing:not(.finstate):not(.cvue-dec) .book{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+body.playing:not(.finstate):not(.cvue-dec) .pages{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+body.playing:not(.finstate):not(.cvue-dec) .leaf-l{flex:1 1 auto;min-height:0;overflow:hidden}
+body.playing:not(.finstate):not(.cvue-dec) .story{flex:1 1 auto;min-height:0;overflow:hidden}
+body.playing:not(.finstate):not(.cvue-dec) .leafnav{display:flex;flex:0 0 auto;margin-top:6px;padding-top:7px}
+body.playing:not(.finstate):not(.cvue-dec) .cgo{flex:0 0 auto;margin:10px auto 0}
+/* ---- C v5 · coin des dés compact : la règle se déplie au besoin ---- */
+body.playing:not(.finstate) #dicezone.show{top:100px;bottom:70px}
+#dicezone details.dz-regle{border:1px solid #5a4427;border-radius:10px;padding:6px 10px;background:rgba(255,248,230,.04)}
+#dicezone details.dz-regle summary{cursor:pointer;color:#e7c66a;font-family:"IM Fell English SC",serif;font-size:13.5px;letter-spacing:.04em;list-style:none}
+#dicezone details.dz-regle summary::before{content:"+ ";font-weight:bold}
+#dicezone details.dz-regle[open] summary::before{content:"− "}
+#dicezone details.dz-regle .dz-rule{margin-top:6px}
+#dicezone:has(#dzfavor) .dz-explain,#dicezone:has(#czfavor) .dz-explain{display:none}
+body.playing #leafno{display:none}
+#dicezone .cz-duel{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#dicezone .cz-vs{display:none}
+#dicezone .cz-side{padding:6px 8px}
+#dicezone .cz-n{font-size:13px;line-height:1.2}
+#dicezone .cz-apt{margin:1px 0 3px}
+#dicezone .cz-dice{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#dicezone .cz-dr{gap:4px}
+#dicezone .cz-dr .die{width:30px;height:30px}
+#dicezone .cz-log{max-height:none;overflow:hidden}
+#dicezone .cz-log .lg:nth-child(n+3){display:none}
+#dicezone:has(#czfavor) .cz-log .lg:nth-child(n+2){display:none}
+#dicezone:has(#czfavor) #czroll{display:none}
+#dicezone .cz-favor{background:#efe2c8;color:#2b2316;border:none;border-radius:10px;padding:8px 10px}
+#dicezone .cz-favor p{margin:0 0 6px}
+#dicezone .cz-favor .dz-favor-b{gap:6px}
+#dicezone .cz-favor .btn-ink{padding:9px 12px;font-size:14.5px}
+/* ---- C v5 · photo et explication côte à côte sur grand écran ---- */
+@media(min-width:960px){
+.plate:has(.uxphoto):not(:has(.clay)){display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:6px 16px;align-items:start}
+.plate:has(.uxphoto):not(:has(.clay)) .plate-h{grid-column:1/-1}
+.plate:has(.uxphoto):not(:has(.clay)) .uxphoto{grid-column:1;grid-row:2;margin:0;max-width:none}
+.plate:has(.uxphoto):not(:has(.clay)) .plate-read{grid-column:2;grid-row:2;margin:0}
+.plate:has(.uxphoto) .uxphoto img{max-height:30vh}
+.plate:has(.uxphoto):not(:has(.clay)) .uxphoto img{max-height:36vh}
+}
+.leafnav button{font-size:14px;padding:8px 16px;border-radius:999px}
+.leafnav button:not(:disabled){background:#efe2c8;color:#2c2216;border-color:#b89a5e}
+.leafnav .pos{font-size:14px}
+.para.past .pt{color:var(--ink)}
+.para{margin:0 0 6px}
+
 </style>
 </head>
 <body>
@@ -2143,7 +2191,7 @@ const _uxTab=rendreTablette;rendreTablette=function(ch,de){_uxTab(ch,de);uxMajHu
 const _uxEnable=enableOpen;enableOpen=function(){_uxEnable();uxMajSteps();};
 const _uxFin=finaliser;finaliser=function(b,c,s){_uxFin(b,c,s);uxMajSteps();};
 
-computePages=function(){const t=(F&&F.histoire.length)||0;return [Array.from({length:t},(_,i)=>i)];};
+
 document.querySelector('.topbar').insertAdjacentHTML('afterend',
  '<div class="cnav" id="cnav"><button type="button" id="ctab1" class="on"><b>1</b> L\'histoire</button><button type="button" id="ctab2"><b>2</b> Ta décision</button></div>');
 document.body.insertAdjacentHTML('beforeend','<div id="uxhud"></div>');
@@ -2195,7 +2243,7 @@ const _uxApresC=UX_APRES;UX_APRES=function(){_uxApresC();uxObsDes();};
 /* ---- C v3 : la trace réelle, photos documentaires du dossier medias/ du dépôt ---- */
 const UX_IMG_BASE="medias/";
 const UX_IMAGES={
- carte:{f:"carte-mesopotamie.png",l:"La Mésopotamie et le Croissant fertile, entre le Tigre et l'Euphrate",c:"muniverssocial.ca"},
+ carte:{f:"carte-mesopotamie.png",l:"La Mésopotamie et le Croissant fertile, entre le Tigre et l'Euphrate",c:"muniverssocial.ca",k:"Carte"},
  fleuves:{f:"crue-delta-satellite.jpg",l:"Le delta du Tigre et de l'Euphrate vu de l'espace : la vie verte suit l'eau des fleuves",c:"NASA/JPL/UCSD/JSC, domaine public"},
  lagash:{f:"tablette-cuneiforme.jpg",l:"Tablette cunéiforme enregistrant des rations d'orge",c:"muniverssocial.ca"},
  edubbaTexte:{f:"scribe.jpg",l:"Statue du scribe sumérien Dudu, réplique du musée de Sulaymaniyah",c:"muniverssocial.ca"},
@@ -2203,14 +2251,31 @@ const UX_IMAGES={
  ziggourat:{f:"ziggourat-ur.jpg",l:"La ziggourat d'Ur, en Irak",c:"muniverssocial.ca"},
  animisme:{f:"vase-uruk.jpg",l:"Le vase d'Uruk, une procession d'offrandes à la déesse de la cité",c:"muniverssocial.ca"},
  commerce:{f:"lapis-lazuli.jpg",l:"Le lapis-lazuli, importé de la vallée de l'Indus",c:"muniverssocial.ca"},
- etendard:{f:"etendard-ur.jpg",l:"L'Étendard d'Ur, face de la Paix",c:"muniverssocial.ca"}
+ etendard:{f:"etendard-ur.jpg",l:"L'Étendard d'Ur, face de la Paix",c:"muniverssocial.ca"},
+ calculi:{f:"bulle-calculi.jpg",l:"Bulle-enveloppe d'argile et ses jetons de comptage (calculi), Suse, fin du 4e millénaire av. J.-C., musée du Louvre",c:"Marie-Lan Nguyen, Wikimedia Commons, domaine public"},
+ pictogrammes:{f:"tablettes-proto-cuneiformes.jpg",l:"Tablettes de la fin de la période d'Uruk : chiffres seuls à gauche, chiffres et signes au centre, premiers signes d'écriture à droite",c:"Daderot et Zunkir, Wikimedia Commons, CC0"},
+ sceau:{f:"sceau-cylindre.jpg",l:"Sceau-cylindre et son empreinte moderne : un fidèle verse une libation devant un dieu assis, Nippur, vers 2100 av. J.-C.",c:"Metropolitan Museum of Art, CC0"},
+ cadastre:{f:"kudurru-melishipak.jpg",l:"Kudurru du roi Melishipak, vers 1180 av. J.-C. : cette pierre de bornage garde la trace d'une donation de terres",c:"Musée du Louvre, Wikimedia Commons, domaine public"},
+ barque:{f:"barque-argent-ur.jpg",l:"Modèle de barque en argent, tombe PG 789 du cimetière royal d'Ur, vers 2600-2500 av. J.-C.",c:"Hall et Woolley, Wikimedia Commons, aucune restriction de droits connue"},
+ ishtar:{f:"porte-ishtar.jpg",l:"La porte d'Ishtar de Babylone, bâtie vers 575 av. J.-C. et reconstruite au musée de Pergame à Berlin",c:"Sinoulpgc, Wikimedia Commons, CC0"},
+ bronze:{f:"tete-akkadienne.jpg",l:"Tête d'un souverain akkadien coulée en alliage de cuivre, Ninive, vers 2250 av. J.-C.",c:"Hans Ollermann, Wikimedia Commons, CC BY-SA 2.0"},
+ roue:{f:"etendard-ur-guerre.jpg",l:"L'Étendard d'Ur, face de la Guerre : des chars à roues pleines tirés par des équidés, vers 2600 av. J.-C.",c:"British Museum, Wikimedia Commons, domaine public"},
+ codeTexte:{f:"code-ur-nammu.jpg",l:"Tablette portant le code d'Ur-Nammu, l'un des plus anciens recueils de lois connus (vers 2100 av. J.-C.), musée archéologique d'Istanbul",c:"Musées archéologiques d'Istanbul, Wikimedia Commons, CC0"},
+ gilgamesh:{f:"heros-lion-khorsabad.jpg",l:"Héros maîtrisant un lion, palais de Sargon II à Khorsabad, vers 710 av. J.-C. : on l'identifie souvent à Gilgamesh, sans certitude",c:"Musée du Louvre, Wikimedia Commons, domaine public"},
+ deluge:{f:"tablette-deluge.jpg",l:"La tablette du Déluge, onzième tablette de l'épopée de Gilgamesh, bibliothèque d'Assurbanipal, 7e siècle av. J.-C., British Museum",c:"Wikimedia Commons, CC0"},
+ amargiTexte:{f:"cone-urukagina.jpg",l:"Cône d'argile du roi Urukagina de Lagash, qui y décrit ses réformes contre les abus, vers 2350 av. J.-C., musée du Louvre",c:"Wikimedia Commons, domaine public"},
+ corveeTexte:{f:"figurine-ur-nammu.jpg",l:"Figurine de fondation du roi Ur-Nammu portant le panier de terre du chantier, vers 2100 av. J.-C.",c:"Metropolitan Museum of Art, CC0"},
+ jardins:{f:"jardins-ninive.jpg",l:"Relief assyrien du palais d'Assurbanipal à Ninive : un parc en pente irrigué par un aqueduc et des canaux (photo brute et version colorée)",c:"Gary Todd et Carole Raddato, Wikimedia Commons, CC BY-SA 2.0"},
+ savoirTexte:{f:"ybc-7289.jpg",l:"La tablette YBC 7289 : la racine carrée de 2 calculée en base soixante, vers 1800-1600 av. J.-C.",c:"Yale Peabody Museum, Wikimedia Commons, CC0"}
 };
 const _uxPlate=plate;plate=function(s){
   let out=_uxPlate(s);
   const k=Object.keys(UX_IMAGES).find(x=>SRC[x]===s);
   if(!k)return out;
   const im=UX_IMAGES[k];
-  if(!s.doc)out=out.replace(/<div class="illus">[\s\S]*?<\/div>/,"");
+  if(!s.doc){out=out.replace(/<div class="illus">[\s\S]*?<\/div>/,"")
+    .replace(/<span class="plate-kind">[^<]*<\/span>/,'<span class="plate-kind">'+(im.k||"Photographie")+'</span>')
+    .replace(/Gravure originale\.\s*Elle /,"Ce relief ").replace(/Gravure originale\.\s*/,"");}
   const fig='<figure class="uxphoto"><img loading="lazy" src="'+UX_IMG_BASE+im.f+'" alt="'+im.l+'"><figcaption><b>La trace réelle</b> · '+im.l+'<span class="uxprov">Photo : '+im.c+'</span></figcaption></figure>';
   const i=out.lastIndexOf('</div>');
   return out.slice(0,i)+fig+out.slice(i);
@@ -2230,6 +2295,16 @@ document.addEventListener('wheel',e=>{
     ||document.querySelector('.stage');
   if(cible)cible.scrollTop+=e.deltaY;
 },{passive:true});
+
+/* ---- C v5 : une section par page ; la plus récente s'ouvre d'office ---- */
+computePages=function(){const t=(F&&F.histoire.length)||0;return t?Array.from({length:t},(_,i)=>[i]):[[]];};
+/* ---- C v5 : la règle des dés se replie sous « Comment se joue ce lancer ? » ---- */
+(function(){const pg=document.getElementById('pages');if(!pg)return;
+  new MutationObserver(()=>{pg.querySelectorAll('#dicezone .dz-rule').forEach(r=>{if(r.closest('details'))return;
+    const d=document.createElement('details');d.className='dz-regle';
+    d.innerHTML='<summary>'+(r.closest('.cz')?'Comment se joue ce duel ?':'Comment se joue ce lancer ?')+'</summary>';
+    r.parentNode.insertBefore(d,r);d.appendChild(r);});}).observe(pg,{childList:true,subtree:true});})();
+
 
 </script>
 </body>

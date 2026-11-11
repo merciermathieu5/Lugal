@@ -152,8 +152,10 @@ function main(){
     });
     ok(IMGMAP[k] ? photos.length === 1 : photos.length === 0,
        `photos documentaires incohérentes pour ${k} (${photos.length} rendue(s))`);
-    if (IMGMAP[k] && !SRC[k].doc)
+    if (IMGMAP[k] && !SRC[k].doc){
       ok(!/class="illus"/.test(brut), `le schéma devrait s'effacer devant la photo documentaire pour ${k}`);
+      ok(!/Illustration originale|Gravure originale/.test(brut), `la planche ${k} se dit encore « originale » alors qu'elle montre une photo`);
+    }
     const out = brut.replace(/<figure class="uxphoto">[\s\S]*?<\/figure>/g, "");
     ok(!/SOURCES\.md/.test(out), `mention « SOURCES.md » dans la source ${k}`);
     ok(!/crédits/.test(out), `mention « crédits » dans la source ${k}`);
