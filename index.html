@@ -718,6 +718,93 @@ body.playing:not(.finstate) #progress::before{color:#a89878}
 .cback{font-size:14.5px}
 .cnav button{font-size:15.5px}
 
+/* ---- C v4 · confort vertical : calibré pour les fenêtres basses ---- */
+body{padding-bottom:60px}
+.cnav{padding:2px 0 6px}
+.cnav button{padding:8px 20px}
+.icard{padding:8px 36px 12px}
+.ibanner svg{height:70px;width:auto;display:block;margin:0 auto}
+.iwm{font-size:42px}
+.isub{margin:2px 0 6px}
+.ireal{margin:0 0 8px}
+.ihook{margin:0 auto 8px}
+.ifacts{margin:0 0 8px}
+.hcards{gap:8px;margin:0 0 8px}
+.hcard{padding:10px 12px}
+.idoom{padding:7px 10px;margin:0 0 8px}
+.icta{padding:12px;font-size:17px}
+.fcard{padding:10px 26px 12px}
+.fcard .wm{font-size:24px;margin:0}
+.fcard .k{margin:0 0 2px}
+.fcard h2{font-size:21px;margin:2px 0 4px}
+.fcard>p{font-size:14px;line-height:1.38;margin:0 0 8px}
+#nom{padding:8px 10px;font-size:17px}
+.flabel{margin:4px 0 2px}
+.pool{margin:0 0 4px}
+.arow{padding:6px 10px}
+.arow .ad{font-size:13px;line-height:1.35}
+.arow .av{font-size:19px}
+.stepper button{width:36px;height:36px;font-size:18px}
+.fcta{padding:11px;font-size:16px;margin-top:5px}
+.fmeta{margin-top:6px}
+.leaf{padding:13px 26px 13px}
+.leaf .signet{margin:0 0 7px;padding:5px 12px;font-size:12px}
+.rhead{margin-bottom:6px;padding-bottom:4px}
+.consigne{font-size:20px;margin:0 0 6px;padding-bottom:4px}
+.consult-btn{padding:9px 16px;font-size:15px}
+.locknote{padding:5px 10px;margin:2px 0 4px;font-size:15px}
+#renvois .renvoi{padding:7px 10px;margin-bottom:5px;font-size:17px}
+.eb{padding:2px 6px}
+.cback{margin:0 0 4px}
+.cgo{margin:14px auto 2px;padding:12px 28px;font-size:16px}
+.modal-card{padding:14px 20px;max-height:96vh}
+.modal-k{margin-bottom:4px}
+.illus svg{max-height:34vh;width:auto;max-width:100%;display:block;margin:0 auto}
+.plate:has(.uxphoto) .uxphoto img,.uxphoto img{max-height:30vh}
+.uxphoto figcaption{padding:6px 11px;font-size:13.5px}
+.plate:has(.uxphoto):not(:has(.clay)){display:block}
+.plate:has(.uxphoto):not(:has(.clay)) .uxphoto{margin:8px auto 0;width:100%;max-width:720px}
+.plate-read{margin-top:6px}
+.art{font-size:15px;line-height:1.45}
+.sq-ch button{padding:9px 12px;font-size:16px}
+/* ---- C v4 · sommaire de fin en un seul écran, volets côte à côte ---- */
+body.finstate .stage{padding:4px 18px 12px}
+body.finstate .book{max-width:1240px;height:100%}
+body.finstate .pages{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;height:100%;align-items:stretch}
+body.finstate .leaf{min-height:0;overflow:hidden;padding:14px 22px}
+body.finstate .leaf .signet{display:inline-block}
+.fin-kicker{margin:0 0 2px}
+.fin-title,.fin-wrap.bl .fin-title{font-size:28px;margin:0;color:#e7c66a}
+.fin-wrap.chute .fin-title{color:#eda48c}
+.fin-orn{margin:4px auto 6px}
+.fin-wrap.bl .fin-prose,.fin-prose{font-size:15.5px;line-height:1.5;margin:0 0 6px;max-width:none}
+.fin-duree,.fin-src{font-size:13.5px;margin:0 0 4px}
+.fin-wrap.bl .bgrid{grid-template-columns:repeat(4,1fr);gap:6px;margin:6px 0 0}
+.fin-wrap.bl .bcell{padding:5px 4px 4px}
+.fin-wrap.bl .bcell .bv{font-size:20px}
+.bcell .bk{font-size:12px}
+.bcell .bd{font-size:12px}
+.decouvertes{margin-top:8px;padding:6px 10px;font-size:13.5px}
+.fin-doom{margin:0 0 4px}
+.bilan-juge{height:100%;gap:9px}
+.bj-cols{flex:1 1 auto;min-height:0}
+.bj-list{overflow-y:auto}
+.bj-list li{font-size:14.5px}
+.bmarques .bm-line{font-size:14px;line-height:1.42}
+.bilan-actions{margin-top:auto}
+@media(max-width:900px){
+  body.finstate .pages{grid-template-columns:1fr;height:auto}
+  body.finstate .leaf{overflow:visible}
+}
+@media(max-height:700px){
+  .leaf .signet{display:none}
+  .fcard .wm,.fcard .k{display:none}
+  .ibanner svg{height:50px}
+  .iwm{font-size:34px}
+  .stage{padding-top:2px}
+  .cnav button{padding:6px 16px;font-size:14px}
+}
+
 </style>
 </head>
 <body>
@@ -2123,6 +2210,7 @@ const _uxPlate=plate;plate=function(s){
   const k=Object.keys(UX_IMAGES).find(x=>SRC[x]===s);
   if(!k)return out;
   const im=UX_IMAGES[k];
+  if(!s.doc)out=out.replace(/<div class="illus">[\s\S]*?<\/div>/,"");
   const fig='<figure class="uxphoto"><img loading="lazy" src="'+UX_IMG_BASE+im.f+'" alt="'+im.l+'"><figcaption><b>La trace réelle</b> · '+im.l+'<span class="uxprov">Photo : '+im.c+'</span></figcaption></figure>';
   const i=out.lastIndexOf('</div>');
   return out.slice(0,i)+fig+out.slice(i);
