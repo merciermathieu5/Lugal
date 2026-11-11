@@ -130,9 +130,29 @@ function main(){
   // 8. Rendu des sources : tablette d'argile pour les textes (avec étiquette de
   //    reconstitution), SVG sans référence, pas de « Lecture » pour les docs,
   //    aucune mention SOURCES.md / crédits dans l'interface
-  let nDoc = 0, nVis = 0, nStone = 0;
+  let nDoc = 0, nVis = 0, nStone = 0, nPhotos = 0;
+  const IMGMAP = ev('typeof UX_IMAGES!=="undefined"?UX_IMAGES:{}');
+  Object.keys(IMGMAP).forEach(k => {
+    ok(SRC[k], `photo documentaire pour une source inconnue : ${k}`);
+    const im = IMGMAP[k];
+    ok(im && im.f && im.l && im.c, `photo documentaire incomplète (fichier, légende, provenance) pour ${k}`);
+    if (im && im.f) ok(fs.existsSync(path.join(ROOT, "medias", im.f)), `image absente du dépôt : medias/${im.f} (source ${k})`);
+  });
   for (const k in SRC){
-    const out = ev(`plate(SRC[${JSON.stringify(k)}])`);
+    const brut = ev(`plate(SRC[${JSON.stringify(k)}])`);
+    // photos documentaires : uniquement le cadre uxphoto, depuis muniverssocial.ca,
+    // avec texte alternatif et légende ; rien d'autre ne peut rendre une image
+    const photos = brut.match(/<figure class="uxphoto">[\s\S]*?<\/figure>/g) || [];
+    photos.forEach(p => {
+      nPhotos++;
+      ok(/src="medias\/[a-z0-9-]+\.(jpg|png)"/.test(p), `photo hors du dossier medias\/ du dépôt dans ${k}`);
+      ok(/alt="[^"]{8,}"/.test(p), `photo sans texte alternatif descriptif dans ${k}`);
+      ok(/<figcaption>/.test(p), `photo sans légende dans ${k}`);
+      ok(/loading="lazy"/.test(p), `photo sans chargement différé dans ${k}`);
+    });
+    ok(IMGMAP[k] ? photos.length === 1 : photos.length === 0,
+       `photos documentaires incohérentes pour ${k} (${photos.length} rendue(s))`);
+    const out = brut.replace(/<figure class="uxphoto">[\s\S]*?<\/figure>/g, "");
     ok(!/SOURCES\.md/.test(out), `mention « SOURCES.md » dans la source ${k}`);
     ok(!/crédits/.test(out), `mention « crédits » dans la source ${k}`);
     ok(!/<figure|<img/.test(out), `image externe rendue pour la source ${k}`);
@@ -153,6 +173,7 @@ function main(){
   ok(nStone === 1, `attendu 1 source sur pierre, trouvé ${nStone}`);
   ok(SRC.lagash.doc && !SRC.lagash.ph, "lagash devrait être un document composé sans photo");
   info(`${nDoc} documents (tablette d'argile, étiquetés), ${nVis} illustrations avec lecture, sans référence`);
+  info(`${nPhotos} photos documentaires (medias/ du dépôt) sur ${Object.keys(IMGMAP).length} attendues`);
 
   // 9. Numérotation des sections : bijection STORY ↔ SEC, §1 = le début
   const SEC = ev("SEC");

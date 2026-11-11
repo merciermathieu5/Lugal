@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lugal · un livre dont vous êtes le roi</title>
+<title>Lugal · C · Le pupitre, une chose à la fois</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -456,6 +456,268 @@ body:not(.playing) .sheet-drawer{display:none}
 .fin-wrap.bl .fin-src{margin:-6px 0 11px}
 /* ====== les boutons du bandeau restent sous la feuille et les voiles ====== */
 .soundtgl,.lexbtn{z-index:29}
+
+/* ====== UX commun : tout plus gros, tout plus clair (12-13 ans) ====== */
+.renvoi{padding:11px 10px;border:1px solid rgba(140,110,60,.35);border-radius:6px;margin-bottom:8px;background:rgba(255,252,242,.55);font-size:17.5px}
+.renvoi:hover:not(:disabled){background:rgba(231,198,106,.22)}
+.renvoi .go{font-size:15px;white-space:nowrap}
+.renvoi.open .go::before{content:"Va au "}
+#renvois{counter-reset:choix}
+.renvoi{counter-increment:choix}
+.renvoi .lt>span:first-child::before{content:counter(choix,upper-alpha);display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;margin-right:8px;background:var(--rubric);color:#f6e7d8;border-radius:50%;font-size:13px;font-family:"IM Fell English SC",serif}
+.renvoi.closed .lt>span:first-child::before{background:#8a7a58}
+.consigne{font-size:21px;line-height:1.35}
+.consult-btn{font-size:16px;padding:12px 20px;border-radius:6px}
+.consult-hint{font-size:13px}
+.locknote{font-size:15px;font-style:normal;background:rgba(231,198,106,.25);border:1px dashed #a8853c;border-radius:6px;padding:7px 11px;color:#5a4420}
+.locknote::before{content:"→ "}
+.poursuite{font-size:16px;padding:13px 26px;border-radius:7px;display:none;margin-top:12px}
+.poursuite.show{display:inline-flex}
+.sq-ch button{font-size:16px;padding:11px 14px;border-radius:6px}
+.sq-q{font-size:17px}
+.sq-h{font-size:14px}
+.swapbtn{font-size:15px}
+.modal-btn{font-size:15px;padding:11px 20px;border-radius:6px}
+.stepper button{width:40px;height:40px;font-size:20px;border-radius:8px}
+.arow .av{font-size:21px;min-width:34px}
+.arow .an{font-size:16px}
+.arow .ad{font-size:13.5px}
+.fseg button,.citechips button{font-size:15px;padding:9px 8px;border-radius:6px}
+.fcta,.icta{font-size:17px;padding:14px 26px;border-radius:8px}
+.lexbtn{font-size:13px;padding:7px 14px;border-radius:6px}
+.secn{font-size:14px;min-height:38px;border-radius:6px}
+.pf{font-size:13px}
+.pt p{font-size:17.5px;line-height:1.62}
+.gl{text-decoration-thickness:2px}
+.dz-rule{font-size:14px;line-height:1.5}
+.dz-calc{font-size:14px}
+.btn-ink{font-size:15px;padding:11px 18px;border-radius:6px}
+.eb{font-size:12.5px;padding:3px 7px;border-radius:5px}
+.leafnav button{font-size:12px;padding:8px 14px;border-radius:6px}
+
+/* ====== Proposition C · Le pupitre, une chose à la fois ====== */
+.uxsteps{display:none}
+body{background:radial-gradient(140% 100% at 50% -20%,#2a2013 0%,#17110a 70%,#0d0906 100%);padding-bottom:84px}
+.topbar b{color:#e7c66a}
+.cnav{display:none;justify-content:center;gap:10px;padding:4px 0 8px}
+body.playing .cnav{display:flex}
+body.finstate .cnav{display:none}
+.cnav button{display:inline-flex;align-items:center;gap:9px;font-family:"IM Fell English SC",serif;font-size:15px;letter-spacing:.05em;padding:10px 24px;border-radius:999px;border:1.5px solid #5a4427;background:rgba(40,30,16,.8);color:#b09a68;cursor:pointer}
+.cnav button b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#5a4427;color:#efe2c8;font-size:14px}
+.cnav button.on{background:#efe2c8;color:#2c2216;border-color:#e7c66a;box-shadow:0 0 14px rgba(231,198,106,.35)}
+.cnav button.on b{background:var(--rubric);color:#f6e7d8}
+.stage{overflow-y:auto;display:block;margin-top:0;padding:4px 12px 20px}
+.book{display:block;height:auto;max-width:880px;margin:0 auto;background:none;border:none;box-shadow:none;padding:0}
+.ribbon,.spine,.pages::after{display:none}
+.pages{display:block;background:none}
+.leaf{overflow:visible;border-radius:12px;background:linear-gradient(180deg,var(--paper),var(--paper-2));border:1px solid #8a6a3c;box-shadow:0 10px 34px rgba(0,0,0,.5);padding:20px 30px 22px;min-height:120px}
+body.playing:not(.finstate) .leaf-l{display:flex}
+body.playing:not(.finstate) .leaf-r{display:none}
+body.playing.cvue-dec:not(.finstate) .leaf-l{display:none}
+body.playing.cvue-dec:not(.finstate) .leaf-r{display:flex}
+body.finstate .pages{display:flex;flex-direction:column;gap:16px}
+.story{overflow:visible;flex:none}
+.leafnav{display:none}
+.folio-no{display:none}
+.leaf .signet{position:static;display:inline-block;transform:none;margin:0 0 10px;border-radius:999px;font-size:12px;padding:6px 14px}
+.cgo{display:block;margin:22px auto 4px;font-family:"IM Fell English SC",serif;font-size:17px;letter-spacing:.05em;background:var(--rubric);color:#f6e7d8;border:none;padding:15px 34px;border-radius:999px;cursor:pointer;box-shadow:0 4px 16px rgba(60,20,10,.4)}
+.cgo:hover{filter:brightness(1.12)}
+.cback{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:#8a6a44;font-family:"EB Garamond",serif;font-size:14px;cursor:pointer;text-decoration:underline dotted;padding:0;margin:0 0 8px}
+#uxhud{display:none;position:fixed;left:0;right:0;bottom:0;z-index:28;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:linear-gradient(180deg,#2e2314,#1d1609);border-top:2px solid #e7c66a;padding:9px 14px;box-shadow:0 -6px 20px rgba(0,0,0,.5)}
+body.playing #uxhud{display:flex}
+body.finstate #uxhud{display:none}
+.uxnom{font-family:"IM Fell English SC",serif;font-size:16px;color:#e7c66a;margin-right:2px}
+.uxgrp{display:inline-flex;gap:7px;flex-wrap:wrap}
+.uxgrp.jauges{padding-left:10px;border-left:1px solid #5a4427}
+.uxchip{display:inline-flex;align-items:center;gap:7px;background:rgba(239,226,200,.1);border:1px solid #5a4427;border-radius:999px;padding:4px 12px}
+.uxchip i{font-style:normal;font-size:12.5px;color:#b09a68}
+.uxchip b{font-size:16px;color:#efe2c8}
+.uxgrp.jauges .uxchip{border-color:#2f6f86;background:rgba(47,111,134,.16)}
+.uxgrp.jauges .uxchip i{color:#7fb2c4}
+.uxchip.up{box-shadow:0 0 10px rgba(96,160,90,.8);border-color:#60a05a}
+.uxchip.down{box-shadow:0 0 10px rgba(200,80,56,.8);border-color:#c85038}
+.uxpet{font-size:12.5px;color:#b09a68;border:1px dashed #5a4427;border-radius:999px;padding:4px 10px}
+.uxpet.rev{color:#d08a74;border-color:#8a5240}
+.progress .frise i{width:14px;height:14px}
+.poursuite{font-size:17px;padding:14px 30px;border-radius:999px}
+
+/* ---- C v2 · plus de tiroir : fiche en panneau au-dessus du tableau de bord ---- */
+.sheet-tab{display:none}
+.sheet-drawer{top:auto;bottom:92px;right:14px;height:auto;max-height:68vh;width:min(400px,92vw);border-radius:14px;border:1.5px solid #e7c66a;box-shadow:0 18px 50px rgba(0,0,0,.6);transform:translateY(calc(100% + 140px));overflow:hidden}
+.sheet-drawer.open{transform:none}
+.tablet{border-left:none;border-radius:12px}
+.uxbtn{display:inline-flex;align-items:center;gap:7px;background:rgba(231,198,106,.14);border:1px solid #e7c66a;color:#e7c66a;border-radius:999px;padding:6px 14px;font-family:"IM Fell English SC",serif;font-size:12.5px;letter-spacing:.05em;cursor:pointer}
+.uxbtn:hover{background:rgba(231,198,106,.28)}
+.uxbtn.lit{animation:uxlit 1.6s ease-in-out infinite}
+@keyframes uxlit{0%,100%{box-shadow:0 0 0 0 rgba(255,215,110,0)}50%{box-shadow:0 0 14px 3px rgba(255,215,110,.7)}}
+/* ---- C v2 · la frise des actes habite la zone noire de gauche ---- */
+body.playing:not(.finstate) #progress{position:fixed;left:18px;top:112px;bottom:112px;width:132px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px;z-index:26}
+body.playing:not(.finstate) #progress::before{content:"Les actes";font-family:"IM Fell English SC",serif;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8f7f63}
+body.playing:not(.finstate) #progress .frise{flex-direction:column;gap:9px}
+body.playing:not(.finstate) #progress .frise i{width:22px;height:18px}
+body.playing:not(.finstate) #progress .plabel{display:block;text-align:center;font-size:12.5px;line-height:1.45;color:#b09a68;max-width:126px;white-space:normal}
+#progress .plabel.ep{color:#e7c66a}
+/* ---- C v2 · le coin des dés habite la zone noire de droite ---- */
+body.playing:not(.finstate) #dicezone.show{position:fixed;right:14px;top:108px;bottom:104px;width:322px;overflow-y:auto;z-index:27;display:flex;flex-direction:column;gap:10px;margin:0;background:linear-gradient(180deg,#2b2113,#1c150b);border:1.5px solid #e7c66a;border-radius:14px;padding:14px 16px;box-shadow:0 18px 50px rgba(0,0,0,.55)}
+body.playing:not(.finstate) #dicezone.show::before{content:"Le coin des dés";font-family:"IM Fell English SC",serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#e7c66a;text-align:center;padding-bottom:6px;border-bottom:1px solid #5a4427}
+body.des-ouverts:not(.finstate) .stage{padding-right:352px;padding-left:150px}
+#dicezone .dz-rule,#dicezone .dz-calc,#dicezone .dz-explain{color:#d9c79a}
+#dicezone .dz-rule b,#dicezone .dz-calc b{color:#f0e6cf}
+#dicezone .dz-sceaux{color:#b09a68}
+#dicezone .dz-favor{background:#efe2c8;color:#2b2316;border-radius:10px;padding:10px 12px}
+#dicezone .btn-ink{background:#e7c66a;color:#241b0f;border:none;font-size:15.5px;padding:12px 18px;border-radius:999px}
+#dicezone .btn-ink:hover{filter:brightness(1.1)}
+#dicezone .favno{color:#d9c79a}
+#dicezone .cz-duel{flex-direction:column;gap:8px}
+#dicezone .cz-side{background:#f3ead2}
+#dicezone .cz-vs{color:#b09a68}
+#dicezone .cz-log{max-height:150px}
+#dicezone .cz-log .lg{color:#c9b792}
+#dicezone .cz-log .lg b{color:#fff}
+#dicezone .cz-log .lg.win b{color:#9ddb8f}
+#dicezone .cz-log .lg.lose b{color:#f0a088}
+#dicezone .cz-dr{color:#d9c79a}
+#dicezone .cz-dr b{color:#f0e6cf}
+/* ---- C v2 · la décision garde son bouton de poursuite en vue ---- */
+.poursuite{position:sticky;bottom:6px;align-self:center;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.dec{overflow:visible}
+/* ---- C v2 · accueil : écran titre ---- */
+.icard{background:linear-gradient(180deg,#261d10,#160f08);border:1.5px solid #8a6a3c;border-radius:14px;box-shadow:0 40px 100px rgba(0,0,0,.8)}
+.iwm{color:#e7c66a;font-size:54px;letter-spacing:.22em;text-shadow:0 0 30px rgba(231,198,106,.35)}
+.isub{color:#b09a68;font-size:14px}
+.ireal{border-color:#5a4427;background:rgba(255,248,230,.06)}
+.ireal-k{color:#8f7f63}
+.ireal-t{color:#f0e6cf}
+.ihook{color:#e8dcc2;font-size:17px;max-width:600px}
+.ifact{background:rgba(231,198,106,.08);border:1px solid #5a4427;color:#b09a68;border-radius:999px;padding:6px 14px}
+.ifact b{color:#e7c66a;font-size:20px}
+.hcard{background:rgba(255,248,230,.045);border:1px solid #4a3a22;border-radius:12px}
+.hcard h4{color:#e7c66a}
+.hcard p{color:#b3a284}
+.idoom{border:1px dashed #5a4427;border-radius:10px;color:#b3a284}
+.idoom b{color:#e0cfa6}
+.icta{background:#e7c66a;color:#241b0f;font-size:18px;padding:16px;border-radius:999px;box-shadow:0 6px 24px rgba(231,198,106,.3)}
+.icta:hover{filter:brightness(1.08)}
+.icard [stroke="#7a5a1e"]{stroke:#d9b96a}
+.icard [stroke="#9c3a2c"]{stroke:#d98a6a}
+.ibanner [stroke="#6b4f24"]{stroke:#caa85e}
+.ibanner [stroke="#2f6f86"]{stroke:#6fa8bd}
+.ibanner svg{border:none;background:none}
+/* ---- C v2 · création du personnage ---- */
+.fcard{background:linear-gradient(180deg,#261d10,#160f08);border:1.5px solid #8a6a3c;border-radius:14px}
+.fcard .wm{color:#e7c66a}
+.fcard .k{color:#8f7f63}
+.fcard h2{color:#f0e6cf;font-size:27px}
+.fcard>p{color:#b3a284;font-size:15px}
+.frow label,.flabel{color:#e7c66a}
+#nom{background:rgba(0,0,0,.35);border:1px solid #5a4427;color:#f0e6cf;font-size:18px;padding:10px 12px;border-radius:8px}
+.fseg button,.citechips button{background:rgba(255,248,230,.05);border:1px solid #4a3a22;color:#c4b391}
+.fseg button.on,.citechips button.on{background:#e7c66a;color:#241b0f;border-color:#e7c66a}
+.citenote{color:#b3a284;font-size:13.5px}
+.citenote .cn-atout{color:#9dbd8f}
+.pool{color:#b09a68;font-size:15px}
+.pool b{color:#e7c66a;font-size:19px}
+.arow{background:rgba(255,248,230,.045);border-color:#4a3a22;border-radius:10px;padding:10px 14px}
+.arow .an{color:#f0e6cf}
+.arow .av{color:#e7c66a}
+.arow .ad{color:#9c8c6e}
+.stepper button{background:#e7c66a;color:#241b0f;border:none;width:42px;height:42px}
+.stepper button:disabled{background:#4a3a22;color:#8f7f63}
+.fcta{background:#e7c66a;color:#241b0f;font-size:17px;padding:15px;border-radius:999px}
+.fcta:disabled{background:#4a3a22;color:#9c8c6e}
+.fmeta button{color:#b09a68}
+/* ---- C v2 · la tablette d'argile se lit sans plisser les yeux ---- */
+.clay{background:radial-gradient(130% 100% at 28% 16%,#eacf9d 0%,#dcba80 46%,#c09a60 100%);border:2px solid rgba(90,60,25,.55);padding:18px 24px 16px}
+.clay p{font-style:normal;font-size:18px;line-height:1.62;color:#2b1d0b;text-shadow:none}
+.clay.stone p{color:#f0e6cf;font-size:17px}
+.modal-card{border-radius:14px;border:1.5px solid #8a6a3c}
+.modal-card.wide{width:min(980px,96vw)}
+.modal-k{display:inline-block;background:#2c2216;color:#e7c66a;border-radius:999px;padding:6px 16px;font-size:12.5px;letter-spacing:.14em}
+/* ---- C v2 · l'écran du destin ---- */
+body.finstate .leaf{background:linear-gradient(180deg,#2b2113,#1d1609);border:1.5px solid #8a6a3c}
+.fin-kicker{color:#b09a68}
+.fin-title{color:#e7c66a;font-style:normal;font-size:34px}
+.fin-prose{color:#e8dcc2;font-size:17px;max-width:62ch}
+.fin-doom{color:#e0a088}
+.fin-duree,.fin-src{color:#9c8c6e}
+.bcell{background:rgba(255,248,230,.05);border:1px solid #4a3a22;border-top:2px solid #e7c66a;border-radius:10px}
+.bcell .bk{color:#b09a68}
+.bcell .bv{color:#f0e6cf}
+.bcell .bd{color:#8f7f63}
+.bmarques .bm-h{color:#e7c66a}
+.bmarques .bm-line{color:#d9c79a}
+.bj-bon .bj-h{color:#9dbd8f;border-bottom-color:rgba(157,189,143,.35)}
+.bj-risque .bj-h{color:#e0a088;border-bottom-color:rgba(224,160,136,.35)}
+.bj-list li{color:#ddd0b4;font-size:15px}
+.bj-list li::before{background:#7a9a5e}
+.bj-risque .bj-list li::before{background:#c27a5e}
+.bj-list li.vide{color:#8f7f63}
+.decouvertes{background:rgba(231,198,106,.1);border-color:#8a6a3c;color:#e0cfa6}
+.decouvertes .dec-h{color:#e7c66a}
+.bilan-link{color:#b09a68;border-color:#5a4427}
+.restart{background:#e7c66a;color:#241b0f;font-size:16px;padding:14px 30px;border-radius:999px}
+/* ---- C v2 · repli sur écrans étroits ---- */
+@media(max-width:1240px){
+  body.playing:not(.finstate) #progress{position:static;width:auto;flex-direction:row;gap:10px}
+  body.playing:not(.finstate) #progress::before{content:none}
+  body.playing:not(.finstate) #progress .frise{flex-direction:row;gap:5px}
+  body.playing:not(.finstate) #progress .frise i{width:12px;height:14px}
+  body.playing:not(.finstate) #progress .plabel{max-width:none}
+  body.playing:not(.finstate) #dicezone.show{position:static;width:auto;margin-top:8px}
+  body.des-ouverts:not(.finstate) .stage{padding-right:12px;padding-left:12px}
+}
+
+/* ---- C v3 · la trace réelle : photos documentaires de muniverssocial.ca ---- */
+.uxphoto{margin:12px 0 0;border:1px solid #b89a5e;border-radius:10px;overflow:hidden;background:#fffdf7}
+.uxphoto img{display:block;width:100%;max-height:360px;object-fit:contain;background:#efe8d8}
+.uxphoto figcaption{font-family:"EB Garamond",serif;font-size:14.5px;line-height:1.45;color:#3d3220;padding:9px 13px;background:rgba(201,176,121,.22);border-top:1px solid rgba(140,110,60,.35)}
+.uxphoto figcaption b{font-family:"IM Fell English SC",serif;font-size:12.5px;letter-spacing:.08em;color:#7a5a1e;margin-right:4px}
+.uxphoto .uxprov{display:block;font-size:12px;color:#8a7a58;font-style:italic;margin-top:2px}
+@media(min-width:960px){
+  .plate:has(.uxphoto){display:grid;grid-template-columns:1.1fr .9fr;gap:4px 16px;align-items:start}
+  .plate:has(.uxphoto) .plate-h{grid-column:1/-1}
+  .plate:has(.uxphoto) .illus,.plate:has(.uxphoto) .clay{grid-column:1;grid-row:2}
+  .plate:has(.uxphoto) .uxphoto{grid-column:2;grid-row:2;margin-top:0}
+  .plate:has(.uxphoto) .plate-read{grid-column:1/-1}
+  .plate:has(.uxphoto) .cite{grid-column:1/-1}
+  .plate:has(.uxphoto) .uxphoto img{max-height:420px}
+}
+/* ---- C v3 · lisibilité : corps plus grands, contrastes relevés ---- */
+.pt p{font-size:18px;line-height:1.66}
+.consigne{font-size:22px}
+.renvoi{font-size:18px}
+.renvoi .go{font-size:15.5px}
+.eb{font-size:13px}
+.sq-q{font-size:18px;line-height:1.45}
+.sq-ch button{font-size:16.5px}
+.sq-hint{font-size:14.5px}
+.modal-body{font-size:16px;line-height:1.58}
+.modal-verdict{font-size:15.5px;line-height:1.5}
+.modal-title{line-height:1.25}
+.art{font-size:15.5px;line-height:1.52}
+.plate-read-h{font-size:12.5px}
+.lex-t{font-size:16px}
+.lex-d{font-size:14.5px;line-height:1.5}
+.dz-rule{font-size:14.5px;line-height:1.56}
+.dz-calc{font-size:14.5px;line-height:1.5}
+.consult-hint{font-size:13.5px}
+.locknote{font-size:15.5px}
+.citenote{font-size:14px;line-height:1.4}
+.arow .ad{color:#b3a284;font-size:14px;line-height:1.45}
+.bcell .bd{color:#a89878}
+.ireal-k{color:#a89878}
+.fcard .k{color:#a89878}
+.isub{color:#c9b792}
+.hcard p{color:#c0b094;font-size:13.5px;line-height:1.5}
+.idoom{color:#c0b094}
+.uxchip i{font-size:13px}
+.uxpet{font-size:13px}
+#dicezone .cz-log .lg{font-size:13.5px}
+body.playing:not(.finstate) #progress .plabel{font-size:13.5px;color:#c9b792}
+body.playing:not(.finstate) #progress::before{color:#a89878}
+.cback{font-size:14.5px}
+.cnav button{font-size:15.5px}
+
 </style>
 </head>
 <body>
@@ -1759,6 +2021,128 @@ loadSound();
 if(document.fonts&&document.fonts.ready){document.fonts.ready.then(()=>{if(F&&$("#story"))renderLeft();});}
 window.addEventListener("resize",()=>{if(F&&$("#story"))renderLeft();});
 if(typeof module!=="undefined"){module.exports={STORY,SRC,SCEAUX_ORDRE,QUALITES,METRES,evaluerFin,pReussite,BASE,POOL,MAXADD};}
+
+
+/* ====== UX : aides communes (additives, aucune mécanique touchée) ====== */
+function uxStepsHtml(){return '<div class="uxsteps" id="uxsteps">'
+ +'<span class="uxstep" data-s="1"><b>1</b> Lis l\'histoire</span>'
+ +'<span class="uxstep" data-s="2"><b>2</b> Étudie la source</span>'
+ +'<span class="uxstep" data-s="3"><b>3</b> Décide</span></div>';}
+function uxMajSteps(){
+  const el=document.getElementById('uxsteps');if(!el||!F)return;
+  const n=STORY[F.noeud];if(!n||n.fin){el.style.display='none';return;}
+  const hasSrc=!!n.src,locked=!!document.getElementById('locknote');
+  const p=document.getElementById('poursuite'),choisi=p&&p.classList.contains('show');
+  el.querySelectorAll('.uxstep').forEach(s=>{
+    const k=+s.dataset.s;s.classList.remove('fait','cur','sans');
+    if(k===1)s.classList.add('fait');
+    if(k===2){if(!hasSrc)s.classList.add('sans');else s.classList.add(locked?'cur':'fait');}
+    if(k===3){if(choisi)s.classList.add('fait');else if(!hasSrc||!locked)s.classList.add('cur');}
+  });
+}
+function uxMajHud(deltas){
+  const h=document.getElementById('uxhud');if(!h)return;
+  if(!F){h.innerHTML='';return;}
+  const d0=k=>(deltas||[]).find(d=>d.k===k);
+  const chip=k=>{const d=d0(k);return '<span class="uxchip'+(d?(d.d>0?' up':' down'):'')+'"><i>'+LAB[k]+'</i><b>'+F[k]+'</b></span>';};
+  const mets=[...METRES,...METRES_X.filter(k=>F[k]>0)];
+  h.innerHTML='<span class="uxnom">'+esc(F.nom)+'</span>'
+   +'<span class="uxgrp">'+QUALITES.map(chip).join('')+'</span>'
+   +'<span class="uxgrp jauges">'+mets.map(chip).join('')+'</span>'
+   +(F.faveursMax?'<span class="uxpet" title="Implorer les dieux permet de relancer un jet raté">Faveurs '+F.faveurs+'/'+F.faveursMax+'</span>':'')
+   +'<span class="uxpet rev" title="Au troisième revers aux dés, ton règne est maudit">Revers '+(F._echecs||0)+'/'+MALCHANCE+'</span>';
+}
+const _uxTab=rendreTablette;rendreTablette=function(ch,de){_uxTab(ch,de);uxMajHud(de);};
+const _uxEnable=enableOpen;enableOpen=function(){_uxEnable();uxMajSteps();};
+const _uxFin=finaliser;finaliser=function(b,c,s){_uxFin(b,c,s);uxMajSteps();};
+
+computePages=function(){const t=(F&&F.histoire.length)||0;return [Array.from({length:t},(_,i)=>i)];};
+document.querySelector('.topbar').insertAdjacentHTML('afterend',
+ '<div class="cnav" id="cnav"><button type="button" id="ctab1" class="on"><b>1</b> L\'histoire</button><button type="button" id="ctab2"><b>2</b> Ta décision</button></div>');
+document.body.insertAdjacentHTML('beforeend','<div id="uxhud"></div>');
+function cVoir(v){
+  document.body.classList.toggle('cvue-dec',v==='dec');
+  const t1=document.getElementById('ctab1'),t2=document.getElementById('ctab2');
+  if(t1){t1.classList.toggle('on',v!=='dec');t2.classList.toggle('on',v==='dec');}
+  const st=document.querySelector('.stage');if(st)st.scrollTop=0;
+}
+document.getElementById('ctab1').onclick=()=>cVoir('recit');
+document.getElementById('ctab2').onclick=()=>cVoir('dec');
+function UX_APRES(){
+  if(!F)return;const n=STORY[F.noeud];
+  if(n&&!n.fin){
+    cVoir('recit');
+    const ll=document.getElementById('leftleaf');
+    if(ll&&!document.getElementById('cgo'))ll.insertAdjacentHTML('beforeend','<button type="button" class="cgo" id="cgo">Passe à ta décision »</button>');
+    const g=document.getElementById('cgo');if(g)g.onclick=()=>cVoir('dec');
+    const dec=document.querySelector('.dec');
+    if(dec&&!document.getElementById('cback'))dec.insertAdjacentHTML('afterbegin','<button type="button" class="cback" id="cback">‹ Relire l\'histoire</button>');
+    const b=document.getElementById('cback');if(b)b.onclick=()=>cVoir('recit');
+  }
+}
+
+const _uxRendre=rendre;rendre=function(fl){_uxRendre(fl);
+  const dec=document.querySelector('.dec');
+  if(dec&&!document.getElementById('uxsteps'))dec.insertAdjacentHTML('afterbegin',uxStepsHtml());
+  uxMajSteps();uxMajHud();UX_APRES&&UX_APRES();};
+
+/* ---- C v2 : fiche du roi accessible depuis le tableau de bord ---- */
+const _uxHudC=uxMajHud;uxMajHud=function(d){_uxHudC(d);uxFiche();};
+function uxFiche(){
+  const h=document.getElementById('uxhud');if(!h||!F)return;
+  h.insertAdjacentHTML('beforeend','<button type="button" class="uxbtn" id="uxfiche"></button>');
+  const fb=document.getElementById('uxfiche');
+  fb.textContent='Fiche du roi · '+F.sceaux.size+' sceau'+(F.sceaux.size===1?'':'x');
+  const st=document.getElementById('sheettab');
+  if(st&&st.classList.contains('lit'))fb.classList.add('lit');
+  fb.onclick=()=>{if(st)st.click();fb.classList.remove('lit');};
+}
+/* ---- C v2 : quand les dés sont ouverts, le pupitre leur laisse la place ---- */
+function uxObsDes(){
+  const dz=document.getElementById('dicezone');if(!dz)return;
+  const maj=()=>document.body.classList.toggle('des-ouverts',dz.classList.contains('show'));
+  new MutationObserver(maj).observe(dz,{attributes:true,attributeFilter:['class']});maj();
+}
+const _uxApresC=UX_APRES;UX_APRES=function(){_uxApresC();uxObsDes();};
+
+/* ---- C v3 : la trace réelle, photos documentaires du dossier medias/ du dépôt ---- */
+const UX_IMG_BASE="medias/";
+const UX_IMAGES={
+ carte:{f:"carte-mesopotamie.png",l:"La Mésopotamie et le Croissant fertile, entre le Tigre et l'Euphrate",c:"muniverssocial.ca"},
+ fleuves:{f:"crue-delta-satellite.jpg",l:"Le delta du Tigre et de l'Euphrate vu de l'espace : la vie verte suit l'eau des fleuves",c:"NASA/JPL/UCSD/JSC, domaine public"},
+ lagash:{f:"tablette-cuneiforme.jpg",l:"Tablette cunéiforme enregistrant des rations d'orge",c:"muniverssocial.ca"},
+ edubbaTexte:{f:"scribe.jpg",l:"Statue du scribe sumérien Dudu, réplique du musée de Sulaymaniyah",c:"muniverssocial.ca"},
+ hammurabi:{f:"code-hammourabi.jpg",l:"La stèle du Code d'Hammourabi",c:"muniverssocial.ca"},
+ ziggourat:{f:"ziggourat-ur.jpg",l:"La ziggourat d'Ur, en Irak",c:"muniverssocial.ca"},
+ animisme:{f:"vase-uruk.jpg",l:"Le vase d'Uruk, une procession d'offrandes à la déesse de la cité",c:"muniverssocial.ca"},
+ commerce:{f:"lapis-lazuli.jpg",l:"Le lapis-lazuli, importé de la vallée de l'Indus",c:"muniverssocial.ca"},
+ etendard:{f:"etendard-ur.jpg",l:"L'Étendard d'Ur, face de la Paix",c:"muniverssocial.ca"}
+};
+const _uxPlate=plate;plate=function(s){
+  let out=_uxPlate(s);
+  const k=Object.keys(UX_IMAGES).find(x=>SRC[x]===s);
+  if(!k)return out;
+  const im=UX_IMAGES[k];
+  const fig='<figure class="uxphoto"><img loading="lazy" src="'+UX_IMG_BASE+im.f+'" alt="'+im.l+'"><figcaption><b>La trace réelle</b> · '+im.l+'<span class="uxprov">Photo : '+im.c+'</span></figcaption></figure>';
+  const i=out.lastIndexOf('</div>');
+  return out.slice(0,i)+fig+out.slice(i);
+};
+document.addEventListener('error',e=>{const t=e.target;if(t&&t.tagName==='IMG'&&t.closest&&t.closest('.uxphoto'))t.closest('.uxphoto').style.display='none';},true);
+/* ---- C v3 : la molette défile partout, jamais coincée sur une zone fixe ---- */
+document.addEventListener('wheel',e=>{
+  for(let n=e.target;n&&n!==document.body;n=n.parentElement){
+    const st=getComputedStyle(n);
+    if(/(auto|scroll)/.test(st.overflowY)&&n.scrollHeight>n.clientHeight+1)return;
+  }
+  const intro=document.getElementById('intro'),frontis=document.getElementById('frontis');
+  const cible=document.querySelector('.modal.show .modal-card')
+    ||document.querySelector('.overlay.show .ov-card')
+    ||(frontis&&frontis.style.display!=='none'?document.querySelector('.fcard'):null)
+    ||(intro&&getComputedStyle(intro).display!=='none'?document.querySelector('.icard'):null)
+    ||document.querySelector('.stage');
+  if(cible)cible.scrollTop+=e.deltaY;
+},{passive:true});
+
 </script>
 </body>
 </html>
